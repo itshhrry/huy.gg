@@ -43,7 +43,3 @@ This site currently uses:
 ├── style.css
 ├── CNAME
 └── README.md
-
-├── style.css
-├── CNAME
-└── README.md
