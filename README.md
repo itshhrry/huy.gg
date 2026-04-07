@@ -40,6 +40,7 @@ This site currently uses:
 .
 ├── index.html
 ├── contact.html
+├── projects.html
 ├── style.css
 ├── CNAME
 └── README.md
