@@ -229,6 +229,12 @@ a {
   margin-top: 0;
 }
 
+.projects-link-row {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
 .project-meta {
   display: flex;
   flex-wrap: wrap;
