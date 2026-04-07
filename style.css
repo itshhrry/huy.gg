@@ -222,6 +222,11 @@ a {
 
 .project-card {
   padding: 2rem;
+  margin-top: 2rem;
+}
+
+.project-card:first-of-type {
+  margin-top: 0;
 }
 
 .project-meta {
@@ -255,30 +260,26 @@ a {
   color: var(--text-muted);
 }
 
-.project-grid,
-.resume-card {
+.project-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.25rem;
-  margin-top: 2.25rem;
+  gap: 1rem;
+  margin-top: 1.75rem;
 }
 
-.project-block,
-.resume-item {
-  padding: 1.6rem;
+.project-block {
+  padding: 1.2rem;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   background: #fffdfa;
 }
 
-.project-block h4,
-.resume-item h3 {
+.project-block h4 {
   margin: 0;
   font-size: 1rem;
 }
 
-.project-block p,
-.resume-item p {
+.project-block p {
   margin: 0.75rem 0 0;
   color: var(--text-muted);
 }
@@ -286,6 +287,31 @@ a {
 .project-block ul {
   margin: 0.75rem 0 0;
   padding-left: 1.1rem;
+  color: var(--text-muted);
+}
+
+.resume-card {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 2.25rem;
+  padding: 1.5rem;
+}
+
+.resume-item {
+  padding: 1.6rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: #fffdfa;
+}
+
+.resume-item h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.resume-item p {
+  margin: 0.75rem 0 0;
   color: var(--text-muted);
 }
 
@@ -302,6 +328,21 @@ a {
   max-width: 700px;
   margin-top: 1rem;
   color: var(--text-muted);
+}
+
+.contact-email {
+  margin-top: 1rem;
+  color: var(--text-muted);
+}
+
+.contact-email a {
+  color: var(--accent-dark);
+  font-weight: 700;
+}
+
+.contact-email a:hover,
+.contact-email a:focus {
+  color: var(--accent);
 }
 
 .site-footer {
@@ -354,5 +395,10 @@ a {
   .resume-card,
   .hero-panel {
     padding: 1.3rem;
+  }
+
+  .resume-item,
+  .project-block {
+    padding: 1.2rem;
   }
 }
