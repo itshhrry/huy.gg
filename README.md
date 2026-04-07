@@ -39,8 +39,9 @@ This site currently uses:
 ```text
 .
 ├── index.html
-├── contact.html
 ├── projects.html
+├── resume.html
+├── contact.html
 ├── style.css
 ├── CNAME
 └── README.md
