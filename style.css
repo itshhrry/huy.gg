@@ -93,7 +93,7 @@ a {
 }
 
 .site-nav span.nav-dot {
-  color: var(--border);
+  color: var(--text);
   font-size: 0.95rem;
   line-height: 1;
   user-select: none;
