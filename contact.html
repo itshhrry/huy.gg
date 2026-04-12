@@ -4,7 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact | Harry Nguyen</title>
-  <meta name="description" content="Contact Harry Nguyen regarding data analyst and business analyst opportunities." />
+  <meta
+    name="description"
+    content="Contact Harry Nguyen regarding data analyst and business analyst opportunities."
+  />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -41,22 +44,32 @@
 
     <section class="section section-alt">
       <div class="container">
-        <div style="position:relative;">
-          <div style="position:absolute;top:8px;left:8px;right:-8px;bottom:-8px;background:var(--surface-alt);border:1px solid var(--border);border-radius:var(--radius-lg);z-index:0;"></div>
-          <div class="resume-card" style="grid-template-columns:repeat(2,minmax(0,1fr));position:relative;z-index:1;margin-top:0;">
-            <div class="resume-item" style="border:none;background:transparent;">
-              <p style="margin:0 0 0.5rem;font-size:0.85rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.12em;">Email</p>
-              <p style="margin:0;font-size:1.06rem;font-weight:700;">
-                <a href="/cdn-cgi/l/email-protection#345c745c414d1a5353" style="color:var(--accent-dark);"><span class="__cf_email__" data-cfemail="d1b991b9a4a8ffb6b6">[email&#160;protected]</span></a>
-              </p>
-            </div>
-            <div class="resume-item" style="border:none;background:transparent;">
-              <p style="margin:0 0 0.5rem;font-size:0.85rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.12em;">LinkedIn</p>
-              <p style="margin:0;font-size:1.06rem;font-weight:700;">
-                <a href="https://www.linkedin.com/in/huygg" target="_blank" rel="noopener noreferrer" style="color:var(--accent-dark);">linkedin.com/in/huygg</a>
-              </p>
+        <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem;">
+
+          <div style="position:relative;">
+            <div style="position:absolute;top:8px;left:8px;right:-8px;bottom:-8px;background:var(--surface-alt);border:1px solid var(--border);border-radius:var(--radius-lg);z-index:0;"></div>
+            <div class="resume-card" style="grid-template-columns:1fr;position:relative;z-index:1;margin-top:0;">
+              <div class="resume-item">
+                <p class="panel-label">Email</p>
+                <p style="margin:0.5rem 0 0;font-size:1.06rem;font-weight:700;">
+                  <a href="mailto:h@huy.gg" style="color:var(--accent-dark);">h@huy.gg</a>
+                </p>
+              </div>
             </div>
           </div>
+
+          <div style="position:relative;">
+            <div style="position:absolute;top:8px;left:8px;right:-8px;bottom:-8px;background:var(--surface-alt);border:1px solid var(--border);border-radius:var(--radius-lg);z-index:0;"></div>
+            <div class="resume-card" style="grid-template-columns:1fr;position:relative;z-index:1;margin-top:0;">
+              <div class="resume-item">
+                <p class="panel-label">LinkedIn</p>
+                <p style="margin:0.5rem 0 0;font-size:1.06rem;font-weight:700;">
+                  <a href="https://www.linkedin.com/in/huygg" target="_blank" rel="noopener noreferrer" style="color:var(--accent-dark);">linkedin.com/in/huygg</a>
+                </p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -66,3 +79,10 @@
     <div class="container footer-inner">
       <div style="display:flex;align-items:center;gap:8px;">
         <img src="logo.png" alt="huy.gg" style="width:28px;height:28px;object-fit:contain;opacity:0.7;" />
+        <span>© 2026 Harry Nguyen</span>
+      </div>
+      <p>huy.gg</p>
+    </div>
+  </footer>
+</body>
+</html>
