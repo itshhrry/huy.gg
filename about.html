@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About | Harry Nguyen</title>
+  <title>Harry Nguyen | Data & Business Analyst Portfolio</title>
   <meta
     name="description"
-    content="About Harry Nguyen — data and business analyst with nearly a decade of healthcare operations experience and a multidisciplinary academic background."
+    content="Harry Nguyen is a data and business analyst focused on dashboards, data transformation, reporting, and practical technical problem-solving."
   />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -18,7 +18,6 @@
         Harry Nguyen
       </a>
       <nav class="site-nav" aria-label="Primary navigation">
-        <a href="about.html">About</a>
         <a href="projects.html">Projects</a>
         <a href="resume.html">Resume</a>
         <a href="contact.html">Contact</a>
@@ -26,28 +25,40 @@
     </div>
   </header>
 
-  <main>
+  <main id="top">
+
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">About</p>
-          <h1>What can't be measured, can't be improved.</h1>
+          <p class="eyebrow">Data Analysis · Business Analysis</p>
+          <h1>I help organizations make better decisions with data.</h1>
           <p class="hero-text">
-            I spent nearly a decade working inside healthcare operations — from the ground
-            floor to regional management — and that experience taught me one thing above
-            all else: the difference between organizations that thrive and those that
-            struggle often comes down to how well they understand their own data.
+            Analytical and detail-oriented professional focused on translating complex
+            datasets into clear insights — through dashboards, reporting, and structured
+            data workflows. Seeking data analyst and business analyst roles.
           </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="projects.html">View Projects</a>
+          </div>
         </div>
 
         <aside class="hero-panel">
-          <p class="panel-label">Education</p>
-          <ul class="focus-list">
-            <li>Data Science certificate — MIT</li>
-            <li>B.S. Computer Science, magna cum laude (3.98 GPA) — Colorado State University</li>
-            <li>M.S. Healthcare Administration (3.93 GPA) — University of Denver</li>
-            <li>B.S. Biology and Chemistry</li>
-          </ul>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:1.25rem;">
+            <img src="logo.png" alt="huy.gg" style="width:44px;height:44px;object-fit:contain;" />
+            <div>
+              <p style="margin:0;font-weight:700;font-size:1rem;color:var(--text);">Harry Nguyen</p>
+              <p style="margin:0;font-size:0.85rem;color:var(--text-muted);">Data & Business Analyst</p>
+            </div>
+          </div>
+          <div style="border-top:1px solid var(--border);padding-top:1rem;margin-bottom:1rem;">
+            <p style="margin:0;font-size:0.88rem;color:var(--text-muted);">MHA · B.S. CS · 8+ years in healthcare</p>
+          </div>
+          <div style="border-top:1px solid var(--border);padding-top:1rem;">
+            <p style="margin:0 0 0.75rem;font-size:0.88rem;color:var(--text-muted);">
+              Nearly a decade in healthcare operations, now focused on turning data into decisions.
+            </p>
+            <a class="button button-secondary" href="about.html" style="width:100%;justify-content:center;">About me</a>
+          </div>
         </aside>
       </div>
     </section>
@@ -55,169 +66,91 @@
     <section class="section section-alt">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">My story</p>
-          <h2>From the lab to the clinic to the data</h2>
+          <p class="eyebrow">Capabilities</p>
+          <h2>Tools and skills</h2>
           <p>
-            My path has not been linear — and that is exactly what makes my perspective useful.
+            A practical toolkit built around the core responsibilities of data and business analyst work.
           </p>
         </div>
 
-        <div class="resume-card">
+        <div class="resume-card" style="grid-template-columns: repeat(3, minmax(0, 1fr));">
           <div class="resume-item">
-            <h3>It started with science</h3>
-            <p>
-              My academic foundation began in biology and chemistry — disciplines that
-              taught me to think rigorously, question assumptions, and follow the evidence.
-              That scientific mindset never left me. It just found a new home in data.
-            </p>
+            <h3>Data analysis</h3>
+            <p>Python, R, SQL, pandas, NumPy, scikit-learn</p>
           </div>
-
           <div class="resume-item">
-            <h3>Nearly a decade in healthcare operations</h3>
-            <p>
-              I spent eight to nine years working in healthcare — from operations to regional
-              management, most recently as a revenue cycle manager. I also worked with the
-              State of Colorado, where performing in strict regulatory environments became
-              second nature. I understood how organizations run, where the inefficiencies
-              hide, and what questions leadership actually needs answered. The information
-              was there. What was missing was someone who could turn it into something
-              actionable. I decided to become that person.
-            </p>
+            <h3>Visualization and reporting</h3>
+            <p>Power BI, Tableau, Excel, Matplotlib, Seaborn</p>
           </div>
-
           <div class="resume-item">
-            <h3>The project that changed everything</h3>
-            <p>
-              During my master's program, I collaborated with Centura Health on a capstone
-              project to evaluate and streamline clinical workflows using High-Reliability
-              Organization principles. We built a system that processed real-time healthcare
-              data from EPIC, patient monitoring devices, and administrative databases —
-              incorporating predictive analytics and machine learning to forecast patient
-              admissions, resource utilization, and potential complications. The outcomes
-              helped streamline ulcerative colitis protocol, optimize resource allocation
-              during COVID-19, and reduce significant operational costs. That project
-              ignited something in me and set the direction for everything that followed.
-            </p>
-          </div>
-
-          <div class="resume-item">
-            <h3>Going deeper at MIT</h3>
-            <p>
-              I pursued my Applied Data Science certificate at MIT to sharpen my skills
-              in machine learning, deep learning, and Python-based analysis. For my capstone,
-              I analyzed and compared ANN and CNN architectures to improve facial emotion
-              recognition — achieving 91% accuracy across happy, sad, neutral, and surprised
-              categories through careful tuning of dropout layers and training epochs.
-              The program reinforced my ability to work across multiple model types,
-              analyze data patterns, and build systems that generalize well.
-            </p>
+            <h3>Infrastructure and tools</h3>
+            <p>Docker, AWS, Azure, Linux, GitHub, Spark</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="projects">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">What drives me</p>
-          <h2>Values I bring to every role</h2>
+          <p class="eyebrow">Featured Work</p>
+          <h2>Selected projects</h2>
           <p>
-            My philosophy is simple: provide simple solutions to complex problems,
-            leveraging data to establish a consistent and less fragmented experience
-            for the people who depend on it.
+            A sample of my current work across analytics, dashboarding, and self-hosted infrastructure.
           </p>
         </div>
 
-        <div class="resume-card">
-          <div class="resume-item">
-            <h3>Integrity</h3>
-            <p>
-              I hold myself to a high standard in how I work and how I present findings.
-              Data can be shaped to tell many stories — I am committed to telling the
-              right one, even when it is inconvenient.
-            </p>
+        <article class="project-card">
+          <div class="project-meta">
+            <span class="tag">Python</span>
+            <span class="tag">Excel</span>
+            <span class="tag">Power Query</span>
+            <span class="tag">Real-World Data</span>
           </div>
-
-          <div class="resume-item">
-            <h3>Compassion</h3>
-            <p>
-              Healthcare taught me that behind every data point is a person. Whether it is
-              a patient, a provider, or a team member, I approach my work with an awareness
-              of the human stakes involved.
-            </p>
-          </div>
-
-          <div class="resume-item">
-            <h3>Quality</h3>
-            <p>
-              I would rather take the time to do something right than move fast and produce
-              work that misleads. A GPA of 3.98 and 3.93 across two graduate programs
-              reflects the standard I hold myself to — not as a metric, but as a habit.
-            </p>
-          </div>
-
-          <div class="resume-item">
-            <h3>Passion</h3>
-            <p>
-              I genuinely enjoy this work. Understanding the story behind the numbers,
-              finding the metric that changes how a team thinks, building something that
-              makes a decision easier — that is what keeps me engaged and always learning.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-alt">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Where I am headed</p>
-          <h2>What I am looking for</h2>
-          <p>
-            Based in Denver, Colorado — open to remote and relocation opportunities.
+          <h3>Revenue Cycle Management — Practice Analytics</h3>
+          <p class="project-summary">
+            Analyzed real-world billing data from a multi-provider medical practice to surface
+            insights across collections, denials, payer behavior, and provider performance.
+            Built an interactive dashboard and comprehensive billing report using Python, Excel,
+            and Power Query.
           </p>
-        </div>
+        </article>
 
-        <div class="resume-card">
-          <div class="resume-item">
-            <h3>Healthcare and revenue cycle analytics</h3>
-            <p>
-              My combination of operational experience, regulatory background, and technical
-              skills makes me particularly effective in healthcare data roles — revenue cycle
-              analysis, claims performance, denial management, and financial KPI reporting.
-              I understand the domain, not just the tools.
-            </p>
+        <article class="project-card">
+          <div class="project-meta">
+            <span class="tag">Python</span>
+            <span class="tag">pandas</span>
+            <span class="tag">NumPy</span>
+            <span class="tag">Excel</span>
+            <span class="tag">Power Query</span>
+            <span class="tag">Data Modeling</span>
           </div>
-
-          <div class="resume-item">
-            <h3>Data and business analyst roles</h3>
-            <p>
-              I am equally drawn to broader analyst roles where structured data workflows,
-              dashboards, and clear reporting can help an organization understand its own
-              performance and make better decisions. The industry matters less than the
-              quality of the problem.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="contact-card">
-          <p class="eyebrow">Get in touch</p>
-          <h2>Let's connect.</h2>
-          <p>
-            If something here resonates with what you are looking for, I would be glad
-            to connect and talk through how I can contribute to your team.
+          <h3>Revenue Cycle Management Dashboard</h3>
+          <p class="project-summary">
+            Designed a synthetic revenue cycle dataset in Python using rule-based financial
+            logic, then built an Excel dashboard with Power Query and data modeling to
+            analyze reimbursement performance, denials, efficiency, and profitability.
           </p>
-          <div class="contact-actions">
-            <a class="button button-primary" href="contact.html">Contact me</a>
-            <a class="button button-secondary" href="projects.html">View Projects</a>
+        </article>
+
+        <article class="project-card">
+          <div class="project-meta">
+            <span class="tag">Docker</span>
+            <span class="tag">Nginx</span>
+            <span class="tag">Cloudflare</span>
+            <span class="tag">Linux</span>
+            <span class="tag">MariaDB</span>
           </div>
-        </div>
+          <h3>Self-Hosted Home Server Infrastructure</h3>
+          <p class="project-summary">
+            Designed and deployed a self-hosted environment using Docker-based services,
+            reverse proxy routing, and domain-based access to manage multiple applications
+            under a unified system.
+          </p>
+        </article>
       </div>
     </section>
+
   </main>
 
   <footer class="site-footer">
