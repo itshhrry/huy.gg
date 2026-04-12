@@ -63,25 +63,9 @@ a {
 }
 
 .brand {
-  font-size: 40pt;
+  font-size: 1.1rem;
   font-weight: 700;
   letter-spacing: 0.02em;
-}
-
-.site-footer .brand {
-  font-size: 28pt;
-}
-
-.brand img {
-  display: block;
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-}
-
-.site-footer .brand img {
-  width: 28px;
-  height: 28px;
 }
 
 .site-nav {
@@ -107,7 +91,7 @@ a {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: 1.5fr 0.9fr;
   gap: 2rem;
   align-items: start;
 }
@@ -369,8 +353,6 @@ a {
 
 .site-footer {
   padding: 1.25rem 0 2rem;
-  background: rgba(247, 244, 239, 0.94);
-  border-top: 1px solid var(--border);
 }
 
 .footer-inner {
@@ -378,6 +360,7 @@ a {
   justify-content: space-between;
   gap: 1rem;
   padding-top: 1rem;
+  border-top: 1px solid var(--border);
   color: var(--text-muted);
   font-size: 0.92rem;
 }
