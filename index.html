@@ -1,39 +1,28 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-  <title>Harry Nguyen | Data & Business Analyst</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harry Nguyen | Data & Business Analyst Portfolio</title>
   <meta
     name="description"
-    content="Harry Nguyen is a data and business analyst specializing in dashboards, data modeling, and performance insights that drive operational and financial decisions."
+    content="Harry Nguyen is an aspiring data and business analyst focused on dashboards, data transformation, reporting, and practical technical problem-solving."
   />
-
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-
-  <!-- HEADER -->
   <header class="site-header">
     <div class="container header-inner">
-
-      <a class="brand" href="index.html">
-        <img src="logo.png" alt="huy.gg logo" class="logo"/>
-        <div class="brand-text">
-          <strong>Harry Nguyen</strong>
-          <span class="brand-sub">huy.gg</span>
-        </div>
+      <a class="brand" href="index.html" style="display:flex;align-items:center;gap:10px;">
+        <img src="logo.png" alt="huy.gg" style="width:36px;height:36px;object-fit:contain;" />
+        Harry Nguyen
       </a>
-
-      <nav class="site-nav">
+      <nav class="site-nav" aria-label="Primary navigation">
         <a href="projects.html">Projects</a>
         <a href="resume.html">Resume</a>
         <a href="contact.html">Contact</a>
       </nav>
-
     </div>
   </header>
 
@@ -45,15 +34,10 @@
 
         <div class="hero-copy">
           <p class="eyebrow">Data Analyst | Business Analyst</p>
-
-          <h1>
-            I turn raw data into actionable business decisions.
-          </h1>
-
+          <h1>I help organizations make better decisions with data.</h1>
           <p class="hero-text">
-            I build end-to-end analytics solutions—from data modeling and transformation
-            to dashboards and reporting—focused on improving operational efficiency and
-            financial performance.
+            I design analytics workflows that transform complex datasets into structured insights,
+            supporting performance tracking, operational improvement, and financial analysis.
           </p>
 
           <div class="hero-actions">
@@ -102,71 +86,151 @@
     </section>
 
     <!-- PROJECT TEASERS -->
-    <section class="section section-alt">
+    <section class="section" id="projects">
       <div class="container">
-
         <div class="section-heading">
-          <p class="eyebrow">Case Studies</p>
-          <h2>Selected Work</h2>
+          <p class="eyebrow">Featured Work</p>
+          <h2>Selected projects</h2>
           <p>
-            Focused examples demonstrating how data is translated into meaningful business insights.
+            A sample of my current work across analytics, dashboarding, synthetic dataset
+            design, and self-hosted infrastructure.
           </p>
         </div>
 
-        <!-- PROJECT 1 -->
         <article class="project-card">
+          <div class="project-meta">
+            <span class="tag">Python</span>
+            <span class="tag">pandas</span>
+            <span class="tag">NumPy</span>
+            <span class="tag">Excel</span>
+            <span class="tag">Power Query</span>
+            <span class="tag">Data Modeling</span>
+          </div>
 
           <h3>Revenue Cycle Management Dashboard</h3>
 
           <p class="project-summary">
-            Simulated a full revenue cycle environment to analyze how denial patterns
-            and reimbursement behavior impact financial performance.
+            Designed and generated a synthetic revenue cycle management dataset in Python
+            using rule-based operational and financial logic, then built an Excel dashboard
+            with Power Query and data modeling to analyze reimbursement performance, denials,
+            efficiency, and profitability.
           </p>
 
-          <div class="project-image">
-            <img src="images/rcm-dashboard.png" alt="RCM Dashboard Screenshot"/>
+          <div class="project-grid">
+            <div class="project-block">
+              <h4>Objective</h4>
+              <p>
+                Evaluate how reimbursement behavior, denial patterns, and operational
+                efficiency impact financial performance in a revenue cycle context.
+              </p>
+            </div>
+
+            <div class="project-block">
+              <h4>Approach</h4>
+              <p>
+                Built a multi-table synthetic dataset in Python to model revenue cycle
+                operations, then used Excel and Power Query to structure and analyze the data.
+              </p>
+              <ul>
+                <li>Rule-based dataset design with realistic financial logic</li>
+                <li>MPRR reductions and standardized adjustment coding</li>
+                <li>Dictionary-driven RARC assignment</li>
+                <li>CPT dependency rules, including 96372 logic</li>
+              </ul>
+            </div>
+
+            <div class="project-block">
+              <h4>Key Metrics</h4>
+              <ul>
+                <li>Reimbursement totals and reimbursement rate</li>
+                <li>Denial volume and denial trends</li>
+                <li>Operational efficiency indicators</li>
+                <li>Profitability comparison</li>
+              </ul>
+            </div>
+
+            <div class="project-block">
+              <h4>Outcome</h4>
+              <p>
+                Produced a reporting tool that enables comparison of performance drivers and
+                demonstrates how reimbursement patterns, denials, and operational processes
+                influence financial outcomes.
+              </p>
+            </div>
           </div>
-
-          <ul class="project-highlights">
-            <li>Modeled complex reimbursement logic</li>
-            <li>Identified denial trends and revenue impact</li>
-            <li>Built interactive Excel dashboard</li>
-          </ul>
-
-          <a class="button button-secondary" href="projects.html#rcm">
-            View Full Case Study →
-          </a>
-
         </article>
 
-        <!-- PROJECT 2 -->
         <article class="project-card">
+          <div class="project-meta">
+            <span class="tag">Docker</span>
+            <span class="tag">Nginx</span>
+            <span class="tag">Cloudflare</span>
+            <span class="tag">Linux</span>
+            <span class="tag">MariaDB</span>
+          </div>
 
-          <h3>Self-Hosted Infrastructure Platform</h3>
+          <h3>Self-Hosted Home Server Infrastructure</h3>
 
           <p class="project-summary">
-            Built a containerized system for managing multiple services with secure routing
-            and centralized control.
+            Designed and deployed a self-hosted environment using Docker-based services,
+            reverse proxy routing, and domain-based access to manage multiple applications
+            under a unified system.
           </p>
 
-          <div class="project-image">
-            <img src="images/server-architecture.png" alt="Infrastructure Diagram"/>
+          <div class="project-grid">
+            <div class="project-block">
+              <h4>Objective</h4>
+              <p>
+                Build a centralized, self-hosted system to run and manage multiple services
+                with controlled access, scalability, and structured routing.
+              </p>
+            </div>
+
+            <div class="project-block">
+              <h4>Architecture</h4>
+              <p>
+                Implemented containerized services using Docker, with Nginx handling reverse
+                proxy routing and Cloudflare managing DNS and external traffic.
+              </p>
+              <ul>
+                <li>Docker-based service isolation</li>
+                <li>Nginx reverse proxy for routing</li>
+                <li>Cloudflare for DNS and traffic protection</li>
+                <li>MariaDB for application data storage</li>
+              </ul>
+            </div>
+
+            <div class="project-block">
+              <h4>Services</h4>
+              <ul>
+                <li>ownCloud file storage</li>
+                <li>Jellyfin media streaming</li>
+                <li>Additional containerized services</li>
+              </ul>
+            </div>
+
+            <div class="project-block">
+              <h4>Outcome</h4>
+              <p>
+                Established a functional multi-service environment with domain-based access,
+                demonstrating infrastructure management, deployment workflows, and system-level
+                problem-solving.
+              </p>
+            </div>
           </div>
-
-          <ul class="project-highlights">
-            <li>Docker-based service architecture</li>
-            <li>Reverse proxy routing with Nginx</li>
-            <li>Cloudflare DNS and traffic management</li>
-          </ul>
-
-          <a class="button button-secondary" href="projects.html#infrastructure">
-            View Full Case Study →
-          </a>
-
         </article>
-
       </div>
     </section>
+
+    <section class="section section-alt" id="resume-preview">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Resume</p>
+          <h2>Resume overview</h2>
+          <p>
+            A dedicated resume page will contain a cleaner web version and a downloadable PDF.
+          </p>
+        </div>
 
     <!-- CTA -->
     <section class="section">
@@ -174,10 +238,8 @@
 
         <div class="cta-text">
           <h2>Let’s work together</h2>
-          <p>
-            I’m actively seeking data analyst and business analyst roles where I can
-            contribute to data-driven decision-making and measurable business impact.
-          </p>
+          <p>I’m actively seeking data analyst and business analyst roles</p> 
+          <p>where I can contribute to data-driven decision-making and measurable business impact.</p>
         </div>
 
         <div class="cta-action">
