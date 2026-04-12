@@ -14,6 +14,13 @@
   --max-width: 1120px;
 }
 
+.brand img {
+  display: block;
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
 * {
   box-sizing: border-box;
 }
