@@ -30,19 +30,14 @@
   <main>
     <section class="hero">
       <div class="container">
-        <div style="position:relative;display:inline-block;width:100%;">
-          <!-- layered warm panel behind -->
-          <div style="position:absolute;top:12px;left:12px;right:-12px;bottom:-12px;background:var(--surface-alt);border:1px solid var(--border);border-radius:var(--radius-lg);z-index:0;"></div>
-          <!-- main hero panel -->
-          <div class="hero-panel" style="position:relative;z-index:1;padding:2rem;max-width:640px;">
-            <p class="eyebrow">Contact</p>
-            <h1 style="max-width:12ch;">I'd love to hear from you.</h1>
-            <p style="margin:1rem 0 0;font-size:1.06rem;color:var(--text-muted);line-height:1.7;">
-              Whether you are hiring, exploring a collaboration, or just want to talk data,
-              feel free to reach out. I am based in Denver, Colorado, open to remote and
-              relocation opportunities, and typically respond within a day or two.
-            </p>
-          </div>
+        <div class="hero-copy">
+          <p class="eyebrow">Contact</p>
+          <h1 style="max-width:14ch;">I'd love to hear from you.</h1>
+          <p class="hero-text">
+            Whether you are hiring, exploring a collaboration, or just want to talk data,
+            feel free to reach out. I am based in Denver, Colorado, open to remote and
+            relocation opportunities, and typically respond within a day or two.
+          </p>
         </div>
       </div>
     </section>
@@ -50,20 +45,31 @@
     <section class="section section-alt">
       <div class="container">
         <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem;">
-          <div class="contact-card">
-            <p class="panel-label">Email</p>
-            <hr style="border:none;border-top:1px solid var(--border);margin:0.75rem 0;" />
-            <p style="margin:0;font-size:1.06rem;font-weight:700;">
-              <a href="mailto:h@huy.gg" style="color:var(--accent-dark);">h@huy.gg</a>
-            </p>
+
+          <!-- Email card with layered panel -->
+          <div style="position:relative;">
+            <div style="position:absolute;top:8px;left:8px;right:-8px;bottom:-8px;background:var(--surface-alt);border:1px solid var(--border);border-radius:var(--radius-lg);z-index:0;"></div>
+            <div class="contact-card" style="position:relative;z-index:1;">
+              <p class="panel-label">Email</p>
+              <hr style="border:none;border-top:1px solid var(--border);margin:0.75rem 0;" />
+              <p style="margin:0;font-size:1.06rem;font-weight:700;">
+                <a href="mailto:h@huy.gg" style="color:var(--accent-dark);">h@huy.gg</a>
+              </p>
+            </div>
           </div>
-          <div class="contact-card">
-            <p class="panel-label">LinkedIn</p>
-            <hr style="border:none;border-top:1px solid var(--border);margin:0.75rem 0;" />
-            <p style="margin:0;font-size:1.06rem;font-weight:700;">
-              <a href="https://www.linkedin.com/in/huygg" target="_blank" rel="noopener noreferrer" style="color:var(--accent-dark);">linkedin.com/in/huygg</a>
-            </p>
+
+          <!-- LinkedIn card with layered panel -->
+          <div style="position:relative;">
+            <div style="position:absolute;top:8px;left:8px;right:-8px;bottom:-8px;background:var(--surface-alt);border:1px solid var(--border);border-radius:var(--radius-lg);z-index:0;"></div>
+            <div class="contact-card" style="position:relative;z-index:1;">
+              <p class="panel-label">LinkedIn</p>
+              <hr style="border:none;border-top:1px solid var(--border);margin:0.75rem 0;" />
+              <p style="margin:0;font-size:1.06rem;font-weight:700;">
+                <a href="https://www.linkedin.com/in/huygg" target="_blank" rel="noopener noreferrer" style="color:var(--accent-dark);">linkedin.com/in/huygg</a>
+              </p>
+            </div>
           </div>
+
         </div>
       </div>
     </section>
