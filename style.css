@@ -95,6 +95,7 @@ a {
 .site-nav span.nav-dot {
   color: var(--text);
   font-size: 1.1rem;
+  font-weight: 700;
   line-height: 1;
   user-select: none;
 }
