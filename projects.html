@@ -4,10 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects | Harry Nguyen</title>
-  <meta
-    name="description"
-    content="Project portfolio for Harry Nguyen, featuring analytics, dashboarding, and technical infrastructure work."
-  />
+  <meta name="description" content="Project portfolio for Harry Nguyen, featuring analytics, dashboarding, and technical infrastructure work." />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -18,8 +15,10 @@
         Harry Nguyen
       </a>
       <nav class="site-nav" aria-label="Primary navigation">
-        <a href="projects.html">Projects</a>
+        <a href="about.html">About</a>
+        <span class="nav-dot">·</span>
         <a href="resume.html">Resume</a>
+        <span class="nav-dot">·</span>
         <a href="contact.html">Contact</a>
       </nav>
     </div>
@@ -32,13 +31,12 @@
           <p class="eyebrow">Projects</p>
           <h1>Portfolio of analytics and technical systems work.</h1>
           <p class="hero-text">
-            This page brings together selected projects across data analysis,
-            dashboard development, synthetic dataset design, and self-hosted infrastructure.
+            Selected projects across data analysis, dashboard development, synthetic
+            dataset design, and self-hosted infrastructure.
           </p>
-
           <div class="hero-actions">
-            <a class="button button-primary" href="index.html">Back to Home</a>
-            <a class="button button-secondary" href="contact.html">Contact</a>
+            <a class="button button-primary" href="contact.html">Contact me</a>
+            <a class="button button-secondary" href="resume.html">View Resume</a>
           </div>
         </div>
 
@@ -59,10 +57,7 @@
         <div class="section-heading">
           <p class="eyebrow">Selected Work</p>
           <h2>Project archive</h2>
-          <p>
-            These projects reflect a blend of analytical thinking, technical implementation,
-            and practical problem-solving.
-          </p>
+          <p>These projects reflect a blend of analytical thinking, technical implementation, and practical problem-solving.</p>
         </div>
 
         <article class="project-card">
@@ -72,16 +67,13 @@
             <span class="tag">Power Query</span>
             <span class="tag">Real-World Data</span>
           </div>
-
           <h3>Revenue Cycle Management — Practice Analytics</h3>
-
           <p class="project-summary">
-            Analyzed real-world revenue cycle data from a multi-provider medical practice
-            using Python, Excel, and Power Query. Built an interactive dashboard and
-            comprehensive billing report to surface actionable insights across collections,
-            denials, payer behavior, and provider performance.
+            Analyzed real-world billing data from a multi-provider medical practice using
+            Python, Excel, and Power Query. Built an interactive dashboard and comprehensive
+            billing report to surface actionable insights across collections, denials,
+            payer behavior, and provider performance.
           </p>
-
           <div class="project-grid">
             <div class="project-block">
               <h4>Business questions</h4>
@@ -92,17 +84,15 @@
                 <li>How does reimbursement compare to allowed revenue across encounter types?</li>
               </ul>
             </div>
-
             <div class="project-block">
               <h4>Approach</h4>
               <ul>
                 <li>Cleaned and transformed raw billing data using Python and Power Query</li>
-                <li>Built a univariate and multivariate analysis table across payer and encounter dimensions</li>
+                <li>Built univariate and multivariate analysis across payer and encounter dimensions</li>
                 <li>Designed an interactive Excel dashboard with slicers for payer, month, and provider</li>
                 <li>Produced a comprehensive billing report with provider-level KPIs</li>
               </ul>
             </div>
-
             <div class="project-block">
               <h4>Key metrics</h4>
               <ul>
@@ -113,7 +103,6 @@
                 <li>Provider utilization and resolution rates</li>
               </ul>
             </div>
-
             <div class="project-block">
               <h4>Outcome</h4>
               <p>
@@ -124,18 +113,9 @@
               </p>
             </div>
           </div>
-
           <div style="margin-top:1.75rem;display:flex;flex-direction:column;gap:1rem;">
-            <img
-              src="rcm-dashboard.png"
-              alt="RCM interactive dashboard showing denial summary, write-off per encounter, and visit distribution"
-              style="width:100%;border-radius:12px;border:1px solid var(--border);"
-            />
-            <img
-              src="rcm-report.png"
-              alt="Comprehensive billing report with provider KPIs and univariate multivariate analysis"
-              style="width:100%;border-radius:12px;border:1px solid var(--border);"
-            />
+            <img src="rcm-dashboard.png" alt="RCM interactive dashboard showing denial summary, write-off per encounter, and visit distribution" style="width:100%;border-radius:12px;border:1px solid var(--border);" />
+            <img src="rcm-report.png" alt="Comprehensive billing report with provider KPIs and univariate multivariate analysis" style="width:100%;border-radius:12px;border:1px solid var(--border);" />
           </div>
         </article>
 
@@ -148,31 +128,20 @@
             <span class="tag">Power Query</span>
             <span class="tag">Data Modeling</span>
           </div>
-
           <h3>Revenue Cycle Management Dashboard</h3>
-
           <p class="project-summary">
             Designed and generated a synthetic revenue cycle management dataset in Python
             using rule-based operational and financial logic, then built an Excel dashboard
             with Power Query and data modeling to analyze reimbursement performance, denials,
             efficiency, and profitability.
           </p>
-
           <div class="project-grid">
             <div class="project-block">
               <h4>Objective</h4>
-              <p>
-                Evaluate how reimbursement behavior, denial patterns, and operational
-                efficiency impact financial performance in a revenue cycle context.
-              </p>
+              <p>Evaluate how reimbursement behavior, denial patterns, and operational efficiency impact financial performance in a revenue cycle context.</p>
             </div>
-
             <div class="project-block">
               <h4>Approach</h4>
-              <p>
-                Built a multi-table synthetic dataset in Python to model revenue cycle
-                operations, then used Excel and Power Query to structure and analyze the data.
-              </p>
               <ul>
                 <li>Rule-based dataset design with realistic financial logic</li>
                 <li>MPRR reductions and standardized adjustment coding</li>
@@ -180,7 +149,6 @@
                 <li>CPT dependency rules, including 96372 logic</li>
               </ul>
             </div>
-
             <div class="project-block">
               <h4>Key metrics</h4>
               <ul>
@@ -190,14 +158,9 @@
                 <li>Profitability comparison</li>
               </ul>
             </div>
-
             <div class="project-block">
               <h4>Outcome</h4>
-              <p>
-                Produced a reporting tool that enables comparison of performance drivers and
-                demonstrates how reimbursement patterns, denials, and operational processes
-                influence financial outcomes.
-              </p>
+              <p>Produced a reporting tool that enables comparison of performance drivers and demonstrates how reimbursement patterns, denials, and operational processes influence financial outcomes.</p>
             </div>
           </div>
         </article>
@@ -210,30 +173,19 @@
             <span class="tag">Linux</span>
             <span class="tag">MariaDB</span>
           </div>
-
           <h3>Self-Hosted Home Server Infrastructure</h3>
-
           <p class="project-summary">
             Designed and deployed a self-hosted environment using Docker-based services,
             reverse proxy routing, and domain-based access to manage multiple applications
             under a unified system.
           </p>
-
           <div class="project-grid">
             <div class="project-block">
               <h4>Objective</h4>
-              <p>
-                Build a centralized, self-hosted system to run and manage multiple services
-                with controlled access, scalability, and structured routing.
-              </p>
+              <p>Build a centralized, self-hosted system to run and manage multiple services with controlled access, scalability, and structured routing.</p>
             </div>
-
             <div class="project-block">
               <h4>Architecture</h4>
-              <p>
-                Implemented containerized services using Docker, with Nginx handling reverse
-                proxy routing and Cloudflare managing DNS and external traffic.
-              </p>
               <ul>
                 <li>Docker-based service isolation</li>
                 <li>Nginx reverse proxy for routing</li>
@@ -241,7 +193,6 @@
                 <li>MariaDB for application data storage</li>
               </ul>
             </div>
-
             <div class="project-block">
               <h4>Services</h4>
               <ul>
@@ -250,14 +201,9 @@
                 <li>Additional containerized services</li>
               </ul>
             </div>
-
             <div class="project-block">
               <h4>Outcome</h4>
-              <p>
-                Established a functional multi-service environment with domain-based access,
-                demonstrating infrastructure management, deployment workflows, and system-level
-                problem-solving.
-              </p>
+              <p>Established a functional multi-service environment with domain-based access, demonstrating infrastructure management, deployment workflows, and system-level problem-solving.</p>
             </div>
           </div>
         </article>
@@ -266,14 +212,11 @@
           <div class="project-meta">
             <span class="tag">Coming Soon</span>
           </div>
-
           <h3>Additional projects in progress</h3>
-
           <p class="project-summary">
             This portfolio will expand with additional work in exploratory data analysis,
             business-focused reporting, and other technical projects.
           </p>
-
           <div class="project-grid">
             <div class="project-block">
               <h4>Planned additions</h4>
@@ -283,32 +226,23 @@
                 <li>Uber analysis case study</li>
               </ul>
             </div>
-
             <div class="project-block">
               <h4>Status</h4>
-              <p>
-                These projects will be added once their summaries, outcomes, and presentation
-                are refined to match the current portfolio standard.
-              </p>
+              <p>These projects will be added once their summaries, outcomes, and presentation are refined to match the current portfolio standard.</p>
             </div>
           </div>
         </article>
-
       </div>
     </section>
 
     <section class="section section-alt">
       <div class="container">
         <div class="contact-card">
-          <p class="eyebrow">Next Step</p>
+          <p class="eyebrow">Get in touch</p>
           <h2>Interested in my work?</h2>
-          <p>
-            If you are hiring for data analyst or business analyst roles, or want to discuss
-            a project in more detail, feel free to reach out.
-          </p>
-
+          <p>If you are hiring for data analyst or business analyst roles, or want to discuss a project in more detail, feel free to reach out.</p>
           <div class="contact-actions">
-            <a class="button button-primary" href="mailto:h@huy.gg">h@huy.gg</a>
+            <a class="button button-primary" href="contact.html">Contact me</a>
             <a class="button button-secondary" href="resume.html">View Resume</a>
           </div>
         </div>
