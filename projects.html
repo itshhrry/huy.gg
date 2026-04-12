@@ -19,7 +19,7 @@
       </a>
       <nav class="site-nav" aria-label="Primary navigation">
         <a href="projects.html">Projects</a>
-        <a href="index.html#resume">Resume</a>
+        <a href="resume.html">Resume</a>
         <a href="contact.html">Contact</a>
       </nav>
     </div>
@@ -68,6 +68,80 @@
         <article class="project-card">
           <div class="project-meta">
             <span class="tag">Python</span>
+            <span class="tag">Excel</span>
+            <span class="tag">Power Query</span>
+            <span class="tag">Real-World Data</span>
+          </div>
+
+          <h3>Revenue Cycle Management — Practice Analytics</h3>
+
+          <p class="project-summary">
+            Analyzed real-world revenue cycle data from a multi-provider medical practice
+            using Python, Excel, and Power Query. Built an interactive dashboard and
+            comprehensive billing report to surface actionable insights across collections,
+            denials, payer behavior, and provider performance.
+          </p>
+
+          <div class="project-grid">
+            <div class="project-block">
+              <h4>Business questions</h4>
+              <ul>
+                <li>How are A/R loads and collection rates tracking month over month?</li>
+                <li>Which payers generate the highest write-off burden per encounter?</li>
+                <li>Where are denial rates concentrated — by provider, CPT, or payer?</li>
+                <li>How does reimbursement compare to allowed revenue across encounter types?</li>
+              </ul>
+            </div>
+
+            <div class="project-block">
+              <h4>Approach</h4>
+              <ul>
+                <li>Cleaned and transformed raw billing data using Python and Power Query</li>
+                <li>Built a univariate and multivariate analysis table across payer and encounter dimensions</li>
+                <li>Designed an interactive Excel dashboard with slicers for payer, month, and provider</li>
+                <li>Produced a comprehensive billing report with provider-level KPIs</li>
+              </ul>
+            </div>
+
+            <div class="project-block">
+              <h4>Key metrics</h4>
+              <ul>
+                <li>Net collection rate (NCR) — 84% overall</li>
+                <li>Denial rate — 61% with 39% pass rate</li>
+                <li>Allowed revenue — 56% of total billed</li>
+                <li>Average write-off per encounter by payer</li>
+                <li>Provider utilization and resolution rates</li>
+              </ul>
+            </div>
+
+            <div class="project-block">
+              <h4>Outcome</h4>
+              <p>
+                Delivered a reporting suite that enables practice leadership to identify
+                high-denial payers, track provider-level performance, and monitor
+                reimbursement efficiency — supporting data-driven decisions in revenue
+                cycle operations.
+              </p>
+            </div>
+          </div>
+
+          <div style="margin-top:1.75rem;display:flex;flex-direction:column;gap:1rem;">
+            <img
+              src="rcm-dashboard.png"
+              alt="RCM interactive dashboard showing denial summary, write-off per encounter, and visit distribution"
+              style="width:100%;border-radius:12px;border:1px solid var(--border);"
+            />
+            <img
+              src="rcm-report.png"
+              alt="Comprehensive billing report with provider KPIs and univariate multivariate analysis"
+              style="width:100%;border-radius:12px;border:1px solid var(--border);"
+            />
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-meta">
+            <span class="tag">Python</span>
             <span class="tag">pandas</span>
             <span class="tag">NumPy</span>
             <span class="tag">Excel</span>
@@ -108,7 +182,7 @@
             </div>
 
             <div class="project-block">
-              <h4>Key Metrics</h4>
+              <h4>Key metrics</h4>
               <ul>
                 <li>Reimbursement totals and reimbursement rate</li>
                 <li>Denial volume and denial trends</li>
@@ -193,7 +267,7 @@
             <span class="tag">Coming Soon</span>
           </div>
 
-          <h3>Additional Projects in Progress</h3>
+          <h3>Additional projects in progress</h3>
 
           <p class="project-summary">
             This portfolio will expand with additional work in exploratory data analysis,
@@ -202,7 +276,7 @@
 
           <div class="project-grid">
             <div class="project-block">
-              <h4>Planned Additions</h4>
+              <h4>Planned additions</h4>
               <ul>
                 <li>FoodHub exploratory data analysis</li>
                 <li>CardioGood Fitness analysis</li>
@@ -219,6 +293,7 @@
             </div>
           </div>
         </article>
+
       </div>
     </section>
 
@@ -234,7 +309,7 @@
 
           <div class="contact-actions">
             <a class="button button-primary" href="mailto:h@huy.gg">h@huy.gg</a>
-            <a class="button button-secondary" href="index.html#resume">View Resume</a>
+            <a class="button button-secondary" href="resume.html">View Resume</a>
           </div>
         </div>
       </div>
@@ -243,10 +318,10 @@
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p style="display:flex;align-items:center;gap:8px;">
+      <div style="display:flex;align-items:center;gap:8px;">
         <img src="logo.png" alt="huy.gg" style="width:20px;height:20px;object-fit:contain;opacity:0.7;" />
-        © 2026 Harry Nguyen
-      </p>
+        <span>© 2026 Harry Nguyen</span>
+      </div>
       <p>huy.gg</p>
     </div>
   </footer>
