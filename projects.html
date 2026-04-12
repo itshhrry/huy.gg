@@ -248,38 +248,58 @@
             <span class="tag">Cloudflare</span>
             <span class="tag">Linux</span>
             <span class="tag">MariaDB</span>
+            <span class="tag">WireGuard</span>
+            <span class="tag">Pi-hole</span>
+            <span class="tag">Let's Encrypt</span>
           </div>
           <h3>Self-Hosted Home Server Infrastructure</h3>
           <p class="project-summary">
-            Designed and deployed a self-hosted environment using Docker-based services,
-            reverse proxy routing, and domain-based access to manage multiple applications
-            under a unified system.
+            Architected and deployed a production-grade self-hosted environment operating
+            under the huy.gg domain, encompassing this website, email infrastructure, and
+            additional public-facing and private services. The system is built on a fully
+            containerized stack with layered security, encrypted remote access, automated
+            certificate management, and network-level DNS filtering — running continuously
+            as a live, managed production environment.
           </p>
           <div class="project-grid">
             <div class="project-block">
               <h4>Objective</h4>
-              <p>Build a centralized, self-hosted system to run and manage multiple services with controlled access, scalability, and structured routing.</p>
+              <p>
+                Design and operate a centralized, production-grade self-hosted platform
+                capable of running multiple public-facing and private services under a
+                unified domain, with enterprise-level routing, security, and access control.
+              </p>
             </div>
             <div class="project-block">
               <h4>Architecture</h4>
               <ul>
-                <li>Docker-based service isolation</li>
-                <li>Nginx reverse proxy for routing</li>
-                <li>Cloudflare for DNS and traffic protection</li>
-                <li>MariaDB for application data storage</li>
+                <li>Docker-based service isolation and container orchestration</li>
+                <li>Nginx reverse proxy with subdomain-based routing across all services</li>
+                <li>Cloudflare for DNS management, DDoS protection, and traffic proxying</li>
+                <li>Let's Encrypt for automated SSL certificate provisioning and renewal</li>
+                <li>WireGuard VPN for encrypted remote access and secure tunneling</li>
+                <li>Pi-hole for network-level DNS filtering and ad blocking</li>
+                <li>MariaDB for persistent relational data storage across services</li>
               </ul>
             </div>
             <div class="project-block">
               <h4>Services</h4>
               <ul>
-                <li>ownCloud file storage</li>
-                <li>Jellyfin media streaming</li>
-                <li>Additional containerized services</li>
+                <li>huy.gg — production website and public portfolio</li>
+                <li>Self-hosted email infrastructure</li>
+                <li>ownCloud for private file storage and sync</li>
+                <li>Jellyfin for media streaming</li>
+                <li>Additional containerized services under active management</li>
               </ul>
             </div>
             <div class="project-block">
               <h4>Outcome</h4>
-              <p>Established a functional multi-service environment with domain-based access, demonstrating infrastructure management, deployment workflows, and system-level problem-solving.</p>
+              <p>
+                Delivered a fully operational, multi-service production environment that
+                runs continuously under a live public domain. Demonstrates end-to-end
+                systems thinking across networking, security, containerization, and
+                infrastructure management — well beyond the scope of a typical homelab.
+              </p>
             </div>
           </div>
         </article>
