@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +14,7 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html" style="display:flex;align-items:center;gap:10px;">
-        <img src="logo.png" alt="huy.gg" style="width:36px;height:36px;object-fit:contain;" />
+        <img src="logo.png" alt="huy.gg" style="width:40px;height:40px;object-fit:contain;" />
         Harry Nguyen
       </a>
       <nav class="site-nav" aria-label="Primary navigation">
@@ -26,66 +25,63 @@
     </div>
   </header>
 
-  <main>
+  <main id="top">
 
-    <!-- HERO -->
     <section class="hero">
-      <div class="container">
-
+      <div class="container hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">Data Analyst | Business Analyst</p>
+          <p class="eyebrow">Data Analysis • Business Analysis</p>
           <h1>I help organizations make better decisions with data.</h1>
           <p class="hero-text">
-            I design analytics workflows that transform complex datasets into structured insights,
-            supporting performance tracking, operational improvement, and financial analysis.
+            Analytical and detail-oriented professional focused on data analysis,
+            dashboards, transformation, and practical technical problem-solving.
+            Seeking opportunities in data analyst and business analyst roles.
           </p>
-
           <div class="hero-actions">
             <a class="button button-primary" href="projects.html">View Projects</a>
             <a class="button button-secondary" href="resume.html">View Resume</a>
           </div>
         </div>
 
+        <aside class="hero-panel">
+          <p class="panel-label">Focus Areas</p>
+          <ul class="focus-list">
+            <li>Dashboard development</li>
+            <li>Data transformation</li>
+            <li>Excel and Python analysis</li>
+            <li>Operational performance reporting</li>
+          </ul>
+        </aside>
       </div>
     </section>
 
-    <!-- TECH STACK -->
-    <section class="section">
+    <section class="section section-alt">
       <div class="container">
-
         <div class="section-heading">
           <p class="eyebrow">Capabilities</p>
-          <h2>End-to-End Analytics Delivery</h2>
+          <h2>Tools and skills</h2>
+          <p>
+            A practical toolkit built around the core responsibilities of data and business analyst work.
+          </p>
         </div>
 
-        <div class="resume-card">
-
+        <div class="resume-card" style="grid-template-columns: repeat(3, minmax(0, 1fr));">
           <div class="resume-item">
-            <h3>Languages</h3>
-            <p>Python, SQL, R, Java</p>
+            <h3>Data analysis</h3>
+            <p>Python, R, SQL, pandas, NumPy, scikit-learn</p>
           </div>
-
           <div class="resume-item">
-            <h3>Data & Machine Learning</h3>
-            <p>pandas, NumPy, scikit-learn, TensorFlow</p>
+            <h3>Visualization and reporting</h3>
+            <p>Power BI, Tableau, Excel, Matplotlib, Seaborn</p>
           </div>
-
           <div class="resume-item">
-            <h3>Visualization</h3>
-            <p>Power BI, Tableau, Matplotlib, Seaborn</p>
+            <h3>Infrastructure and tools</h3>
+            <p>Docker, AWS, Azure, Linux, GitHub, Spark</p>
           </div>
-
-          <div class="resume-item">
-            <h3>Infrastructure</h3>
-            <p>Docker, AWS, Linux, Spark</p>
-          </div>
-
         </div>
-
       </div>
     </section>
 
-    <!-- PROJECT TEASERS -->
     <section class="section" id="projects">
       <div class="container">
         <div class="section-heading">
@@ -106,58 +102,12 @@
             <span class="tag">Power Query</span>
             <span class="tag">Data Modeling</span>
           </div>
-
           <h3>Revenue Cycle Management Dashboard</h3>
-
           <p class="project-summary">
-            Designed and generated a synthetic revenue cycle management dataset in Python
-            using rule-based operational and financial logic, then built an Excel dashboard
-            with Power Query and data modeling to analyze reimbursement performance, denials,
-            efficiency, and profitability.
+            Designed a synthetic revenue cycle dataset in Python using rule-based financial
+            logic, then built an Excel dashboard with Power Query and data modeling to
+            analyze reimbursement performance, denials, efficiency, and profitability.
           </p>
-
-          <div class="project-grid">
-            <div class="project-block">
-              <h4>Objective</h4>
-              <p>
-                Evaluate how reimbursement behavior, denial patterns, and operational
-                efficiency impact financial performance in a revenue cycle context.
-              </p>
-            </div>
-
-            <div class="project-block">
-              <h4>Approach</h4>
-              <p>
-                Built a multi-table synthetic dataset in Python to model revenue cycle
-                operations, then used Excel and Power Query to structure and analyze the data.
-              </p>
-              <ul>
-                <li>Rule-based dataset design with realistic financial logic</li>
-                <li>MPRR reductions and standardized adjustment coding</li>
-                <li>Dictionary-driven RARC assignment</li>
-                <li>CPT dependency rules, including 96372 logic</li>
-              </ul>
-            </div>
-
-            <div class="project-block">
-              <h4>Key Metrics</h4>
-              <ul>
-                <li>Reimbursement totals and reimbursement rate</li>
-                <li>Denial volume and denial trends</li>
-                <li>Operational efficiency indicators</li>
-                <li>Profitability comparison</li>
-              </ul>
-            </div>
-
-            <div class="project-block">
-              <h4>Outcome</h4>
-              <p>
-                Produced a reporting tool that enables comparison of performance drivers and
-                demonstrates how reimbursement patterns, denials, and operational processes
-                influence financial outcomes.
-              </p>
-            </div>
-          </div>
         </article>
 
         <article class="project-card">
@@ -168,86 +118,62 @@
             <span class="tag">Linux</span>
             <span class="tag">MariaDB</span>
           </div>
-
           <h3>Self-Hosted Home Server Infrastructure</h3>
-
           <p class="project-summary">
             Designed and deployed a self-hosted environment using Docker-based services,
             reverse proxy routing, and domain-based access to manage multiple applications
             under a unified system.
           </p>
-
-          <div class="project-grid">
-            <div class="project-block">
-              <h4>Objective</h4>
-              <p>
-                Build a centralized, self-hosted system to run and manage multiple services
-                with controlled access, scalability, and structured routing.
-              </p>
-            </div>
-
-            <div class="project-block">
-              <h4>Architecture</h4>
-              <p>
-                Implemented containerized services using Docker, with Nginx handling reverse
-                proxy routing and Cloudflare managing DNS and external traffic.
-              </p>
-              <ul>
-                <li>Docker-based service isolation</li>
-                <li>Nginx reverse proxy for routing</li>
-                <li>Cloudflare for DNS and traffic protection</li>
-                <li>MariaDB for application data storage</li>
-              </ul>
-            </div>
-
-            <div class="project-block">
-              <h4>Services</h4>
-              <ul>
-                <li>ownCloud file storage</li>
-                <li>Jellyfin media streaming</li>
-                <li>Additional containerized services</li>
-              </ul>
-            </div>
-
-            <div class="project-block">
-              <h4>Outcome</h4>
-              <p>
-                Established a functional multi-service environment with domain-based access,
-                demonstrating infrastructure management, deployment workflows, and system-level
-                problem-solving.
-              </p>
-            </div>
-          </div>
         </article>
       </div>
     </section>
 
-    <!-- CTA -->
-    <section class="section">
-      <div class="container cta-row">
-
-        <div class="cta-text">
-          <h2>Let’s work together</h2>
-          <p>I’m actively seeking data analyst and business analyst roles</p> 
-          <p>where I can contribute to data-driven decision-making and measurable business impact.</p>
+    <section class="section section-alt" id="resume-preview">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Resume</p>
+          <h2>Resume overview</h2>
+          <p>
+            A dedicated resume page will contain a cleaner web version and a downloadable PDF.
+          </p>
         </div>
 
-        <div class="cta-action">
-          <a class="button button-primary" href="contact.html">Contact Me</a>
+        <div class="resume-card">
+          <div class="resume-item">
+            <h3>Target roles</h3>
+            <p>Data Analyst • Business Analyst</p>
+          </div>
+          <div class="resume-item">
+            <h3>Current strengths</h3>
+            <p>Excel, Python, dashboards, data transformation, reporting</p>
+          </div>
+          <div class="resume-item">
+            <h3>Current focus</h3>
+            <p>
+              Building project-based evidence in analytics, dashboarding, and technical
+              problem-solving.
+            </p>
+          </div>
+          <div class="resume-item">
+            <h3>Next step</h3>
+            <p>
+              Continue refining resume content and publishing a dedicated resume page.
+            </p>
+          </div>
         </div>
-
       </div>
     </section>
 
   </main>
 
-  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p>© 2026 Harry Nguyen</p>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <img src="logo.png" alt="huy.gg" style="width:28px;height:28px;object-fit:contain;opacity:0.7;" />
+        <span>© 2026 Harry Nguyen</span>
+      </div>
       <p>huy.gg</p>
     </div>
   </footer>
-
 </body>
 </html>
