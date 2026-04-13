@@ -101,6 +101,13 @@ a {
   padding: 5rem 0 4rem;
 }
 
+.hero-panel .focus-list {
+  margin: 0.4rem 0 0;
+}
+.hero-panel .focus-list li + li {
+  margin-top: 0.3rem;
+}
+
 .hero-grid {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
