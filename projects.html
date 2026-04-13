@@ -22,12 +22,11 @@
         <img src="logo.png" alt="huy.gg" style="width:40px;height:40px;object-fit:contain;" />
         Harry Nguyen
       </a>
-      <nav class="site-nav" aria-label="Primary navigation">
-        <a href="about.html">About</a>
-        <strong>&bull;</strong>
-        <a href="resume.html">Resume</a>
-        <strong>&bull;</strong>
-        <a href="contact.html">Contact</a>
+            <nav class="site-nav" aria-label="Primary navigation">
+        <a href="about.html" data-page="about">About</a>
+        <a href="projects.html" data-page="projects">Projects</a>
+        <a href="resume.html" data-page="resume">Resume</a>
+        <a href="contact.html" data-page="contact">Contact</a>
       </nav>
     </div>
   </header>
@@ -258,7 +257,7 @@
             under the huy.gg domain, encompassing this website, email infrastructure, and
             additional public-facing and private services. The system is built on a fully
             containerized stack with layered security, encrypted remote access, automated
-            certificate management, and network-level DNS filtering — running continuously
+            certificate management, and network-level DNS filtering ,  running continuously
             as a live, managed production environment.
           </p>
           <div class="project-grid">
@@ -285,7 +284,7 @@
             <div class="project-block">
               <h4>Services</h4>
               <ul>
-                <li>huy.gg — production website and public portfolio</li>
+                <li>huy.gg ,  production website and public portfolio</li>
                 <li>Self-hosted email infrastructure</li>
                 <li>ownCloud for private file storage and sync</li>
                 <li>Jellyfin for media streaming</li>
@@ -298,7 +297,7 @@
                 Delivered a fully operational, multi-service production environment that
                 runs continuously under a live public domain. Demonstrates end-to-end
                 systems thinking across networking, security, containerization, and
-                infrastructure management — well beyond the scope of a typical homelab.
+                infrastructure management ,  well beyond the scope of a typical homelab.
               </p>
             </div>
           </div>
@@ -356,5 +355,13 @@
       <p>huy.gg</p>
     </div>
   </footer>
+
+  <script>
+    (function() {
+      var page = 'projects';
+      var link = document.querySelector('[data-page="' + page + '"]');
+      if (link) link.style.display = 'none';
+    })();
+  </script>
 </body>
 </html>
