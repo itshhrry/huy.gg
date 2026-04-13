@@ -164,6 +164,8 @@ a {
 
 .hero-panel {
   padding: 1.5rem;
+  max-width: 280px;
+  margin-left: auto;
 }
 
 /* ============================================================
