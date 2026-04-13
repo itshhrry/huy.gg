@@ -4,139 +4,521 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Resume | Harry Nguyen</title>
-  <meta name="description" content="Resume page for Harry Nguyen, focused on data analyst and business analyst opportunities." />
+  <meta name="description" content="Resume of Harry Nguyen — data analytics and healthcare operations professional based in Denver, CO." />
   <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    body { font-family: 'Geist', 'DM Sans', Arial, sans-serif; }
+
+    /* ── Name banner ── */
+    .r-banner {
+      background: var(--text);
+      color: #fff;
+      padding: 3.5rem 0 2.8rem;
+    }
+    .r-banner-inner {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .r-name {
+      margin: 0;
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .r-name em {
+      font-style: italic;
+      color: #e8a070;
+    }
+    .r-contact {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.3rem;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.6);
+      font-weight: 300;
+      padding-bottom: 0.3rem;
+    }
+    .r-contact a { color: #e8a070; font-weight: 500; }
+    .r-contact a:hover { color: #fff; }
+
+    /* ── Tag strip ── */
+    .r-tagstrip {
+      background: var(--accent);
+      padding: 0.6rem 0;
+    }
+    .r-tagstrip-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1.6rem;
+      align-items: center;
+    }
+    .r-tagstrip span {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.9);
+    }
+    .r-tagstrip-sep { color: rgba(255,255,255,0.35) !important; letter-spacing: 0 !important; }
+
+    /* ── Page layout ── */
+    .r-page {
+      display: grid;
+      grid-template-columns: 1fr 240px;
+      gap: 0;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* ── Main col ── */
+    .r-main {
+      padding: 3rem 3rem 4rem 0;
+      border-right: 1px solid var(--border);
+    }
+
+    /* ── Section ── */
+    .r-section { margin-bottom: 3rem; }
+    .r-section-head {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .r-section-head h2 {
+      margin: 0;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+    }
+    .r-section-rule { flex: 1; height: 1px; background: var(--border); }
+
+    /* ── Timeline entries ── */
+    .r-entries { display: flex; flex-direction: column; }
+    .r-entry {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 0 1.5rem;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .r-entry:last-child { border-bottom: none; }
+
+    .r-entry-date {
+      padding-top: 0.15rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    .r-entry-date strong {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--text);
+      font-weight: 600;
+      margin-bottom: 0.1rem;
+    }
+
+    .r-entry-title {
+      margin: 0 0 0.15rem;
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--text);
+    }
+    .r-entry-org {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-dark);
+      margin-bottom: 0.7rem;
+    }
+    .r-entry-org span { font-weight: 400; color: var(--text-muted); }
+    .r-bullets {
+      margin: 0;
+      padding-left: 1rem;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      line-height: 1.65;
+    }
+    .r-bullets li + li { margin-top: 0.35rem; }
+    .r-bullets strong { color: var(--text); font-weight: 600; }
+
+    /* ── Sidebar ── */
+    .r-side { padding: 3rem 0 4rem 2.5rem; }
+    .r-side-section { margin-bottom: 2.25rem; }
+    .r-side-head {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+      margin: 0 0 0.85rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .r-edu-item { margin-bottom: 1rem; font-size: 0.855rem; }
+    .r-edu-item strong {
+      display: block;
+      color: var(--text);
+      font-weight: 600;
+      margin-bottom: 0.1rem;
+      line-height: 1.3;
+    }
+    .r-edu-item span { color: var(--text-muted); font-size: 0.8rem; }
+
+    .r-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .r-chip {
+      display: inline-block;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: #f6eee6;
+      border: 1px solid #e8d8c8;
+      color: var(--accent-dark);
+    }
+    .r-chip-muted {
+      background: transparent;
+      border-color: var(--border);
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* ── CTA ── */
+    .r-cta {
+      background: var(--surface-alt);
+      border-top: 1px solid var(--border);
+      padding: 2.25rem 0;
+    }
+    .r-cta-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .r-cta p { margin: 0.4rem 0 0; color: var(--text-muted); font-size: 0.9rem; }
+    .r-cta h3 {
+      margin: 0;
+      font-size: 1.25rem;
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-weight: 400;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 860px) {
+      .r-page { grid-template-columns: 1fr; }
+      .r-main { padding: 2.5rem 0; border-right: none; border-bottom: 1px solid var(--border); }
+      .r-side { padding: 2.5rem 0; }
+      .r-contact { align-items: flex-start; }
+    }
+    @media (max-width: 540px) {
+      .r-entry { grid-template-columns: 1fr; gap: 0.25rem; }
+      .r-banner-inner { flex-direction: column; gap: 1.25rem; }
+    }
+  </style>
 </head>
 <body>
+
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="index.html" style="display:flex;align-items:center;gap:10px;">
-        <img src="logo.png" alt="huy.gg" style="width:40px;height:40px;object-fit:contain;" />
-        Harry Nguyen
-      </a>
+      <a class="brand" href="index.html">Harry Nguyen</a>
       <nav class="site-nav" aria-label="Primary navigation">
         <a href="about.html">About</a>
-        <strong>&bull;</strong>
         <a href="projects.html">Projects</a>
-        <strong>&bull;</strong>
+        <a href="resume.html">Resume</a>
         <a href="contact.html">Contact</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">Resume</p>
-          <h1>Data and business analyst with a practical technical foundation.</h1>
-          <p class="hero-text">
-            A summary of my current direction, core strengths, and project-based evidence
-            as I continue building my portfolio and pursuing analyst opportunities.
-          </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="projects.html">View Projects</a>
-            <a class="button button-secondary" href="contact.html">Contact</a>
-          </div>
-        </div>
 
-        <aside class="hero-panel">
-          <p class="panel-label">Current Focus</p>
-          <ul class="focus-list">
-            <li>Data Analyst roles</li>
-            <li>Business Analyst roles</li>
-            <li>Dashboarding and reporting</li>
-            <li>Technical problem-solving</li>
-          </ul>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Summary</p>
-          <h2>Professional overview</h2>
-          <p>Analytical and detail-oriented professional focused on data analysis, dashboarding, reporting, data transformation, and practical technical work.</p>
-        </div>
-
-        <div class="resume-card">
-          <div class="resume-item">
-            <h3>Target roles</h3>
-            <p>Data Analyst · Business Analyst</p>
-          </div>
-          <div class="resume-item">
-            <h3>Core tools</h3>
-            <p>Excel, Python, pandas, NumPy, Power Query, data modeling</p>
-          </div>
-          <div class="resume-item">
-            <h3>Strength areas</h3>
-            <p>Dashboard development, data transformation, KPI analysis, structured reporting</p>
-          </div>
-          <div class="resume-item">
-            <h3>Supporting technical skills</h3>
-            <p>Docker, Nginx, Linux, Cloudflare, self-hosted systems</p>
-          </div>
+    <!-- Banner -->
+    <div class="r-banner">
+      <div class="container r-banner-inner">
+        <h1 class="r-name">Harry <em>Nguyen</em></h1>
+        <div class="r-contact">
+          <span>Denver, CO &nbsp;·&nbsp; <a href="tel:7202722224">(720) 272-2224</a></span>
+          <span><a href="mailto:huynguyeny2@outlook.com">huynguyeny2@outlook.com</a></span>
+          <span>
+            <a href="https://linkedin.com/in/huynguyeny/" target="_blank" rel="noopener">LinkedIn</a>
+            &nbsp;·&nbsp;
+            <a href="https://github.com/huynguyeny2" target="_blank" rel="noopener">GitHub</a>
+          </span>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section class="section section-alt">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Highlighted Evidence</p>
-          <h2>Current portfolio foundation</h2>
-          <p>My current work reflects both analytical thinking and technical implementation.</p>
-        </div>
-
-        <div class="resume-card">
-          <div class="resume-item">
-            <h3>Inside a Specialty Clinic — Revenue Cycle Analytics</h3>
-            <p>Analyzed real-world billing data from a multi-provider medical practice using Python, Excel, and Power Query to surface insights across collections, denials, payer behavior, and provider performance.</p>
-          </div>
-          <div class="resume-item">
-            <h3>Revenue Cycle by Design — Multi-Facility Synthetic Modeling</h3>
-            <p>Built a synthetic revenue cycle dataset in Python using rule-based financial logic, then developed an Excel dashboard with Power Query and structured modeling to analyze reimbursement, denials, efficiency, and profitability.</p>
-          </div>
-          <div class="resume-item">
-            <h3>Self-Hosted Home Server Infrastructure</h3>
-            <p>Designed and deployed a self-hosted multi-service environment using Docker, Nginx, Cloudflare, Linux, and MariaDB to manage routing, service isolation, and domain-based access.</p>
-          </div>
-        </div>
-
-        <p class="projects-link-row">
-          <a class="button button-secondary" href="projects.html">View Full Project Page</a>
-        </p>
+    <!-- Tag strip -->
+    <div class="r-tagstrip">
+      <div class="container r-tagstrip-inner">
+        <span>Data Analytics</span>
+        <span class="r-tagstrip-sep">·</span>
+        <span>Revenue Cycle Management</span>
+        <span class="r-tagstrip-sep">·</span>
+        <span>Healthcare Operations</span>
+        <span class="r-tagstrip-sep">·</span>
+        <span>Dashboard Development</span>
+        <span class="r-tagstrip-sep">·</span>
+        <span>Business Intelligence</span>
       </div>
-    </section>
+    </div>
 
-    <section class="section">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Resume File</p>
-          <h2>Downloadable version</h2>
-          <p>A PDF version of my resume will be available here once finalized.</p>
-        </div>
+    <!-- Body -->
+    <div class="r-page">
 
-        <div class="contact-card">
-          <p class="panel-label">Coming soon</p>
-          <p>The downloadable PDF resume will be linked here. Check back shortly.</p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#">Resume PDF — Coming Soon</a>
+      <div class="r-main">
+        <div class="r-section">
+          <div class="r-section-head">
+            <h2>Experience</h2>
+            <div class="r-section-rule"></div>
+          </div>
+
+          <div class="r-entries">
+
+            <div class="r-entry">
+              <div class="r-entry-date">
+                <strong>May – Dec 2025</strong>
+                Boulder, CO
+              </div>
+              <div>
+                <h3 class="r-entry-title">Revenue Cycle Manager</h3>
+                <div class="r-entry-org">Creekside Physical Medicine</div>
+                <ul class="r-bullets">
+                  <li>Owned end-to-end RCM — registration, eligibility, charge capture, posting, denials, appeals, and A/R reporting.</li>
+                  <li>Built an enterprise RCM dashboard integrating NCR/GCR trends, denial root causes, payer reimbursement variance, and A/R aging; drove a <strong>35% A/R backlog reduction</strong> and lowered recurring LCD/NCCI denials.</li>
+                  <li>Implemented billing-to-servicing provider validation rules, reducing BCBS administrative denials and improving clean-claim accuracy.</li>
+                  <li>Standardized Box 19 CMS-1500 NDC documentation, reducing medication-related denials from UHC.</li>
+                  <li>Resolved EHR-to-clearinghouse transmission errors (X12/837P); supported migration from InSync to Athena.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="r-entry">
+              <div class="r-entry-date">
+                <strong>Jul 2024 – Apr 2025</strong>
+                Aurora, CO
+              </div>
+              <div>
+                <h3 class="r-entry-title">Center Operations Supervisor</h3>
+                <div class="r-entry-org">Trumpet Behavioral Health</div>
+                <ul class="r-bullets">
+                  <li>Managed front-office operations, scheduling, and workflow coordination for clients and clinical staff.</li>
+                  <li>Oversaw intake documentation, authorizations, and compliance records to support accurate billing and service delivery.</li>
+                  <li>Supported payroll accuracy and documentation workflows, including coding corrections and authorization alignment.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="r-entry">
+              <div class="r-entry-date">
+                <strong>Aug 2022 – Apr 2023</strong>
+                Wheat Ridge, CO
+              </div>
+              <div>
+                <h3 class="r-entry-title">Senior Clinical Operations Manager</h3>
+                <div class="r-entry-org">STRIDE Community Health Center</div>
+                <ul class="r-bullets">
+                  <li>Oversaw day-to-day operations across behavioral, dental, primary, and urgent care departments.</li>
+                  <li>Cut expenditures by <strong>$13.2K/month</strong> by building a data pipeline for inventory tracking using Microsoft SQL, Excel, and Power BI.</li>
+                  <li>Addressed reimbursement gaps through Azara data validation and quality metric analysis aligned to UDS reporting.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="r-entry">
+              <div class="r-entry-date">
+                <strong>Oct 2021 – Aug 2022</strong>
+                Brighton, CO
+              </div>
+              <div>
+                <h3 class="r-entry-title">Regional Operations Manager</h3>
+                <div class="r-entry-org">Advanced Urgent Care &amp; Occupational Medicine</div>
+                <ul class="r-bullets">
+                  <li>Achieved <strong>$8M in revenue growth</strong> through predictive analytics on patient flow, revenue cycle management, and service demand patterns.</li>
+                  <li>Maintained <strong>100% employee retention</strong> and an average net promoter score of 89–93% across clinics.</li>
+                  <li>Served as IT project lead for Athena/Experity integration across 14 clinics, overseeing data migration and user acceptance testing.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="r-entry">
+              <div class="r-entry-date">
+                <strong>Nov 2019 – Mar 2021</strong>
+                Boulder, CO
+              </div>
+              <div>
+                <h3 class="r-entry-title">Data &amp; Analytics Intern <span style="font-family:inherit;font-size:0.85rem;color:var(--text-muted);font-weight:400;font-style:normal;">— Master's Capstone</span></h3>
+                <div class="r-entry-org">Centura Health</div>
+                <ul class="r-bullets">
+                  <li>Streamlined clinical workflows for ulcerative colitis treatment and optimized resource allocation during COVID-19, contributing to significant cost reduction.</li>
+                  <li>Designed ETL pipelines using Microsoft SQL across EPIC, patient monitoring, and administrative databases.</li>
+                  <li>Delivered executive-facing insights via Power BI, Tableau, and SQL Server.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="r-entry">
+              <div class="r-entry-date">
+                <strong>Nov 2019 – Feb 2020</strong>
+                Boulder, CO
+              </div>
+              <div>
+                <h3 class="r-entry-title">Operations Manager</h3>
+                <div class="r-entry-org">Center for Autism and Related Disorders</div>
+                <ul class="r-bullets">
+                  <li>Improved payer contract fulfillment from <strong>37% to 95%</strong> through enhanced documentation, CPT validation, and A/R workflows.</li>
+                  <li>Built KPI dashboards for utilization, profitability, and satisfaction tracking.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="r-entry">
+              <div class="r-entry-date">
+                <strong>Nov 2018 – Nov 2019</strong>
+                Boulder, CO
+              </div>
+              <div>
+                <h3 class="r-entry-title">Business Intelligence Analyst</h3>
+                <div class="r-entry-org">Springwood Retirement: Assisted Living &amp; Memory Care</div>
+                <ul class="r-bullets">
+                  <li>Developed global reports, dashboards, and queries to measure and communicate KPIs to stakeholders.</li>
+                  <li>Performed program cost analyses for project development life cycles and economic evaluations.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="r-entry">
+              <div class="r-entry-date">
+                <strong>Jan 2015 – Mar 2018</strong>
+                Westminster, CO
+              </div>
+              <div>
+                <h3 class="r-entry-title">Practice Administrator</h3>
+                <div class="r-entry-org">Khoi D. Nguyen, DO</div>
+                <ul class="r-bullets">
+                  <li>Directed clinic operations, scheduling, and workflows for a <strong>5,000-patient panel</strong>.</li>
+                  <li>Improved care coordination efficiency by ~20%, reducing patient wait times.</li>
+                  <li>Monitored federal- and state-level population health program delivery and staff education.</li>
+                </ul>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
-    </section>
+
+      <!-- Sidebar -->
+      <aside class="r-side">
+
+        <div class="r-side-section">
+          <p class="r-side-head">Education</p>
+          <div class="r-edu-item">
+            <strong>M.S. Healthcare Administration</strong>
+            <span>University of Denver &mdash; 3.93 GPA</span>
+          </div>
+          <div class="r-edu-item">
+            <strong>B.S. Computer Science, Magna Cum Laude</strong>
+            <span>Colorado State University &mdash; 3.98 GPA</span>
+          </div>
+          <div class="r-edu-item">
+            <strong>Applied Data Science Certificate</strong>
+            <span>MIT</span>
+          </div>
+          <div class="r-edu-item">
+            <strong>B.S. Biology &amp; Chemistry</strong>
+            <span>University of Colorado</span>
+          </div>
+        </div>
+
+        <div class="r-side-section">
+          <p class="r-side-head">Analytics &amp; Data</p>
+          <div class="r-chips">
+            <span class="r-chip">Python</span>
+            <span class="r-chip">pandas</span>
+            <span class="r-chip">NumPy</span>
+            <span class="r-chip">SQL</span>
+            <span class="r-chip">Power BI</span>
+            <span class="r-chip">Tableau</span>
+            <span class="r-chip">Excel</span>
+            <span class="r-chip">Power Query</span>
+          </div>
+        </div>
+
+        <div class="r-side-section">
+          <p class="r-side-head">Domain Expertise</p>
+          <div class="r-chips">
+            <span class="r-chip r-chip-muted">RCM Strategy</span>
+            <span class="r-chip r-chip-muted">Denial Management</span>
+            <span class="r-chip r-chip-muted">ERA/EOB Reconciliation</span>
+            <span class="r-chip r-chip-muted">KPI Dashboards</span>
+            <span class="r-chip r-chip-muted">ETL Pipelines</span>
+            <span class="r-chip r-chip-muted">Process Documentation</span>
+          </div>
+        </div>
+
+        <div class="r-side-section">
+          <p class="r-side-head">Systems &amp; Platforms</p>
+          <div class="r-chips">
+            <span class="r-chip r-chip-muted">Athena</span>
+            <span class="r-chip r-chip-muted">Epic</span>
+            <span class="r-chip r-chip-muted">Experity</span>
+            <span class="r-chip r-chip-muted">Docker</span>
+            <span class="r-chip r-chip-muted">Linux</span>
+            <span class="r-chip r-chip-muted">Nginx</span>
+            <span class="r-chip r-chip-muted">MariaDB</span>
+          </div>
+        </div>
+
+        <div class="r-side-section">
+          <p class="r-side-head">Open to</p>
+          <div class="r-chips">
+            <span class="r-chip">Data Analyst</span>
+            <span class="r-chip">Business Analyst</span>
+            <span class="r-chip">RCM Analyst</span>
+            <span class="r-chip">Healthcare Analytics</span>
+          </div>
+        </div>
+
+      </aside>
+    </div>
+
+    <!-- CTA -->
+    <div class="r-cta">
+      <div class="container r-cta-inner">
+        <div>
+          <h3>Let's connect.</h3>
+          <p>Based in Denver &mdash; open to remote and relocation opportunities.</p>
+        </div>
+        <div class="hero-actions" style="margin:0;">
+          <a class="button button-primary" href="mailto:huynguyeny2@outlook.com">Email me</a>
+          <a class="button button-secondary" href="projects.html">View Projects</a>
+        </div>
+      </div>
+    </div>
+
   </main>
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <div style="display:flex;align-items:center;gap:8px;">
-        <img src="logo.png" alt="huy.gg" style="width:28px;height:28px;object-fit:contain;opacity:0.7;" />
-        <span>© 2026 Harry Nguyen</span>
-      </div>
+      <p>© 2026 Harry Nguyen</p>
       <p>huy.gg</p>
     </div>
   </footer>
+
 </body>
 </html>
