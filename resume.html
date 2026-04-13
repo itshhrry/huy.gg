@@ -4,260 +4,98 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Resume | Harry Nguyen</title>
-  <meta name="description" content="Resume of Harry Nguyen — data analytics and healthcare operations professional based in Denver, CO." />
+  <meta name="description" content="Resume of Harry Nguyen ,  data analytics and healthcare operations professional based in Denver, CO." />
   <link rel="stylesheet" href="style.css" />
-
   <style>
-    /* ── Name banner ── */
-    .r-banner {
-      background: var(--text);
-      color: #fff;
-      padding: 3.5rem 0 2.8rem;
-    }
-    .r-banner-inner {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-    .r-name {
-      margin: 0;
-      font-size: clamp(2.8rem, 7vw, 5rem);
-      font-weight: 700;
-      line-height: 1;
-      letter-spacing: -0.03em;
-      color: #fff;
-    }
-    .r-name em {
-      font-style: normal;
-      color: #e8a070;
-    }
-    .r-contact {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 0.3rem;
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.55);
-      padding-bottom: 0.3rem;
-    }
-    .r-contact a { color: #e8a070; font-weight: 600; }
-    .r-contact a:hover { color: #fff; }
+    .r-tagstrip { background: var(--accent); padding: 0.65rem 0; border-bottom: 1px solid var(--accent-dark); }
+    .r-tagstrip-inner { display: flex; flex-wrap: wrap; gap: 0.4rem 1.6rem; align-items: center; }
+    .r-tagstrip span { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.88); }
+    .r-tagstrip-sep { color: rgba(255,255,255,0.3) !important; font-weight: 400 !important; letter-spacing: 0 !important; }
 
-    /* ── Tag strip ── */
-    .r-tagstrip {
-      background: var(--accent);
-      padding: 0.65rem 0;
-    }
-    .r-tagstrip-inner {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem 1.6rem;
-      align-items: center;
-    }
-    .r-tagstrip span {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.88);
-    }
-    .r-tagstrip-sep { color: rgba(255,255,255,0.3) !important; letter-spacing: 0 !important; font-weight: 400 !important; }
+    .r-page { display: grid; grid-template-columns: 1fr 250px; gap: 0; max-width: var(--max-width); margin: 0 auto; padding: 0 1rem; }
+    .r-main { padding: 3rem 3rem 4rem 0; border-right: 1px solid var(--border); }
 
-    /* ── Page body ── */
-    .r-page {
-      display: grid;
-      grid-template-columns: 1fr 250px;
-      gap: 0;
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-
-    /* ── Main col ── */
-    .r-main {
-      padding: 3rem 3rem 4rem 0;
-      border-right: 1px solid var(--border);
-    }
-
-    /* ── Section heading — label ABOVE rule ── */
     .r-section { margin-bottom: 2.75rem; }
-    .r-section-head {
-      margin-bottom: 1.25rem;
-    }
-    .r-section-head h2 {
-      margin: 0 0 0.5rem;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent-dark);
-    }
-    .r-section-rule {
-      display: block;
-      height: 1px;
-      background: var(--border);
-    }
+    .r-section-head { margin-bottom: 1.25rem; }
+    .r-section-head h2 { margin: 0 0 0.5rem; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-dark); }
+    .r-section-rule { display: block; height: 1px; background: var(--border); }
 
-    /* ── Timeline entries ── */
     .r-entries { display: flex; flex-direction: column; }
-    .r-entry {
-      display: grid;
-      grid-template-columns: 108px 1fr;
-      gap: 0 1.5rem;
-      padding: 1.35rem 0;
-      border-bottom: 1px solid var(--border);
-    }
+    .r-entry { display: grid; grid-template-columns: 108px 1fr; gap: 0 1.5rem; padding: 1.35rem 0; border-bottom: 1px solid var(--border); }
     .r-entry:last-child { border-bottom: none; }
-
-    .r-entry-date {
-      padding-top: 0.1rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      line-height: 1.45;
-    }
-    .r-entry-date span {
-      display: block;
-      font-size: 0.72rem;
-      font-weight: 400;
-      margin-top: 0.15rem;
-    }
-
-    .r-entry-title {
-      margin: 0 0 0.15rem;
-      font-size: 1.05rem;
-      font-weight: 700;
-      line-height: 1.2;
-      color: var(--text);
-    }
-    .r-entry-org {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--accent-dark);
-      margin-bottom: 0.65rem;
-    }
+    .r-entry-date { padding-top: 0.1rem; font-size: 0.75rem; font-weight: 600; color: var(--text-muted); line-height: 1.45; }
+    .r-entry-date span { display: block; font-size: 0.72rem; font-weight: 400; margin-top: 0.15rem; }
+    .r-entry-title { margin: 0 0 0.15rem; font-size: 1.05rem; font-weight: 700; line-height: 1.2; color: var(--text); }
+    .r-entry-org { font-size: 0.8rem; font-weight: 700; color: var(--accent-dark); margin-bottom: 0.65rem; }
     .r-entry-org span { font-weight: 400; color: var(--text-muted); }
-
-    .r-bullets {
-      margin: 0;
-      padding-left: 1rem;
-      color: var(--text-muted);
-      font-size: 0.875rem;
-      line-height: 1.65;
-    }
+    .r-bullets { margin: 0; padding-left: 1rem; color: var(--text-muted); font-size: 0.875rem; line-height: 1.65; }
     .r-bullets li + li { margin-top: 0.35rem; }
     .r-bullets strong { color: var(--text); font-weight: 700; }
 
-    /* ── Sidebar ── */
     .r-side { padding: 3rem 0 4rem 2.5rem; }
     .r-side-section { margin-bottom: 2.25rem; }
-
-    /* sidebar label also sits above its rule — consistent pattern */
-    .r-side-head {
-      display: block;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent-dark);
-      margin: 0 0 0.5rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-
+    .r-side-head { display: block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-dark); margin: 0 0 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
     .r-edu-item { margin-bottom: 1rem; font-size: 0.855rem; }
-    .r-edu-item strong {
-      display: block;
-      color: var(--text);
-      font-weight: 700;
-      margin-bottom: 0.1rem;
-      line-height: 1.3;
-    }
+    .r-edu-item strong { display: block; color: var(--text); font-weight: 700; margin-bottom: 0.1rem; line-height: 1.3; }
     .r-edu-item span { color: var(--text-muted); font-size: 0.8rem; }
-
     .r-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
-    .r-chip {
-      display: inline-block;
-      padding: 0.25rem 0.65rem;
-      border-radius: 999px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      background: #f6eee6;
-      border: 1px solid #e8d8c8;
-      color: var(--accent-dark);
-    }
-    .r-chip-muted {
-      background: transparent;
-      border-color: var(--border);
-      color: var(--text-muted);
-      font-weight: 500;
-    }
+    .r-chip { display: inline-block; padding: 0.25rem 0.65rem; border-radius: 999px; font-size: 0.75rem; font-weight: 700; background: #f6eee6; border: 1px solid #e8d8c8; color: var(--accent-dark); }
+    .r-chip-muted { background: transparent; border-color: var(--border); color: var(--text-muted); font-weight: 500; }
 
-    /* ── CTA strip ── */
-    .r-cta {
-      background: var(--surface-alt);
-      border-top: 1px solid var(--border);
-      padding: 2.25rem 0;
-    }
-    .r-cta-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-    .r-cta p { margin: 0.4rem 0 0; color: var(--text-muted); font-size: 0.9rem; }
-    .r-cta h3 { margin: 0; font-size: 1.25rem; font-weight: 700; }
-
-    /* ── Responsive ── */
     @media (max-width: 860px) {
       .r-page { grid-template-columns: 1fr; }
       .r-main { padding: 2.5rem 0; border-right: none; border-bottom: 1px solid var(--border); }
       .r-side { padding: 2.5rem 0; }
-      .r-contact { align-items: flex-start; }
     }
     @media (max-width: 540px) {
       .r-entry { grid-template-columns: 1fr; gap: 0.2rem; }
-      .r-banner-inner { flex-direction: column; gap: 1.25rem; align-items: flex-start; }
-      .r-cta-inner { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
-
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="index.html">Harry Nguyen</a>
+      <a class="brand" href="index.html" style="display:flex;align-items:center;gap:10px;">
+        <img src="logo.png" alt="huy.gg" style="width:40px;height:40px;object-fit:contain;" />
+        Harry Nguyen
+      </a>
       <nav class="site-nav" aria-label="Primary navigation">
-        <a href="about.html">About</a>
-        <a href="projects.html">Projects</a>
-        <a href="resume.html">Resume</a>
-        <a href="contact.html">Contact</a>
+        <a href="about.html" data-page="about">About</a>
+        <a href="projects.html" data-page="projects">Projects</a>
+        <a href="resume.html" data-page="resume">Resume</a>
+        <a href="contact.html" data-page="contact">Contact</a>
       </nav>
     </div>
   </header>
 
   <main>
-
-    <!-- ── Banner ── -->
-    <div class="r-banner">
-      <div class="container r-banner-inner">
-        <h1 class="r-name">Harry <em>Nguyen</em></h1>
-        <div class="r-contact">
-          <span>Denver, CO &nbsp;·&nbsp; <a href="tel:7202722224">(720) 272-2224</a></span>
-          <span><a href="mailto:h@huy.gg">h@huy.gg</a> &nbsp;·&nbsp; <a href="https://huy.gg">huy.gg</a></span>
-          <span>
-            <a href="https://linkedin.com/in/huynguyeny/" target="_blank" rel="noopener">LinkedIn</a>
-            &nbsp;·&nbsp;
-            <a href="https://github.com/huynguyeny2" target="_blank" rel="noopener">GitHub</a>
-          </span>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Resume</p>
+          <h1>Nearly a decade of healthcare operations, backed by data.</h1>
+          <p class="hero-text">
+            Revenue cycle management, business intelligence, and clinical operations , 
+            with the analytical foundation to turn complex data into clear decisions.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="mailto:h@huy.gg">Get in touch</a>
+            <a class="button button-secondary" href="projects.html">View Projects</a>
+          </div>
         </div>
+        <aside class="hero-panel">
+          <p class="panel-label">Open To</p>
+          <ul class="focus-list">
+            <li>Data Analyst roles</li>
+            <li>Business Analyst roles</li>
+            <li>Revenue Cycle Analyst roles</li>
+            <li>Healthcare Analytics</li>
+            <li>Operations Management</li>
+          </ul>
+        </aside>
       </div>
-    </div>
+    </section>
 
-    <!-- ── Tag strip ── -->
     <div class="r-tagstrip">
       <div class="container r-tagstrip-inner">
         <span>Data Analytics</span>
@@ -272,18 +110,13 @@
       </div>
     </div>
 
-    <!-- ── Two-col layout ── -->
     <div class="r-page">
-
-      <!-- Main experience column -->
       <div class="r-main">
         <div class="r-section">
-
           <div class="r-section-head">
             <h2>Experience</h2>
             <span class="r-section-rule"></span>
           </div>
-
           <div class="r-entries">
 
             <div class="r-entry">
@@ -292,7 +125,7 @@
                 <h3 class="r-entry-title">Revenue Cycle Manager</h3>
                 <div class="r-entry-org">Creekside Physical Medicine</div>
                 <ul class="r-bullets">
-                  <li>Owned end-to-end RCM operations — registration, eligibility verification, charge capture, payment posting, denial management, appeals, and A/R reporting.</li>
+                  <li>Owned end-to-end RCM operations ,  registration, eligibility verification, charge capture, payment posting, denial management, appeals, and A/R reporting.</li>
                   <li>Built an enterprise RCM dashboard tracking NCR/GCR trends, denial root causes, payer reimbursement variance, and A/R aging; directly contributed to a <strong>35% reduction in A/R backlog</strong>.</li>
                   <li>Reduced recurring denials by implementing billing-to-servicing provider validation rules (BCBS), standardizing Box 19 CMS-1500 NDC documentation (UHC), and resolving X12/837P EHR-to-clearinghouse transmission errors.</li>
                   <li>Supported full EHR migration from InSync to Athena, coordinating workflow continuity across billing, clinical, and administrative teams.</li>
@@ -334,7 +167,7 @@
                 <h3 class="r-entry-title">Regional Operations Manager</h3>
                 <div class="r-entry-org">Advanced Urgent Care &amp; Occupational Medicine</div>
                 <ul class="r-bullets">
-                  <li>Drove <strong>$8M in revenue growth</strong> through predictive analytics on patient flow, service demand patterns, and revenue cycle performance — directly informing staffing strategy and operational planning.</li>
+                  <li>Drove <strong>$8M in revenue growth</strong> through predictive analytics on patient flow, service demand patterns, and revenue cycle performance ,  directly informing staffing strategy and operational planning.</li>
                   <li>Maintained <strong>100% employee retention</strong> across all managed locations and achieved average net promoter scores of 89–93% through investments in referral quality, patient experience, and staff development.</li>
                   <li>Served as IT project lead for EHR consolidation across <strong>14 clinics</strong>, overseeing Athena/Experity implementation, data migration, manual testing, and user acceptance validation.</li>
                   <li>Strengthened front-end eligibility verification and documentation workflows, reducing downstream claim denials and improving reimbursement turnaround time.</li>
@@ -345,11 +178,11 @@
             <div class="r-entry">
               <div class="r-entry-date">Nov 2019 – Mar 2021<span>Boulder, CO</span></div>
               <div>
-                <h3 class="r-entry-title">Data &amp; Analytics Intern <span style="font-size:0.85rem;color:var(--text-muted);font-weight:400;">— Master's Capstone</span></h3>
+                <h3 class="r-entry-title">Data &amp; Analytics Intern <span style="font-size:0.85rem;color:var(--text-muted);font-weight:400;">,  Master's Capstone</span></h3>
                 <div class="r-entry-org">Centura Health</div>
                 <ul class="r-bullets">
                   <li>Collaborated with clinical and administrative stakeholders to evaluate and streamline care delivery workflows for ulcerative colitis treatment using High-Reliability Organization principles.</li>
-                  <li>Designed ETL pipelines to integrate and transform data from EPIC, patient monitoring devices, and administrative systems — achieving consistent data quality across sources.</li>
+                  <li>Designed ETL pipelines to integrate and transform data from EPIC, patient monitoring devices, and administrative systems ,  achieving consistent data quality across sources.</li>
                   <li>Applied predictive analytics and machine learning to forecast patient admissions, resource utilization, and potential complications, supporting COVID-19 resource optimization and cost reduction.</li>
                   <li>Delivered executive-level reporting and data visualizations using Power BI, Tableau, and SQL Server.</li>
                 </ul>
@@ -357,13 +190,13 @@
             </div>
 
             <div class="r-entry">
-              <div class="r-entry-date">Nov 2019 – Feb 2020<span>Boulder, CO</span></div>
+              <div class="r-entry-date">Nov 2019 – Oct 2020<span>Boulder, CO</span></div>
               <div>
                 <h3 class="r-entry-title">Operations Manager</h3>
                 <div class="r-entry-org">Center for Autism and Related Disorders</div>
                 <ul class="r-bullets">
                   <li>Improved payer contract fulfillment rate from <strong>37% to 95%</strong> by restructuring documentation practices, CPT code validation workflows, and A/R follow-up processes.</li>
-                  <li>Built KPI dashboards to track service utilization, encounter profitability, and patient satisfaction — enabling data-driven operational decisions.</li>
+                  <li>Built KPI dashboards to track service utilization, encounter profitability, and patient satisfaction ,  enabling data-driven operational decisions.</li>
                   <li>Ensured scheduling efficiency and resource alignment to meet billing requirements and optimize clinical capacity.</li>
                 </ul>
               </div>
@@ -399,18 +232,16 @@
         </div>
       </div>
 
-      <!-- Sidebar -->
       <aside class="r-side">
-
         <div class="r-side-section">
           <span class="r-side-head">Education</span>
           <div class="r-edu-item">
             <strong>M.S. Healthcare Administration</strong>
-            <span>University of Denver &mdash; 3.93 GPA</span>
+            <span>University of Denver</span>
           </div>
           <div class="r-edu-item">
             <strong>B.S. Computer Science, Magna Cum Laude</strong>
-            <span>Colorado State University &mdash; 3.98 GPA</span>
+            <span>Colorado State University</span>
           </div>
           <div class="r-edu-item">
             <strong>Applied Data Science Certificate</strong>
@@ -423,7 +254,7 @@
         </div>
 
         <div class="r-side-section">
-          <span class="r-side-head">Analytics &amp; Data</span>
+          <span class="r-side-head">Data Analytics</span>
           <div class="r-chips">
             <span class="r-chip">Python</span>
             <span class="r-chip">pandas</span>
@@ -454,6 +285,8 @@
             <span class="r-chip r-chip-muted">Athena</span>
             <span class="r-chip r-chip-muted">Epic</span>
             <span class="r-chip r-chip-muted">Experity</span>
+            <span class="r-chip r-chip-muted">InSync (Qualifacts)</span>
+            <span class="r-chip r-chip-muted">Azara</span>
             <span class="r-chip r-chip-muted">Docker</span>
             <span class="r-chip r-chip-muted">Linux</span>
             <span class="r-chip r-chip-muted">Nginx</span>
@@ -462,40 +295,53 @@
         </div>
 
         <div class="r-side-section">
-          <span class="r-side-head">Open to</span>
+          <span class="r-side-head">Open To</span>
           <div class="r-chips">
             <span class="r-chip">Data Analyst</span>
             <span class="r-chip">Business Analyst</span>
             <span class="r-chip">RCM Analyst</span>
             <span class="r-chip">Healthcare Analytics</span>
+            <span class="r-chip">Operations Management</span>
           </div>
         </div>
-
       </aside>
     </div>
 
-    <!-- ── CTA ── -->
-    <div class="r-cta">
-      <div class="container r-cta-inner">
-        <div>
-          <h3>Let's connect.</h3>
-          <p>Based in Denver &mdash; open to remote and relocation opportunities.</p>
-        </div>
-        <div class="hero-actions" style="margin:0;">
-          <a class="button button-primary" href="mailto:h@huy.gg">Email me</a>
-          <a class="button button-secondary" href="projects.html">View Projects</a>
+    <section class="section section-alt">
+      <div class="container">
+        <div class="contact-card">
+          <p class="eyebrow">See the work</p>
+          <h2>Projects worth reviewing.</h2>
+          <p>
+            The resume tells part of the story. The projects page shows the analytical thinking,
+            technical execution, and tooling behind it ,  including a real-world RCM analytics
+            project, a synthetic dataset dashboard, a facial emotion recognition deep learning
+            model, and a self-hosted production infrastructure.
+          </p>
+          <div class="contact-actions">
+            <a class="button button-primary" href="projects.html">View Projects</a>
+            <a class="button button-secondary" href="contact.html">Get in Touch</a>
+          </div>
         </div>
       </div>
-    </div>
-
+    </section>
   </main>
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p>© 2026 Harry Nguyen</p>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <img src="logo.png" alt="huy.gg" style="width:28px;height:28px;object-fit:contain;opacity:0.7;" />
+        <span>© 2026 Harry Nguyen</span>
+      </div>
       <p>huy.gg</p>
     </div>
   </footer>
 
+  <script>
+    (function() {
+      var link = document.querySelector('[data-page="resume"]');
+      if (link) link.style.display = 'none';
+    })();
+  </script>
 </body>
 </html>
