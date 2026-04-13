@@ -50,6 +50,11 @@
     @media (max-width: 540px) {
       .r-entry { grid-template-columns: 1fr; gap: 0.2rem; }
     }
+
+    .r-cta { background: var(--surface-alt); border-top: 1px solid var(--border); padding: 2.25rem 0; }
+    .r-cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+    .r-cta h3 { margin: 0; font-size: 1.25rem; font-weight: 700; }
+    .r-cta p { margin: 0.4rem 0 0; color: var(--text-muted); font-size: 0.9rem; }
   </style>
 </head>
 <body>
@@ -96,19 +101,7 @@
       </div>
     </section>
 
-    <div class="r-tagstrip">
-      <div class="container r-tagstrip-inner">
-        <span>Data Analytics</span>
-        <span class="r-tagstrip-sep">·</span>
-        <span>Revenue Cycle Management</span>
-        <span class="r-tagstrip-sep">·</span>
-        <span>Healthcare Operations</span>
-        <span class="r-tagstrip-sep">·</span>
-        <span>Dashboard Development</span>
-        <span class="r-tagstrip-sep">·</span>
-        <span>Business Intelligence</span>
-      </div>
-    </div>
+
 
     <div class="r-page">
       <div class="r-main">
@@ -307,24 +300,18 @@
       </aside>
     </div>
 
-    <section class="section section-alt">
-      <div class="container">
-        <div class="contact-card">
-          <p class="eyebrow">See the work</p>
-          <h2>Projects worth reviewing.</h2>
-          <p>
-            The resume tells part of the story. The projects page shows the analytical thinking,
-            technical execution, and tooling behind it ,  including a real-world RCM analytics
-            project, a synthetic dataset dashboard, a facial emotion recognition deep learning
-            model, and a self-hosted production infrastructure.
-          </p>
-          <div class="contact-actions">
-            <a class="button button-primary" href="projects.html">View Projects</a>
-            <a class="button button-secondary" href="contact.html">Get in Touch</a>
-          </div>
+    <div class="r-cta">
+      <div class="container r-cta-inner">
+        <div>
+          <h3>Let's connect.</h3>
+          <p>Based in Denver, open to remote and relocation opportunities.</p>
+        </div>
+        <div class="hero-actions" style="margin:0;">
+          <a class="button button-primary" href="mailto:h@huy.gg">Email me</a>
+          <a class="button button-secondary" href="projects.html">View Projects</a>
         </div>
       </div>
-    </section>
+    </div>
   </main>
 
   <footer class="site-footer">
