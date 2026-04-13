@@ -1,3 +1,6 @@
+/* ============================================================
+   CSS CUSTOM PROPERTIES (DESIGN TOKENS)
+   ============================================================ */
 :root {
   --bg: #f7f4ef;
   --surface: #ffffff;
@@ -14,6 +17,9 @@
   --max-width: 1120px;
 }
 
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
 * {
   box-sizing: border-box;
 }
@@ -40,11 +46,17 @@ a {
   text-decoration: none;
 }
 
+/* ============================================================
+   LAYOUT — CONTAINER
+   ============================================================ */
 .container {
   width: min(var(--max-width), calc(100% - 2rem));
   margin: 0 auto;
 }
 
+/* ============================================================
+   SITE HEADER
+   ============================================================ */
 .site-header {
   position: sticky;
   top: 0;
@@ -80,6 +92,9 @@ a {
   height: 28px;
 }
 
+/* ============================================================
+   SITE NAVIGATION
+   ============================================================ */
 .site-nav {
   display: flex;
   align-items: center;
@@ -97,19 +112,11 @@ a {
   color: var(--accent-dark);
 }
 
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
 .hero {
   padding: 5rem 0 4rem;
-}
-
-.hero-panel .focus-list {
-  margin: 0.4rem 0 0;
-}
-.hero-panel .focus-list li + li {
-  margin-top: 0.3rem;
-}
-
-.hero-panel .panel-label {
-  margin-bottom: 0.4rem;
 }
 
 .hero-grid {
@@ -117,15 +124,6 @@ a {
   grid-template-columns: 1.2fr 0.8fr;
   gap: 2rem;
   align-items: start;
-}
-
-.eyebrow {
-  margin: 0 0 0.9rem;
-  color: var(--accent-dark);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
 }
 
 .hero h1 {
@@ -151,6 +149,73 @@ a {
   margin-top: 2rem;
 }
 
+/* ============================================================
+   HERO PANEL — BUSINESS CARD SIDEBAR
+   ============================================================ */
+.hero-panel,
+.project-card,
+.resume-card,
+.contact-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+.hero-panel {
+  padding: 1.5rem;
+}
+
+/* ============================================================
+   EYEBROW & PANEL LABELS
+   ============================================================ */
+.eyebrow {
+  margin: 0 0 0.9rem;
+  color: var(--accent-dark);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.panel-label {
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* Override panel label spacing inside hero panel — must come after global rule */
+.hero-panel .panel-label {
+  margin-bottom: 0.4rem;
+}
+
+/* ============================================================
+   FOCUS LIST — USED IN HERO PANELS
+   ============================================================ */
+.focus-list {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.focus-list li + li {
+  margin-top: 0.75rem;
+}
+
+/* Tighter spacing for focus lists inside the hero panel */
+.hero-panel .focus-list {
+  margin: 0.4rem 0 0;
+}
+
+.hero-panel .focus-list li + li {
+  margin-top: 0.3rem;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
 .button {
   display: inline-flex;
   align-items: center;
@@ -185,42 +250,14 @@ a {
   color: var(--accent-dark);
 }
 
-.hero-panel,
-.project-card,
-.resume-card,
-.contact-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow);
-}
-
-.hero-panel {
-  padding: 1.5rem;
-}
-
-.panel-label {
-  margin: 0 0 1rem;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-}
-
-.focus-list {
-  margin: 0;
-  padding-left: 1.1rem;
-}
-
-.focus-list li + li {
-  margin-top: 0.75rem;
-}
-
+/* ============================================================
+   SECTIONS
+   ============================================================ */
 .section {
   padding: 3rem 0 5rem;
 }
 
+/* Alternate background section */
 .section-alt {
   background: var(--surface-alt);
   border-top: 1px solid var(--border);
@@ -243,6 +280,9 @@ a {
   color: var(--text-muted);
 }
 
+/* ============================================================
+   PROJECT CARDS
+   ============================================================ */
 .project-card {
   padding: 2rem;
   margin-top: 2rem;
@@ -319,6 +359,9 @@ a {
   color: var(--text-muted);
 }
 
+/* ============================================================
+   RESUME CARD — USED ON ABOUT PAGE FOR CONTENT GRIDS
+   ============================================================ */
 .resume-card {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -344,6 +387,9 @@ a {
   color: var(--text-muted);
 }
 
+/* ============================================================
+   CONTACT CARD
+   ============================================================ */
 .contact-card {
   padding: 2rem;
 }
@@ -374,6 +420,9 @@ a {
   color: var(--accent);
 }
 
+/* ============================================================
+   SITE FOOTER
+   ============================================================ */
 .site-footer {
   padding: 1.25rem 0 2rem;
   background: rgba(247, 244, 239, 0.94);
@@ -389,6 +438,9 @@ a {
   font-size: 0.92rem;
 }
 
+/* ============================================================
+   RESPONSIVE — TABLET (max 860px)
+   ============================================================ */
 @media (max-width: 860px) {
   .hero-grid,
   .project-grid,
@@ -405,6 +457,9 @@ a {
   }
 }
 
+/* ============================================================
+   RESPONSIVE — MOBILE (max 620px)
+   ============================================================ */
 @media (max-width: 620px) {
   .header-inner,
   .footer-inner {
