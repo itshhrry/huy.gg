@@ -494,13 +494,15 @@ a {
    LUMINOUS LIGHTBOX CUSTOMIZATION
    ============================================================ */
 .lum-backdrop {
-  background-color: rgba(0, 0, 0, 0.85) !important; /* Darker overlay */
-  cursor: pointer; /* Indicates click-to-exit */
+  background-color: rgba(0, 0, 0, 0.85) !important;
+  cursor: pointer !important; /* Force the pointer hand to show */
+  position: fixed !important; 
+  z-index: 1000 !important;
 }
 
 .lum-lightbox {
+  z-index: 2000 !important; /* Keeps image above the backdrop */
   animation: lum-fadeIn 0.35s ease;
-  z-index: 2000; /* Ensure it stays above your sticky header */
 }
 
 /* Local zoom indicator for the project images */
