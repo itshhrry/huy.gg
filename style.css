@@ -495,14 +495,19 @@ a {
    ============================================================ */
 .lum-backdrop {
   background-color: rgba(0, 0, 0, 0.85) !important;
-  cursor: pointer !important; /* Force the pointer hand to show */
-  position: fixed !important; 
-  z-index: 1000 !important;
+  cursor: pointer !important; /* Forces the pointer hand to show */
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  z-index: 5000 !important; /* Puts it above your sticky header (z-index 10) */
 }
 
 .lum-lightbox {
-  z-index: 2000 !important; /* Keeps image above the backdrop */
-  animation: lum-fadeIn 0.35s ease;
+  z-index: 5001 !important; /* Keeps the image above the backdrop */
+}
+
+.lum-lightbox-inner {
+  z-index: 5002 !important;
 }
 
 /* Local zoom indicator for the project images */
