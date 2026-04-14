@@ -496,8 +496,8 @@ a {
 .lum-backdrop {
 .lum-backdrop {
    background-color: rgba(0, 0, 0, 0.7) !important; /* Dark overlay */
-   backdrop-filter: blur(8px) !important;          /* Modern blur effect */
-   -webkit-backdrop-filter: blur(8px) !important;   /* Safari support */
+   backdrop-filter: blur(10px) !important;          /* Modern blur effect */
+   -webkit-backdrop-filter: blur(10px) !important;   /* Safari support */
    cursor: pointer !important;                      /* Hint that you can click to exit */
    z-index: 5000 !important;
    position: fixed !important;
