@@ -74,44 +74,126 @@
         </div>
       </section>
 
-      <section class="section section-alt">
-        <div class="container">
-          <div class="section-heading">
-            <p class="eyebrow">Selected Work</p>
-            <h2>Project archive</h2>
-            <p>These projects reflect a blend of analytical thinking, technical implementation, and practical problem-solving.</p>
+        <article class="project-card">
+          <div class="project-meta">
+            <span class="tag">Python</span>
+            <span class="tag">pandas</span>
+            <span class="tag">NumPy</span>
+            <span class="tag">Excel</span>
+            <span class="tag">Power Query</span>
+            <span class="tag">Data Modeling</span>
           </div>
-
-          <article class="project-card">
-            <div class="project-meta">
-              <span class="tag">Python</span> <span class="tag">pandas</span> <span class="tag">NumPy</span> <span class="tag">Excel</span> <span class="tag">Power Query</span> <span class="tag">Data Modeling</span>
+          <h3>Revenue Cycle by Design: A Multi-Facility Modeling</h3>
+          <p class="project-summary">
+            Designed and generated a dataset of 250,000 claims in Python using
+            rule-based operational and financial logic, then normalized the raw output into
+            schemas with Power Query and analyze reimbursement performance, denials,
+            efficiency, and profitability.
+          </p>
+          <div class="project-grid">
+            <div class="project-block">
+              <h4>Business questions</h4>
+              <ul>
+                <li>How are A/R loads and collection rates tracking month over month?</li>
+                <li>Which payers generate the highest write-off burden per encounter?</li>
+                <li>Where are denial rates concentrated, by provider, CPT, or payer?</li>
+                <li>How does reimbursement compare to allowed revenue across encounter types?</li>
+              </ul>
             </div>
-            <h3>Revenue Cycle by Design: A Multi-Facility Modeling</h3>
-            <p class="project-summary">
-              Designed and generated a dataset of 250,000 claims in Python using rule-based operational and financial logic...
-            </p>
-            
-            <div class="project-grid">
-              </div>
-
-            <div style="margin-top:1.75rem;display:flex;flex-direction:column;gap:1rem;">
-              <a href="rcm-dashboard.png" class="zoom-link">
-                <img src="rcm-dashboard.png" alt="RCM interactive dashboard" style="width:100%;border-radius:12px;border:1px solid var(--border);" />
-              </a>
-              <a href="rcm-report.png" class="zoom-link">
-                <img src="rcm-report.png" alt="Comprehensive billing report" style="width:100%;border-radius:12px;border:1px solid var(--border);" />
-              </a>
+            <div class="project-block">
+              <h4>Approach</h4>
+              <ul>
+                <li>Cleaned and transformed raw billing data using Python and Power Query</li>
+                <li>MPRR reductions and standardized adjustment coding</li>
+                <li>Built univariate and multivariate analysis across payer and encounter dimensions</li>
+                <li>Designed an interactive Excel dashboard with slicers for payer, month, and provider</li>
+                <li>Produced a comprehensive billing report with provider-level KPIs</li>
+              </ul>
             </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-meta">
-              <span class="tag">Python</span> <span class="tag">TensorFlow</span> <span class="tag">Keras</span> <span class="tag">CNN</span> <span class="tag">Deep Learning</span> <span class="tag">Computer Vision</span>
+            <div class="project-block">
+              <h4>Key metrics</h4>
+              <ul>
+                <li>Reimbursement totals and reimbursement rate</li>
+                <li>Denial volume and denial trends</li>
+                <li>Operational efficiency indicators</li>
+                <li>Profitability comparison</li>
+              </ul>
             </div>
-            <h3>Facial Emotion Recognition</h3>
-            <p class="project-summary">
-              Built and compared multiple deep learning models to classify facial expressions across four emotion categories...
-            </p>
+            <div class="project-block">
+              <h4>Outcome</h4>
+              <p>Produced a reporting tool that enables comparison of performance drivers and demonstrates how reimbursement patterns, denials, and operational processes influence financial outcomes.</p>
+            </div>
+          </div>
+          <div style="margin-top:1.75rem;display:flex;flex-direction:column;gap:1rem;">
+            <a href="rcm-dashboard.png" class="zoom-link">
+              <img src="rcm-dashboard.png" alt="RCM interactive dashboard" style="width:100%;border-radius:12px;border:1px solid var(--border);" />
+            </a>
+            <a href="rcm-report.png" class="zoom-link">
+              <img src="rcm-report.png" alt="Comprehensive billing report" style="width:100%;border-radius:12px;border:1px solid var(--border);" />
+            </a>
+          </div>
+        </article>
+
+
+        <article class="project-card">
+          <div class="project-meta">
+            <span class="tag">Python</span>
+            <span class="tag">TensorFlow</span>
+            <span class="tag">Keras</span>
+            <span class="tag">CNN</span>
+            <span class="tag">Deep Learning</span>
+            <span class="tag">Computer Vision</span>
+          </div>
+          <h3>Facial Emotion Recognition: Deep Learning with Convolutional and Artificial Neural Networks</h3>
+          <p class="project-summary">
+            Built and compared multiple deep learning models to classify facial expressions
+            across four emotion categories. Progressed from a baseline ANN through increasingly
+            refined CNN architectures, achieving 91% accuracy through systematic tuning of
+            dropout layers, training epochs, and preprocessing strategy.
+          </p>
+          <div class="project-grid">
+            <div class="project-block">
+              <h4>Objective</h4>
+              <p>
+                Develop a computer vision model capable of accurately classifying facial
+                expressions into four emotion categories: happy, sad, surprised, and neutral.
+                Part of a broader direction in affective computing and emotionally intelligent
+                machine behavior.
+              </p>
+            </div>
+            <div class="project-block">
+              <h4>Approach</h4>
+              <ul>
+                <li>Baseline ANN model established as performance reference</li>
+                <li>Progressively refined CNN architectures across four model iterations</li>
+                <li>Applied dropout regularization to reduce overfitting</li>
+                <li>Increased training epochs to improve feature refinement and generalization</li>
+                <li>Evaluated grayscale vs. RGB input strategy for transfer learning alignment</li>
+                <li>Libraries: TensorFlow, Keras, NumPy, pandas, Matplotlib, Seaborn, scikit-learn</li>
+              </ul>
+            </div>
+            <div class="project-block">
+              <h4>Key metrics</h4>
+              <ul>
+                <li>Baseline ANN: 56% F1 score (best on surprise)</li>
+                <li>Model 1 (simple CNN, no dropout): 59% F1 score</li>
+                <li>Model 2 (refined CNN): 69% F1 score</li>
+                <li>Model 3 (optimized CNN): 91% F1 score</li>
+                <li>Evaluated on happy, sad, neutral, and surprised categories</li>
+              </ul>
+            </div>
+            <div class="project-block">
+              <h4>Outcome</h4>
+              <p>
+                Achieved 91% classification accuracy on facial emotion recognition through
+                iterative model improvement. The project demonstrated that CNN depth,
+                dropout tuning, and epoch scaling significantly outperform simpler ANN
+                architectures for image-based emotion classification. Key insight: matching
+                input format (grayscale) to model expectations improved alignment and
+                reduced preprocessing artifacts.
+              </p>
+            </div>
+          </div>
             
             <div style="margin-top:1.75rem;">
               <a href="facial-emotion-detection-final-result.png" class="zoom-link">
@@ -123,6 +205,112 @@
       </section>
     </main>
 
+        <article class="project-card">
+          <div class="project-meta">
+            <span class="tag">Docker</span>
+            <span class="tag">Nginx</span>
+            <span class="tag">Cloudflare</span>
+            <span class="tag">Linux</span>
+            <span class="tag">MariaDB</span>
+            <span class="tag">WireGuard</span>
+            <span class="tag">Pi-hole</span>
+            <span class="tag">Let's Encrypt</span>
+          </div>
+          <h3>Self-Hosted Home Server Infrastructure</h3>
+          <p class="project-summary">
+            Architected and deployed a production-grade self-hosted environment operating
+            under the huy.gg domain, encompassing this website, email infrastructure, and
+            additional public-facing and private services. The system is built on a fully
+            containerized stack with layered security, encrypted remote access, automated
+            certificate management, and network-level DNS filtering — running continuously
+            as a live, managed production environment.
+          </p>
+          <div class="project-grid">
+            <div class="project-block">
+              <h4>Objective</h4>
+              <p>
+                Design and operate a centralized, production-grade self-hosted platform
+                capable of running multiple public-facing and private services under a
+                unified domain, with enterprise-level routing, security, and access control.
+              </p>
+            </div>
+            <div class="project-block">
+              <h4>Architecture</h4>
+              <ul>
+                <li>Docker-based service isolation and container orchestration</li>
+                <li>Nginx reverse proxy with subdomain-based routing across all services</li>
+                <li>Cloudflare for DNS management, DDoS protection, and traffic proxying</li>
+                <li>Let's Encrypt for automated SSL certificate provisioning and renewal</li>
+                <li>WireGuard VPN for encrypted remote access and secure tunneling</li>
+                <li>Pi-hole for network-level DNS filtering and ad blocking</li>
+                <li>MariaDB for persistent relational data storage across services</li>
+              </ul>
+            </div>
+            <div class="project-block">
+              <h4>Services</h4>
+              <ul>
+                <li>huy.gg — production website and public portfolio</li>
+                <li>Self-hosted email infrastructure</li>
+                <li>ownCloud for private file storage and sync</li>
+                <li>Jellyfin for media streaming</li>
+                <li>Additional containerized services under active management</li>
+              </ul>
+            </div>
+            <div class="project-block">
+              <h4>Outcome</h4>
+              <p>
+                Delivered a fully operational, multi-service production environment that
+                runs continuously under a live public domain. Demonstrates end-to-end
+                systems thinking across networking, security, containerization, and
+                infrastructure management — well beyond the scope of a typical homelab.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-meta">
+            <span class="tag">Coming Soon</span>
+          </div>
+          <h3>Additional projects in progress</h3>
+          <p class="project-summary">
+            This portfolio will expand with additional work in exploratory data analysis,
+            business-focused reporting, and other technical projects.
+          </p>
+          <div class="project-grid">
+            <div class="project-block">
+              <h4>Planned additions</h4>
+              <ul>
+                <li>FoodHub exploratory data analysis</li>
+                <li>CardioGood Fitness analysis</li>
+                <li>Uber analysis case study</li>
+              </ul>
+            </div>
+            <div class="project-block">
+              <h4>Status</h4>
+              <p>These projects will be added once their summaries, outcomes, and presentations are refined to match the current portfolio standard.</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <div class="contact-card">
+          <p class="eyebrow">Get in touch</p>
+          <h2>Interested in my work?</h2>
+          <p>If you are hiring for data analyst or business analyst roles, or want to discuss a project in more detail, feel free to reach out.</p>
+          <div class="contact-actions">
+            <a class="button button-primary" href="contact.html">Contact me</a>
+            <a class="button button-secondary" href="resume.html">View Resume</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+    
     <footer class="site-footer">
       <div class="container footer-inner">
         <div style="display:flex;align-items:center;gap:8px;">
