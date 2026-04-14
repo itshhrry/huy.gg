@@ -323,10 +323,12 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/luminous-lightbox/2.3.2/Luminous.min.js"></script>
   <script>
-    // Initialize the lightbox on all links with the "zoom-link" class
-    document.querySelectorAll('.zoom-link').forEach(function(el) {
-      new Luminous(el);
+  document.querySelectorAll('.zoom-link').forEach(function(el) {
+    new Luminous(el, {
+      closeOnOutsideClick: true, // Specifically tells the script to exit on backdrop click
+      appendToNode: document.body // Ensures it attaches to the main page correctly
     });
+  });
   </script>
 </body>
 </html>
