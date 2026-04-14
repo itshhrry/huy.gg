@@ -491,17 +491,27 @@ a {
 }
 
 /* ============================================================
-   LIGHTBOX CUSTOMIZATION
+   LUMINOUS LIGHTBOX CUSTOMIZATION
    ============================================================ */
-/* Changes the cursor to a pointer when hovering over the dark area */
 .lum-backdrop {
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.85) !important; /* Darkens the background more */
+  background-color: rgba(0, 0, 0, 0.85) !important; /* Darker overlay */
+  cursor: pointer; /* Indicates click-to-exit */
 }
 
-/* Adds a smooth fade-in effect when the image pops up */
 .lum-lightbox {
-  animation: lum-fadeIn 0.3s ease;
+  animation: lum-fadeIn 0.35s ease;
+  z-index: 2000; /* Ensure it stays above your sticky header */
+}
+
+/* Local zoom indicator for the project images */
+.zoom-link {
+  cursor: zoom-in;
+  display: block;
+  transition: opacity 0.2s;
+}
+
+.zoom-link:hover {
+  opacity: 0.9;
 }
 
 @keyframes lum-fadeIn {
