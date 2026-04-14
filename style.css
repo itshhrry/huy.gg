@@ -489,3 +489,22 @@ a {
     padding: 1.2rem;
   }
 }
+
+/* ============================================================
+   LIGHTBOX CUSTOMIZATION
+   ============================================================ */
+/* Changes the cursor to a pointer when hovering over the dark area */
+.lum-backdrop {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.85) !important; /* Darkens the background more */
+}
+
+/* Adds a smooth fade-in effect when the image pops up */
+.lum-lightbox {
+  animation: lum-fadeIn 0.3s ease;
+}
+
+@keyframes lum-fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
