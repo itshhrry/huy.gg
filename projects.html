@@ -14,16 +14,14 @@
 
   <!-- inline scripts to execute for lightbox--> 
  <script>
-    var zoomLink = document.querySelectorAll(".zoom-link") 
-      var options = {{
+      var options = {
           closeTrigger: "click",
           showCloseButton: true,
           closeOnOutsideClick: true, // Specifically tells the script to exit on backdrop click
           appendToNode: document.body // Ensures it attaches to the main page correctly
-    }
-        new Luminous(document.querySelector("zoomLink"), options
-                     );
-  });
+    };
+   var lightBox = document.querySelector(".zoom-link");
+       new Luminous(document.querySelector(lightBox));
   </script>
   
   <style>
