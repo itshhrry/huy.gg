@@ -6,9 +6,21 @@
   <title>Projects | Harry Nguyen</title>
   <meta name="description" content="Project portfolio for Harry Nguyen, featuring analytics, dashboarding, and technical infrastructure work." />
   
-  /* External library for website to download. */
+  <!-- External library for website to download. -->
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/luminous-lightbox/2.3.2/luminous-basic.min.css">
+  <!-- External scripts to load. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/luminous-lightbox/2.3.2/Luminous.min.js"></script>
+
+  <!-- inline scripts to execute for lightbox--> 
+ <script>
+    var zoomLink = document.querySelectorAll('.zoom-link').forEach(zoomLink) {
+        new Luminous(zoomLink, {
+          closeOnOutsideClick: true, // Specifically tells the script to exit on backdrop click
+          appendToNode: document.body // Ensures it attaches to the main page correctly
+    });
+  });
+  </script>
   
   <style>
     .project-block h4 { color: var(--accent-dark); }
@@ -129,16 +141,21 @@
               <p>Produced a reporting tool that enables comparison of performance drivers and demonstrates how reimbursement patterns, denials, and operational processes influence financial outcomes.</p>
             </div>
           </div>
-          <div style="margin-top:1.75rem;display:flex;flex-direction:column;gap:1rem;">
-            <a href="rcm-dashboard.png" class="zoom-link">
+     <!-- begin lightbox containers -->
+          <div style="margin-top:1.75rem;display:flex;flex-direction:column;gap:1rem;" >
+            <a href="rcm-dashboard.png" class="zoom-link"> 
               <img src="rcm-dashboard.png" alt="RCM interactive dashboard" style="width:100%;border-radius:12px;border:1px solid var(--border);" />
             </a>
-            <a href="rcm-report.png" class="zoom-link">
-              <img src="rcm-report.png" alt="Comprehensive billing report" style="width:100%;border-radius:12px;border:1px solid var(--border);" />
+            <a href="rcm-report-summary.png" class="zoom-link">
+              <img src="rcm-report-summary.png" alt="healthcare revenue cycle billing report summary" style="width:100%;border-radius:12px;border:1px solid var(--border);" />
+            </a>
+            <a href="rcm-report-analysis.png" class="zoom-link">
+              <img src="rcm-report-analysis.png" alt="healthcare revenue cycle billing report analysis" style="width:100%;border-radius:12px;border:1px solid var(--border);" />
             </a>
           </div>
         </article>
-
+        
+   <!-- end lightbox containers -->
         <article class="project-card">
           <div class="project-meta">
             <span class="tag">Python</span>
@@ -320,15 +337,5 @@
       <p>huy.gg</p>
     </div>
   </footer>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/luminous-lightbox/2.3.2/Luminous.min.js"></script>
-  <script>
-  document.querySelectorAll('.zoom-link').forEach(function(el) {
-    new Luminous(el, {
-      closeOnOutsideClick: true, // Specifically tells the script to exit on backdrop click
-      appendToNode: document.body // Ensures it attaches to the main page correctly
-    });
-  });
-  </script>
 </body>
 </html>
