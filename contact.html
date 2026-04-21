@@ -9,6 +9,27 @@
     content="Contact Harry Nguyen regarding data analyst and business analyst opportunities."
   />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Full-height layout so footer stays at bottom ── */
+    html, body { height: 100%; }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    body > main {
+      flex: 1 0 auto;
+    }
+    .site-footer {
+      flex-shrink: 0;
+    }
+
+    /* ── Mobile: prevent long URLs from overflowing card ── */
+    .resume-item a {
+      word-break: break-all;
+      overflow-wrap: break-word;
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -42,7 +63,7 @@
       </div>
     </section>
 
-    <section class="section section-alt">
+    <section class="section section-alt" style="flex:1;">
       <div class="container">
         <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem;">
 
