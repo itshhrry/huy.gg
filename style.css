@@ -452,13 +452,14 @@ a {
   font-size: 0.92rem;
 }
 
-/* Footer brand: matches header .brand sizing */
+/* Footer brand: inline-flex keeps logo + text on one line */
 .site-footer .brand {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
   opacity: 0.7;
   transition: opacity 0.2s ease;
+  white-space: nowrap;
 }
 
 .site-footer .brand:hover,
