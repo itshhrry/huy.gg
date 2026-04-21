@@ -26,6 +26,7 @@
 
 html {
   scroll-behavior: smooth;
+  height: 100%;
 }
 
 body {
@@ -34,6 +35,14 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
+  /* Sticky footer — keeps footer at bottom on short pages */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body > main {
+  flex: 1 0 auto;
 }
 
 img {
@@ -85,11 +94,6 @@ a {
   width: 54px;
   height: 54px;
   object-fit: contain;
-}
-
-.site-footer .brand img {
-  width: 28px;
-  height: 28px;
 }
 
 /* ============================================================
@@ -389,6 +393,12 @@ a {
   color: var(--text-muted);
 }
 
+/* Mobile: prevent long URLs/text from overflowing resume-item cards */
+.resume-item a {
+  word-break: break-all;
+  overflow-wrap: break-word;
+}
+
 /* ============================================================
    CONTACT CARD
    ============================================================ */
@@ -426,6 +436,7 @@ a {
    SITE FOOTER
    ============================================================ */
 .site-footer {
+  flex-shrink: 0;
   padding: 1.25rem 0 2rem;
   background: rgba(247, 244, 239, 0.94);
   border-top: 1px solid var(--border);
@@ -434,10 +445,30 @@ a {
 .footer-inner {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 1rem;
   padding-top: 1rem;
   color: var(--text-muted);
   font-size: 0.92rem;
+}
+
+/* Footer brand: matches header .brand sizing */
+.site-footer .brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.site-footer .brand:hover,
+.site-footer .brand:focus {
+  opacity: 1;
+}
+
+.site-footer .brand img {
+  width: 28px;
+  height: 28px;
 }
 
 /* ============================================================
@@ -494,41 +525,37 @@ a {
    LUMINOUS LIGHTBOX CUSTOMIZATION
    ============================================================ */
 .lum-backdrop {
-.lum-backdrop {
-   background-color: rgba(0, 0, 0, 0.7) !important; /* Dark overlay */
-   backdrop-filter: blur(10px) !important;          /* Modern blur effect */
-   -webkit-backdrop-filter: blur(10px) !important;   /* Safari support */
-   cursor: pointer !important;                      /* Hint that you can click to exit */
-   z-index: 5000 !important;
-   position: fixed !important;
-   top: 0 !important;
-   left: 0 !important;
-   width: 100% !important;
-   height: 100% !important;
-   cursor: pointer !important;                      
-   z-index: 5000 !important;
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  cursor: pointer !important;
+  z-index: 5000 !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .lum-lightbox {
-   z-index: 5001 !important; /* Keeps the image above the backdrop */
+  z-index: 5001 !important;
 }
 
 .lum-lightbox-inner {
-   z-index: 5002 !important;
+  z-index: 5002 !important;
 }
 
-/* Local zoom indicator for the project images */
 .zoom-link {
-   cursor: zoom-in;
-   display: block;
-   transition: opacity 0.2s;
+  cursor: zoom-in;
+  display: block;
+  transition: opacity 0.2s;
 }
 
 .zoom-link:hover {
-   opacity: 0.9;
+  opacity: 0.9;
 }
 
 @keyframes lum-fadeIn {
-   from { opacity: 0; }
-   to { opacity: 1; }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
