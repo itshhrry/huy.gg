@@ -5,31 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects | Harry Nguyen</title>
   <meta name="description" content="Project portfolio for Harry Nguyen, featuring analytics, dashboarding, and technical infrastructure work." />
-  
-  <!-- External library for website to download. -->
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/luminous-lightbox/2.4.0/luminous-basic.min.css" integrity="sha512-koV7rZjdkgQouiHiyzaGG1FblTuAkJVypXhzDxDNC74SdnKlGjJCkFwVcGP/wx5bwplcpnOcCy2ZJAGaVB5qmw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!-- External scripts to load. -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/luminous-lightbox/2.4.0/luminous.min.js" integrity="sha512-QzKjuc+7pitZqj28ecclxJ2XJD9l91dNb25Er0ixaqYzpMqhKGIPohYN6blR9UfSR5ETL7wncxmEvVarrVwkSw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-  <!-- inline scripts to execute for lightbox--> 
- <script>
-      var options = {
-          closeTrigger: "click",
-          showCloseButton: true,
-          closeOnOutsideClick: true, // Specifically tells the script to exit on backdrop click
-          appendToNode: document.body // Ensures it attaches to the main page correctly
-    };
-   var lightBox = document.querySelector(".zoom-link");
-       new Luminous(document.querySelector(lightBox));
-  </script>
-  
   <style>
     .project-block h4 { color: var(--accent-dark); }
     .project-card h3 { max-width: none; }
-    .zoom-link {cursor: zoom-in;display: block; }
+    .zoom-link { cursor: zoom-in; display: block; }
   </style>
-  
 </head>
 <body>
   <header class="site-header">
@@ -143,9 +126,8 @@
               <p>Produced a reporting tool that enables comparison of performance drivers and demonstrates how reimbursement patterns, denials, and operational processes influence financial outcomes.</p>
             </div>
           </div>
-     <!-- begin lightbox containers -->
-          <div style="margin-top:1.75rem;display:flex;flex-direction:column;gap:1rem;" >
-            <a href="rcm-dashboard.png" class="zoom-link"> 
+          <div style="margin-top:1.75rem;display:flex;flex-direction:column;gap:1rem;">
+            <a href="rcm-dashboard.png" class="zoom-link">
               <img src="rcm-dashboard.png" alt="RCM interactive dashboard" style="width:100%;border-radius:12px;border:1px solid var(--border);" />
             </a>
             <a href="rcm-report-summary.png" class="zoom-link">
@@ -156,8 +138,7 @@
             </a>
           </div>
         </article>
-        
-   <!-- end lightbox containers -->
+
         <article class="project-card">
           <div class="project-meta">
             <span class="tag">Python</span>
@@ -329,7 +310,7 @@
       </div>
     </section>
   </main>
-    
+
   <footer class="site-footer">
     <div class="container footer-inner">
       <a class="brand" href="index.html">
@@ -339,5 +320,20 @@
       <p>huy.gg</p>
     </div>
   </footer>
+
+  <!-- Luminous lightbox — init AFTER DOM is ready so all .zoom-link elements exist -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var options = {
+        closeOnOutsideClick: true,
+        showCloseButton: true
+      };
+
+      // Initialize on every .zoom-link — querySelectorAll loops all four images
+      document.querySelectorAll('.zoom-link').forEach(function (link) {
+        new Luminous(link, options);
+      });
+    });
+  </script>
 </body>
 </html>
