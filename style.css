@@ -457,19 +457,26 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  opacity: 0.7;
-  transition: opacity 0.2s ease;
   white-space: nowrap;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
 }
 
 .site-footer .brand:hover,
 .site-footer .brand:focus {
-  opacity: 1;
+  color: var(--text);
 }
 
 .site-footer .brand img {
   width: 28px;
   height: 28px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.site-footer .brand:hover img,
+.site-footer .brand:focus img {
+  opacity: 1;
 }
 
 /* ============================================================
