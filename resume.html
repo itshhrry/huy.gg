@@ -4,9 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Resume | Harry Nguyen</title>
-  <meta name="description" content="Resume of Harry Nguyen ,  data analytics and healthcare operations professional based in Denver, CO." />
+  <meta name="description" content="Resume of Harry Nguyen, data analytics and healthcare operations professional based in Denver, CO." />
   <link rel="stylesheet" href="style.css" />
   <style>
+    /* ── Resume layout ── */
     .r-tagstrip { background: var(--accent); padding: 0.65rem 0; border-bottom: 1px solid var(--accent-dark); }
     .r-tagstrip-inner { display: flex; flex-wrap: wrap; gap: 0.4rem 1.6rem; align-items: center; }
     .r-tagstrip span { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.88); }
@@ -55,6 +56,84 @@
     .r-cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
     .r-cta h3 { margin: 0; font-size: 1.25rem; font-weight: 700; }
     .r-cta p { margin: 0.4rem 0 0; color: var(--text-muted); font-size: 0.9rem; }
+
+    /* ── Tab switcher ── */
+    .resume-tabs-wrap {
+      background: var(--surface-alt);
+      border-bottom: 1px solid var(--border);
+      padding: 0;
+    }
+
+    .resume-tabs {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .resume-tab {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.15rem;
+      padding: 1rem 1.5rem 0.85rem;
+      border: none;
+      border-bottom: 3px solid transparent;
+      background: none;
+      cursor: pointer;
+      font-family: inherit;
+      transition: border-color 0.18s ease, color 0.18s ease, background 0.18s ease;
+      color: var(--text-muted);
+      position: relative;
+      text-align: left;
+    }
+
+    .resume-tab:hover {
+      color: var(--text);
+      background: rgba(192, 64, 0, 0.04);
+    }
+
+    .resume-tab.active {
+      border-bottom-color: var(--accent);
+      color: var(--text);
+    }
+
+    .resume-tab-label {
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      line-height: 1;
+    }
+
+    .resume-tab-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .resume-tab.active .resume-tab-sub {
+      color: var(--accent-dark);
+    }
+
+    /* Panel visibility */
+    .r-panel { display: none; }
+    .r-panel.active { display: block; }
+
+    /* Focus note shown per-tab */
+    .r-focus-note {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      padding: 0.45rem 1rem;
+      background: #f6eee6;
+      border: 1px solid #e8d8c8;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-dark);
+    }
   </style>
 </head>
 <body>
@@ -81,7 +160,7 @@
           <p class="eyebrow">Resume</p>
           <h1>A decade of healthcare operations, backed by data.</h1>
           <p class="hero-text">
-            Revenue cycle management, business intelligence, and clinical operations , 
+            Revenue cycle management, business intelligence, and clinical operations,
             with the analytical foundation to turn complex data into clear decisions.
           </p>
           <div class="hero-actions">
@@ -111,207 +190,460 @@
       </div>
     </section>
 
-
-
-    <div class="r-page">
-      <div class="r-main">
-        <div class="r-section">
-          <div class="r-section-head">
-            <h2>Experience</h2>
-            <span class="r-section-rule"></span>
-          </div>
-          <div class="r-entries">
-
-            <div class="r-entry">
-              <div class="r-entry-date">May – Dec 2025<span>Boulder, CO</span></div>
-              <div>
-                <h3 class="r-entry-title">Revenue Cycle Manager</h3>
-                <div class="r-entry-org">Creekside Physical Medicine</div>
-                <ul class="r-bullets">
-                  <li>Owned end-to-end RCM operations,  registration, eligibility verification, charge capture, payment posting, denial management, appeals, and A/R reporting.</li>
-                  <li>Built an enterprise RCM dashboard tracking NCR/GCR trends, denial root causes, payer reimbursement variance, and A/R aging; directly contributed to a <strong>35% reduction in A/R backlog</strong>.</li>
-                  <li>Reduced recurring denials by implementing billing-to-servicing provider validation rules (BCBS), standardizing Box 19 CMS-1500 NDC documentation (UHC), and resolving X12/837P EHR-to-clearinghouse transmission errors.</li>
-                  <li>Supported full EHR migration from InSync to Athena, coordinating workflow continuity across billing, clinical, and administrative teams.</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="r-entry">
-              <div class="r-entry-date">Jul 2024 – Apr 2025<span>Aurora, CO</span></div>
-              <div>
-                <h3 class="r-entry-title">Center Operations Supervisor</h3>
-                <div class="r-entry-org">Trumpet Behavioral Health</div>
-                <ul class="r-bullets">
-                  <li>Managed front-office operations, staff scheduling, and workflow coordination across clinical and administrative teams serving behavioral health clients.</li>
-                  <li>Oversaw intake documentation, prior authorization tracking, and compliance record management to ensure billing accuracy and uninterrupted service delivery.</li>
-                  <li>Maintained facility safety compliance, vendor relationships, and supply inventory readiness.</li>
-                  <li>Supported payroll accuracy through documentation audits, coding corrections, progress note reviews, and authorization alignment.</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="r-entry">
-              <div class="r-entry-date">Aug 2022 – Jun 2023<span>Remote/Travel</span></div>
-              <div>
-                <h3 class="r-entry-title">Integrated Device Consultant</h3>
-                <div class="r-entry-org">Oracle Health</div>
-                <ul class="r-bullets">
-                  <li>Deployed and validated biomedical and lab device integrations into the Oracle Health CareAware MDI platform across multiple client sites, reducing manual data entry touchpoints and improving real-time data accuracy at the point of care.</li>
-                  <li>Guided clients through device integration design and configuration within Cerner Millennium, resolving HL7 interface and transmission errors that reduced go-live delays by an estimated <Strong>4 days per engagement.</Strong></li>
-                  <li>Partnered with clinical and IT stakeholders to align device integration workflows with operational and regulatory requirements, supporting on-time go-live delivery across X implementations with zero critical post-go-live device failures.</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="r-entry">
-              <div class="r-entry-date">Oct 2021 – Aug 2022<span>Brighton, CO</span></div>
-              <div>
-                <h3 class="r-entry-title">Regional Operations Manager</h3>
-                <div class="r-entry-org">Advanced Urgent Care &amp; Occupational Medicine</div>
-                <ul class="r-bullets">
-                  <li>Drove <strong>$8M in revenue growth</strong> through predictive analytics on patient flow, service demand patterns, and revenue cycle performance ,  directly informing staffing strategy and operational planning.</li>
-                  <li>Maintained <strong>100% employee retention</strong> across all managed locations and achieved average net promoter scores of 89–93% through investments in referral quality, patient experience, and staff development.</li>
-                  <li>Served as IT project lead for EHR consolidation across <strong>14 clinics</strong>, overseeing Athena/Experity implementation, data migration, manual testing, and user acceptance validation.</li>
-                  <li>Strengthened front-end eligibility verification and documentation workflows, reducing downstream claim denials and improving reimbursement turnaround time.</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="r-entry">
-              <div class="r-entry-date">Nov 2019 – Mar 2021<span>Denver, CO</span></div>
-              <div>
-                <h3 class="r-entry-title">Data &amp; Analytics Intern <span style="font-size:0.85rem;color:var(--text-muted);font-weight:400;">,  Master's Capstone</span></h3>
-                <div class="r-entry-org">Centura Health</div>
-                <ul class="r-bullets">
-                  <li>Collaborated with clinical and administrative stakeholders to evaluate and streamline care delivery workflows for ulcerative colitis treatment using High-Reliability Organization principles.</li>
-                  <li>Designed ETL pipelines to integrate and transform data from EPIC, patient monitoring devices, and administrative systems ,  achieving consistent data quality across sources.</li>
-                  <li>Applied predictive analytics and machine learning to forecast patient admissions, resource utilization, and potential complications, supporting COVID-19 resource optimization and cost reduction.</li>
-                  <li>Delivered executive-level reporting and data visualizations using Power BI, Tableau, and SQL Server.</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="r-entry">
-              <div class="r-entry-date">Nov 2019 – Oct 2020<span>Boulder, CO</span></div>
-              <div>
-                <h3 class="r-entry-title">Operations Manager</h3>
-                <div class="r-entry-org">Center for Autism and Related Disorders</div>
-                <ul class="r-bullets">
-                  <li>Improved payer contract fulfillment rate from <strong>37% to 95%</strong> by restructuring documentation practices, CPT code validation workflows, and A/R follow-up processes.</li>
-                  <li>Built KPI dashboards to track service utilization, encounter profitability, and patient satisfaction ,  enabling data-driven operational decisions.</li>
-                  <li>Ensured scheduling efficiency and resource alignment to meet billing requirements and optimize clinical capacity.</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="r-entry">
-              <div class="r-entry-date">Nov 2018 – Nov 2019<span>Boulder, CO</span></div>
-              <div>
-                <h3 class="r-entry-title">Business Intelligence Analyst</h3>
-                <div class="r-entry-org">Springwood Retirement: Assisted Living &amp; Memory Care</div>
-                <ul class="r-bullets">
-                  <li>Designed and maintained global reports, dashboards, and queries to calculate, monitor, and communicate KPIs to operational and executive stakeholders.</li>
-                  <li>Conducted program cost analyses, cost-benefit evaluations, and economic assessments to support strategic planning and resource allocation decisions.</li>
-                  <li>Connected disparate data systems and visualization tools to enable cross-functional data sharing and applied recommendations based on measured outcomes.</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="r-entry">
-              <div class="r-entry-date">Jan 2015 – Mar 2018<span>Westminster, CO</span></div>
-              <div>
-                <h3 class="r-entry-title">Practice Administrator</h3>
-                <div class="r-entry-org">Khoi D. Nguyen, DO</div>
-                <ul class="r-bullets">
-                  <li>Directed clinic operations, staff scheduling, and care coordination workflows for a <strong>5,000-patient panel</strong>, improving end-to-end care pathway efficiency by approximately 20%.</li>
-                  <li>Enhanced transitional care coordination outcomes: acute hospital utilization O/E 0.80, ED utilization O/E 1.15, 30-day readmission O/E 0.92, and ACSC discharges reduced to 8 per 1,000 beneficiaries.</li>
-                  <li>Administered federal and state population health program requirements, ensuring care delivery compliance and staff education across the full patient panel.</li>
-                </ul>
-              </div>
-            </div>
-
-          </div>
-        </div>
+    <!-- ── TAB STRIP ── -->
+    <div class="resume-tabs-wrap">
+      <div class="resume-tabs" role="tablist" aria-label="Resume views">
+        <button class="resume-tab active" role="tab" aria-selected="true"  aria-controls="panel-analyst"   id="tab-analyst"   onclick="switchTab('analyst')">
+          <span class="resume-tab-label">Analyst</span>
+          <span class="resume-tab-sub">Data &amp; Business</span>
+        </button>
+        <button class="resume-tab"        role="tab" aria-selected="false" aria-controls="panel-operations" id="tab-operations" onclick="switchTab('operations')">
+          <span class="resume-tab-label">Operations</span>
+          <span class="resume-tab-sub">Management &amp; Leadership</span>
+        </button>
+        <button class="resume-tab"        role="tab" aria-selected="false" aria-controls="panel-revenue"    id="tab-revenue"    onclick="switchTab('revenue')">
+          <span class="resume-tab-label">Revenue Cycle</span>
+          <span class="resume-tab-sub">RCM &amp; Billing</span>
+        </button>
       </div>
-
-      <aside class="r-side">
-        <div class="r-side-section">
-          <span class="r-side-head">Education</span>
-          <div class="r-edu-item">
-            <strong>M.S. Healthcare Administration</strong>
-            <span>University of Denver</span>
-          </div>
-          <div class="r-edu-item">
-            <strong>B.S. Computer Science, Magna Cum Laude</strong>
-            <span>Colorado State University</span>
-          </div>
-          <div class="r-edu-item">
-            <strong>Applied Data Science Certificate</strong>
-            <span>MIT</span>
-          </div>
-          <div class="r-edu-item">
-            <strong>B.S. Biology &amp; Chemistry</strong>
-            <span>University of Colorado</span>
-          </div>
-        </div>
-
-        <div class="r-side-section">
-          <span class="r-side-head">Data Analytics</span>
-          <div class="r-chips">
-            <span class="r-chip">Python</span>
-            <span class="r-chip">pandas</span>
-            <span class="r-chip">NumPy</span>
-            <span class="r-chip">SQL</span>
-            <span class="r-chip">Power BI</span>
-            <span class="r-chip">Tableau</span>
-            <span class="r-chip">Excel</span>
-            <span class="r-chip">Power Query</span>
-          </div>
-        </div>
-
-        <div class="r-side-section">
-          <span class="r-side-head">Domain Expertise</span>
-          <div class="r-chips">
-            <span class="r-chip r-chip-muted">Operations Management</span>
-            <span class="r-chip r-chip-muted">Project Management</span>
-            <span class="r-chip r-chip-muted">RCM Strategy</span>
-            <span class="r-chip r-chip-muted">Denial Management</span>
-            <span class="r-chip r-chip-muted">ERA/EOB Reconciliation</span>
-            <span class="r-chip r-chip-muted">KPI Dashboards</span>
-            <span class="r-chip r-chip-muted">ETL Pipelines</span>
-            <span class="r-chip r-chip-muted">SOP Development</span>
-          </div>
-        </div>
-
-        <div class="r-side-section">
-          <span class="r-side-head">Systems &amp; Platforms</span>
-          <div class="r-chips">
-            <span class="r-chip r-chip-muted">Athena</span>
-            <span class="r-chip r-chip-muted">Epic</span>
-            <span class="r-chip r-chip-muted">Experity</span>
-            <span class="r-chip r-chip-muted">InSync (Qualifacts)</span>
-            <span class="r-chip r-chip-muted">Azara</span>
-            <span class="r-chip r-chip-muted">Monday</span>
-            <span class="r-chip r-chip-muted">Asana</span>
-            <span class="r-chip r-chip-muted">MySQL</span>
-            <span class="r-chip r-chip-muted">MariaDB</span>
-          </div>
-        </div>
-
-        <div class="r-side-section">
-          <span class="r-side-head">Open To</span>
-          <div class="r-chips">
-            <span class="r-chip">Data Analyst</span>
-            <span class="r-chip">Business Analyst</span>
-            <span class="r-chip">RCM Analyst</span>
-            <span class="r-chip">Healthcare Analytics</span>
-            <span class="r-chip">Operations Management</span>
-            <span class="r-chip">Project Management</span>
-          </div>
-        </div>
-      </aside>
     </div>
 
+    <!-- ════════════════════════════════════════════
+         PANEL: ANALYST
+    ════════════════════════════════════════════ -->
+    <div id="panel-analyst" class="r-panel active" role="tabpanel" aria-labelledby="tab-analyst">
+      <div class="r-page">
+        <div class="r-main">
+          <div class="r-section">
+            <div class="r-section-head">
+              <h2>Experience</h2>
+              <span class="r-section-rule"></span>
+            </div>
+            <span class="r-focus-note">Highlighting analytics, BI, and data-driven decision-making</span>
+            <div class="r-entries">
+
+              <div class="r-entry">
+                <div class="r-entry-date">May – Dec 2025<span>Boulder, CO</span></div>
+                <div>
+                  <h3 class="r-entry-title">Revenue Cycle Manager</h3>
+                  <div class="r-entry-org">Creekside Physical Medicine</div>
+                  <ul class="r-bullets">
+                    <li>Built an enterprise RCM dashboard tracking NCR/GCR trends, denial root causes, payer reimbursement variance, and A/R aging; directly contributed to a <strong>35% reduction in A/R backlog</strong>.</li>
+                    <li>Designed analytical reporting workflows to surface payer behavior patterns and denial concentration by provider, CPT, and payer.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="r-entry">
+                <div class="r-entry-date">Nov 2019 – Mar 2021<span>Denver, CO</span></div>
+                <div>
+                  <h3 class="r-entry-title">Data &amp; Analytics Intern <span style="font-size:0.85rem;color:var(--text-muted);font-weight:400;">— Master's Capstone</span></h3>
+                  <div class="r-entry-org">Centura Health</div>
+                  <ul class="r-bullets">
+                    <li>Designed ETL pipelines to integrate and transform data from EPIC, patient monitoring devices, and administrative systems — achieving consistent data quality across sources.</li>
+                    <li>Applied predictive analytics and machine learning to forecast patient admissions, resource utilization, and potential complications, supporting COVID-19 resource optimization and cost reduction.</li>
+                    <li>Delivered executive-level reporting and data visualizations using Power BI, Tableau, and SQL Server.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="r-entry">
+                <div class="r-entry-date">Oct 2021 – Aug 2022<span>Brighton, CO</span></div>
+                <div>
+                  <h3 class="r-entry-title">Regional Operations Manager</h3>
+                  <div class="r-entry-org">Advanced Urgent Care &amp; Occupational Medicine</div>
+                  <ul class="r-bullets">
+                    <li>Drove <strong>$8M in revenue growth</strong> through predictive analytics on patient flow, service demand patterns, and revenue cycle performance — directly informing staffing strategy and operational planning.</li>
+                    <li>Served as IT project lead for EHR consolidation across <strong>14 clinics</strong>, overseeing Athena/Experity implementation, data migration, and user acceptance validation.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="r-entry">
+                <div class="r-entry-date">Nov 2019 – Oct 2020<span>Boulder, CO</span></div>
+                <div>
+                  <h3 class="r-entry-title">Operations Manager</h3>
+                  <div class="r-entry-org">Center for Autism and Related Disorders</div>
+                  <ul class="r-bullets">
+                    <li>Built KPI dashboards to track service utilization, encounter profitability, and patient satisfaction — enabling data-driven operational decisions.</li>
+                    <li>Improved payer contract fulfillment rate from <strong>37% to 95%</strong> through data-informed restructuring of documentation and A/R workflows.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="r-entry">
+                <div class="r-entry-date">Nov 2018 – Nov 2019<span>Boulder, CO</span></div>
+                <div>
+                  <h3 class="r-entry-title">Business Intelligence Analyst</h3>
+                  <div class="r-entry-org">Springwood Retirement: Assisted Living &amp; Memory Care</div>
+                  <ul class="r-bullets">
+                    <li>Designed and maintained global reports, dashboards, and queries to calculate, monitor, and communicate KPIs to operational and executive stakeholders.</li>
+                    <li>Conducted program cost analyses, cost-benefit evaluations, and economic assessments to support strategic planning and resource allocation decisions.</li>
+                    <li>Connected disparate data systems and visualization tools to enable cross-functional data sharing and applied recommendations based on measured outcomes.</li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <aside class="r-side">
+          <div class="r-side-section">
+            <span class="r-side-head">Education</span>
+            <div class="r-edu-item">
+              <strong>Applied Data Science Certificate</strong>
+              <span>MIT</span>
+            </div>
+            <div class="r-edu-item">
+              <strong>B.S. Computer Science, Magna Cum Laude</strong>
+              <span>Colorado State University</span>
+            </div>
+            <div class="r-edu-item">
+              <strong>M.S. Healthcare Administration</strong>
+              <span>University of Denver</span>
+            </div>
+            <div class="r-edu-item">
+              <strong>B.S. Biology &amp; Chemistry</strong>
+              <span>University of Colorado</span>
+            </div>
+          </div>
+
+          <div class="r-side-section">
+            <span class="r-side-head">Analytics Stack</span>
+            <div class="r-chips">
+              <span class="r-chip">Python</span>
+              <span class="r-chip">pandas</span>
+              <span class="r-chip">NumPy</span>
+              <span class="r-chip">SQL</span>
+              <span class="r-chip">Power BI</span>
+              <span class="r-chip">Tableau</span>
+              <span class="r-chip">Excel</span>
+              <span class="r-chip">Power Query</span>
+            </div>
+          </div>
+
+          <div class="r-side-section">
+            <span class="r-side-head">Analytical Skills</span>
+            <div class="r-chips">
+              <span class="r-chip r-chip-muted">ETL Pipelines</span>
+              <span class="r-chip r-chip-muted">KPI Dashboards</span>
+              <span class="r-chip r-chip-muted">Predictive Analytics</span>
+              <span class="r-chip r-chip-muted">Data Modeling</span>
+              <span class="r-chip r-chip-muted">Cost-Benefit Analysis</span>
+              <span class="r-chip r-chip-muted">Executive Reporting</span>
+              <span class="r-chip r-chip-muted">Deep Learning</span>
+              <span class="r-chip r-chip-muted">Machine Learning</span>
+            </div>
+          </div>
+
+          <div class="r-side-section">
+            <span class="r-side-head">Open To</span>
+            <div class="r-chips">
+              <span class="r-chip">Data Analyst</span>
+              <span class="r-chip">Business Analyst</span>
+              <span class="r-chip">Healthcare Analytics</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         PANEL: OPERATIONS
+    ════════════════════════════════════════════ -->
+    <div id="panel-operations" class="r-panel" role="tabpanel" aria-labelledby="tab-operations">
+      <div class="r-page">
+        <div class="r-main">
+          <div class="r-section">
+            <div class="r-section-head">
+              <h2>Experience</h2>
+              <span class="r-section-rule"></span>
+            </div>
+            <span class="r-focus-note">Highlighting operations management, leadership, and systems oversight</span>
+            <div class="r-entries">
+
+              <div class="r-entry">
+                <div class="r-entry-date">Jul 2024 – Apr 2025<span>Aurora, CO</span></div>
+                <div>
+                  <h3 class="r-entry-title">Center Operations Supervisor</h3>
+                  <div class="r-entry-org">Trumpet Behavioral Health</div>
+                  <ul class="r-bullets">
+                    <li>Managed front-office operations, staff scheduling, and workflow coordination across clinical and administrative teams serving behavioral health clients.</li>
+                    <li>Oversaw intake documentation, prior authorization tracking, and compliance record management to ensure billing accuracy and uninterrupted service delivery.</li>
+                    <li>Maintained facility safety compliance, vendor relationships, and supply inventory readiness.</li>
+                    <li>Supported payroll accuracy through documentation audits, coding corrections, progress note reviews, and authorization alignment.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="r-entry">
+                <div class="r-entry-date">Oct 2021 – Aug 2022<span>Brighton, CO</span></div>
+                <div>
+                  <h3 class="r-entry-title">Regional Operations Manager</h3>
+                  <div class="r-entry-org">Advanced Urgent Care &amp; Occupational Medicine</div>
+                  <ul class="r-bullets">
+                    <li>Drove <strong>$8M in revenue growth</strong> through predictive analytics on patient flow, service demand patterns, and revenue cycle performance — directly informing staffing strategy and operational planning.</li>
+                    <li>Maintained <strong>100% employee retention</strong> across all managed locations and achieved average net promoter scores of 89–93% through investments in referral quality, patient experience, and staff development.</li>
+                    <li>Served as IT project lead for EHR consolidation across <strong>14 clinics</strong>, overseeing Athena/Experity implementation, data migration, manual testing, and user acceptance validation.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="r-entry">
+                <div class="r-entry-date">Aug 2022 – Jun 2023<span>Remote/Travel</span></div>
+                <div>
+                  <h3 class="r-entry-title">Integrated Device Consultant</h3>
+                  <div class="r-entry-org">Oracle Health</div>
+                  <ul class="r-bullets">
+                    <li>Guided clients through device integration design and configuration within Cerner Millennium, resolving HL7 interface and transmission errors that reduced go-live delays by an estimated <strong>4 days per engagement.</strong></li>
+                    <li>Partnered with clinical and IT stakeholders to align device integration workflows with operational and regulatory requirements, supporting on-time go-live delivery with zero critical post-go-live device failures.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="r-entry">
+                <div class="r-entry-date">Nov 2019 – Oct 2020<span>Boulder, CO</span></div>
+                <div>
+                  <h3 class="r-entry-title">Operations Manager</h3>
+                  <div class="r-entry-org">Center for Autism and Related Disorders</div>
+                  <ul class="r-bullets">
+                    <li>Improved payer contract fulfillment rate from <strong>37% to 95%</strong> by restructuring documentation practices, CPT code validation workflows, and A/R follow-up processes.</li>
+                    <li>Ensured scheduling efficiency and resource alignment to meet billing requirements and optimize clinical capacity.</li>
+                    <li>Built KPI dashboards to track service utilization, encounter profitability, and patient satisfaction — enabling data-driven operational decisions.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="r-entry">
+                <div class="r-entry-date">Jan 2015 – Mar 2018<span>Westminster, CO</span></div>
+                <div>
+                  <h3 class="r-entry-title">Practice Administrator</h3>
+                  <div class="r-entry-org">Khoi D. Nguyen, DO</div>
+                  <ul class="r-bullets">
+                    <li>Directed clinic operations, staff scheduling, and care coordination workflows for a <strong>5,000-patient panel</strong>, improving end-to-end care pathway efficiency by approximately 20%.</li>
+                    <li>Enhanced transitional care coordination outcomes: acute hospital utilization O/E 0.80, ED utilization O/E 1.15, 30-day readmission O/E 0.92, and ACSC discharges reduced to 8 per 1,000 beneficiaries.</li>
+                    <li>Administered federal and state population health program requirements, ensuring care delivery compliance and staff education across the full patient panel.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="r-entry">
+                <div class="r-entry-date">Nov 2018 – Nov 2019<span>Boulder, CO</span></div>
+                <div>
+                  <h3 class="r-entry-title">Business Intelligence Analyst</h3>
+                  <div class="r-entry-org">Springwood Retirement: Assisted Living &amp; Memory Care</div>
+                  <ul class="r-bullets">
+                    <li>Connected disparate data systems and visualization tools to enable cross-functional data sharing.</li>
+                    <li>Conducted program cost analyses and economic assessments to support strategic planning and resource allocation decisions.</li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <aside class="r-side">
+          <div class="r-side-section">
+            <span class="r-side-head">Education</span>
+            <div class="r-edu-item">
+              <strong>M.S. Healthcare Administration</strong>
+              <span>University of Denver</span>
+            </div>
+            <div class="r-edu-item">
+              <strong>B.S. Computer Science, Magna Cum Laude</strong>
+              <span>Colorado State University</span>
+            </div>
+            <div class="r-edu-item">
+              <strong>Applied Data Science Certificate</strong>
+              <span>MIT</span>
+            </div>
+            <div class="r-edu-item">
+              <strong>B.S. Biology &amp; Chemistry</strong>
+              <span>University of Colorado</span>
+            </div>
+          </div>
+
+          <div class="r-side-section">
+            <span class="r-side-head">Operations Skills</span>
+            <div class="r-chips">
+              <span class="r-chip r-chip-muted">Operations Management</span>
+              <span class="r-chip r-chip-muted">Project Management</span>
+              <span class="r-chip r-chip-muted">Staff Leadership</span>
+              <span class="r-chip r-chip-muted">EHR Implementation</span>
+              <span class="r-chip r-chip-muted">Workflow Design</span>
+              <span class="r-chip r-chip-muted">SOP Development</span>
+              <span class="r-chip r-chip-muted">Regulatory Compliance</span>
+              <span class="r-chip r-chip-muted">Vendor Management</span>
+            </div>
+          </div>
+
+          <div class="r-side-section">
+            <span class="r-side-head">Systems &amp; Platforms</span>
+            <div class="r-chips">
+              <span class="r-chip r-chip-muted">Athena</span>
+              <span class="r-chip r-chip-muted">Epic</span>
+              <span class="r-chip r-chip-muted">Experity</span>
+              <span class="r-chip r-chip-muted">InSync (Qualifacts)</span>
+              <span class="r-chip r-chip-muted">Monday</span>
+              <span class="r-chip r-chip-muted">Asana</span>
+            </div>
+          </div>
+
+          <div class="r-side-section">
+            <span class="r-side-head">Open To</span>
+            <div class="r-chips">
+              <span class="r-chip">Operations Management</span>
+              <span class="r-chip">Project Management</span>
+              <span class="r-chip">Healthcare Operations</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         PANEL: REVENUE CYCLE
+    ════════════════════════════════════════════ -->
+    <div id="panel-revenue" class="r-panel" role="tabpanel" aria-labelledby="tab-revenue">
+      <div class="r-page">
+        <div class="r-main">
+          <div class="r-section">
+            <div class="r-section-head">
+              <h2>Experience</h2>
+              <span class="r-section-rule"></span>
+            </div>
+            <span class="r-focus-note">Highlighting RCM, billing, denial management, and reimbursement</span>
+            <div class="r-entries">
+
+              <div class="r-entry">
+                <div class="r-entry-date">May – Dec 2025<span>Boulder, CO</span></div>
+                <div>
+                  <h3 class="r-entry-title">Revenue Cycle Manager</h3>
+                  <div class="r-entry-org">Creekside Physical Medicine</div>
+                  <ul class="r-bullets">
+                    <li>Owned end-to-end RCM operations — registration, eligibility verification, charge capture, payment posting, denial management, appeals, and A/R reporting.</li>
+                    <li>Built an enterprise RCM dashboard tracking NCR/GCR trends, denial root causes, payer reimbursement variance, and A/R aging; directly contributed to a <strong>35% reduction in A/R backlog</strong>.</li>
+                    <li>Reduced recurring denials by implementing billing-to-servicing provider validation rules (BCBS), standardizing Box 19 CMS-1500 NDC documentation (UHC), and resolving X12/837P EHR-to-clearinghouse transmission errors.</li>
+                    <li>Supported full EHR migration from InSync to Athena, coordinating workflow continuity across billing, clinical, and administrative teams.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="r-entry">
+                <div class="r-entry-date">Jul 2024 – Apr 2025<span>Aurora, CO</span></div>
+                <div>
+                  <h3 class="r-entry-title">Center Operations Supervisor</h3>
+                  <div class="r-entry-org">Trumpet Behavioral Health</div>
+                  <ul class="r-bullets">
+                    <li>Oversaw intake documentation, prior authorization tracking, and compliance record management to ensure billing accuracy and uninterrupted service delivery.</li>
+                    <li>Supported payroll accuracy through documentation audits, coding corrections, progress note reviews, and authorization alignment.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="r-entry">
+                <div class="r-entry-date">Nov 2019 – Oct 2020<span>Boulder, CO</span></div>
+                <div>
+                  <h3 class="r-entry-title">Operations Manager</h3>
+                  <div class="r-entry-org">Center for Autism and Related Disorders</div>
+                  <ul class="r-bullets">
+                    <li>Improved payer contract fulfillment rate from <strong>37% to 95%</strong> by restructuring documentation practices, CPT code validation workflows, and A/R follow-up processes.</li>
+                    <li>Ensured scheduling efficiency and resource alignment to meet billing requirements and optimize clinical capacity.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="r-entry">
+                <div class="r-entry-date">Oct 2021 – Aug 2022<span>Brighton, CO</span></div>
+                <div>
+                  <h3 class="r-entry-title">Regional Operations Manager</h3>
+                  <div class="r-entry-org">Advanced Urgent Care &amp; Occupational Medicine</div>
+                  <ul class="r-bullets">
+                    <li>Strengthened front-end eligibility verification and documentation workflows, reducing downstream claim denials and improving reimbursement turnaround time.</li>
+                    <li>Drove <strong>$8M in revenue growth</strong> through revenue cycle performance analysis and demand-informed operational planning.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="r-entry">
+                <div class="r-entry-date">Jan 2015 – Mar 2018<span>Westminster, CO</span></div>
+                <div>
+                  <h3 class="r-entry-title">Practice Administrator</h3>
+                  <div class="r-entry-org">Khoi D. Nguyen, DO</div>
+                  <ul class="r-bullets">
+                    <li>Administered federal and state population health program requirements, ensuring billing compliance across a <strong>5,000-patient panel</strong>.</li>
+                    <li>Enhanced transitional care coordination outcomes with measurable improvement in utilization metrics across inpatient, ED, and ACSC categories.</li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <aside class="r-side">
+          <div class="r-side-section">
+            <span class="r-side-head">Education</span>
+            <div class="r-edu-item">
+              <strong>M.S. Healthcare Administration</strong>
+              <span>University of Denver</span>
+            </div>
+            <div class="r-edu-item">
+              <strong>B.S. Computer Science, Magna Cum Laude</strong>
+              <span>Colorado State University</span>
+            </div>
+            <div class="r-edu-item">
+              <strong>Applied Data Science Certificate</strong>
+              <span>MIT</span>
+            </div>
+            <div class="r-edu-item">
+              <strong>B.S. Biology &amp; Chemistry</strong>
+              <span>University of Colorado</span>
+            </div>
+          </div>
+
+          <div class="r-side-section">
+            <span class="r-side-head">RCM Skills</span>
+            <div class="r-chips">
+              <span class="r-chip r-chip-muted">RCM Strategy</span>
+              <span class="r-chip r-chip-muted">Denial Management</span>
+              <span class="r-chip r-chip-muted">ERA/EOB Reconciliation</span>
+              <span class="r-chip r-chip-muted">Charge Capture</span>
+              <span class="r-chip r-chip-muted">Prior Authorization</span>
+              <span class="r-chip r-chip-muted">CMS-1500 / X12 837P</span>
+              <span class="r-chip r-chip-muted">A/R Management</span>
+              <span class="r-chip r-chip-muted">Payer Contracting</span>
+            </div>
+          </div>
+
+          <div class="r-side-section">
+            <span class="r-side-head">Systems &amp; Platforms</span>
+            <div class="r-chips">
+              <span class="r-chip r-chip-muted">Athena</span>
+              <span class="r-chip r-chip-muted">Epic</span>
+              <span class="r-chip r-chip-muted">Experity</span>
+              <span class="r-chip r-chip-muted">InSync (Qualifacts)</span>
+              <span class="r-chip r-chip-muted">Azara</span>
+              <span class="r-chip r-chip-muted">MySQL</span>
+              <span class="r-chip r-chip-muted">MariaDB</span>
+            </div>
+          </div>
+
+          <div class="r-side-section">
+            <span class="r-side-head">Open To</span>
+            <div class="r-chips">
+              <span class="r-chip">RCM Analyst</span>
+              <span class="r-chip">Revenue Cycle Manager</span>
+              <span class="r-chip">Healthcare Analytics</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- ── CTA ── -->
     <div class="r-cta">
       <div class="container r-cta-inner">
         <div>
@@ -337,10 +669,22 @@
   </footer>
 
   <script>
-    (function() {
-      var link = document.querySelector('[data-page="resume"]');
-      if (link) link.style.display = 'none';
-    })();
+    function switchTab(id) {
+      // Deactivate all tabs and panels
+      document.querySelectorAll('.resume-tab').forEach(function(btn) {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-selected', 'false');
+      });
+      document.querySelectorAll('.r-panel').forEach(function(panel) {
+        panel.classList.remove('active');
+      });
+
+      // Activate selected
+      var tab = document.getElementById('tab-' + id);
+      var panel = document.getElementById('panel-' + id);
+      if (tab) { tab.classList.add('active'); tab.setAttribute('aria-selected', 'true'); }
+      if (panel) panel.classList.add('active');
+    }
   </script>
 </body>
 </html>
