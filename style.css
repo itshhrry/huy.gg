@@ -438,7 +438,7 @@ a {
    ============================================================ */
 .site-footer {
   flex-shrink: 0;
-  padding: 1.25rem 0 2rem;
+  /* padding: 1.25rem 0 2rem;*/
   background: rgba(247, 244, 239, 0.94);
   border-top: 1px solid var(--border);
 }
@@ -448,7 +448,7 @@ a {
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  padding-top: 1rem;
+  /* padding-top: 1rem; */
   color: var(--text-muted);
   font-size: 0.92rem;
 }
