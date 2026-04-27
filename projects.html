@@ -5,16 +5,99 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects | Harry Nguyen</title>
   <meta name="description" content="Project portfolio for Harry Nguyen, featuring analytics, dashboarding, and technical infrastructure work." />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=mitv19" />
+  <script src="theme.js?v=themev3"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/luminous-lightbox/2.4.0/luminous-basic.min.css" integrity="sha512-koV7rZjdkgQouiHiyzaGG1FblTuAkJVypXhzDxDNC74SdnKlGjJCkFwVcGP/wx5bwplcpnOcCy2ZJAGaVB5qmw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/luminous-lightbox/2.4.0/luminous.min.js" integrity="sha512-QzKjuc+7pitZqj28ecclxJ2XJD9l91dNb25Er0ixaqYzpMqhKGIPohYN6blR9UfSR5ETL7wncxmEvVarrVwkSw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <style>
     .project-block h4 { color: var(--accent-dark); }
     .project-card h3 { max-width: none; }
     .zoom-link { cursor: zoom-in; display: block; }
+
+    /* ── Project pullquote (used on self-host card) ── */
+    .project-pullquote {
+      border-left: 3px solid var(--accent);
+      margin: 1.5rem 0 0;
+      padding: 0.4rem 0 0.4rem 1.25rem;
+      max-width: 720px;
+    }
+    .project-pullquote p {
+      margin: 0;
+      font-size: 1.02rem;
+      color: var(--text);
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    /* ── Server architecture diagram ── */
+    .srv-fig {
+      margin: 1.75rem 0 0;
+      padding: 1.5rem 1rem 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: color-mix(in oklab, var(--bg) 96%, var(--accent) 4%);
+      color: var(--text);
+    }
+    .srv-cap {
+      margin: 0.85rem auto 0;
+      max-width: 620px;
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* ── Interactive terminal ── */
+    .term-frame {
+      max-width: 720px;
+      margin: 0 auto;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      background: #0f1115;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    }
+    :root[data-theme="light"] .term-frame { background: #1c1e22; }
+    .term-bar {
+      display: flex; align-items: center; gap: 6px;
+      padding: 8px 12px;
+      background: rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .term-bar .term-dot { width: 11px; height: 11px; border-radius: 50%; }
+    .term-bar .term-dot.r { background: #ff5f57; }
+    .term-bar .term-dot.y { background: #febc2e; }
+    .term-bar .term-dot.g { background: #28c840; }
+    .term-bar .term-title { margin-left: 8px; font-size: 11px; color: rgba(255,255,255,0.5); letter-spacing: 0.04em; }
+    .term-body {
+      padding: 1rem 1.25rem 1.25rem;
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: #d8dde6;
+      cursor: text;
+    }
+    .term-body .t-prompt { color: #8a8f99; }
+    .term-body .t-cmd { color: #e7d7c1; }
+    .term-body .t-ok { color: #7ec47e; }
+    .term-body .t-accent { color: #d97757; }
+    .term-body .t-muted { color: #888c95; }
+    .term-body .t-line { opacity: 0; animation: term-fadein 0.25s ease forwards; }
+    @keyframes term-fadein { to { opacity: 1; } }
+    .term-body code { font-family: inherit; padding: 0 2px; color: #d97757; }
+    .term-body .t-tiphint { margin-top: 0.7rem; font-size: 11px; color: rgba(255,255,255,0.4); }
+    .term-cursor { display: inline-block; width: 8px; height: 14px; background: #d97757; vertical-align: -2px; animation: term-blink 1s steps(2) infinite; }
+    @keyframes term-blink { 50% { opacity: 0; } }
+    #term-input { outline: none; color: #e7d7c1; min-width: 1px; }
+    #term-input:focus { outline: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .term-cursor { animation: none !important; }
+    }
   </style>
 </head>
 <body>
+  <div id="bg-root" aria-hidden="true"></div>
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html" style="display:flex;align-items:center;gap:10px;">
@@ -23,9 +106,9 @@
       </a>
       <nav class="site-nav" aria-label="Primary navigation">
         <a href="about.html">About</a>
-        <span class="nav-dot">·</span>
+        <strong>&bull;</strong>
         <a href="resume.html">Resume</a>
-        <span class="nav-dot">·</span>
+        <strong>&bull;</strong>
         <a href="contact.html">Contact</a>
       </nav>
     </div>
@@ -73,13 +156,16 @@
         </div>
 
         <article class="project-card">
-          <div class="project-meta">
-            <span class="tag">Python</span>
-            <span class="tag">pandas</span>
-            <span class="tag">NumPy</span>
-            <span class="tag">Excel</span>
-            <span class="tag">Power Query</span>
-            <span class="tag">Data Modeling</span>
+          <div class="project-meta-row">
+            <div class="project-meta">
+              <span class="tag">Python</span>
+              <span class="tag">pandas</span>
+              <span class="tag">NumPy</span>
+              <span class="tag">Excel</span>
+              <span class="tag">Power Query</span>
+              <span class="tag">Data Modeling</span>
+            </div>
+            <a class="button button-primary project-cta" href="dashboard.html">View dashboard</a>
           </div>
           <h3>Revenue Cycle by Design: A Multi-Facility Modeling</h3>
           <p class="project-summary">
@@ -123,9 +209,6 @@
             </div>
           </div>
           <div style="margin-top:1.75rem;display:flex;flex-direction:column;gap:1rem;">
-            <a href="rcm-dashboard.png" class="zoom-link">
-              <img src="rcm-dashboard.png" alt="RCM interactive dashboard" style="width:100%;border-radius:12px;border:1px solid var(--border);" />
-            </a>
             <a href="rcm-report-summary.png" class="zoom-link">
               <img src="rcm-report-summary.png" alt="healthcare revenue cycle billing report summary" style="width:100%;border-radius:12px;border:1px solid var(--border);" />
             </a>
@@ -218,9 +301,12 @@
             under the huy.gg domain, encompassing this website, email infrastructure, and
             additional public-facing and private services. The system is built on a fully
             containerized stack with layered security, encrypted remote access, automated
-            certificate management, and network-level DNS filtering — running continuously
+            certificate management, and network-level DNS filtering, running continuously
             as a live, managed production environment.
           </p>
+          <blockquote class="project-pullquote">
+            <p>huy.gg is more than a label and more than a host. It's the synthesized record of how naming, traffic, service exposure, access, identity, and infrastructure are assembled into one operational environment.</p>
+          </blockquote>
           <div class="project-grid">
             <div class="project-block">
               <h4>Objective</h4>
@@ -245,7 +331,7 @@
             <div class="project-block">
               <h4>Services</h4>
               <ul>
-                <li>huy.gg — production website and public portfolio</li>
+                <li>huy.gg: production website and public portfolio</li>
                 <li>Self-hosted email infrastructure</li>
                 <li>ownCloud for private file storage and sync</li>
                 <li>Jellyfin for media streaming</li>
@@ -258,35 +344,38 @@
                 Delivered a fully operational, multi-service production environment that
                 runs continuously under a live public domain. Demonstrates end-to-end
                 systems thinking across networking, security, containerization, and
-                infrastructure management — well beyond the scope of a typical homelab.
+                infrastructure management, well beyond the scope of a typical homelab.
               </p>
             </div>
           </div>
-        </article>
 
-        <article class="project-card">
-          <div class="project-meta">
-            <span class="tag">Coming Soon</span>
-          </div>
-          <h3>Additional projects in progress</h3>
-          <p class="project-summary">
-            This portfolio will expand with additional work in exploratory data analysis,
-            business-focused reporting, and other technical projects.
-          </p>
-          <div class="project-grid">
-            <div class="project-block">
-              <h4>Planned additions</h4>
-              <ul>
-                <li>FoodHub exploratory data analysis</li>
-                <li>CardioGood Fitness analysis</li>
-                <li>Uber analysis case study</li>
-              </ul>
+          <!-- Architecture diagram (interactive terminal) -->
+          <figure class="srv-fig">
+            <div class="term-frame">
+              <div class="term-bar">
+                <span class="term-dot r"></span>
+                <span class="term-dot y"></span>
+                <span class="term-dot g"></span>
+                <span class="term-title">harry@huy.gg ~ — zsh</span>
+              </div>
+              <div class="term-body" id="term-body">
+                <div class="t-line"><span class="t-prompt">harry@huy.gg</span> <span class="t-muted">~</span> <span class="t-cmd">$ traceroute huy.gg</span></div>
+                <div id="traceroute-out"></div>
+
+                <div class="t-line" style="margin-top:0.7rem;"><span class="t-prompt">harry@huy.gg</span> <span class="t-muted">~</span> <span class="t-cmd">$ tail -f /var/log/services.log</span></div>
+                <div id="log-feed" style="margin-top:0.3rem; min-height: 110px;"></div>
+
+                <div id="term-history" style="margin-top:0.4rem;"></div>
+                <div class="t-line" id="term-prompt-line" style="margin-top:0.4rem;">
+                  <span class="t-prompt">harry@huy.gg</span> <span class="t-muted">~</span> <span class="t-cmd">$&nbsp;</span><span id="term-input" contenteditable="true" spellcheck="false"></span><span class="term-cursor" aria-hidden="true"></span>
+                </div>
+                <div class="t-tiphint">
+                  <span class="t-ok">tip</span>: try <code>help</code>, <code>whoami</code>, <code>ls services</code>, <code>cat motd</code>, <code>ping huy.gg</code>, <code>uptime</code>, <code>sudo rm -rf /</code>
+                </div>
+              </div>
             </div>
-            <div class="project-block">
-              <h4>Status</h4>
-              <p>These projects will be added once their summaries, outcomes, and presentations are refined to match the current portfolio standard.</p>
-            </div>
-          </div>
+            <figcaption class="srv-cap">Cloudflare fronts the stack and routes mail to Gmail. GitHub Pages serves the public site; the home server runs WireGuard VPN, Pi-hole DNS filtering, ownCloud storage, and Jellyfin behind Nginx and Docker. <em>(Click into the prompt above to poke around.)</em></figcaption>
+          </figure>
         </article>
 
       </div>
@@ -313,7 +402,7 @@
         <img src="logo.png" alt="huy.gg" />
         <span>© 2026 Harry Nguyen</span>
       </a>
-      <p>huy.gg</p>
+      <p><a href="https://huy.gg" style="color: var(--accent-dark); text-decoration: none;">huy.gg</a></p>
     </div>
   </footer>
 
@@ -330,6 +419,175 @@
         new Luminous(link, options);
       });
     });
+  </script>
+
+  <!-- Site-wide background layer + Tweaks -->
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel" src="bg.jsx?v=bgv9"></script>
+
+  <!-- Interactive terminal (self-hosted infrastructure card) -->
+  <script>
+  (function () {
+    var trOut = document.getElementById('traceroute-out');
+    if (!trOut) return;
+    var hops = [
+      { n: 1, host: 'router.local',     ip: '192.168.1.1',     ms: '0.4 ms',  tag: '' },
+      { n: 2, host: 'cloudflare-edge',  ip: '104.21.17.42',    ms: '12 ms',   tag: '★ edge' },
+      { n: 3, host: 'github-pages',     ip: '185.199.108.153', ms: '28 ms',   tag: '✓ static' },
+      { n: 4, host: 'huy.gg',           ip: '108.x.x.x',       ms: '31 ms',   tag: '✓ home' }
+    ];
+    hops.forEach(function (h, i) {
+      setTimeout(function () {
+        var d = document.createElement('div');
+        d.className = 't-line';
+        d.innerHTML =
+          '<span class="t-muted">  ' + h.n + '  </span>' +
+          '<span class="t-accent">' + h.host + '</span>' +
+          '<span class="t-muted">  (' + h.ip + ')</span>' +
+          '<span class="t-muted">  ' + h.ms + '</span>' +
+          (h.tag ? '  <span class="t-ok">' + h.tag + '</span>' : '');
+        trOut.appendChild(d);
+      }, 250 + i * 350);
+    });
+
+    var feed = document.getElementById('log-feed');
+    var pool = [
+      ['cloudflare', 'GET /resume.html → 200 OK'],
+      ['github-pages', 'cache HIT · 12ms'],
+      ['wireguard', 'peer connected (peer_03)'],
+      ['pihole', 'blocked googleads.g.doubleclick.net'],
+      ['pihole', 'blocked tracking.facebook.com'],
+      ['pihole', 'blocked 47 trackers in last 60s'],
+      ['jellyfin', 'streaming "The Bear S03E04" → 1080p'],
+      ['owncloud', 'sync complete (47 files, 312 MB)'],
+      ['cloudflare', 'email forwarded h@huy.gg → gmail'],
+      ['nginx', 'TLS handshake · TLS_AES_256_GCM_SHA384'],
+      ['mariadb', 'query took 3ms'],
+      ['huy.gg', 'visitor from Denver, CO 🤠'],
+      ['cloudflare', 'GET /projects.html → 200 OK'],
+      ['wireguard', 'rx 1.2 GB · tx 412 MB'],
+      ['pihole', '24.7% queries blocked today']
+    ];
+    function pad(n){return n<10?'0'+n:''+n;}
+    function ts() {
+      var d = new Date();
+      return pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
+    }
+    function addLog() {
+      var p = pool[Math.floor(Math.random() * pool.length)];
+      var div = document.createElement('div');
+      div.className = 't-line';
+      div.innerHTML =
+        '<span class="t-muted">[' + ts() + ']</span> ' +
+        '<span class="t-ok">' + p[0] + '</span> ' +
+        '<span class="t-muted">→</span> ' +
+        '<span style="color:#d8dde6;">' + p[1] + '</span>';
+      feed.appendChild(div);
+      while (feed.children.length > 5) feed.removeChild(feed.firstChild);
+      setTimeout(addLog, 1400 + Math.random() * 2200);
+    }
+    setTimeout(addLog, 250 + hops.length * 350 + 400);
+
+    var input = document.getElementById('term-input');
+    var history = document.getElementById('term-history');
+    var promptLine = document.getElementById('term-prompt-line');
+
+    function append(html) {
+      var d = document.createElement('div');
+      d.className = 't-line';
+      d.innerHTML = html;
+      history.appendChild(d);
+    }
+    function appendCmd(cmd) {
+      append('<span class="t-prompt">harry@huy.gg</span> <span class="t-muted">~</span> <span class="t-cmd">$ ' + cmd + '</span>');
+    }
+
+    var COMMANDS = {
+      help: function () {
+        append('<span class="t-muted">available commands:</span>');
+        append('  <span class="t-accent">whoami</span>      <span class="t-muted">— who is running this server</span>');
+        append('  <span class="t-accent">ls services</span> <span class="t-muted">— list running services</span>');
+        append('  <span class="t-accent">cat motd</span>    <span class="t-muted">— message of the day</span>');
+        append('  <span class="t-accent">ping huy.gg</span> <span class="t-muted">— check the lights</span>');
+        append('  <span class="t-accent">uptime</span>      <span class="t-muted">— how long the server has been up</span>');
+        append('  <span class="t-accent">sudo rm -rf /</span> <span class="t-muted">— don\'t.</span>');
+        append('  <span class="t-accent">clear</span>       <span class="t-muted">— clear screen</span>');
+      },
+      whoami: function () {
+        append('<span class="t-ok">harry</span> <span class="t-muted">— builder, runner, occasional breaker of things</span>');
+      },
+      'ls services': function () {
+        append('<span class="t-accent">huy.gg</span>     <span class="t-muted">— served by GitHub Pages, fronted by Cloudflare</span>');
+        append('<span class="t-accent">wireguard</span>  <span class="t-muted">— personal VPN, peer access only</span>');
+        append('<span class="t-accent">pihole</span>     <span class="t-muted">— DNS sinkhole, blocks ads + trackers network-wide</span>');
+        append('<span class="t-accent">owncloud</span>   <span class="t-muted">— self-hosted file sync</span>');
+        append('<span class="t-accent">jellyfin</span>   <span class="t-muted">— media server (movies, shows, music)</span>');
+        append('<span class="t-accent">email</span>      <span class="t-muted">— Cloudflare Email Routing → Gmail (h@huy.gg)</span>');
+      },
+      'cat motd': function () {
+        append('<span class="t-muted">─────────────────────────────────────────</span>');
+        append('  Welcome to <span class="t-ok">huy.gg</span>.');
+        append('  The lights are always on.');
+        append('  <span class="t-muted">— uptime: 287 days · 14:23:07</span>');
+        append('<span class="t-muted">─────────────────────────────────────────</span>');
+      },
+      'ping huy.gg': function () {
+        ['64 bytes from huy.gg: icmp_seq=1 time=0.412 ms',
+         '64 bytes from huy.gg: icmp_seq=2 time=0.398 ms',
+         '64 bytes from huy.gg: icmp_seq=3 time=0.421 ms',
+         '64 bytes from huy.gg: icmp_seq=4 time=0.405 ms',
+         '<span class="t-ok">--- huy.gg ping statistics ---</span>',
+         '4 packets transmitted, 4 received, <span class="t-ok">0% packet loss</span>'].forEach(function (l, i) {
+          setTimeout(function(){ append('<span class="t-muted">' + l + '</span>'); }, i * 220);
+        });
+      },
+      uptime: function () {
+        append('<span class="t-ok">up 287 days</span>, 14:23, load average: 0.08, 0.12, 0.09');
+      },
+      'sudo rm -rf /': function () {
+        append('<span style="color:#ff6b6b">[sudo] password for harry:</span> <span class="t-muted">****</span>');
+        setTimeout(function(){ append('<span style="color:#ff6b6b">nice try.</span> <span class="t-muted">this is a portfolio site, not your homework.</span>'); }, 500);
+      },
+      clear: function () {
+        history.innerHTML = '';
+      }
+    };
+    COMMANDS.ls = COMMANDS['ls services'];
+    COMMANDS.motd = COMMANDS['cat motd'];
+    COMMANDS.ping = COMMANDS['ping huy.gg'];
+
+    function run(raw) {
+      var cmd = raw.trim();
+      if (!cmd) return;
+      appendCmd(cmd);
+      var fn = COMMANDS[cmd] || COMMANDS[cmd.toLowerCase()];
+      if (fn) {
+        fn();
+      } else {
+        append('<span class="t-muted">zsh: command not found: ' + cmd.replace(/[<>]/g,'') + '</span>');
+        append('<span class="t-muted">try </span><span class="t-accent">help</span>');
+      }
+    }
+
+    if (input) {
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          var v = input.textContent;
+          input.textContent = '';
+          run(v);
+        }
+      });
+      var body = document.getElementById('term-body');
+      body.addEventListener('click', function (e) {
+        if (e.target === input) return;
+        input.focus();
+      });
+    }
+  })();
   </script>
 </body>
 </html>
