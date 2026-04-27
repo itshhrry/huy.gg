@@ -4,8 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About | Harry Nguyen</title>
-  <meta name="description" content="About Harry Nguyen — data and business analyst with a decade of healthcare operations experience and a multidisciplinary academic background." />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="About Harry Nguyen, data and business analyst with a decade of healthcare operations experience and a multidisciplinary academic background." />
+  <link rel="stylesheet" href="style.css?v=mitv19" />
+  <script src="theme.js?v=themev3"></script>
   <style>
     .about-body { max-width: 720px; }
     .about-body p { font-size: 1.06rem; color: var(--text-muted); margin: 1.25rem 0 0; line-height: 1.8; }
@@ -17,6 +18,7 @@
   </style>
 </head>
 <body>
+  <div id="bg-root" aria-hidden="true"></div>
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html" style="display:flex;align-items:center;gap:10px;">
@@ -39,8 +41,8 @@
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">About</p>
-          <h1>What can't be measured, can't be improved.</h1>
+          <p class="eyebrow">About me</p>
+          <h1>Behind every data point is a person.</h1>
           <p class="hero-text">
             I spent a decade working inside healthcare operations, and that
             experience shaped everything about how I think, work, and approach data.
@@ -52,12 +54,10 @@
             <img src="logo.png" alt="huy.gg"/>
           </div>
           <div style="border-top:1px solid var(--border);padding-top:0.6rem;">
-            <p class="panel-label" style="margin-bottom:0.4rem;">Philosophy</p>
-            <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;line-height:1.5;">
-              <li>Simple solutions to complex problems</li>
-              <li>Evidence-based decisions</li>
-              <li>Quality outcomes over quick fixes</li>
-            </ul>
+            <p class="panel-label" style="margin-bottom:0.4rem;">Fun fact</p>
+            <p style="margin:0;font-size:0.9rem;line-height:1.5;color:var(--text);">
+              Not a sweet tooth, but I'll never turn down ube desserts.
+            </p>
           </div>
         </aside>
       </div>
@@ -110,7 +110,7 @@
 
           <h2>Going deeper at MIT</h2>
           <p>
-            I pursued my Applied Data Science certificate at MIT to sharpen my skills in
+            I pursued my Applied AI, Machine Learning, and Data Science certificate at MIT to sharpen my skills in
             machine learning, deep learning, and Python-based analysis. For my capstone,
             I analyzed and compared ANN (Artificial Neural Network) and CNN (Convolutional
             Neural Network) architectures to improve facial emotion recognition, achieving
@@ -165,8 +165,8 @@
     <section class="section section-alt">
       <div class="container">
         <div class="contact-card">
-          <p class="eyebrow">Wanna see more?</p>
-          <h2>Check out my work.</h2>
+          <p class="eyebrow">That's the story.</p>
+          <h2>Here's the work.</h2>
           <p>
             Browse my projects and resume to see what I've been building.
           </p>
@@ -185,8 +185,15 @@
         <img src="logo.png" alt="huy.gg" />
         <span>© 2026 Harry Nguyen</span>
       </a>
-      <p>huy.gg</p>
+      <p><a href="https://huy.gg" style="color: var(--accent-dark); text-decoration: none;">huy.gg</a></p>
     </div>
   </footer>
+
+  <!-- Site-wide background layer + Tweaks -->
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel" src="bg.jsx?v=bgv9"></script>
 </body>
 </html>
