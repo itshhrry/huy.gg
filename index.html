@@ -3,19 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Harry Nguyen | Data & Business Analyst Portfolio</title>
+  <title>Harry Nguyen | Data &amp; Business Analyst Portfolio</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <meta name="description" content="Harry Nguyen is a data and business analyst focused on dashboards, data transformation, reporting, and practical technical problem-solving." />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=mitv19" />
+  <script src="theme.js?v=themev3"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/luminous-lightbox/2.4.0/luminous-basic.min.css" integrity="sha512-koV7rZjdkgQouiHiyzaGG1FblTuAkJVypXhzDxDNC74SdnKlGjJCkFwVcGP/wx5bwplcpnOcCy2ZJAGaVB5qmw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/luminous-lightbox/2.4.0/luminous.min.js" integrity="sha512-QzKjuc+7pitZqj28ecclxJ2XJD9l91dNb25Er0ixaqYzpMqhKGIPohYN6blR9UfSR5ETL7wncxmEvVarrVwkSw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <style>
+    .zoom-link { cursor: zoom-in; display: block; }
+  </style>
 </head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html" style="display:flex;align-items:center;gap:10px;">
-        <img src="logo.png" alt="huy.gg"/>
+        <img src="logo.png" alt="huy.gg" />
         Harry Nguyen
       </a>
       <nav class="site-nav" aria-label="Primary navigation">
+        <a href="about.html">About</a>
+        <strong>&bull;</strong>
         <a href="projects.html">Projects</a>
         <strong>&bull;</strong>
         <a href="resume.html">Resume</a>
@@ -27,131 +35,64 @@
 
   <main id="top">
 
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">Operations · Data · Technology</p>
-          <h1>I help organizations make better decisions with data.</h1>
-          <p class="hero-text">
-            I turn complex data into clear answers. With a decade in healthcare operations
-            and a technical foundation in data science and computer science, I bring both
-            domain depth and analytical precision to every problem.
-          </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="resume.html">View Resume</a>
-          </div>
-        </div>
+    <!-- Site-wide background layer (portaled into by hero.jsx on home; rendered standalone elsewhere) -->
+    <div id="bg-root" aria-hidden="true"></div>
 
-        <aside class="hero-panel">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:1.25rem;">
-            <img src="logo.png" alt="huy.gg" />
-          </div>
-          <div style="border-top:1px solid var(--border);padding-top:0.6rem;margin-bottom:1rem;">
-            <p style="margin:0;font-size:0.88rem;color:var(--text);">
-              <strong>Master's in Healthcare Administration</strong> <span style="font-weight:400;color:var(--text-muted);">DU</span>
-            </p>
-            <p style="margin:0;font-size:0.88rem;color:var(--text);">
-              <strong>B.S. Computer Science</strong> <span style="font-weight:400;color:var(--text-muted);">CSU</span>
-              <strong>&bull;</strong>
-              <strong>Data Science</strong> <span style="font-weight:400;color:var(--text-muted);">MIT</span>
-            </p>
-          </div>
-          <div style="border-top:1px solid var(--border);padding-top:1rem;">
-            <a class="button button-secondary" href="about.html" style="width:100%;justify-content:center;">About me</a>
-          </div>
-        </aside>
-      </div>
-    </section>
+    <!-- Hero is rendered by hero.jsx (three variants, switchable via Tweaks) -->
+    <div id="hero-root"></div>
 
-    <section class="section section-alt">
+    <!-- ════════════════════════════════════════════
+         FEATURED PROJECT — RCM Playground
+         Full-bleed showcase. The strongest artifact,
+         given the attention it deserves.
+    ════════════════════════════════════════════ -->
+    <section class="section section-alt featured-rcm">
       <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Capabilities</p>
-          <h2>Tools and skills</h2>
-          <p>A practical toolkit built around the core responsibilities of data and business analyst work.</p>
-        </div>
-        <div style="position:relative;margin-top:2.25rem;">
-          <div class="resume-card" style="grid-template-columns:1fr;position:relative;z-index:1;margin-top:0;">
-            <div class="resume-item">
-              <ul style="margin:0;padding-left:1.1rem;line-height:2;">
-                <li><strong>Languages:</strong> Python, R, SQL, Java</li>
-                <li><strong>Visualization and reporting:</strong> Power BI, Tableau, Excel, Matplotlib, Seaborn</li>
-                <li><strong>Infrastructure and tools:</strong> Docker, AWS, Azure, Linux, GitHub, Spark</li>
-              </ul>
+        <div class="featured-rcm-grid">
+          <div class="featured-rcm-copy">
+            <p class="eyebrow">Featured Project</p>
+            <h2>250,000 claims, modeled and analyzed.</h2>
+            <p class="featured-rcm-lede">
+              An interactive dashboard built by design, generated from a
+              multi-facility revenue cycle dataset. Provider-level KPIs, payer
+              behavior, denial concentration, and reimbursement variance, all
+              in one place, all live.
+            </p>
+            <ul class="featured-rcm-bullets">
+              <li><strong>Built end-to-end:</strong> Python rule-based dataset, Power Query schema, interactive front end.</li>
+              <li><strong>Real RCM logic:</strong> MPRR reductions, payer-specific denial weights, provider tiering.</li>
+              <li><strong>Live, not static:</strong> filter by payer, provider, month, encounter type.</li>
+            </ul>
+            <div class="featured-rcm-actions">
+              <a class="button button-primary" href="dashboard.html">Open the dashboard</a>
+              <a class="button button-secondary" href="projects.html#rcm">Read the case study</a>
             </div>
           </div>
+          <a class="featured-rcm-preview zoom-link" href="rcm-report-summary.png" aria-label="View full revenue cycle report">
+            <img src="rcm-report-summary.png" alt="Revenue cycle report preview" />
+          </a>
         </div>
       </div>
     </section>
 
-    <section class="section" id="projects">
+    <!-- ════════════════════════════════════════════
+         CLOSING CTA
+    ════════════════════════════════════════════ -->
+    <section class="section">
       <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Featured Work</p>
-          <h2>Selected projects</h2>
-          <p>A sample of my current work across analytics, dashboarding, and self-hosted infrastructure.</p>
+        <div class="contact-card">
+          <p class="eyebrow">Let's connect</p>
+          <h2>I'd love to hear from you.</h2>
+          <p>
+            Whether it's a project, a question, or just a hello, I'm based in
+            Denver, open to on-site, hybrid, remote, or relocation, and usually
+            respond within a day or two.
+          </p>
+          <div class="contact-actions">
+            <a class="button button-primary" href="mailto:h@huy.gg">Email me</a>
+            <a class="button button-secondary" href="resume.html">View Resume</a>
+          </div>
         </div>
-
-        <article class="project-card">
-          <div class="project-meta">
-            <span class="tag">Python</span>
-            <span class="tag">pandas</span>
-            <span class="tag">NumPy</span>
-            <span class="tag">Excel</span>
-            <span class="tag">Power Query</span>
-            <span class="tag">Data Modeling</span>
-            <span class="tag">Data Analysis</span>
-          </div>
-          <h3>Revenue Cycle Analysis</h3>
-          <div class="project-block" style="margin-top:1rem;">
-            <p style="margin:0;color:var(--text-muted);">
-              Analyzed 250,000 multi-facility claims to surface insights across collections, 
-              denials, payer behavior, and provider performance. Developed an interactive Excel 
-              dashboard and comprehensive billing report, enabling provider-level KPI tracking 
-              and deep analysis across payer and encounter dimensions.
-            </p>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-meta">
-            <span class="tag">Python</span>
-            <span class="tag">TensorFlow</span>
-            <span class="tag">Keras</span>
-            <span class="tag">scikit-learn</span>
-            <span class="tag">Deep Learning</span>
-            <span class="tag">Machine Learning</span>
-          </div>
-          <h3>Facial Emotion Recognition: ANN vs. CNN</h3>
-          <div class="project-block" style="margin-top:1rem;">
-            <p style="margin:0;color:var(--text-muted);">
-              Progressed from a baseline ANN through increasingly refined CNN architectures,
-              achieving 91% accuracy across four facial emotion categories through systematic
-              tuning of dropout layers and training epochs.
-            </p>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-meta">
-            <span class="tag">Docker</span>
-            <span class="tag">Nginx</span>
-            <span class="tag">Cloudflare</span>
-            <span class="tag">Linux</span>
-            <span class="tag">MariaDB</span>
-            <span class="tag">WireGuard</span>
-            <span class="tag">Pi-Hole</span>
-            <span class="tag">Let's Encrypt</span>
-          </div>
-          <h3>Self-Hosted Home Server Infrastructure</h3>
-          <div class="project-block" style="margin-top:1rem;">
-            <p style="margin:0;color:var(--text-muted);">
-              Designed and deployed a self-hosted environment using Docker-based services,
-              reverse proxy routing, and domain-based access to manage multiple applications
-              under a unified system.
-            </p>
-          </div>
-        </article>
       </div>
     </section>
 
@@ -161,10 +102,28 @@
     <div class="container footer-inner">
       <a class="brand" href="index.html">
         <img src="logo.png" alt="huy.gg" />
-        <span>© 2026 Harry Nguyen</span>
+        <span>&copy; 2026 Harry Nguyen</span>
       </a>
-      <p>huy.gg</p>
+      <p><a href="https://huy.gg" style="color: var(--accent-dark); text-decoration: none;">huy.gg</a></p>
     </div>
   </footer>
+
+  <!-- React + Babel for the hero variants -->
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="tweaks-panel.jsx?v=mogsjasn"></script>
+  <script>window.__BG_OWNED_BY_HERO = true;</script>
+  <script type="text/babel" src="bg.jsx?v=bgv9"></script>
+  <script type="text/babel" src="hero.jsx?v=bgv9"></script>
+
+  <!-- Luminous lightbox — init AFTER DOM is ready -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.zoom-link').forEach(function (link) {
+        new Luminous(link, { closeOnOutsideClick: true, showCloseButton: true });
+      });
+    });
+  </script>
 </body>
 </html>
