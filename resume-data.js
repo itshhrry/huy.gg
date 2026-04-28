@@ -101,7 +101,7 @@ window.RESUME_DATA = {
           tabs: ["operations", "sales"],
         },
         {
-          text: "Oversaw intake documentation, prior authorization tracking, and compliance record management to ensure billing accuracy and maintained financial performance goals.",
+          text: "Oversaw intake documentation, prior authorization tracking, and compliance record management to ensure billing accuracy and <strong>maintained financial performance goals</strong>.",
           tabs: ["operations", "revenue", "sales"],
         },
         {
