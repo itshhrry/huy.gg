@@ -64,11 +64,11 @@ window.RESUME_DATA = {
       bullets: [
         {
           text: "Built an enterprise RCM dashboard tracking NCR/GCR trends, denial root causes, payer reimbursement variance, and A/R aging; directly contributed to a <strong>35% reduction in A/R backlog</strong>.",
-          tabs: ["analyst", "operations", "revenue"],
+          tabs: ["analyst", "revenue"],
         },
         {
           text: "Audited payer-specific denial patterns and denial codes to identify revenue leakage; <strong>discovered charge capture gaps</strong> in injection administration (96372 + J-code combinations); standardized workflow for NDC# documentation through CMS portal for reconsideration submissions that <strong>successfully recovered reimbursement</strong> on previously denied claims; corrected coding variances through modifier adjustments.",
-          tabs: ["analyst", "revenue"],
+          tabs: ["analyst", "operations", "revenue"],
         },
         {
           text: "<strong>Stopped recurring denials</strong> by implementing billing-to-servicing provider validation rules (BCBS), standardizing Box 19 CMS-1500 NDC documentation (UHC), and resolving X12/837P EHR-to-clearinghouse transmission errors.",
