@@ -458,7 +458,7 @@ function RcmApp() {
                   <h3>Denial summary</h3>
                 </div>
                 <div className="rcm-card-meta rcm-card-meta-muted">
-                  Outer: encounter <strong>&bull;</strong> Middle: CPT <strong>&bull;</strong> Center: overall
+                  Outer: encounter&bull;Middle: CPT&bull;Center: overall
                 </div>
               </div>
               <DenialNestedRing
