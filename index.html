@@ -6,7 +6,7 @@
   <title>Harry Nguyen | Data &amp; Business Analyst Portfolio</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <meta name="description" content="Harry Nguyen is a data and business analyst focused on dashboards, data transformation, reporting, and practical technical problem-solving." />
-  <link rel="stylesheet" href="style.css?v=mitv19" />
+  <link rel="stylesheet" href="style.css?v=heroterm1" />
   <script src="theme.js?v=themev3"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/luminous-lightbox/2.4.0/luminous-basic.min.css" integrity="sha512-koV7rZjdkgQouiHiyzaGG1FblTuAkJVypXhzDxDNC74SdnKlGjJCkFwVcGP/wx5bwplcpnOcCy2ZJAGaVB5qmw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/luminous-lightbox/2.4.0/luminous.min.js" integrity="sha512-QzKjuc+7pitZqj28ecclxJ2XJD9l91dNb25Er0ixaqYzpMqhKGIPohYN6blR9UfSR5ETL7wncxmEvVarrVwkSw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -38,8 +38,45 @@
     <!-- Site-wide background layer (portaled into by hero.jsx on home; rendered standalone elsewhere) -->
     <div id="bg-root" aria-hidden="true"></div>
 
-    <!-- Hero is rendered by hero.jsx (three variants, switchable via Tweaks) -->
-    <div id="hero-root"></div>
+    <!-- Hero is rendered by hero.jsx (variants switchable via Tweaks).
+         The markup below is a static SSR-style fallback of the default (bold)
+         variant so the headline + CTAs paint immediately on slow connections.
+         hero.jsx replaces this subtree once React + Babel are parsed. -->
+    <div id="hero-root">
+      <section class="hero hero-variant-bold" data-hero-static="true">
+        <div class="container hero-bold-inner">
+          <p class="eyebrow">Operations &middot; Data &middot; A decade of both</p>
+          <h1>Simple solutions to complex problems.</h1>
+          <p class="hero-text">
+            Ten years in operations gave me deep domain knowledge in business. A technical
+            background in computer and data science gave me the tools to build the answers.
+            The industry matters less than the quality of the problem, and I want to provide
+            simple solutions to complex cases.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="resume.html">View Resume</a>
+            <a class="button button-secondary" href="about.html">About me</a>
+          </div>
+          <div class="hero-cred-strip">
+            <div class="hero-cred is-featured">
+              <div class="hero-cred-school">MIT</div>
+              <div class="hero-cred-degree">Applied AI, Machine Learning, and Data Science</div>
+              <div class="hero-cred-detail">Professional Certificate</div>
+            </div>
+            <div class="hero-cred">
+              <div class="hero-cred-school">Colorado State University</div>
+              <div class="hero-cred-degree">B.S. Computer Science</div>
+              <div class="hero-cred-detail">Bachelor of Science</div>
+            </div>
+            <div class="hero-cred">
+              <div class="hero-cred-school">University of Denver</div>
+              <div class="hero-cred-degree">M.S. Healthcare Administration</div>
+              <div class="hero-cred-detail">Master of Science</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
 
     <!-- ════════════════════════════════════════════
          FEATURED PROJECT — RCM Playground
@@ -51,7 +88,8 @@
         <div class="featured-rcm-grid">
           <div class="featured-rcm-copy">
             <p class="eyebrow">Featured Project</p>
-            <h2>250,000 claims, modeled and analyzed.</h2>
+            <h2>Revenue Insight</h2>
+            <h2>Modeled and Analyzed</h2>
             <p class="featured-rcm-lede">
               An interactive dashboard built by design, generated from a
               multi-facility revenue cycle dataset. Provider-level KPIs, payer
@@ -75,9 +113,6 @@
       </div>
     </section>
 
-    <!-- ════════════════════════════════════════════
-         CLOSING CTA
-    ════════════════════════════════════════════ -->
     <section class="section">
       <div class="container">
         <div class="contact-card">
@@ -89,7 +124,7 @@
             respond within a day or two.
           </p>
           <div class="contact-actions">
-            <a class="button button-primary" href="mailto:h@huy.gg">Email me</a>
+            <a class="button button-primary" href="/cdn-cgi/l/email-protection#91f9d1f9e4e8bff6f6">Email me</a>
             <a class="button button-secondary" href="resume.html">View Resume</a>
           </div>
         </div>
@@ -109,13 +144,13 @@
   </footer>
 
   <!-- React + Babel for the hero variants -->
-  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
   <script type="text/babel" src="tweaks-panel.jsx?v=mogsjasn"></script>
   <script>window.__BG_OWNED_BY_HERO = true;</script>
   <script type="text/babel" src="bg.jsx?v=bgv9"></script>
-  <script type="text/babel" src="hero.jsx?v=bgv9"></script>
+  <script type="text/babel" src="hero.jsx?v=heroterm1"></script>
 
   <!-- Luminous lightbox — init AFTER DOM is ready -->
   <script>
