@@ -67,7 +67,7 @@ window.RESUME_DATA = {
           tabs: ["analyst", "revenue"],
         },
         {
-          text: "Reduced recurring denials by implementing billing-to-servicing provider validation rules (BCBS), standardizing Box 19 CMS-1500 NDC documentation (UHC), and resolving X12/837P EHR-to-clearinghouse transmission errors.",
+          text: "Stopped recurring denials by implementing billing-to-servicing provider validation rules (BCBS), standardizing Box 19 CMS-1500 NDC documentation (UHC), and resolving X12/837P EHR-to-clearinghouse transmission errors.",
           tabs: ["revenue"],
         },
         {
