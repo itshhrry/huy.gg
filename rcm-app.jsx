@@ -376,7 +376,7 @@ function RcmApp() {
                   <h3>Utilization &amp; yield by service line</h3>
                 </div>
                 <div className="rcm-card-meta rcm-card-meta-muted">
-                  Bar = revenue · pill = NCR
+                  Bar = revenue &bull; pill = NCR
                 </div>
               </div>
               {filtered.serviceLineRows.length > 0
