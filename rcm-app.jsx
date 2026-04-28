@@ -256,7 +256,7 @@ function RcmApp() {
             </div>
 
             <div style={{ borderTop: "1px solid var(--border)", padding: "0.75rem 0 0.6rem" }}>
-              <p className="panel-label" style={{ marginBottom: "0.5rem" }}>Sample slice</p>
+              <p className="panel-label" style={{ marginBottom: "0.5rem" }}>Sample summary</p>
               <ul style={{ margin: 0, padding: "0 0 0 1.1rem", fontSize: "0.86rem", lineHeight: 1.55, color: "var(--text-muted)" }}>
                 <li><strong style={{ color: "var(--text)" }}>{data.kpis.charges.toLocaleString()} charge lines</strong> across {data.totalClaims.toLocaleString()} claims</li>
                 <li><strong style={{ color: "var(--text)" }}>${(data.kpis.billed/1e6).toFixed(2)}M billed &bull; ${(data.kpis.income/1e6).toFixed(2)}M paid</strong> &bull; {(data.kpis.ncr*100).toFixed(1)}% NCR</li>
