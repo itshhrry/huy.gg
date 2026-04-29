@@ -352,7 +352,7 @@ window.RESUME_DATA = {
       },
       {
         title: "Software & Platforms",
-        chips: ["Athena", "Epic", "Experity", "InSync (Qualifacts)", "Monday", "Asana"],
+        chips: ["Athena", "Epic", "Experity", "InSync (Qualifacts)", "Monday", "Asana", "Azara"],
         muted: true,
       },
     ],
