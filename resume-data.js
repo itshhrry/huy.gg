@@ -301,7 +301,7 @@ window.RESUME_DATA = {
     { degree: "B.S. Computer Science, Magna Cum Laude",                  school: "Colorado State University" },
     { degree: "B.S. Biology & Chemistry",                                school: "University of Colorado" },
     { degree: "Applied AI, Machine Learning, and Data Science",          school: "MIT", suffix: "Certificate" },
-    { degree: "Lean Six Sigma Black Belt",                               school: "Certification" },
+    { degree: "Lean Six Sigma White Belt",                               school: "Certification" },
     { degree: "Google Data Analytics",                                   school: "Professional Certificate" },
     { degree: "AWS Cloud Practitioner",                                  school: "Certification" },
   ],
