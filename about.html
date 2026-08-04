@@ -1,197 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About | Harry Nguyen</title>
-  <meta name="description" content="About Harry Nguyen, data and business analyst with a decade of healthcare operations experience and a multidisciplinary academic background." />
-  <link rel="stylesheet" href="style.css?v=mitv19" />
-  <script src="theme.js?v=themev3"></script>
-  <style>
-    .about-body { max-width: 720px; }
-    .about-body p { font-size: 1.06rem; color: var(--text-muted); margin: 1.25rem 0 0; line-height: 1.8; }
-    .about-body h2 { font-size: clamp(1.4rem, 2.5vw, 1.9rem); line-height: 1.2; letter-spacing: -0.02em; margin: 3rem 0 0; }
-    .about-pullquote { border-left: 3px solid var(--accent); margin: 2.5rem 0; padding: 0.5rem 0 0.5rem 1.5rem; max-width: 620px; }
-    .about-pullquote p { font-size: 1.2rem !important; color: var(--text) !important; font-style: italic; line-height: 1.6 !important; margin: 0 !important; }
-    .about-divider { border: none; border-top: 1px solid var(--border); margin: 3rem 0 0; }
-    .about-body h2:first-child { margin-top: 1rem; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;background:#08090B}
+  #home-root{
+    --bg:#08090B;--panel-grad:linear-gradient(180deg,#101319,#0b0d12);--card-rim:#191b21;
+    --surface:rgba(255,255,255,.05);--surface2:rgba(255,255,255,.04);
+    --text:#F2F4F1;--muted:#9BA1A0;--muted2:#8A9290;--strong:#ffffff;
+    --border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.14);--border3:rgba(255,255,255,.18);
+    --accent:#C04000;--accent-ink:#FFF4EE;--flare:#FF6A2B;--flare-soft:rgba(255,106,43,.16);
+    --grid:rgba(255,255,255,.06);--glowA:rgba(255,106,43,.32);--glowB:rgba(192,64,0,.5);--glowC:rgba(255,106,43,.22);
+    --nav-bg:rgba(8,9,11,.72);--grain-op:.32;--grain-blend:overlay;
+  }
+  #home-root[data-theme="light"]{
+    --bg:#F4F1EA;--panel-grad:linear-gradient(180deg,#ffffff,#FBF7F0);--card-rim:#E7E1D6;
+    --surface:rgba(26,22,19,.05);--surface2:rgba(26,22,19,.035);
+    --text:#1A1613;--muted:#5F5A50;--muted2:#837C70;--strong:#000000;
+    --border:rgba(26,22,19,.1);--border2:rgba(26,22,19,.16);--border3:rgba(26,22,19,.24);
+    --accent:#C04000;--accent-ink:#FFF4EE;--flare:#C04000;--flare-soft:rgba(192,64,0,.1);
+    --grid:rgba(26,22,19,.05);--glowA:rgba(255,106,43,.16);--glowB:rgba(192,64,0,.12);--glowC:rgba(192,64,0,.1);
+    --nav-bg:rgba(244,241,234,.8);--grain-op:.5;--grain-blend:multiply;
+  }
+  a{color:inherit;text-decoration:none;transition:opacity .2s ease,color .2s ease}
+  a:hover{opacity:.82}
+  #home-root [data-logo-dark]{display:block}#home-root [data-logo-light]{display:none}
+  #home-root[data-theme="light"] [data-logo-dark]{display:none}#home-root[data-theme="light"] [data-logo-light]{display:block}
+  #home-root [data-ic-sun]{display:inline-flex}#home-root [data-ic-moon]{display:none}
+  #home-root[data-theme="light"] [data-ic-sun]{display:none}#home-root[data-theme="light"] [data-ic-moon]{display:inline-flex}
+  @keyframes auroraA{0%{transform:translate(-8%,-6%) scale(1)}50%{transform:translate(10%,8%) scale(1.28)}100%{transform:translate(-8%,-6%) scale(1)}}
+  @keyframes auroraB{0%{transform:translate(6%,4%) scale(1.1)}50%{transform:translate(-9%,-7%) scale(1.34)}100%{transform:translate(6%,4%) scale(1.1)}}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+  #home-root[data-rm="1"] *{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important}
+  #home-root[data-grain="0"] [data-grain-layer]{display:none!important}
+</style>
 </head>
 <body>
-  <div id="bg-root" aria-hidden="true"></div>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="index.html" style="display:flex;align-items:center;gap:10px;">
-        <img src="logo.png" alt="huy.gg"/>
-        Harry Nguyen
-      </a>
-      <nav class="site-nav" aria-label="Primary navigation">
-        <a href="projects.html">Projects</a>
-        <strong>&bull;</strong>
-        <a href="resume.html">Resume</a>
-      </nav>
+<div id="home-root" data-theme="light" data-rm="0" data-grain="1" data-spot="1" style="background:var(--bg);color:var(--text);min-height:100vh;position:relative;overflow-x:hidden;font-family:Arial,Helvetica,sans-serif;transition:background .4s ease,color .4s ease;">
+
+  <div data-grain-layer="" style="position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:var(--grain-op);mix-blend-mode:var(--grain-blend);background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E&quot;);"></div>
+
+  <nav style="position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px clamp(20px,5vw,80px);background:var(--nav-bg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);">
+    <a href="index.html" style="display:flex;align-items:center;gap:11px;font-weight:600;font-size:18px;letter-spacing:-.01em;">
+      <img data-logo-dark="" src="logo-cream.png" alt="huy.gg" style="width:34px;height:34px;object-fit:contain;">
+      <img data-logo-light="" src="logo.png" alt="huy.gg" style="width:34px;height:34px;object-fit:contain;">
+      Harry Nguyen
+    </a>
+    <div style="display:flex;align-items:center;gap:clamp(14px,2.2vw,30px);font-family:Arial,Helvetica,sans-serif;font-size:14px;color:var(--muted);">
+      <a href="about.html" style="color:var(--flare);">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="resume.html">Resume</a>
+      <button id="theme-toggle" type="button" aria-label="Toggle light and dark" style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:999px;border:1px solid var(--border2);background:transparent;color:var(--text);cursor:pointer;padding:0;">
+        <span data-ic-sun=""><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2" fill="currentColor" stroke="none"></circle><line x1="12" y1="2.5" x2="12" y2="5"></line><line x1="12" y1="19" x2="12" y2="21.5"></line><line x1="2.5" y1="12" x2="5" y2="12"></line><line x1="19" y1="12" x2="21.5" y2="12"></line><line x1="5.2" y1="5.2" x2="6.9" y2="6.9"></line><line x1="17.1" y1="17.1" x2="18.8" y2="18.8"></line><line x1="5.2" y1="18.8" x2="6.9" y2="17.1"></line><line x1="17.1" y1="6.9" x2="18.8" y2="5.2"></line></svg></span>
+        <span data-ic-moon=""><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 14.2A8 8 0 0 1 9.8 3.5a.6.6 0 0 0-.8-.7 9.5 9.5 0 1 0 12.2 12.2.6.6 0 0 0-.7-.8z"></path></svg></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header style="position:relative;overflow:hidden;padding:clamp(52px,7vw,96px) clamp(20px,5vw,80px) clamp(30px,4vw,48px);">
+    <div style="position:absolute;top:-160px;left:-80px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle, var(--glowA), transparent 62%);filter:blur(30px);animation:auroraA 16s ease-in-out infinite;"></div>
+    <div style="position:absolute;inset:0;background-image:radial-gradient(var(--grid) 1px, transparent 1px);background-size:26px 26px;-webkit-mask-image:radial-gradient(900px 480px at 26% 16%, #000 0%, transparent 78%);mask-image:radial-gradient(900px 480px at 26% 16%, #000 0%, transparent 78%);"></div>
+    <div style="position:relative;z-index:5;max-width:1160px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,52px);align-items:center;">
+      <div style="flex:1 1 440px;min-width:min(100%,300px);">
+        <div data-reveal="" style="display:inline-flex;align-items:center;gap:12px;font-family:Arial,Helvetica,sans-serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--flare);margin-bottom:26px;"><span style="width:26px;height:1px;background:var(--flare);"></span>About me</div>
+        <h1 data-reveal="" data-delay="80" style="font-size:clamp(38px,5.6vw,68px);line-height:1.02;letter-spacing:-.025em;font-weight:600;margin-bottom:24px;">Behind every data point is a <span style="color:var(--flare);">person.</span></h1>
+        <p data-reveal="" data-delay="160" style="font-size:clamp(16px,1.5vw,19px);line-height:1.6;color:var(--muted);max-width:540px;">I spent a decade working inside healthcare operations, and that experience shaped everything about how I think, work, and approach data.</p>
+      </div>
+      <aside data-reveal="" data-delay="220" data-spot="" data-fx="tilt" style="position:relative;overflow:hidden;flex:0 1 300px;min-width:260px;border:1px solid var(--border);border-radius:16px;background:var(--panel-grad);padding:22px;box-shadow:0 30px 70px rgba(0,0,0,.28);">
+        <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(360px circle at var(--mx,50%) var(--my,0%), var(--flare-soft), transparent 62%);"></div>
+        <div style="position:absolute;inset:0;border-radius:16px;padding:1.5px;background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%), var(--flare), transparent 62%);-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;"></div>
+        <div style="position:relative;display:flex;align-items:center;gap:12px;margin-bottom:15px;padding-bottom:14px;border-bottom:1px solid var(--border);">
+          <img data-logo-dark="" src="logo-cream.png" alt="huy.gg" style="width:30px;height:30px;object-fit:contain;flex:none;">
+          <img data-logo-light="" src="logo.png" alt="huy.gg" style="width:30px;height:30px;object-fit:contain;flex:none;">
+          <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--flare);">Fun fact</div>
+        </div>
+        <div style="position:relative;font-size:15px;line-height:1.55;color:var(--text);">Not a sweet tooth, but I'll never turn down ube desserts.</div>
+      </aside>
     </div>
   </header>
 
-  <main>
+  <!-- STORY -->
+  <section style="padding:clamp(24px,3vw,40px) clamp(20px,5vw,80px) clamp(64px,8vw,104px);">
+    <div style="max-width:1120px;margin:0 auto;"><div style="max-width:720px;display:flex;flex-direction:column;gap:clamp(40px,5vw,58px);">
 
-    <!-- Hero -->
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">About me</p>
-          <h1>Behind every data point is a person.</h1>
-          <p class="hero-text">
-            I spent a decade working inside healthcare operations, and that
-            experience shaped everything about how I think, work, and approach data.
-          </p>
-        </div>
-
-        <aside class="hero-panel">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:1.25rem;">
-            <img src="logo.png" alt="huy.gg"/>
-          </div>
-          <div style="border-top:1px solid var(--border);padding-top:0.6rem;">
-            <p class="panel-label" style="margin-bottom:0.4rem;">Fun fact</p>
-            <p style="margin:0;font-size:0.9rem;line-height:1.5;color:var(--text);">
-              Not a sweet tooth, but I'll never turn down ube desserts.
-            </p>
-          </div>
-        </aside>
+      <div data-reveal="">
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:.16em;color:var(--flare);margin-bottom:10px;">01</div>
+        <h2 style="font-size:clamp(24px,2.8vw,32px);font-weight:600;letter-spacing:-.02em;margin-bottom:16px;">It started with science</h2>
+        <p style="font-size:clamp(16px,1.4vw,18px);line-height:1.8;color:var(--muted);">My academic foundation began in biology and chemistry. Those disciplines taught me to think rigorously, question assumptions, and follow the evidence wherever it leads. That scientific mindset has never left me. It just found a new home in data.</p>
       </div>
-    </section>
 
-    <!-- Story: science → healthcare → Centura → MIT → what I believe -->
-    <section class="section section-alt">
-      <div class="container">
-        <div class="about-body">
-
-          <h2>It started with science</h2>
-          <p>
-            My academic foundation began in biology and chemistry. Those disciplines taught
-            me to think rigorously, question assumptions, and follow the evidence wherever
-            it leads. That scientific mindset has never left me. It just found a new home
-            in data.
-          </p>
-
-          <h2>A decade in healthcare operations</h2>
-          <p>
-            After completing my M.S. in Healthcare Administration at the University of Denver,
-            I spent a decade working in healthcare, from frontline operations to
-            regional management, most recently as a revenue cycle manager. I also worked with
-            the State of Colorado, where navigating strict regulatory environments became
-            second nature.
-          </p>
-          <p>
-            I understood how organizations run, where the inefficiencies hide, and what
-            questions leadership actually needs answered. The information was always there.
-          </p>
-
-          <div class="about-pullquote">
-            <p>The information was there. What was missing was someone who could turn it into something actionable. I decided to become that person.</p>
-          </div>
-
-          <h2>The project that changed everything</h2>
-          <p>
-            During my master's program, I collaborated with Centura Health on a capstone
-            project to evaluate and streamline clinical workflows using High-Reliability
-            Organization principles. We built a system that processed real-time healthcare
-            data from EPIC, patient monitoring devices, and administrative databases, incorporating
-            predictive analytics and machine learning to forecast patient admissions, resource
-            utilization, and potential complications.
-          </p>
-          <p>
-            The outcomes helped streamline ulcerative colitis protocol, optimize resource
-            allocation during COVID-19, and reduce significant operational costs. That
-            project ignited something in me and set the direction for everything that followed.
-          </p>
-
-          <h2>Going deeper at MIT</h2>
-          <p>
-            I pursued my Applied AI, Machine Learning, and Data Science certificate at MIT to sharpen my skills in
-            machine learning, deep learning, and Python-based analysis. For my capstone,
-            I analyzed and compared ANN (Artificial Neural Network) and CNN (Convolutional
-            Neural Network) architectures to improve facial emotion recognition, achieving
-            91% accuracy across happy, sad, neutral, and surprised categories through careful
-            tuning of dropout layers and training epochs.
-          </p>
-          <p>
-            The program reinforced my ability to work across multiple model types, analyze
-            data patterns, and build systems that generalize well. It also completed a picture
-            I had been building for years: deep domain knowledge, technical fluency, and a
-            genuine drive to make data useful.
-          </p>
-
-          <h2>What I believe</h2>
-          <p>
-            My philosophy is simple: provide simple solutions to complex problems, leveraging
-            data to establish a consistent and less fragmented experience for the people who
-            depend on it. I value integrity above all else. Data can be shaped to tell many
-            stories, and I am committed to telling the right one.
-          </p>
-          <p>
-            I am compassionate, quality-driven, and passionate about this work. Healthcare
-            taught me that behind every data point is a person. That awareness does not leave
-            you, and I think it makes for better analysis.
-          </p>
-
-        </div>
+      <div data-reveal="">
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:.16em;color:var(--flare);margin-bottom:10px;">02</div>
+        <h2 style="font-size:clamp(24px,2.8vw,32px);font-weight:600;letter-spacing:-.02em;margin-bottom:16px;">A decade in healthcare operations</h2>
+        <p style="font-size:clamp(16px,1.4vw,18px);line-height:1.8;color:var(--muted);margin-bottom:16px;">After completing my M.S. in Healthcare Administration at the University of Denver, I spent a decade working in healthcare, from frontline operations to regional management, most recently as a revenue cycle manager. I also worked with the State of Colorado, where navigating strict regulatory environments became second nature.</p>
+        <p style="font-size:clamp(16px,1.4vw,18px);line-height:1.8;color:var(--muted);">I understood how organizations run, where the inefficiencies hide, and what questions leadership actually needs answered. The information was always there.</p>
+        <blockquote style="margin:28px 0 0;border-left:3px solid var(--flare);padding:6px 0 6px 22px;max-width:620px;">
+          <p style="font-size:clamp(19px,2vw,23px);font-style:italic;line-height:1.5;color:var(--text);">The information was there. What was missing was someone who could turn it into something actionable. I decided to become that person.</p>
+        </blockquote>
       </div>
-    </section>
 
-    <!-- What I'm looking for -->
-    <section class="section">
-      <div class="container">
-        <div class="about-body">
-
-          <h2>What I am looking for</h2>
-          <p>
-            I am based in Denver, Colorado and open to remote and relocation opportunities.
-            I am drawn to roles where data is treated as a strategic asset, including healthcare
-            analytics, revenue cycle analysis, or broader business analyst work where
-            structured thinking and clean reporting can drive real decisions.
-          </p>
-          <p>
-            The industry matters less than the quality of the problem.
-          </p>
-
-        </div>
+      <div data-reveal="">
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:.16em;color:var(--flare);margin-bottom:10px;">03</div>
+        <h2 style="font-size:clamp(24px,2.8vw,32px);font-weight:600;letter-spacing:-.02em;margin-bottom:16px;">The project that changed everything</h2>
+        <p style="font-size:clamp(16px,1.4vw,18px);line-height:1.8;color:var(--muted);margin-bottom:16px;">During my master's program, I collaborated with Centura Health on a capstone project to evaluate and streamline clinical workflows using High-Reliability Organization principles. We built a system that processed real-time healthcare data from EPIC, patient monitoring devices, and administrative databases, incorporating predictive analytics and machine learning to forecast patient admissions, resource utilization, and potential complications.</p>
+        <p style="font-size:clamp(16px,1.4vw,18px);line-height:1.8;color:var(--muted);">The outcomes helped streamline ulcerative colitis protocol, optimize resource allocation during COVID-19, and reduce significant operational costs. That project ignited something in me and set the direction for everything that followed.</p>
       </div>
-    </section>
 
-    <!-- CTA -->
-    <section class="section section-alt">
-      <div class="container">
-        <div class="contact-card">
-          <p class="eyebrow">That's the story.</p>
-          <h2>Here's the work.</h2>
-          <p>
-            Browse my projects and resume to see what I've been building.
-          </p>
-          <div class="contact-actions">
-            <a class="button button-primary" href="projects.html">View Projects</a>
-            <a class="button button-secondary" href="resume.html">View Resume</a>
-          </div>
-        </div>
+      <div data-reveal="">
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:.16em;color:var(--flare);margin-bottom:10px;">04</div>
+        <h2 style="font-size:clamp(24px,2.8vw,32px);font-weight:600;letter-spacing:-.02em;margin-bottom:16px;">Going deeper at MIT</h2>
+        <p style="font-size:clamp(16px,1.4vw,18px);line-height:1.8;color:var(--muted);margin-bottom:16px;">I pursued my Applied AI, Machine Learning, and Data Science certificate at MIT to sharpen my skills in machine learning, deep learning, and Python-based analysis. For my capstone, I analyzed and compared ANN (Artificial Neural Network) and CNN (Convolutional Neural Network) architectures to improve facial emotion recognition, achieving 91% accuracy across happy, sad, neutral, and surprised categories through careful tuning of dropout layers and training epochs.</p>
+        <p style="font-size:clamp(16px,1.4vw,18px);line-height:1.8;color:var(--muted);">The program reinforced my ability to work across multiple model types, analyze data patterns, and build systems that generalize well. It also completed a picture I had been building for years: deep domain knowledge, technical fluency, and a genuine drive to make data useful.</p>
       </div>
-    </section>
-  </main>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <a class="brand" href="index.html">
-        <img src="logo.png" alt="huy.gg" />
-        <span>© 2026 Harry Nguyen</span>
-      </a>
-      <p><a href="https://huy.gg" style="color: var(--accent-dark); text-decoration: none;">huy.gg</a></p>
+      <div data-reveal="">
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:.16em;color:var(--flare);margin-bottom:10px;">05</div>
+        <h2 style="font-size:clamp(24px,2.8vw,32px);font-weight:600;letter-spacing:-.02em;margin-bottom:16px;">What I believe</h2>
+        <p style="font-size:clamp(16px,1.4vw,18px);line-height:1.8;color:var(--muted);margin-bottom:16px;">My philosophy is simple: provide simple solutions to complex problems, leveraging data to establish a consistent and less fragmented experience for the people who depend on it. I value integrity above all else. Data can be shaped to tell many stories, and I am committed to telling the right one.</p>
+        <p style="font-size:clamp(16px,1.4vw,18px);line-height:1.8;color:var(--muted);">I am compassionate, quality-driven, and passionate about this work. Healthcare taught me that behind every data point is a person. That awareness does not leave you, and I think it makes for better analysis.</p>
+      </div>
+
+      <div data-reveal="">
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:.16em;color:var(--flare);margin-bottom:10px;">06</div>
+        <h2 style="font-size:clamp(24px,2.8vw,32px);font-weight:600;letter-spacing:-.02em;margin-bottom:16px;">What I am looking for</h2>
+        <p style="font-size:clamp(16px,1.4vw,18px);line-height:1.8;color:var(--muted);margin-bottom:16px;">I am based in Denver, Colorado and open to remote and relocation opportunities. I am drawn to roles where data is treated as a strategic asset, including healthcare analytics, revenue cycle analysis, or broader business analyst work where structured thinking and clean reporting can drive real decisions.</p>
+        <p style="font-size:clamp(18px,1.7vw,21px);line-height:1.6;color:var(--text);font-weight:500;">The industry matters less than the quality of the problem.</p>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- CTA -->
+  <section style="position:relative;overflow:hidden;padding:50px clamp(20px,5vw,80px);border-top:1px solid var(--border);">
+    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:760px;height:400px;border-radius:50%;background:radial-gradient(circle, var(--glowC), transparent 62%);filter:blur(30px);"></div>
+    <div data-reveal style="position:relative;max-width:1160px;margin:0 auto;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;">
+      <div>
+        <h2 style="font-size:clamp(28px,3.6vw,40px);font-weight:600;letter-spacing:-.02em;margin-bottom:8px;">Here's the work.</h2>
+        <p style="font-size:15px;color:var(--muted);">Browse my projects and resume to see what I have been building.</p>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="projects.html" style="display:inline-flex;align-items:center;gap:9px;height:52px;padding:0 28px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:16px;">View Projects <span style="font-family:Arial,Helvetica,sans-serif;">&rarr;</span></a>
+        <a href="resume.html" style="display:inline-flex;align-items:center;height:52px;padding:0 28px;border-radius:999px;border:1px solid var(--border3);color:var(--text);font-size:16px;">View Resume</a>
+      </div>
     </div>
-  </footer>
+  </section>
 
-  <!-- Site-wide background layer + Tweaks -->
-  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-  <script type="text/babel" src="tweaks-panel.jsx"></script>
-  <script type="text/babel" src="bg.jsx?v=bgv9"></script>
+  <footer style="padding:22px clamp(20px,5vw,80px);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:var(--muted2);">
+    <a href="index.html" style="display:inline-flex;align-items:center;gap:10px;color:var(--muted2);">
+      <img data-logo-dark="" src="logo-cream.png" alt="huy.gg" style="width:22px;height:22px;object-fit:contain;">
+      <img data-logo-light="" src="logo.png" alt="huy.gg" style="width:22px;height:22px;object-fit:contain;">
+      © 2026 Harry Nguyen
+    </a>
+    <a href="https://huy.gg" style="color:var(--flare);">huy.gg</a>
+  </footer>
+</div>
+<script>
+
+class DCLogic {
+  constructor(props) { this.props = props; this.state = {}; }
+  setState(patch) { Object.assign(this.state, patch); }
+}
+
+
+class Component extends DCLogic {
+  renderVals() { return {}; }
+  componentDidMount() {
+    this.sync();
+    if (!this._bound) { this._bound = true; requestAnimationFrame(() => this.enhance()); }
+  }
+  componentDidUpdate() { this.sync(); }
+  sync() {
+    const r = document.getElementById('home-root');
+    if (!r) return;
+    r.dataset.rm = (this.props.reduceMotion ?? false) ? '1' : '0';
+    r.dataset.grain = (this.props.showGrain ?? true) ? '1' : '0';
+    r.dataset.spot = (this.props.spotlight ?? true) ? '1' : '0';
+  }
+  enhance() {
+    const r = document.getElementById('home-root');
+    if (!r) return;
+    try { const t = localStorage.getItem('huygg-theme'); if (t) r.setAttribute('data-theme', t); } catch (e) {}
+    const tt = document.getElementById('theme-toggle');
+    if (tt) tt.addEventListener('click', () => {
+      const next = (r.getAttribute('data-theme') === 'light') ? 'dark' : 'light';
+      r.setAttribute('data-theme', next);
+      try { localStorage.setItem('huygg-theme', next); } catch (e) {}
+    });
+    const items = [...r.querySelectorAll('[data-reveal]')];
+    items.forEach((el) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(28px)';
+      el.style.transition = 'opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1)';
+      el.style.transitionDelay = (el.dataset.delay || 0) + 'ms';
+    });
+    const reveal = (el) => { el.style.opacity = '1'; el.style.transform = 'none'; };
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { reveal(e.target); io.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -4% 0px' });
+    items.forEach((el) => io.observe(el));
+    setTimeout(() => items.forEach(reveal), 2600);
+    r.querySelectorAll('[data-fx="tilt"]').forEach((card) => { const inner = card.querySelector('[data-fx-inner]') || card; card.addEventListener('mousemove', (ev) => { if (r.dataset.rm === '1') return; inner.style.transition = 'transform .12s ease-out'; const b = card.getBoundingClientRect(); const px = (ev.clientX - b.left)/b.width, py = (ev.clientY - b.top)/b.height; inner.style.transform = 'perspective(820px) rotateX(' + ((0.5-py)*9).toFixed(2) + 'deg) rotateY(' + ((px-0.5)*11).toFixed(2) + 'deg)'; }); card.addEventListener('mouseleave', () => { inner.style.transform = 'perspective(820px) rotateX(0deg) rotateY(0deg)'; }); });
+    r.addEventListener('mousemove', (ev) => { if (r.dataset.spot === '0') return; const c = ev.target.closest ? ev.target.closest('[data-spot]') : null; if (!c) return; const b = c.getBoundingClientRect(); c.style.setProperty('--mx', ((ev.clientX - b.left) / b.width * 100).toFixed(1) + '%'); c.style.setProperty('--my', ((ev.clientY - b.top) / b.height * 100).toFixed(1) + '%'); });
+  }
+}
+
+
+(function () {
+  var start = function () {
+    var c = new Component({"reduceMotion": false, "spotlight": true, "showGrain": true});
+    if (c.componentDidMount) c.componentDidMount();
+  };
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
+})();
+
+</script>
 </body>
 </html>
