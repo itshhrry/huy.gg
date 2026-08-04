@@ -1,593 +1,655 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projects | Harry Nguyen</title>
-  <meta name="description" content="Project portfolio for Harry Nguyen, featuring analytics, dashboarding, and technical infrastructure work." />
-  <link rel="stylesheet" href="style.css?v=mitv19" />
-  <script src="theme.js?v=themev3"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/luminous-lightbox/2.4.0/luminous-basic.min.css" integrity="sha512-koV7rZjdkgQouiHiyzaGG1FblTuAkJVypXhzDxDNC74SdnKlGjJCkFwVcGP/wx5bwplcpnOcCy2ZJAGaVB5qmw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/luminous-lightbox/2.4.0/luminous.min.js" integrity="sha512-QzKjuc+7pitZqj28ecclxJ2XJD9l91dNb25Er0ixaqYzpMqhKGIPohYN6blR9UfSR5ETL7wncxmEvVarrVwkSw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <style>
-    .project-block h4 { color: var(--accent-dark); }
-    .project-card h3 { max-width: none; }
-    .zoom-link { cursor: zoom-in; display: block; }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    /* ── Project pullquote (used on self-host card) ── */
-    .project-pullquote {
-      border-left: 3px solid var(--accent);
-      margin: 1.5rem 0 0;
-      padding: 0.4rem 0 0.4rem 1.25rem;
-      max-width: 720px;
-    }
-    .project-pullquote p {
-      margin: 0;
-      font-size: 1.02rem;
-      color: var(--text);
-      font-style: italic;
-      line-height: 1.6;
-    }
-
-    /* ── Server architecture diagram ── */
-    .srv-fig {
-      margin: 1.75rem 0 0;
-      padding: 1.5rem 1rem 1.25rem;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: color-mix(in oklab, var(--bg) 96%, var(--accent) 4%);
-      color: var(--text);
-    }
-    .srv-cap {
-      margin: 0.85rem auto 0;
-      max-width: 620px;
-      text-align: center;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      line-height: 1.55;
-    }
-
-    /* ── Interactive terminal ── */
-    .term-frame {
-      max-width: 720px;
-      margin: 0 auto;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-      background: #0f1115;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-    }
-    :root[data-theme="light"] .term-frame { background: #1c1e22; }
-    .term-bar {
-      display: flex; align-items: center; gap: 6px;
-      padding: 8px 12px;
-      background: rgba(255,255,255,0.04);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-    .term-bar .term-dot { width: 11px; height: 11px; border-radius: 50%; }
-    .term-bar .term-dot.r { background: #ff5f57; }
-    .term-bar .term-dot.y { background: #febc2e; }
-    .term-bar .term-dot.g { background: #28c840; }
-    .term-bar .term-title { margin-left: 8px; font-size: 11px; color: rgba(255,255,255,0.5); letter-spacing: 0.04em; }
-    .term-body {
-      padding: 1rem 1.25rem 1.25rem;
-      font-size: 12.5px;
-      line-height: 1.55;
-      color: #d8dde6;
-      cursor: text;
-    }
-    .term-body .t-prompt { color: #8a8f99; }
-    .term-body .t-cmd { color: #e7d7c1; }
-    .term-body .t-ok { color: #7ec47e; }
-    .term-body .t-accent { color: #d97757; }
-    .term-body .t-muted { color: #888c95; }
-    .term-body .t-line { opacity: 0; animation: term-fadein 0.25s ease forwards; }
-    @keyframes term-fadein { to { opacity: 1; } }
-    .term-body code { font-family: inherit; padding: 0 2px; color: #d97757; }
-    .term-body .t-tiphint { margin-top: 0.7rem; font-size: 11px; color: rgba(255,255,255,0.4); }
-    .term-cursor { display: inline-block; width: 8px; height: 14px; background: #d97757; vertical-align: -2px; animation: term-blink 1s steps(2) infinite; }
-    @keyframes term-blink { 50% { opacity: 0; } }
-    #term-input { outline: none; color: #e7d7c1; min-width: 1px; }
-    #term-input:focus { outline: none; }
-
-    @media (prefers-reduced-motion: reduce) {
-      .term-cursor { animation: none !important; }
-    }
-  </style>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;background:#08090B}
+  #home-root{
+    --bg:#08090B;--panel-grad:linear-gradient(180deg,#101319,#0b0d12);--card-rim:#191b21;
+    --surface:rgba(255,255,255,.05);--surface2:rgba(255,255,255,.04);
+    --text:#F2F4F1;--muted:#9BA1A0;--muted2:#8A9290;--strong:#ffffff;
+    --border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.14);--border3:rgba(255,255,255,.18);
+    --accent:#C04000;--accent-ink:#FFF4EE;--flare:#FF6A2B;--flare-soft:rgba(255,106,43,.16);
+    --grid:rgba(255,255,255,.06);--glowA:rgba(255,106,43,.32);--glowB:rgba(192,64,0,.5);--glowC:rgba(255,106,43,.22);
+    --nav-bg:rgba(8,9,11,.72);--grain-op:.32;--grain-blend:overlay;
+  }
+  #home-root[data-theme="light"]{
+    --bg:#F4F1EA;--panel-grad:linear-gradient(180deg,#ffffff,#FBF7F0);--card-rim:#E7E1D6;
+    --surface:rgba(26,22,19,.05);--surface2:rgba(26,22,19,.035);
+    --text:#1A1613;--muted:#5F5A50;--muted2:#837C70;--strong:#000000;
+    --border:rgba(26,22,19,.1);--border2:rgba(26,22,19,.16);--border3:rgba(26,22,19,.24);
+    --accent:#C04000;--accent-ink:#FFF4EE;--flare:#C04000;--flare-soft:rgba(192,64,0,.1);
+    --grid:rgba(26,22,19,.05);--glowA:rgba(255,106,43,.16);--glowB:rgba(192,64,0,.12);--glowC:rgba(192,64,0,.1);
+    --nav-bg:rgba(244,241,234,.8);--grain-op:.5;--grain-blend:multiply;
+  }
+  a{color:inherit;text-decoration:none;transition:opacity .2s ease,color .2s ease}
+  a:hover{opacity:.82}
+  #home-root [data-logo-dark]{display:block}#home-root [data-logo-light]{display:none}
+  #home-root[data-theme="light"] [data-logo-dark]{display:none}#home-root[data-theme="light"] [data-logo-light]{display:block}
+  #home-root [data-ic-sun]{display:inline-flex}#home-root [data-ic-moon]{display:none}
+  #home-root[data-theme="light"] [data-ic-sun]{display:none}#home-root[data-theme="light"] [data-ic-moon]{display:inline-flex}
+  @keyframes auroraA{0%{transform:translate(-8%,-6%) scale(1)}50%{transform:translate(10%,8%) scale(1.28)}100%{transform:translate(-8%,-6%) scale(1)}}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+  @keyframes tfade{to{opacity:1}}
+  @keyframes tblink{50%{opacity:0}}
+  #home-root[data-rm="1"] *{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important}
+  #home-root[data-grain="0"] [data-grain-layer]{display:none!important}
+</style>
 </head>
 <body>
-  <div id="bg-root" aria-hidden="true"></div>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="index.html" style="display:flex;align-items:center;gap:10px;">
-        <img src="logo.png" alt="huy.gg"/>
-        Harry Nguyen
-      </a>
-      <nav class="site-nav" aria-label="Primary navigation">
-        <a href="about.html">About</a>
-        <strong>&bull;</strong>
-        <a href="resume.html">Resume</a>
-      </nav>
+<div id="home-root" data-theme="light" data-rm="0" data-grain="1" data-spot="1" style="background:var(--bg);color:var(--text);min-height:100vh;position:relative;overflow-x:hidden;font-family:Arial,Helvetica,sans-serif;transition:background .4s ease,color .4s ease;">
+
+  <div data-grain-layer style="position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:var(--grain-op);mix-blend-mode:var(--grain-blend);background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E&quot;);"></div>
+
+  <nav style="position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px clamp(20px,5vw,80px);background:var(--nav-bg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);">
+    <a href="index.html" style="display:flex;align-items:center;gap:11px;font-weight:600;font-size:18px;letter-spacing:-.01em;">
+      <img data-logo-dark src="logo-cream.png" alt="huy.gg" style="width:34px;height:34px;object-fit:contain;" />
+      <img data-logo-light src="logo.png" alt="huy.gg" style="width:34px;height:34px;object-fit:contain;" />
+      Harry Nguyen
+    </a>
+    <div style="display:flex;align-items:center;gap:clamp(14px,2.2vw,30px);font-family:Arial,Helvetica,sans-serif;font-size:14px;color:var(--muted);">
+      <a href="about.html">About</a>
+      <a href="projects.html" style="color:var(--flare);">Projects</a>
+      <a href="resume.html">Resume</a>
+      <button id="theme-toggle" type="button" aria-label="Toggle light and dark" style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:999px;border:1px solid var(--border2);background:transparent;color:var(--text);cursor:pointer;padding:0;">
+        <span data-ic-sun><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2" fill="currentColor" stroke="none"></circle><line x1="12" y1="2.5" x2="12" y2="5"></line><line x1="12" y1="19" x2="12" y2="21.5"></line><line x1="2.5" y1="12" x2="5" y2="12"></line><line x1="19" y1="12" x2="21.5" y2="12"></line><line x1="5.2" y1="5.2" x2="6.9" y2="6.9"></line><line x1="17.1" y1="17.1" x2="18.8" y2="18.8"></line><line x1="5.2" y1="18.8" x2="6.9" y2="17.1"></line><line x1="17.1" y1="6.9" x2="18.8" y2="5.2"></line></svg></span>
+        <span data-ic-moon><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 14.2A8 8 0 0 1 9.8 3.5a.6.6 0 0 0-.8-.7 9.5 9.5 0 1 0 12.2 12.2.6.6 0 0 0-.7-.8z"></path></svg></span>
+      </button>
+      <a href="mailto:h@huy.gg" style="display:inline-flex;align-items:center;height:38px;padding:0 18px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:600;">h@huy.gg</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header style="position:relative;overflow:hidden;padding:clamp(52px,7vw,96px) clamp(20px,5vw,80px) clamp(30px,4vw,48px);">
+    <div style="position:absolute;top:-160px;left:-80px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle, var(--glowA), transparent 62%);filter:blur(30px);animation:auroraA 16s ease-in-out infinite;"></div>
+    <div style="position:absolute;inset:0;background-image:radial-gradient(var(--grid) 1px, transparent 1px);background-size:26px 26px;-webkit-mask-image:radial-gradient(900px 480px at 26% 16%, #000 0%, transparent 78%);mask-image:radial-gradient(900px 480px at 26% 16%, #000 0%, transparent 78%);"></div>
+    <div style="position:relative;z-index:5;max-width:1160px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,52px);align-items:center;">
+      <div style="flex:1 1 440px;min-width:min(100%,300px);">
+        <div data-reveal style="display:inline-flex;align-items:center;gap:12px;font-family:Arial,Helvetica,sans-serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--flare);margin-bottom:26px;"><span style="width:26px;height:1px;background:var(--flare);"></span>Projects</div>
+        <h1 data-reveal data-delay="80" style="font-size:clamp(36px,5.2vw,64px);line-height:1.03;letter-spacing:-.025em;font-weight:600;margin-bottom:24px;">Analytics &amp; technical<br>infrastructure portfolio.</h1>
+        <p data-reveal data-delay="160" style="font-size:clamp(16px,1.5vw,19px);line-height:1.6;color:var(--muted);max-width:540px;margin-bottom:32px;">Selected projects across full-stack product engineering, data analysis, dashboard development, synthetic dataset design, deep learning, and self-hosted infrastructure.</p>
+        <div data-reveal data-delay="240" style="display:flex;gap:14px;flex-wrap:wrap;">
+          <a href="mailto:h@huy.gg" style="display:inline-flex;align-items:center;gap:9px;height:50px;padding:0 24px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:15px;">Contact me <span style="font-family:Arial,Helvetica,sans-serif;">→</span></a>
+          <a href="resume.html" style="display:inline-flex;align-items:center;height:50px;padding:0 24px;border-radius:999px;border:1px solid var(--border3);color:var(--text);font-size:15px;">View Resume</a>
+        </div>
+      </div>
+      <aside data-reveal data-delay="220" data-spot data-fx="tilt" style="position:relative;overflow:hidden;flex:0 1 320px;min-width:270px;border:1px solid var(--border);border-radius:16px;background:var(--panel-grad);padding:22px;box-shadow:0 30px 70px rgba(0,0,0,.28);">
+        <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(360px circle at var(--mx,50%) var(--my,0%), var(--flare-soft), transparent 62%);"></div>
+        <div style="position:absolute;inset:0;border-radius:16px;padding:1.5px;background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%), var(--flare), transparent 62%);-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;"></div>
+        <div style="position:relative;display:flex;align-items:center;gap:12px;margin-bottom:15px;padding-bottom:14px;border-bottom:1px solid var(--border);">
+          <img data-logo-dark src="logo-cream.png" alt="huy.gg" style="width:30px;height:30px;object-fit:contain;flex:none;" />
+          <img data-logo-light src="logo.png" alt="huy.gg" style="width:30px;height:30px;object-fit:contain;flex:none;" />
+          <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--flare);">Current themes</div>
+        </div>
+        <div style="position:relative;display:flex;flex-direction:column;gap:11px;">
+          <div style="display:flex;gap:10px;align-items:baseline;font-size:14px;line-height:1.4;color:var(--text);"><span style="color:var(--flare);">▸</span>Financial, revenue cycle &amp; operations analytics</div>
+          <div style="display:flex;gap:10px;align-items:baseline;font-size:14px;line-height:1.4;color:var(--text);"><span style="color:var(--flare);">▸</span>BI, dashboard &amp; reporting workflows</div>
+          <div style="display:flex;gap:10px;align-items:baseline;font-size:14px;line-height:1.4;color:var(--text);"><span style="color:var(--flare);">▸</span>AI, deep learning &amp; computer vision</div>
+          <div style="display:flex;gap:10px;align-items:baseline;font-size:14px;line-height:1.4;color:var(--text);"><span style="color:var(--flare);">▸</span>Infrastructure &amp; service deployment</div>
+        </div>
+      </aside>
     </div>
   </header>
 
-  <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">Projects</p>
-          <h1>Analytics & technical infrastructure portfolio.</h1>
-          <p class="hero-text">
-            Selected projects across data analysis, dashboard development, synthetic
-            dataset design, deep learning, and self-hosted infrastructure.
-          </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="contact.html">Contact me</a>
-            <a class="button button-secondary" href="resume.html">View Resume</a>
-          </div>
-        </div>
-
-        <aside class="hero-panel">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:1.25rem;">
-            <img src="logo.png" alt="huy.gg"/>
-          </div>
-          <div style="border-top:1px solid var(--border);padding-top:0.6rem;">
-            <p class="panel-label" style="margin-bottom:0.4rem;">Current Themes</p>
-            <ul style="margin:0;padding-left:1.1rem;font-size:0.88rem;line-height:1.5;width:24rem">
-              <li>Financial, Revenue cycle, and Operations analytics</li>
-              <li>BI, Dashboard, and reporting workflows</li>
-              <li>AI, Deep learning, and computer vision</li>
-              <li>Infrastructure and service deployment</li>
-            </ul>
-          </div>
-        </aside>
+  <!-- SELECTED WORK -->
+  <section style="padding:clamp(24px,3vw,40px) clamp(20px,5vw,80px) clamp(70px,9vw,110px);">
+    <div style="max-width:1160px;margin:0 auto;">
+      <div data-reveal style="margin-bottom:clamp(28px,4vw,44px);">
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Selected work</div>
+        <h2 style="font-size:clamp(30px,4vw,46px);font-weight:600;letter-spacing:-.02em;margin-bottom:12px;">Project archive</h2>
+        <p style="font-size:clamp(15px,1.4vw,17px);color:var(--muted);max-width:640px;line-height:1.6;">These projects reflect a blend of analytical thinking, technical implementation, and practical problem-solving.</p>
       </div>
-    </section>
 
-    <section class="section section-alt">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Selected Work</p>
-          <h2>Project archive</h2>
-          <p>These projects reflect a blend of analytical thinking, technical implementation, and practical problem-solving.</p>
-        </div>
+      <div style="display:flex;flex-direction:column;gap:clamp(24px,3vw,36px);">
 
-        <article class="project-card">
-          <div class="project-meta-row">
-            <div class="project-meta">
-              <span class="tag">Python</span>
-              <span class="tag">pandas</span>
-              <span class="tag">NumPy</span>
-              <span class="tag">Excel</span>
-              <span class="tag">Power Query</span>
-              <span class="tag">Data Modeling</span>
-            </div>
-            <a class="button button-primary project-cta" href="dashboard.html">View dashboard</a>
-          </div>
-          <h3>Revenue Cycle by Design: A Multi-Facility Modeling</h3>
-          <p class="project-summary">
-            Designed and generated a dataset of 250,000 claims in Python using
-            rule-based operational and financial logic, then normalized the raw output into
-            schemas with Power Query and analyze reimbursement performance, denials,
-            efficiency, and profitability.
-          </p>
-          <div class="project-grid">
-            <div class="project-block">
-              <h4>Business questions</h4>
-              <ul>
-                <li>How are A/R loads and collection rates tracking month over month?</li>
-                <li>Which payers generate the highest write-off burden per encounter?</li>
-                <li>Where are denial rates concentrated, by provider, CPT, or payer?</li>
-                <li>How does reimbursement compare to allowed revenue across encounter types?</li>
-              </ul>
-            </div>
-            <div class="project-block">
-              <h4>Approach</h4>
-              <ul>
-                <li>Cleaned and transformed raw billing data using Python and Power Query</li>
-                <li>MPRR reductions and standardized adjustment coding</li>
-                <li>Built univariate and multivariate analysis across payer and encounter dimensions</li>
-                <li>Designed an interactive Excel dashboard with slicers for payer, month, and provider</li>
-                <li>Produced a comprehensive billing report with provider-level KPIs</li>
-              </ul>
-            </div>
-            <div class="project-block">
-              <h4>Key metrics</h4>
-              <ul>
-                <li>Reimbursement totals and reimbursement rate</li>
-                <li>Denial volume and denial trends</li>
-                <li>Operational efficiency indicators</li>
-                <li>Profitability comparison</li>
-              </ul>
-            </div>
-            <div class="project-block">
-              <h4>Outcome</h4>
-              <p>Produced a reporting tool that enables comparison of performance drivers and demonstrates how reimbursement patterns, denials, and operational processes influence financial outcomes.</p>
-            </div>
-          </div>
-          <div style="margin-top:1.75rem;display:flex;flex-direction:column;gap:1rem;">
-            <a href="rcm-report-summary.png" class="zoom-link">
-              <img src="rcm-report-summary.png" alt="healthcare revenue cycle billing report summary" style="width:100%;border-radius:12px;border:1px solid var(--border);" />
-            </a>
-            <a href="rcm-report-analysis.png" class="zoom-link">
-              <img src="rcm-report-analysis.png" alt="healthcare revenue cycle billing report analysis" style="width:100%;border-radius:12px;border:1px solid var(--border);" />
-            </a>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-meta">
-            <span class="tag">Python</span>
-            <span class="tag">TensorFlow</span>
-            <span class="tag">Keras</span>
-            <span class="tag">ANN</span>
-            <span class="tag">CNN</span>
-            <span class="tag">Deep Learning</span>
-            <span class="tag">Computer Vision</span>
-            <span class="tag">Artificial Intelligence</span>
-          </div>
-          <h3>Facial Emotion Recognition: Deep Learning with Convolutional and Artificial Neural Networks</h3>
-          <p class="project-summary">
-            Built and compared multiple deep learning models to classify facial expressions
-            across four emotion categories. Progressed from a baseline ANN through increasingly
-            refined CNN architectures, achieving 91% accuracy through systematic tuning of
-            dropout layers, training epochs, and preprocessing strategy.
-          </p>
-          <div class="project-grid">
-            <div class="project-block">
-              <h4>Objective</h4>
-              <p>
-                Develop a computer vision model capable of accurately classifying facial
-                expressions into four emotion categories: happy, sad, surprised, and neutral.
-                Part of a broader direction in affective computing and emotionally intelligent
-                machine behavior.
-              </p>
-            </div>
-            <div class="project-block">
-              <h4>Approach</h4>
-              <ul>
-                <li>Baseline ANN model established as performance reference</li>
-                <li>Progressively refined CNN architectures across four model iterations</li>
-                <li>Applied dropout regularization to reduce overfitting</li>
-                <li>Increased training epochs to improve feature refinement and generalization</li>
-                <li>Evaluated grayscale vs. RGB input strategy for transfer learning alignment</li>
-                <li>Libraries: TensorFlow, Keras, NumPy, pandas, Matplotlib, Seaborn, scikit-learn</li>
-              </ul>
-            </div>
-            <div class="project-block">
-              <h4>Key metrics</h4>
-              <ul>
-                <li>Baseline ANN: 56% F1 score (best on surprise)</li>
-                <li>Model 1 (simple CNN, no dropout): 59% F1 score</li>
-                <li>Model 2 (refined CNN): 69% F1 score</li>
-                <li>Model 3 (optimized CNN): 91% F1 score</li>
-                <li>Evaluated on happy, sad, neutral, and surprised categories</li>
-              </ul>
-            </div>
-            <div class="project-block">
-              <h4>Outcome</h4>
-              <p>
-                Achieved 91% classification accuracy on facial emotion recognition through
-                iterative model improvement. The project demonstrated that CNN depth,
-                dropout tuning, and epoch scaling significantly outperform simpler ANN
-                architectures for image-based emotion classification. Key insight: matching
-                input format (grayscale) to model expectations improved alignment and
-                reduced preprocessing artifacts.
-              </p>
-            </div>
-          </div>
-          <div style="margin-top:1.75rem;">
-            <a href="facial-emotion-detection-final-result.png" class="zoom-link">
-              <img src="facial-emotion-detection-final-result.png" alt="Confusion matrix results" style="width:100%;border-radius:12px;border:1px solid var(--border);" />
-            </a>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-meta">
-            <span class="tag">Docker</span>
-            <span class="tag">Nginx</span>
-            <span class="tag">Cloudflare</span>
-            <span class="tag">Linux</span>
-            <span class="tag">MariaDB</span>
-            <span class="tag">WireGuard</span>
-            <span class="tag">Pi-hole</span>
-            <span class="tag">Let's Encrypt</span>
-          </div>
-          <h3>Self-Hosted Home Server Infrastructure</h3>
-          <p class="project-summary">
-            Architected and deployed a production-grade self-hosted environment operating
-            under the huy.gg domain, encompassing this website, email infrastructure, and
-            additional public-facing and private services. The system is built on a fully
-            containerized stack with layered security, encrypted remote access, automated
-            certificate management, and network-level DNS filtering, running continuously
-            as a live, managed production environment.
-          </p>
-          <blockquote class="project-pullquote">
-            <p>huy.gg is more than a label and more than a host. It's the synthesized record of how naming, traffic, service exposure, access, identity, and infrastructure are assembled into one operational environment.</p>
-          </blockquote>
-          <div class="project-grid">
-            <div class="project-block">
-              <h4>Objective</h4>
-              <p>
-                Design and operate a centralized, production-grade self-hosted platform
-                capable of running multiple public-facing and private services under a
-                unified domain, with enterprise-level routing, security, and access control.
-              </p>
-            </div>
-            <div class="project-block">
-              <h4>Architecture</h4>
-              <ul>
-                <li>Docker-based service isolation and container orchestration</li>
-                <li>Nginx reverse proxy with subdomain-based routing across all services</li>
-                <li>Cloudflare for DNS management, DDoS protection, and traffic proxying</li>
-                <li>Let's Encrypt for automated SSL certificate provisioning and renewal</li>
-                <li>WireGuard VPN for encrypted remote access and secure tunneling</li>
-                <li>Pi-hole for network-level DNS filtering and ad blocking</li>
-                <li>MariaDB for persistent relational data storage across services</li>
-              </ul>
-            </div>
-            <div class="project-block">
-              <h4>Services</h4>
-              <ul>
-                <li>huy.gg: production website and public portfolio</li>
-                <li>Self-hosted email infrastructure</li>
-                <li>ownCloud for private file storage and sync</li>
-                <li>Jellyfin for media streaming</li>
-                <li>Additional containerized services under active management</li>
-              </ul>
-            </div>
-            <div class="project-block">
-              <h4>Outcome</h4>
-              <p>
-                Delivered a fully operational, multi-service production environment that
-                runs continuously under a live public domain. Demonstrates end-to-end
-                systems thinking across networking, security, containerization, and
-                infrastructure management, well beyond the scope of a typical homelab.
-              </p>
-            </div>
-          </div>
-
-          <!-- Architecture diagram (interactive terminal) -->
-          <figure class="srv-fig">
-            <div class="term-frame">
-              <div class="term-bar">
-                <span class="term-dot r"></span>
-                <span class="term-dot y"></span>
-                <span class="term-dot g"></span>
-                <span class="term-title">harry@huy.gg ~ — zsh</span>
+        <!-- PROJECT: Carbon -->
+        <article id="carbon" data-reveal data-spot data-screen-label="Carbon" style="position:relative;overflow:hidden;border:1px solid var(--border);border-radius:22px;background:var(--panel-grad);padding:clamp(24px,3vw,40px);box-shadow:0 40px 100px rgba(0,0,0,.28);scroll-margin-top:96px;">
+          <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(620px circle at var(--mx,20%) var(--my,0%), var(--flare-soft), transparent 55%);"></div>
+          <div style="position:absolute;inset:0;border-radius:22px;padding:1.5px;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%), var(--flare), transparent 60%);-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;"></div>
+          <div style="position:relative;">
+            <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;margin-bottom:20px;">
+              <div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center;">
+                <span style="font-family:Arial,Helvetica,sans-serif;font-size:11px;padding:4px 10px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:600;">NEW</span>
+                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Django</span>
+                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">DRF</span>
+                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">PostgreSQL</span>
+                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Nuxt 3</span>
+                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Channels</span>
+                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Celery</span>
+                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Docker</span>
               </div>
-              <div class="term-body" id="term-body">
-                <div class="t-line"><span class="t-prompt">harry@huy.gg</span> <span class="t-muted">~</span> <span class="t-cmd">$ traceroute huy.gg</span></div>
+              <a href="https://carbon.huy.gg" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:14px;flex:none;">Visit carbon.huy.gg <span style="font-family:Arial,Helvetica,sans-serif;">&#8599;</span></a>
+            </div>
+            <h3 style="font-size:clamp(24px,2.8vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.1;margin-bottom:14px;">Carbon: A Self-Hosted Spreadsheet Database</h3>
+            <p style="font-size:clamp(15px,1.4vw,17px);color:var(--muted);line-height:1.65;max-width:820px;margin-bottom:28px;">A spreadsheet database that runs on a real machine instead of a rented cloud. Every table clicked into existence becomes a literal <code style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em;color:var(--text);">CREATE TABLE</code> in PostgreSQL with typed columns, so a filter is a <code style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em;color:var(--text);">WHERE</code> clause the database runs, not JavaScript sifting rows the browser already downloaded. Six Docker services on one machine, no vendors, and data that arrives and leaves whole as CSV, JSON, or Excel.</p>
+            <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,2.4vw,32px);margin-bottom:30px;">
+              <div>
+                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Objective</div>
+                <p style="font-size:14.5px;color:var(--muted);line-height:1.6;">One database that can hold a project, a to-do, and a personal quest in the same place, and reorganize around the work instead of holding one fixed shape. Built on the position that data ownership should be physical rather than a policy that can change next quarter: no plans, no seats, no proprietary format.</p>
+              </div>
+              <div>
+                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Architecture</div>
+                <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&middot;</span>Dynamic schema engine: user actions compile to DDL, with real columns and constraints</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&middot;</span>A unified Page model behind tables, dashboards, and notes alike</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&middot;</span>Channels WebSockets pushing live row and schema changes</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&middot;</span>Celery carrying imports, exports, and long jobs with progress</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&middot;</span>Invite-only accounts on httpOnly cookie sessions behind Caddy</li>
+                </ul>
+              </div>
+              <div>
+                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Engineering practice</div>
+                <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&middot;</span>Every slice starts as a written plan with TDD tasks and closes with a manual-verification record</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&middot;</span>Defect log kept in Symptom, Cause, Fix, Prevention form</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&middot;</span>A numbered development queue whose entry IDs are cited by plans and logs</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&middot;</span>Backup restores drilled rather than assumed</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&middot;</span>Version bumps gating every push; production never receives an unshipped number</li>
+                </ul>
+              </div>
+              <div>
+                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Outcome</div>
+                <p style="font-size:14.5px;color:var(--muted);line-height:1.6;">v0.14.0 is live in production: roughly three weeks from a twelve-task MVP plan to a running multi-user appliance with real tables, live sync, dashboards, notes, relations, and an automation engine. It runs on the same home infrastructure described below, which is what the stack was built to hold.</p>
+              </div>
+            </div>
+            <a href="https://carbon.huy.gg" target="_blank" rel="noopener" style="display:block;border-radius:12px;border:1px solid var(--border2);overflow:hidden;background:#0b0d12;color:inherit;">
+              <div style="display:flex;align-items:center;gap:8px;padding:11px 14px;border-bottom:1px solid rgba(255,255,255,.08);font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#8A9290;">
+                <span style="display:flex;gap:6px;"><span style="width:9px;height:9px;border-radius:50%;background:#ff5f57;"></span><span style="width:9px;height:9px;border-radius:50%;background:#febc2e;"></span><span style="width:9px;height:9px;border-radius:50%;background:#28c840;"></span></span>
+                <span style="margin-left:6px;">carbon &middot; project table</span>
+                <span style="margin-left:auto;color:#FF6A2B;">Visit carbon.huy.gg &#8599;</span>
+              </div>
+              <img src="carbon-grid-6.png" alt="Carbon grid view: a project table with typed columns, conditional formatting, and a summary strip" style="display:block;width:100%;height:auto;" />
+            </a>
+            <div style="font-size:12px;color:var(--muted2);line-height:1.55;margin-top:14px;max-width:680px;">The grid on carbon.huy.gg. The badge on each column header names that field's real type, and the summary strip below aggregates in SQL. Access is invite-only while the build continues.</div>
+          </div>
+        </article>
+
+        <!-- PROJECT: Claude Analytics -->
+        <article id="claude" data-reveal data-spot style="position:relative;overflow:hidden;border:1px solid var(--border);border-radius:22px;background:var(--panel-grad);padding:clamp(24px,3vw,40px);box-shadow:0 40px 100px rgba(0,0,0,.28);scroll-margin-top:96px;">
+          <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(620px circle at var(--mx,80%) var(--my,0%), var(--flare-soft), transparent 55%);"></div>
+            <div style="position:absolute;inset:0;border-radius:22px;padding:1.5px;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%), var(--flare), transparent 60%);-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;"></div>
+          <div style="position:relative;">
+            <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;margin-bottom:20px;">
+              <div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center;">
+                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">JavaScript</span>
+                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">ECharts</span>
+                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Data Analysis</span>
+                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">EDA</span>
+                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Dataviz</span>
+              </div>
+              <a href="claude-analytics.html" style="display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:14px;flex:none;">Open the dashboard <span style="font-family:Arial,Helvetica,sans-serif;">↗</span></a>
+            </div>
+            <h3 style="font-size:clamp(24px,2.8vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.1;margin-bottom:14px;">Claude Analytics: Personal Usage Intelligence</h3>
+            <p style="font-size:clamp(15px,1.4vw,17px);color:var(--muted);line-height:1.65;max-width:820px;margin-bottom:28px;">An interactive analytics dashboard that turns my own Claude session history into signal: work cadence, output patterns, model reliability and cost, resource utilization, and a full exploratory data analysis, all computed live in the browser from a parsed session dataset and rendered with ECharts. The same revenue-cycle rigor, pointed at my own workflow.</p>
+            <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,2.4vw,32px);margin-bottom:30px;">
+              <div>
+                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Objective</div>
+                <p style="font-size:14.5px;color:var(--muted);line-height:1.6;">Turn raw session logs into a self-analytics tool: understand when and how I work, what each model costs and returns, and where tool usage carries risk or overhead.</p>
+              </div>
+              <div>
+                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Approach</div>
+                <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Parsed the session dataset into aggregates in a single data layer</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Computed EDA live in-browser: no build step, no server</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Rendered interactive charts with ECharts on a self-hosted page</li>
+                </ul>
+              </div>
+              <div>
+                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Views</div>
+                <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Intelligence Thermodynamics</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Cadence &amp; Output: weekday × hour</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Models: reliability &amp; cost</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Resource utilization &amp; tool matrix</li>
+                </ul>
+              </div>
+              <div>
+                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Outcome</div>
+                <p style="font-size:14.5px;color:var(--muted);line-height:1.6;">A living dashboard that surfaces work rhythm, cost-versus-reliability tradeoffs across models, and tool usage patterns: a self-contained, portable analytics artifact.</p>
+              </div>
+            </div>
+            <a href="claude-analytics.html" style="display:block;border-radius:12px;border:1px solid var(--border2);overflow:hidden;background:#0b0d12;color:inherit;">
+              <div style="display:flex;align-items:center;gap:8px;padding:11px 14px;border-bottom:1px solid rgba(255,255,255,.08);font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#8A9290;">
+                <span style="display:flex;gap:6px;"><span style="width:9px;height:9px;border-radius:50%;background:#ff5f57;"></span><span style="width:9px;height:9px;border-radius:50%;background:#febc2e;"></span><span style="width:9px;height:9px;border-radius:50%;background:#28c840;"></span></span>
+                <span style="margin-left:6px;">claude &middot; analytics</span>
+                <span style="margin-left:auto;color:#FF6A2B;">Open dashboard ↗</span>
+              </div>
+              <img src="claude-analytics-preview.jpg" alt="Claude Analytics dashboard preview" style="display:block;width:100%;height:auto;" />
+            </a>
+          </div>
+        </article>
+
+        <!-- PROJECT 1: RCM -->
+        <article id="rcm" data-reveal data-spot style="position:relative;overflow:hidden;border:1px solid var(--border);border-radius:22px;background:var(--panel-grad);padding:clamp(24px,3vw,40px);box-shadow:0 40px 100px rgba(0,0,0,.28);scroll-margin-top:96px;">
+          <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(620px circle at var(--mx,85%) var(--my,0%), var(--flare-soft), transparent 55%);"></div>
+            <div style="position:absolute;inset:0;border-radius:22px;padding:1.5px;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%), var(--flare), transparent 60%);-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;"></div>
+          <div style="position:relative;">
+            <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;margin-bottom:20px;">
+              <div style="display:flex;gap:7px;flex-wrap:wrap;">
+                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Python</span>
+                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">pandas</span>
+                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">NumPy</span>
+                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Excel</span>
+                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Power Query</span>
+                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Data Modeling</span>
+              </div>
+              <a href="dashboard.html" style="display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:14px;flex:none;">View dashboard <span style="font-family:Arial,Helvetica,sans-serif;">→</span></a>
+            </div>
+            <h3 style="font-size:clamp(24px,2.8vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.1;margin-bottom:14px;">Revenue Cycle by Design: A Multi-Facility Modeling</h3>
+            <p style="font-size:clamp(15px,1.4vw,17px);color:var(--muted);line-height:1.65;max-width:820px;margin-bottom:28px;">Designed and generated a dataset of 250,000 claims in Python using rule-based operational and financial logic, then normalized the raw output into schemas with Power Query and analyze reimbursement performance, denials, efficiency, and profitability.</p>
+            <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,2.4vw,32px);margin-bottom:30px;">
+              <div>
+                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Business questions</div>
+                <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>How are A/R loads and collection rates tracking month over month?</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Which payers generate the highest write-off burden per encounter?</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Where are denial rates concentrated, by provider, CPT, or payer?</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>How does reimbursement compare to allowed revenue across encounter types?</li>
+                </ul>
+              </div>
+              <div>
+                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Approach</div>
+                <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Cleaned and transformed raw billing data using Python and Power Query</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>MPRR reductions and standardized adjustment coding</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Built univariate and multivariate analysis across payer and encounter dimensions</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Designed an interactive Excel dashboard with slicers for payer, month, and provider</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Produced a comprehensive billing report with provider-level KPIs</li>
+                </ul>
+              </div>
+              <div>
+                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Key metrics</div>
+                <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Reimbursement totals and reimbursement rate</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Denial volume and denial trends</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Operational efficiency indicators</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Profitability comparison</li>
+                </ul>
+              </div>
+              <div>
+                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Outcome</div>
+                <p style="font-size:14.5px;color:var(--muted);line-height:1.6;">Produced a reporting tool that enables comparison of performance drivers and demonstrates how reimbursement patterns, denials, and operational processes influence financial outcomes.</p>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <a href="rcm-report-summary.png" data-zoom target="_blank" style="display:block;border-radius:12px;border:1px solid var(--border2);overflow:hidden;background:var(--bg);cursor:zoom-in;"><img src="rcm-report-summary.png" alt="healthcare revenue cycle billing report summary" style="display:block;width:100%;height:auto;" /></a>
+              <a href="rcm-report-analysis.png" data-zoom target="_blank" style="display:block;border-radius:12px;border:1px solid var(--border2);overflow:hidden;background:var(--bg);cursor:zoom-in;"><img src="rcm-report-analysis.png" alt="healthcare revenue cycle billing report analysis" style="display:block;width:100%;height:auto;" /></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT 2: Facial Emotion -->
+        <article id="emotion" data-reveal data-spot style="position:relative;overflow:hidden;border:1px solid var(--border);border-radius:22px;background:var(--panel-grad);padding:clamp(24px,3vw,40px);box-shadow:0 40px 100px rgba(0,0,0,.28);scroll-margin-top:96px;">
+          <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(620px circle at var(--mx,15%) var(--my,0%), var(--flare-soft), transparent 55%);"></div>
+            <div style="position:absolute;inset:0;border-radius:22px;padding:1.5px;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%), var(--flare), transparent 60%);-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;"></div>
+          <div style="position:relative;">
+            <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px;">
+              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Python</span>
+              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">TensorFlow</span>
+              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Keras</span>
+              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">ANN</span>
+              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">CNN</span>
+              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Deep Learning</span>
+              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Computer Vision</span>
+            </div>
+            <h3 style="font-size:clamp(23px,2.6vw,30px);font-weight:600;letter-spacing:-.02em;line-height:1.12;margin-bottom:14px;">Facial Emotion Recognition: Deep Learning with Convolutional and Artificial Neural Networks</h3>
+            <p style="font-size:clamp(15px,1.4vw,17px);color:var(--muted);line-height:1.65;max-width:820px;margin-bottom:28px;">Built and compared multiple deep learning models to classify facial expressions across four emotion categories. Progressed from a baseline ANN through increasingly refined CNN architectures, achieving 91% accuracy through systematic tuning of dropout layers, training epochs, and preprocessing strategy.</p>
+            <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,2.4vw,32px);margin-bottom:30px;">
+              <div>
+                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Objective</div>
+                <p style="font-size:14.5px;color:var(--muted);line-height:1.6;">Develop a computer vision model capable of accurately classifying facial expressions into four emotion categories: happy, sad, surprised, and neutral. Part of a broader direction in affective computing and emotionally intelligent machine behavior.</p>
+              </div>
+              <div>
+                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Approach</div>
+                <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Baseline ANN model established as performance reference</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Progressively refined CNN architectures across four model iterations</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Applied dropout regularization to reduce overfitting</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Increased training epochs to improve generalization</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Evaluated grayscale vs. RGB input for transfer-learning alignment</li>
+                </ul>
+              </div>
+              <div>
+                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Key metrics</div>
+                <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Baseline ANN: 56% F1 score (best on surprise)</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Model 1 (simple CNN, no dropout): 59% F1</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Model 2 (refined CNN): 69% F1</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Model 3 (optimized CNN): 91% F1</li>
+                </ul>
+              </div>
+              <div>
+                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Outcome</div>
+                <p style="font-size:14.5px;color:var(--muted);line-height:1.6;">Achieved 91% classification accuracy through iterative model improvement. CNN depth, dropout tuning, and epoch scaling significantly outperformed simpler ANN architectures. Matching input format (grayscale) to model expectations improved alignment and reduced preprocessing artifacts.</p>
+              </div>
+            </div>
+            <a href="facial-emotion-detection-final-result.png" data-zoom target="_blank" style="display:block;border-radius:12px;border:1px solid var(--border2);overflow:hidden;background:var(--bg);cursor:zoom-in;"><img src="facial-emotion-detection-final-result.png" alt="Confusion matrix results" style="display:block;width:100%;height:auto;" /></a>
+          </div>
+        </article>
+
+        <!-- PROJECT 3: Self-Hosted -->
+        <article id="infra" data-reveal data-spot style="position:relative;overflow:hidden;border:1px solid var(--border);border-radius:22px;background:var(--panel-grad);padding:clamp(24px,3vw,40px);box-shadow:0 40px 100px rgba(0,0,0,.28);scroll-margin-top:96px;">
+          <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(620px circle at var(--mx,85%) var(--my,0%), var(--flare-soft), transparent 55%);"></div>
+            <div style="position:absolute;inset:0;border-radius:22px;padding:1.5px;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%), var(--flare), transparent 60%);-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;"></div>
+          <div style="position:relative;">
+            <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px;">
+              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Docker</span>
+              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Nginx</span>
+              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Cloudflare</span>
+              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Linux</span>
+              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">MariaDB</span>
+              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">WireGuard</span>
+              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Pi-hole</span>
+              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Let's Encrypt</span>
+            </div>
+            <h3 style="font-size:clamp(24px,2.8vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.1;margin-bottom:14px;">Self-Hosted Home Server Infrastructure</h3>
+            <p style="font-size:clamp(15px,1.4vw,17px);color:var(--muted);line-height:1.65;max-width:820px;margin-bottom:18px;">Architected and deployed a production-grade self-hosted environment operating under the huy.gg domain, encompassing this website, email infrastructure, and additional public-facing and private services. Built on a fully containerized stack with layered security, encrypted remote access, automated certificate management, and network-level DNS filtering, running continuously as a live, managed production environment.</p>
+            <blockquote style="border-left:3px solid var(--flare);padding:6px 0 6px 20px;margin:0 0 26px;max-width:760px;"><p style="font-style:italic;font-size:clamp(15px,1.4vw,17px);color:var(--text);line-height:1.55;">huy.gg is more than a label and more than a host. It's the synthesized record of how naming, traffic, service exposure, access, identity, and infrastructure are assembled into one operational environment.</p></blockquote>
+            <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,2.4vw,32px);margin-bottom:30px;">
+              <div>
+                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Objective</div>
+                <p style="font-size:14.5px;color:var(--muted);line-height:1.6;">Design and operate a centralized, production-grade self-hosted platform capable of running multiple public-facing and private services under a unified domain, with enterprise-level routing, security, and access control.</p>
+              </div>
+              <div>
+                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Architecture</div>
+                <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Docker-based service isolation and orchestration</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Nginx reverse proxy with subdomain routing</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Cloudflare for DNS, DDoS protection, traffic proxying</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Let's Encrypt automated SSL provisioning</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>WireGuard VPN for encrypted remote access</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Pi-hole network-level DNS filtering</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>MariaDB persistent storage across services</li>
+                </ul>
+              </div>
+              <div>
+                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Services</div>
+                <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>huy.gg: production website &amp; portfolio</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span><a href="#carbon" style="color:var(--flare);">Carbon</a>: self-hosted database platform</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Self-hosted email infrastructure</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>ownCloud private file storage &amp; sync</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Jellyfin media streaming</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Additional containerized services</li>
+                </ul>
+              </div>
+              <div>
+                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Outcome</div>
+                <p style="font-size:14.5px;color:var(--muted);line-height:1.6;">Delivered a fully operational, multi-service production environment running continuously under a live public domain. Demonstrates end-to-end systems thinking across networking, security, containerization, and infrastructure management, well beyond a typical homelab.</p>
+              </div>
+            </div>
+            <!-- interactive terminal -->
+            <div style="border:1px solid var(--border2);border-radius:12px;overflow:hidden;background:#0f1115;box-shadow:0 16px 40px rgba(0,0,0,.35);font-family:Arial,Helvetica,sans-serif,ui-monospace,monospace;max-width:760px;">
+              <div style="display:flex;align-items:center;gap:6px;padding:9px 13px;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.08);">
+                <span style="width:11px;height:11px;border-radius:50%;background:#ff5f57;"></span>
+                <span style="width:11px;height:11px;border-radius:50%;background:#febc2e;"></span>
+                <span style="width:11px;height:11px;border-radius:50%;background:#28c840;"></span>
+                <span style="margin-left:8px;font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.04em;">harry@huy.gg ~ &middot; zsh</span>
+              </div>
+              <div id="term-body" style="padding:15px 18px 18px;font-size:12.5px;line-height:1.55;color:#d8dde6;cursor:text;">
+                <div style="opacity:0;animation:tfade .25s ease forwards;"><span style="color:#8a8f99;">harry@huy.gg</span> <span style="color:#888c95;">~</span> <span style="color:#e7d7c1;">$ traceroute huy.gg</span></div>
                 <div id="traceroute-out"></div>
-
-                <div class="t-line" style="margin-top:0.7rem;"><span class="t-prompt">harry@huy.gg</span> <span class="t-muted">~</span> <span class="t-cmd">$ tail -f /var/log/services.log</span></div>
-                <div id="log-feed" style="margin-top:0.3rem; min-height: 110px;"></div>
-
-                <div id="term-history" style="margin-top:0.4rem;"></div>
-                <div class="t-line" id="term-prompt-line" style="margin-top:0.4rem;">
-                  <span class="t-prompt">harry@huy.gg</span> <span class="t-muted">~</span> <span class="t-cmd">$&nbsp;</span><span id="term-input" contenteditable="true" spellcheck="false"></span><span class="term-cursor" aria-hidden="true"></span>
-                </div>
-                <div class="t-tiphint">
-                  <span class="t-ok">tip</span>: try <code>help</code>, <code>whoami</code>, <code>ls services</code>, <code>cat motd</code>, <code>ping huy.gg</code>, <code>uptime</code>, <code>sudo rm -rf /</code>
+                <div style="opacity:0;animation:tfade .25s ease forwards;margin-top:11px;"><span style="color:#8a8f99;">harry@huy.gg</span> <span style="color:#888c95;">~</span> <span style="color:#e7d7c1;">$ tail -f /var/log/services.log</span></div>
+                <div id="log-feed" style="margin-top:5px;min-height:108px;"></div>
+                <div id="term-history" style="margin-top:6px;"></div>
+                <div style="margin-top:6px;"><span style="color:#8a8f99;">harry@huy.gg</span> <span style="color:#888c95;">~</span> <span style="color:#e7d7c1;">$&nbsp;</span><span id="term-input" contenteditable="true" spellcheck="false" style="outline:none;color:#e7d7c1;min-width:1px;"></span><span id="term-cursor" style="display:inline-block;width:8px;height:14px;background:#FF6A2B;vertical-align:-2px;animation:tblink 1s steps(2) infinite;"></span></div>
+                <div style="margin-top:11px;font-size:11px;color:rgba(255,255,255,.4);">
+                  <span style="color:#7ec47e;">tip</span>: try <span style="color:#FF6A2B;">help</span>, <span style="color:#FF6A2B;">whoami</span>, <span style="color:#FF6A2B;">ls services</span>, <span style="color:#FF6A2B;">cat motd</span>, <span style="color:#FF6A2B;">ping huy.gg</span>, <span style="color:#FF6A2B;">uptime</span>
                 </div>
               </div>
             </div>
-            <figcaption class="srv-cap">Cloudflare fronts the stack and routes mail to Gmail. GitHub Pages serves the public site; the home server runs WireGuard VPN, Pi-hole DNS filtering, ownCloud storage, and Jellyfin behind Nginx and Docker. <em>(Click into the prompt above to poke around.)</em></figcaption>
-          </figure>
+            <div style="font-size:12px;color:var(--muted2);line-height:1.55;margin-top:14px;max-width:640px;">Cloudflare fronts the stack and routes mail to Gmail. GitHub Pages serves the public site; the home server runs WireGuard VPN, Pi-hole DNS filtering, ownCloud storage, and Jellyfin behind Nginx and Docker. <em>(Click into the prompt to poke around.)</em></div>
+          </div>
         </article>
 
       </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="contact-card">
-          <p class="eyebrow">Get in touch</p>
-          <h2>Interested in my work?</h2>
-          <p>If you are hiring for data analyst or business analyst roles, or want to discuss a project in more detail, feel free to reach out.</p>
-          <div class="contact-actions">
-            <a class="button button-primary" href="contact.html">Contact me</a>
-            <a class="button button-secondary" href="resume.html">View Resume</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <a class="brand" href="index.html">
-        <img src="logo.png" alt="huy.gg" />
-        <span>© 2026 Harry Nguyen</span>
-      </a>
-      <p><a href="https://huy.gg" style="color: var(--accent-dark); text-decoration: none;">huy.gg</a></p>
     </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="position:relative;overflow:hidden;padding:50px clamp(20px,5vw,80px);border-top:1px solid var(--border);">
+    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:760px;height:400px;border-radius:50%;background:radial-gradient(circle, var(--glowC), transparent 62%);filter:blur(30px);"></div>
+    <div data-reveal style="position:relative;max-width:1160px;margin:0 auto;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;">
+      <div>
+        <h2 style="font-size:clamp(28px,3.6vw,40px);font-weight:600;letter-spacing:-.02em;margin-bottom:8px;">Interested in my work?</h2>
+        <p style="font-size:15px;color:var(--muted);">Hiring for analyst roles, or want to talk through a project? Reach out.</p>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="mailto:h@huy.gg" style="display:inline-flex;align-items:center;gap:9px;height:52px;padding:0 28px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:16px;">Email me <span style="font-family:Arial,Helvetica,sans-serif;">&rarr;</span></a>
+        <a href="resume.html" style="display:inline-flex;align-items:center;height:52px;padding:0 28px;border-radius:999px;border:1px solid var(--border3);color:var(--text);font-size:16px;">View Resume</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="padding:22px clamp(20px,5vw,80px);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:var(--muted2);">
+    <a href="index.html" style="display:inline-flex;align-items:center;gap:10px;color:var(--muted2);">
+      <img data-logo-dark src="logo-cream.png" alt="huy.gg" style="width:22px;height:22px;object-fit:contain;" />
+      <img data-logo-light src="logo.png" alt="huy.gg" style="width:22px;height:22px;object-fit:contain;" />
+      © 2026 Harry Nguyen
+    </a>
+    <a href="https://huy.gg" style="color:var(--flare);">huy.gg</a>
   </footer>
 
-  <!-- Luminous lightbox — init AFTER DOM is ready so all .zoom-link elements exist -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      var options = {
-        closeOnOutsideClick: true,
-        showCloseButton: true
-      };
+</div>
+<script>
 
-      // Initialize on every .zoom-link — querySelectorAll loops all four images
-      document.querySelectorAll('.zoom-link').forEach(function (link) {
-        new Luminous(link, options);
-      });
+class DCLogic {
+  constructor(props) { this.props = props; this.state = {}; }
+  setState(patch) { Object.assign(this.state, patch); }
+}
+
+
+class Component extends DCLogic {
+  renderVals() { return {}; }
+  componentDidMount() {
+    this.sync();
+    if (!this._bound) { this._bound = true; requestAnimationFrame(() => this.enhance()); }
+  }
+  componentDidUpdate() { this.sync(); }
+  sync() {
+    const r = document.getElementById('home-root');
+    if (!r) return;
+    r.dataset.rm = (this.props.reduceMotion ?? false) ? '1' : '0';
+    r.dataset.grain = (this.props.showGrain ?? true) ? '1' : '0';
+    r.dataset.spot = (this.props.spotlight ?? true) ? '1' : '0';
+  }
+  enhance() {
+    const r = document.getElementById('home-root');
+    if (!r) return;
+    try { const t = localStorage.getItem('huygg-theme'); if (t) r.setAttribute('data-theme', t); } catch (e) {}
+    const tt = document.getElementById('theme-toggle');
+    if (tt) tt.addEventListener('click', () => {
+      const next = (r.getAttribute('data-theme') === 'light') ? 'dark' : 'light';
+      r.setAttribute('data-theme', next);
+      try { localStorage.setItem('huygg-theme', next); } catch (e) {}
     });
-  </script>
-
-  <!-- Site-wide background layer + Tweaks -->
-  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-  <script type="text/babel" src="tweaks-panel.jsx"></script>
-  <script type="text/babel" src="bg.jsx?v=bgv9"></script>
-
-  <!-- Interactive terminal (self-hosted infrastructure card) -->
-  <script>
-  (function () {
-    var trOut = document.getElementById('traceroute-out');
+    // reveals
+    const items = [...r.querySelectorAll('[data-reveal]')];
+    items.forEach((el) => {
+      el.style.opacity = '0'; el.style.transform = 'translateY(28px)';
+      el.style.transition = 'opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1)';
+      el.style.transitionDelay = (el.dataset.delay || 0) + 'ms';
+    });
+    const reveal = (el) => { el.style.opacity = '1'; el.style.transform = 'none'; };
+    const io = new IntersectionObserver((es) => { es.forEach((e) => { if (e.isIntersecting) { reveal(e.target); io.unobserve(e.target); } }); }, { threshold: 0.08, rootMargin: '0px 0px -4% 0px' });
+    items.forEach((el) => io.observe(el));
+    setTimeout(() => items.forEach(reveal), 2600);
+    r.querySelectorAll('[data-fx="tilt"]').forEach((card) => { const inner = card.querySelector('[data-fx-inner]') || card; card.addEventListener('mousemove', (ev) => { if (r.dataset.rm === '1') return; inner.style.transition = 'transform .12s ease-out'; const b = card.getBoundingClientRect(); const px = (ev.clientX - b.left)/b.width, py = (ev.clientY - b.top)/b.height; inner.style.transform = 'perspective(820px) rotateX(' + ((0.5-py)*9).toFixed(2) + 'deg) rotateY(' + ((px-0.5)*11).toFixed(2) + 'deg)'; }); card.addEventListener('mouseleave', () => { inner.style.transform = 'perspective(820px) rotateX(0deg) rotateY(0deg)'; }); });
+    // spotlight
+    r.addEventListener('mousemove', (ev) => {
+      if (r.dataset.spot === '0') return;
+      const c = ev.target.closest ? ev.target.closest('[data-spot]') : null;
+      if (!c) return;
+      const b = c.getBoundingClientRect();
+      c.style.setProperty('--mx', ((ev.clientX - b.left) / b.width * 100).toFixed(1) + '%');
+      c.style.setProperty('--my', ((ev.clientY - b.top) / b.height * 100).toFixed(1) + '%');
+    });
+    this.lightbox();
+    this.terminal();
+  }
+  lightbox() {
+    const r = document.getElementById('home-root');
+    if (!r) return;
+    let ov = null, zoomed = false, curImg = null, curVp = null;
+    const Z = 2.4;
+    const onKey = (e) => { if (e.key === 'Escape') close(); };
+    const applyOrigin = (e) => {
+      if (!curImg || !curVp) return;
+      const b = curVp.getBoundingClientRect();
+      const x = Math.min(1, Math.max(0, (e.clientX - b.left) / b.width));
+      const y = Math.min(1, Math.max(0, (e.clientY - b.top) / b.height));
+      curImg.style.transformOrigin = (x * 100).toFixed(1) + '% ' + (y * 100).toFixed(1) + '%';
+    };
+    const onMove = (e) => { if (zoomed) applyOrigin(e); };
+    const setZoom = (on, e) => {
+      if (!curImg) return;
+      const rm = r.dataset.rm === '1';
+      zoomed = on;
+      if (on && e) applyOrigin(e);
+      curImg.style.transition = rm ? 'none' : 'transform .3s cubic-bezier(.2,.7,.2,1)';
+      curImg.style.transform = on ? 'scale(' + Z + ')' : 'scale(1)';
+      curImg.style.cursor = on ? 'zoom-out' : 'zoom-in';
+    };
+    const close = () => {
+      if (!ov) return;
+      const el = ov; ov = null; zoomed = false; curImg = null; curVp = null;
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+      if (r.dataset.rm === '1') { el.remove(); return; }
+      el.style.opacity = '0';
+      setTimeout(() => el.remove(), 200);
+    };
+    const open = (src, alt) => {
+      if (ov || !src) return;
+      const rm = r.dataset.rm === '1';
+      const dark = r.getAttribute('data-theme') !== 'light';
+      zoomed = false;
+      ov = document.createElement('div');
+      ov.setAttribute('data-lightbox', '');
+      ov.style.cssText = 'position:fixed;inset:0;z-index:10001;display:flex;align-items:center;justify-content:center;padding:clamp(16px,4vw,56px);cursor:zoom-out;background:' + (dark ? 'rgba(6,7,9,.92)' : 'rgba(24,18,12,.86)') + ';-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);opacity:0;' + (rm ? '' : 'transition:opacity .2s ease;');
+      const fig = document.createElement('figure');
+      fig.style.cssText = 'margin:0;display:flex;flex-direction:column;gap:12px;align-items:center;cursor:default;max-width:min(1240px,94vw);';
+      const vp = document.createElement('div');
+      vp.style.cssText = 'position:relative;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,.16);box-shadow:0 40px 120px rgba(0,0,0,.6);background:#0b0d12;line-height:0;max-width:100%;';
+      const img = document.createElement('img');
+      img.src = src; img.alt = alt || '';
+      img.style.cssText = 'display:block;max-width:min(1240px,94vw);max-height:' + (alt ? '82vh' : '90vh') + ';width:auto;height:auto;object-fit:contain;cursor:zoom-in;transform-origin:center;transform:scale(' + (rm ? '1' : '.985') + ');' + (rm ? '' : 'transition:transform .2s ease;');
+      vp.appendChild(img);
+      fig.appendChild(vp);
+      curImg = img; curVp = vp;
+      if (alt) { const cap = document.createElement('figcaption'); cap.textContent = alt; cap.style.cssText = "font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:.02em;color:rgba(255,255,255,.72);text-align:center;max-width:680px;line-height:1.5;"; fig.appendChild(cap); }
+      const btn = document.createElement('button');
+      btn.type = 'button'; btn.setAttribute('aria-label', 'Close'); btn.innerHTML = '&times;';
+      btn.style.cssText = 'position:absolute;top:clamp(12px,2.4vw,24px);right:clamp(12px,2.4vw,24px);width:44px;height:44px;border-radius:999px;border:1px solid rgba(255,255,255,.24);background:rgba(0,0,0,.4);color:#fff;font-size:26px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;z-index:2;';
+      fig.addEventListener('click', (e) => e.stopPropagation());
+      img.addEventListener('click', (e) => { e.stopPropagation(); setZoom(!zoomed, e); });
+      vp.addEventListener('mousemove', onMove);
+      ov.addEventListener('click', close);
+      btn.addEventListener('click', close);
+      ov.appendChild(fig); ov.appendChild(btn);
+      document.addEventListener('keydown', onKey);
+      document.body.appendChild(ov);
+      document.body.style.overflow = 'hidden';
+      if (rm) { ov.style.opacity = '1'; }
+      else requestAnimationFrame(() => { ov.style.opacity = '1'; img.style.transform = 'scale(1)'; });
+    };
+    r.addEventListener('click', (e) => {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = e.target.closest ? e.target.closest('a[data-zoom]') : null;
+      if (!a) return;
+      e.preventDefault();
+      const im = a.querySelector('img');
+      open(a.getAttribute('href'), im ? im.getAttribute('alt') : '');
+    });
+  }
+  terminal() {
+    const trOut = document.getElementById('traceroute-out');
     if (!trOut) return;
-    var hops = [
-      { n: 1, host: 'router.local',     ip: '192.168.1.1',     ms: '0.4 ms',  tag: '' },
-      { n: 2, host: 'cloudflare-edge',  ip: '104.21.17.42',    ms: '12 ms',   tag: '★ edge' },
-      { n: 3, host: 'github-pages',     ip: '185.199.108.153', ms: '28 ms',   tag: '✓ static' },
-      { n: 4, host: 'huy.gg',           ip: '108.x.x.x',       ms: '31 ms',   tag: '✓ home' }
+    const C = { p: '#8a8f99', cmd: '#e7d7c1', ok: '#7ec47e', acc: '#FF6A2B', mut: '#888c95', txt: '#d8dde6' };
+    const line = (html, mt) => '<div style="opacity:0;animation:tfade .25s ease forwards;' + (mt ? 'margin-top:' + mt + ';' : '') + '">' + html + '</div>';
+    const hops = [
+      { n: 1, host: 'router.local', ip: '192.168.1.1', ms: '0.4 ms', tag: '' },
+      { n: 2, host: 'cloudflare-edge', ip: '104.21.17.42', ms: '12 ms', tag: '★ edge' },
+      { n: 3, host: 'github-pages', ip: '185.199.108.153', ms: '28 ms', tag: '✓ static' },
+      { n: 4, host: 'huy.gg', ip: '108.x.x.x', ms: '31 ms', tag: '✓ home' }
     ];
-    hops.forEach(function (h, i) {
-      setTimeout(function () {
-        var d = document.createElement('div');
-        d.className = 't-line';
-        d.innerHTML =
-          '<span class="t-muted">  ' + h.n + '  </span>' +
-          '<span class="t-accent">' + h.host + '</span>' +
-          '<span class="t-muted">  (' + h.ip + ')</span>' +
-          '<span class="t-muted">  ' + h.ms + '</span>' +
-          (h.tag ? '  <span class="t-ok">' + h.tag + '</span>' : '');
-        trOut.appendChild(d);
-      }, 250 + i * 350);
-    });
+    hops.forEach((h, i) => setTimeout(() => {
+      const d = document.createElement('div');
+      d.style.cssText = 'opacity:0;animation:tfade .25s ease forwards;';
+      d.innerHTML = '<span style="color:' + C.mut + '">  ' + h.n + '  </span><span style="color:' + C.acc + '">' + h.host + '</span><span style="color:' + C.mut + '">  (' + h.ip + ')</span><span style="color:' + C.mut + '">  ' + h.ms + '</span>' + (h.tag ? '  <span style="color:' + C.ok + '">' + h.tag + '</span>' : '');
+      trOut.appendChild(d);
+    }, 250 + i * 320));
 
-    var feed = document.getElementById('log-feed');
-    var pool = [
-      ['cloudflare', 'GET /resume.html → 200 OK'],
-      ['github-pages', 'cache HIT · 12ms'],
-      ['wireguard', 'peer connected (peer_03)'],
-      ['pihole', 'blocked googleads.g.doubleclick.net'],
-      ['pihole', 'blocked tracking.facebook.com'],
-      ['pihole', 'blocked 47 trackers in last 60s'],
-      ['jellyfin', 'streaming "The Bear S03E04" → 1080p'],
-      ['owncloud', 'sync complete (47 files, 312 MB)'],
-      ['cloudflare', 'email forwarded h@huy.gg → gmail'],
-      ['nginx', 'TLS handshake · TLS_AES_256_GCM_SHA384'],
-      ['mariadb', 'query took 3ms'],
-      ['huy.gg', 'visitor from Denver, CO 🤠'],
-      ['cloudflare', 'GET /projects.html → 200 OK'],
-      ['wireguard', 'rx 1.2 GB · tx 412 MB'],
-      ['pihole', '24.7% queries blocked today']
+    const feed = document.getElementById('log-feed');
+    const pool = [
+      ['cloudflare', 'GET /resume → 200 OK'], ['github-pages', 'cache HIT · 12ms'],
+      ['wireguard', 'peer connected (peer_03)'], ['pihole', 'blocked googleads.g.doubleclick.net'],
+      ['pihole', 'blocked 47 trackers in last 60s'], ['jellyfin', 'streaming 1080p'],
+      ['owncloud', 'sync complete (47 files, 312 MB)'], ['cloudflare', 'email forwarded h@huy.gg → gmail'],
+      ['nginx', 'TLS handshake · TLS_AES_256_GCM'], ['mariadb', 'query took 3ms'],
+      ['huy.gg', 'visitor from Denver, CO'], ['cloudflare', 'GET /projects → 200 OK'],
+      ['wireguard', 'rx 1.2 GB · tx 412 MB'], ['pihole', '24.7% queries blocked today']
     ];
-    function pad(n){return n<10?'0'+n:''+n;}
-    function ts() {
-      var d = new Date();
-      return pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
-    }
-    function addLog() {
-      var p = pool[Math.floor(Math.random() * pool.length)];
-      var div = document.createElement('div');
-      div.className = 't-line';
-      div.innerHTML =
-        '<span class="t-muted">[' + ts() + ']</span> ' +
-        '<span class="t-ok">' + p[0] + '</span> ' +
-        '<span class="t-muted">→</span> ' +
-        '<span style="color:#d8dde6;">' + p[1] + '</span>';
+    const pad = (n) => n < 10 ? '0' + n : '' + n;
+    const ts = () => { const d = new Date(); return pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds()); };
+    const addLog = () => {
+      if (!document.body.contains(feed)) return;
+      const pp = pool[Math.floor(Math.random() * pool.length)];
+      const div = document.createElement('div');
+      div.style.cssText = 'opacity:0;animation:tfade .25s ease forwards;';
+      div.innerHTML = '<span style="color:' + C.mut + '">[' + ts() + ']</span> <span style="color:' + C.ok + '">' + pp[0] + '</span> <span style="color:' + C.mut + '">→</span> <span style="color:' + C.txt + '">' + pp[1] + '</span>';
       feed.appendChild(div);
       while (feed.children.length > 5) feed.removeChild(feed.firstChild);
       setTimeout(addLog, 1400 + Math.random() * 2200);
-    }
-    setTimeout(addLog, 250 + hops.length * 350 + 400);
-
-    var input = document.getElementById('term-input');
-    var history = document.getElementById('term-history');
-    var promptLine = document.getElementById('term-prompt-line');
-
-    function append(html) {
-      var d = document.createElement('div');
-      d.className = 't-line';
-      d.innerHTML = html;
-      history.appendChild(d);
-    }
-    function appendCmd(cmd) {
-      append('<span class="t-prompt">harry@huy.gg</span> <span class="t-muted">~</span> <span class="t-cmd">$ ' + cmd + '</span>');
-    }
-
-    var COMMANDS = {
-      help: function () {
-        append('<span class="t-muted">available commands:</span>');
-        append('  <span class="t-accent">whoami</span>      <span class="t-muted">— who is running this server</span>');
-        append('  <span class="t-accent">ls services</span> <span class="t-muted">— list running services</span>');
-        append('  <span class="t-accent">cat motd</span>    <span class="t-muted">— message of the day</span>');
-        append('  <span class="t-accent">ping huy.gg</span> <span class="t-muted">— check the lights</span>');
-        append('  <span class="t-accent">uptime</span>      <span class="t-muted">— how long the server has been up</span>');
-        append('  <span class="t-accent">sudo rm -rf /</span> <span class="t-muted">— don\'t.</span>');
-        append('  <span class="t-accent">clear</span>       <span class="t-muted">— clear screen</span>');
-      },
-      whoami: function () {
-        append('<span class="t-ok">harry</span> <span class="t-muted">— builder, runner, occasional breaker of things</span>');
-      },
-      'ls services': function () {
-        append('<span class="t-accent">huy.gg</span>     <span class="t-muted">— served by GitHub Pages, fronted by Cloudflare</span>');
-        append('<span class="t-accent">wireguard</span>  <span class="t-muted">— personal VPN, peer access only</span>');
-        append('<span class="t-accent">pihole</span>     <span class="t-muted">— DNS sinkhole, blocks ads + trackers network-wide</span>');
-        append('<span class="t-accent">owncloud</span>   <span class="t-muted">— self-hosted file sync</span>');
-        append('<span class="t-accent">jellyfin</span>   <span class="t-muted">— media server (movies, shows, music)</span>');
-        append('<span class="t-accent">email</span>      <span class="t-muted">— Cloudflare Email Routing → Gmail (h@huy.gg)</span>');
-      },
-      'cat motd': function () {
-        append('<span class="t-muted">─────────────────────────────────────────</span>');
-        append('  Welcome to <span class="t-ok">huy.gg</span>.');
-        append('  The lights are always on.');
-        append('  <span class="t-muted">— uptime: 287 days · 14:23:07</span>');
-        append('<span class="t-muted">─────────────────────────────────────────</span>');
-      },
-      'ping huy.gg': function () {
-        ['64 bytes from huy.gg: icmp_seq=1 time=0.412 ms',
-         '64 bytes from huy.gg: icmp_seq=2 time=0.398 ms',
-         '64 bytes from huy.gg: icmp_seq=3 time=0.421 ms',
-         '64 bytes from huy.gg: icmp_seq=4 time=0.405 ms',
-         '<span class="t-ok">--- huy.gg ping statistics ---</span>',
-         '4 packets transmitted, 4 received, <span class="t-ok">0% packet loss</span>'].forEach(function (l, i) {
-          setTimeout(function(){ append('<span class="t-muted">' + l + '</span>'); }, i * 220);
-        });
-      },
-      uptime: function () {
-        append('<span class="t-ok">up 287 days</span>, 14:23, load average: 0.08, 0.12, 0.09');
-      },
-      'sudo rm -rf /': function () {
-        append('<span style="color:#ff6b6b">[sudo] password for harry:</span> <span class="t-muted">****</span>');
-        setTimeout(function(){ append('<span style="color:#ff6b6b">nice try.</span> <span class="t-muted">this is a portfolio site, not your homework.</span>'); }, 500);
-      },
-      clear: function () {
-        history.innerHTML = '';
-      }
     };
-    COMMANDS.ls = COMMANDS['ls services'];
-    COMMANDS.motd = COMMANDS['cat motd'];
-    COMMANDS.ping = COMMANDS['ping huy.gg'];
+    setTimeout(addLog, 250 + hops.length * 320 + 400);
 
-    function run(raw) {
-      var cmd = raw.trim();
-      if (!cmd) return;
-      appendCmd(cmd);
-      var fn = COMMANDS[cmd] || COMMANDS[cmd.toLowerCase()];
-      if (fn) {
-        fn();
-      } else {
-        append('<span class="t-muted">zsh: command not found: ' + cmd.replace(/[<>]/g,'') + '</span>');
-        append('<span class="t-muted">try </span><span class="t-accent">help</span>');
-      }
-    }
-
+    const input = document.getElementById('term-input');
+    const history = document.getElementById('term-history');
+    const A = (html) => { const d = document.createElement('div'); d.style.cssText = 'opacity:0;animation:tfade .25s ease forwards;'; d.innerHTML = html; history.appendChild(d); };
+    const CMD = {
+      help: () => { A('<span style="color:' + C.mut + '">available: </span><span style="color:' + C.acc + '">whoami · ls services · cat motd · ping huy.gg · uptime · clear</span>'); },
+      whoami: () => A('<span style="color:' + C.ok + '">harry</span> <span style="color:' + C.mut + '">&middot; builder, runner, and occasional breaker of things</span>'),
+      'ls services': () => { ['huy.gg :: GitHub Pages, fronted by Cloudflare', 'wireguard :: personal VPN, peer access only', 'pihole :: DNS sinkhole, network-wide ad/tracker block', 'owncloud :: self-hosted file sync', 'jellyfin :: media server', 'email :: Cloudflare routing → Gmail (h@huy.gg)'].forEach((s) => { const p = s.split(' :: '); A('<span style="color:' + C.acc + '">' + p[0] + '</span> <span style="color:' + C.mut + '">&middot; ' + p[1] + '</span>'); }); },
+      'cat motd': () => { A('<span style="color:' + C.mut + '">─────────────────────────────</span>'); A('  Welcome to <span style="color:' + C.ok + '">huy.gg</span>. The lights are always on.'); A('<span style="color:' + C.mut + '">  uptime: 287 days · 14:23:07</span>'); A('<span style="color:' + C.mut + '">─────────────────────────────</span>'); },
+      'ping huy.gg': () => { ['64 bytes from huy.gg: icmp_seq=1 time=0.412 ms', '64 bytes from huy.gg: icmp_seq=2 time=0.398 ms', '64 bytes from huy.gg: icmp_seq=3 time=0.421 ms', '--- huy.gg ping statistics ---', '3 packets transmitted, 3 received, 0% packet loss'].forEach((l, i) => setTimeout(() => A('<span style="color:' + C.mut + '">' + l + '</span>'), i * 200)); },
+      uptime: () => A('<span style="color:' + C.ok + '">up 287 days</span>, 14:23, load average: 0.08, 0.12, 0.09'),
+      clear: () => { history.innerHTML = ''; }
+    };
+    CMD.ls = CMD['ls services']; CMD.motd = CMD['cat motd']; CMD.ping = CMD['ping huy.gg'];
+    const run = (raw) => {
+      const cmd = (raw || '').trim(); if (!cmd) return;
+      A('<span style="color:' + C.p + '">harry@huy.gg</span> <span style="color:' + C.mut + '">~</span> <span style="color:' + C.cmd + '">$ ' + cmd.replace(/[<>]/g, '') + '</span>');
+      const fn = CMD[cmd] || CMD[cmd.toLowerCase()];
+      if (fn) fn(); else { A('<span style="color:' + C.mut + '">zsh: command not found: ' + cmd.replace(/[<>]/g, '') + '</span>'); A('<span style="color:' + C.mut + '">try </span><span style="color:' + C.acc + '">help</span>'); }
+    };
     if (input) {
-      input.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          var v = input.textContent;
-          input.textContent = '';
-          run(v);
-        }
-      });
-      var body = document.getElementById('term-body');
-      body.addEventListener('click', function (e) {
-        if (e.target === input) return;
-        input.focus();
-      });
+      input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); const v = input.textContent; input.textContent = ''; run(v); } });
+      const body = document.getElementById('term-body');
+      body.addEventListener('click', (e) => { if (e.target !== input) input.focus(); });
     }
-  })();
-  </script>
+  }
+}
+
+
+(function () {
+  var start = function () {
+    var c = new Component({"reduceMotion": false, "spotlight": true, "showGrain": true});
+    if (c.componentDidMount) c.componentDidMount();
+  };
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
+})();
+
+</script>
 </body>
 </html>
