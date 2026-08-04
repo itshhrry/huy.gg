@@ -135,11 +135,10 @@
               <div>
                 <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Architecture</div>
                 <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>A schema engine that compiles interface actions into DDL, so columns and constraints are enforced by PostgreSQL rather than simulated in application code</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Types and constraints enforced by the database itself rather than simulated in application code</li>
                   <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>One Page model underneath tables, dashboards, and notes, so a new view is a presentation choice instead of a separate subsystem</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>WebSockets over Django Channels pushing row and schema changes to every open session</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Celery running imports, exports, and other long jobs with live progress reporting</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Invite-only accounts on httpOnly cookie sessions, terminated by Caddy</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Row and schema changes broadcast to every open session, so nobody works from a stale view</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Imports, exports, and other long jobs run on a background queue with live progress</li>
                 </ul>
               </div>
               <div>
