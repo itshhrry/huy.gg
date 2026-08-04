@@ -127,46 +127,46 @@
               <a href="https://carbon.huy.gg" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:14px;flex:none;">Visit carbon.huy.gg <span style="font-family:Arial,Helvetica,sans-serif;">&#8599;</span></a>
             </div>
             <h3 style="font-size:clamp(24px,2.8vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.1;margin-bottom:14px;">Carbon: A Self-Hosted Spreadsheet Database</h3>
-            <p style="font-size:clamp(15px,1.4vw,17px);color:var(--muted);line-height:1.65;max-width:820px;margin-bottom:28px;">A spreadsheet database that runs on a real machine instead of a rented cloud. Every table clicked into existence becomes a literal <code style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em;color:var(--text);">CREATE TABLE</code> in PostgreSQL with typed columns, so a filter is a <code style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em;color:var(--text);">WHERE</code> clause the database runs, not JavaScript sifting rows the browser already downloaded. Six Docker services on one machine, no vendors, and data that arrives and leaves whole as CSV, JSON, or Excel.</p>
+            <p style="font-size:clamp(15px,1.4vw,17px);color:var(--muted);line-height:1.65;max-width:820px;margin-bottom:28px;">A spreadsheet database that runs on hardware I own rather than rented cloud. Every table a user creates becomes a real <code style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em;color:var(--text);">CREATE TABLE</code> in PostgreSQL with typed columns, so filtering executes as a <code style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em;color:var(--text);">WHERE</code> clause inside the database instead of JavaScript sifting rows the browser already downloaded. That one decision is what lets the same interface stay responsive at a hundred rows and at a million. Six Docker services on a single machine, and every table exports whole to CSV, JSON, or Excel.</p>
             <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,2.4vw,32px);margin-bottom:30px;">
               <div>
                 <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Objective</div>
-                <p style="font-size:14.5px;color:var(--muted);line-height:1.6;">One database that can hold a project, a to-do, and a personal quest in the same place, and reorganize around the work instead of holding one fixed shape. Built on the position that data ownership should be physical rather than a policy that can change next quarter: no plans, no seats, no proprietary format.</p>
+                <p style="font-size:14.5px;color:var(--muted);line-height:1.6;">Most project tools make the work fit their shape. I wanted one database that could hold a project, a to-do list, and a personal goal side by side, then reorganize as the work changed rather than staying in a fixed layout. Self-hosting answered the second requirement: no per-seat pricing, no vendor able to revise the terms, and no proprietary format standing between me and my own records.</p>
               </div>
               <div>
                 <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Architecture</div>
                 <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&middot;</span>Dynamic schema engine: user actions compile to DDL, with real columns and constraints</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&middot;</span>A unified Page model behind tables, dashboards, and notes alike</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&middot;</span>Channels WebSockets pushing live row and schema changes</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&middot;</span>Celery carrying imports, exports, and long jobs with progress</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&middot;</span>Invite-only accounts on httpOnly cookie sessions behind Caddy</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>A schema engine that compiles interface actions into DDL, so columns and constraints are enforced by PostgreSQL rather than simulated in application code</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>One Page model underneath tables, dashboards, and notes, so a new view is a presentation choice instead of a separate subsystem</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>WebSockets over Django Channels pushing row and schema changes to every open session</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Celery running imports, exports, and other long jobs with live progress reporting</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Invite-only accounts on httpOnly cookie sessions, terminated by Caddy</li>
                 </ul>
               </div>
               <div>
                 <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Engineering practice</div>
                 <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&middot;</span>Every slice starts as a written plan with TDD tasks and closes with a manual-verification record</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&middot;</span>Defect log kept in Symptom, Cause, Fix, Prevention form</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&middot;</span>A numbered development queue whose entry IDs are cited by plans and logs</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&middot;</span>Backup restores drilled rather than assumed</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&middot;</span>Version bumps gating every push; production never receives an unshipped number</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Every slice ships as a written plan of test-driven tasks and closes only after manual browser verification</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Over 2,300 automated tests across the backend and frontend, run green before any merge</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Defects recorded as Symptom, Cause, Fix, and Prevention, so a fix generalizes past the one bug</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>A numbered work queue whose entry IDs are cited by every plan and log entry</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Restores drilled against real backups rather than assumed to work, and a version gate on every push</li>
                 </ul>
               </div>
               <div>
                 <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Outcome</div>
-                <p style="font-size:14.5px;color:var(--muted);line-height:1.6;">v0.14.0 is live in production: roughly three weeks from a twelve-task MVP plan to a running multi-user appliance with real tables, live sync, dashboards, notes, relations, and an automation engine. It runs on the same home infrastructure described below, which is what the stack was built to hold.</p>
+                <p style="font-size:14.5px;color:var(--muted);line-height:1.6;">v0.14.0 is serving traffic today, roughly three weeks from a twelve-task MVP plan to a multi-user appliance with real tables, live sync, dashboards, notes, relations, and an automation engine. It runs on the same home infrastructure described below, which is the workload that stack was sized for.</p>
               </div>
             </div>
             <a href="https://carbon.huy.gg" target="_blank" rel="noopener" style="display:block;border-radius:12px;border:1px solid var(--border2);overflow:hidden;background:#0b0d12;color:inherit;">
               <div style="display:flex;align-items:center;gap:8px;padding:11px 14px;border-bottom:1px solid rgba(255,255,255,.08);font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#8A9290;">
                 <span style="display:flex;gap:6px;"><span style="width:9px;height:9px;border-radius:50%;background:#ff5f57;"></span><span style="width:9px;height:9px;border-radius:50%;background:#febc2e;"></span><span style="width:9px;height:9px;border-radius:50%;background:#28c840;"></span></span>
-                <span style="margin-left:6px;">carbon &middot; project table</span>
+                <span style="margin-left:6px;">carbon &bull; project table</span>
                 <span style="margin-left:auto;color:#FF6A2B;">Visit carbon.huy.gg &#8599;</span>
               </div>
               <img src="carbon-grid-6.png" alt="Carbon grid view: a project table with typed columns, conditional formatting, and a summary strip" style="display:block;width:100%;height:auto;" />
             </a>
-            <div style="font-size:12px;color:var(--muted2);line-height:1.55;margin-top:14px;max-width:680px;">The grid on carbon.huy.gg. The badge on each column header names that field's real type, and the summary strip below aggregates in SQL. Access is invite-only while the build continues.</div>
+            <div style="font-size:12px;color:var(--muted2);line-height:1.55;margin-top:14px;max-width:680px;">The grid on carbon.huy.gg. Each column header carries a badge naming that field's actual PostgreSQL type, and the summary strip underneath aggregates in SQL rather than in the browser. Access stays invite-only while the build continues.</div>
           </div>
         </article>
 
@@ -195,18 +195,18 @@
               <div>
                 <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Approach</div>
                 <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Parsed the session dataset into aggregates in a single data layer</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Computed EDA live in-browser: no build step, no server</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Rendered interactive charts with ECharts on a self-hosted page</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Parsed the session dataset into aggregates in a single data layer</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Computed EDA live in-browser: no build step, no server</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Rendered interactive charts with ECharts on a self-hosted page</li>
                 </ul>
               </div>
               <div>
                 <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Views</div>
                 <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Intelligence Thermodynamics</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Cadence &amp; Output: weekday × hour</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Models: reliability &amp; cost</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Resource utilization &amp; tool matrix</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Intelligence Thermodynamics</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Cadence &amp; Output: weekday × hour</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Models: reliability &amp; cost</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Resource utilization &amp; tool matrix</li>
                 </ul>
               </div>
               <div>
@@ -217,7 +217,7 @@
             <a href="claude-analytics.html" style="display:block;border-radius:12px;border:1px solid var(--border2);overflow:hidden;background:#0b0d12;color:inherit;">
               <div style="display:flex;align-items:center;gap:8px;padding:11px 14px;border-bottom:1px solid rgba(255,255,255,.08);font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#8A9290;">
                 <span style="display:flex;gap:6px;"><span style="width:9px;height:9px;border-radius:50%;background:#ff5f57;"></span><span style="width:9px;height:9px;border-radius:50%;background:#febc2e;"></span><span style="width:9px;height:9px;border-radius:50%;background:#28c840;"></span></span>
-                <span style="margin-left:6px;">claude &middot; analytics</span>
+                <span style="margin-left:6px;">claude &bull; analytics</span>
                 <span style="margin-left:auto;color:#FF6A2B;">Open dashboard ↗</span>
               </div>
               <img src="claude-analytics-preview.jpg" alt="Claude Analytics dashboard preview" style="display:block;width:100%;height:auto;" />
@@ -247,29 +247,29 @@
               <div>
                 <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Business questions</div>
                 <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>How are A/R loads and collection rates tracking month over month?</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Which payers generate the highest write-off burden per encounter?</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Where are denial rates concentrated, by provider, CPT, or payer?</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>How does reimbursement compare to allowed revenue across encounter types?</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>How are A/R loads and collection rates tracking month over month?</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Which payers generate the highest write-off burden per encounter?</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Where are denial rates concentrated, by provider, CPT, or payer?</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>How does reimbursement compare to allowed revenue across encounter types?</li>
                 </ul>
               </div>
               <div>
                 <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Approach</div>
                 <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Cleaned and transformed raw billing data using Python and Power Query</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>MPRR reductions and standardized adjustment coding</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Built univariate and multivariate analysis across payer and encounter dimensions</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Designed an interactive Excel dashboard with slicers for payer, month, and provider</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Produced a comprehensive billing report with provider-level KPIs</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Cleaned and transformed raw billing data using Python and Power Query</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>MPRR reductions and standardized adjustment coding</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Built univariate and multivariate analysis across payer and encounter dimensions</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Designed an interactive Excel dashboard with slicers for payer, month, and provider</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Produced a comprehensive billing report with provider-level KPIs</li>
                 </ul>
               </div>
               <div>
                 <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Key metrics</div>
                 <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Reimbursement totals and reimbursement rate</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Denial volume and denial trends</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Operational efficiency indicators</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Profitability comparison</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Reimbursement totals and reimbursement rate</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Denial volume and denial trends</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Operational efficiency indicators</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Profitability comparison</li>
                 </ul>
               </div>
               <div>
@@ -308,20 +308,20 @@
               <div>
                 <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Approach</div>
                 <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Baseline ANN model established as performance reference</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Progressively refined CNN architectures across four model iterations</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Applied dropout regularization to reduce overfitting</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Increased training epochs to improve generalization</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Evaluated grayscale vs. RGB input for transfer-learning alignment</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Baseline ANN model established as performance reference</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Progressively refined CNN architectures across four model iterations</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Applied dropout regularization to reduce overfitting</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Increased training epochs to improve generalization</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Evaluated grayscale vs. RGB input for transfer-learning alignment</li>
                 </ul>
               </div>
               <div>
                 <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Key metrics</div>
                 <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Baseline ANN: 56% F1 score (best on surprise)</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Model 1 (simple CNN, no dropout): 59% F1</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Model 2 (refined CNN): 69% F1</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Model 3 (optimized CNN): 91% F1</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Baseline ANN: 56% F1 score (best on surprise)</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Model 1 (simple CNN, no dropout): 59% F1</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Model 2 (refined CNN): 69% F1</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Model 3 (optimized CNN): 91% F1</li>
                 </ul>
               </div>
               <div>
@@ -359,24 +359,24 @@
               <div>
                 <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Architecture</div>
                 <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Docker-based service isolation and orchestration</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Nginx reverse proxy with subdomain routing</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Cloudflare for DNS, DDoS protection, traffic proxying</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Let's Encrypt automated SSL provisioning</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>WireGuard VPN for encrypted remote access</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Pi-hole network-level DNS filtering</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>MariaDB persistent storage across services</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Docker-based service isolation and orchestration</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Nginx reverse proxy with subdomain routing</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Cloudflare for DNS, DDoS protection, traffic proxying</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Let's Encrypt automated SSL provisioning</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>WireGuard VPN for encrypted remote access</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Pi-hole network-level DNS filtering</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>MariaDB persistent storage across services</li>
                 </ul>
               </div>
               <div>
                 <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Services</div>
                 <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>huy.gg: production website &amp; portfolio</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span><a href="#carbon" style="color:var(--flare);">Carbon</a>: self-hosted database platform</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Self-hosted email infrastructure</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>ownCloud private file storage &amp; sync</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Jellyfin media streaming</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">·</span>Additional containerized services</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>huy.gg: production website &amp; portfolio</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span><a href="#carbon" style="color:var(--flare);">Carbon</a>: self-hosted database platform</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Self-hosted email infrastructure</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>ownCloud private file storage &amp; sync</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Jellyfin media streaming</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Additional containerized services</li>
                 </ul>
               </div>
               <div>
@@ -390,7 +390,7 @@
                 <span style="width:11px;height:11px;border-radius:50%;background:#ff5f57;"></span>
                 <span style="width:11px;height:11px;border-radius:50%;background:#febc2e;"></span>
                 <span style="width:11px;height:11px;border-radius:50%;background:#28c840;"></span>
-                <span style="margin-left:8px;font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.04em;">harry@huy.gg ~ &middot; zsh</span>
+                <span style="margin-left:8px;font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.04em;">harry@huy.gg ~ &bull; zsh</span>
               </div>
               <div id="term-body" style="padding:15px 18px 18px;font-size:12.5px;line-height:1.55;color:#d8dde6;cursor:text;">
                 <div style="opacity:0;animation:tfade .25s ease forwards;"><span style="color:#8a8f99;">harry@huy.gg</span> <span style="color:#888c95;">~</span> <span style="color:#e7d7c1;">$ traceroute huy.gg</span></div>
@@ -588,13 +588,13 @@ class Component extends DCLogic {
 
     const feed = document.getElementById('log-feed');
     const pool = [
-      ['cloudflare', 'GET /resume → 200 OK'], ['github-pages', 'cache HIT · 12ms'],
+      ['cloudflare', 'GET /resume → 200 OK'], ['github-pages', 'cache HIT • 12ms'],
       ['wireguard', 'peer connected (peer_03)'], ['pihole', 'blocked googleads.g.doubleclick.net'],
       ['pihole', 'blocked 47 trackers in last 60s'], ['jellyfin', 'streaming 1080p'],
       ['owncloud', 'sync complete (47 files, 312 MB)'], ['cloudflare', 'email forwarded h@huy.gg → gmail'],
-      ['nginx', 'TLS handshake · TLS_AES_256_GCM'], ['mariadb', 'query took 3ms'],
+      ['nginx', 'TLS handshake • TLS_AES_256_GCM'], ['mariadb', 'query took 3ms'],
       ['huy.gg', 'visitor from Denver, CO'], ['cloudflare', 'GET /projects → 200 OK'],
-      ['wireguard', 'rx 1.2 GB · tx 412 MB'], ['pihole', '24.7% queries blocked today']
+      ['wireguard', 'rx 1.2 GB • tx 412 MB'], ['pihole', '24.7% queries blocked today']
     ];
     const pad = (n) => n < 10 ? '0' + n : '' + n;
     const ts = () => { const d = new Date(); return pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds()); };
@@ -614,10 +614,10 @@ class Component extends DCLogic {
     const history = document.getElementById('term-history');
     const A = (html) => { const d = document.createElement('div'); d.style.cssText = 'opacity:0;animation:tfade .25s ease forwards;'; d.innerHTML = html; history.appendChild(d); };
     const CMD = {
-      help: () => { A('<span style="color:' + C.mut + '">available: </span><span style="color:' + C.acc + '">whoami · ls services · cat motd · ping huy.gg · uptime · clear</span>'); },
-      whoami: () => A('<span style="color:' + C.ok + '">harry</span> <span style="color:' + C.mut + '">&middot; builder, runner, and occasional breaker of things</span>'),
-      'ls services': () => { ['huy.gg :: GitHub Pages, fronted by Cloudflare', 'wireguard :: personal VPN, peer access only', 'pihole :: DNS sinkhole, network-wide ad/tracker block', 'owncloud :: self-hosted file sync', 'jellyfin :: media server', 'email :: Cloudflare routing → Gmail (h@huy.gg)'].forEach((s) => { const p = s.split(' :: '); A('<span style="color:' + C.acc + '">' + p[0] + '</span> <span style="color:' + C.mut + '">&middot; ' + p[1] + '</span>'); }); },
-      'cat motd': () => { A('<span style="color:' + C.mut + '">─────────────────────────────</span>'); A('  Welcome to <span style="color:' + C.ok + '">huy.gg</span>. The lights are always on.'); A('<span style="color:' + C.mut + '">  uptime: 287 days · 14:23:07</span>'); A('<span style="color:' + C.mut + '">─────────────────────────────</span>'); },
+      help: () => { A('<span style="color:' + C.mut + '">available: </span><span style="color:' + C.acc + '">whoami • ls services • cat motd • ping huy.gg • uptime • clear</span>'); },
+      whoami: () => A('<span style="color:' + C.ok + '">harry</span> <span style="color:' + C.mut + '">• builder, runner, and occasional breaker of things</span>'),
+      'ls services': () => { ['huy.gg :: GitHub Pages, fronted by Cloudflare', 'wireguard :: personal VPN, peer access only', 'pihole :: DNS sinkhole, network-wide ad/tracker block', 'owncloud :: self-hosted file sync', 'jellyfin :: media server', 'email :: Cloudflare routing → Gmail (h@huy.gg)'].forEach((s) => { const p = s.split(' :: '); A('<span style="color:' + C.acc + '">' + p[0] + '</span> <span style="color:' + C.mut + '">• ' + p[1] + '</span>'); }); },
+      'cat motd': () => { A('<span style="color:' + C.mut + '">─────────────────────────────</span>'); A('  Welcome to <span style="color:' + C.ok + '">huy.gg</span>. The lights are always on.'); A('<span style="color:' + C.mut + '">  uptime: 287 days • 14:23:07</span>'); A('<span style="color:' + C.mut + '">─────────────────────────────</span>'); },
       'ping huy.gg': () => { ['64 bytes from huy.gg: icmp_seq=1 time=0.412 ms', '64 bytes from huy.gg: icmp_seq=2 time=0.398 ms', '64 bytes from huy.gg: icmp_seq=3 time=0.421 ms', '--- huy.gg ping statistics ---', '3 packets transmitted, 3 received, 0% packet loss'].forEach((l, i) => setTimeout(() => A('<span style="color:' + C.mut + '">' + l + '</span>'), i * 200)); },
       uptime: () => A('<span style="color:' + C.ok + '">up 287 days</span>, 14:23, load average: 0.08, 0.12, 0.09'),
       clear: () => { history.innerHTML = ''; }
