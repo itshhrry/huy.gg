@@ -145,7 +145,7 @@ window.RESUME_DATA = {
           tabs: ["analyst", "operations", "revenue", "sales"],
         },
         {
-          text: "Maintained <strong>100% employee retention</strong> across all managed locations and achieved <strong>89–93% net promoter scores</strong> through investments in referral quality, patient experience, and staff development.",
+          text: "Maintained <strong>100% employee retention</strong> across all managed locations and achieved <strong>89 to 93 net promoter scores</strong> through investments in referral quality, patient experience, and staff development.",
           tabs: ["operations", "sales"],
         },
         {
