@@ -1,0 +1,4 @@
+exclude:
+  - PRODUCT.md
+  - .impeccable
+  - build-static.py

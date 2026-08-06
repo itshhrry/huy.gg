@@ -213,7 +213,7 @@ class Component extends DCLogic {
   renderVals() { return {}; }
   componentDidMount() {
     this.sync();
-    if (!this._bound) { this._bound = true; requestAnimationFrame(() => this.enhance()); }
+    if (!this._bound) { this._bound = true; this.enhance(); }
   }
   componentDidUpdate() { this.sync(); }
   sync() {
