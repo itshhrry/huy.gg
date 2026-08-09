@@ -6,7 +6,7 @@
 <title>Revenue Cycle Dashboard | Harry Nguyen</title>
 <meta name="description" content="A working revenue cycle analytics dashboard with denial analysis, payer mix, and AR aging. Not a screenshot of one.">
 <meta name="author" content="Harry Nguyen">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="light">
 <link rel="canonical" href="https://huy.gg/dashboard.html">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <meta property="og:type" content="website">
@@ -14,91 +14,67 @@
 <meta property="og:url" content="https://huy.gg/dashboard.html">
 <meta property="og:title" content="Revenue Cycle Dashboard | Harry Nguyen">
 <meta property="og:description" content="A working revenue cycle analytics dashboard with denial analysis, payer mix, and AR aging. Not a screenshot of one.">
-<meta property="og:image" content="https://huy.gg/logo.png">
+<meta property="og:image" content="https://huy.gg/img/logo.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Revenue Cycle Dashboard | Harry Nguyen">
 <meta name="twitter:description" content="A working revenue cycle analytics dashboard with denial analysis, payer mix, and AR aging. Not a screenshot of one.">
 
-<script src="rcm-data.js"></script>
-<script src="rcm-dash.js"></script>
+<script src="js/rcm-data.js"></script>
+<script src="js/rcm-dash.js"></script>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;background:#F4F1EA}html:has(#home-root[data-theme="dark"]) body{background:#08090B}
+  body{font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;background:#FCFAF6}
   #home-root{
-    --bg:#08090B;--panel-grad:linear-gradient(180deg,#101319,#0b0d12);--panel:#0e1116;
-    --surface:rgba(255,255,255,.05);--surface2:rgba(255,255,255,.04);
-    --text:#F2F4F1;--muted:#9BA1A0;--muted2:#8A9290;--strong:#ffffff;
-    --border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.14);--border3:rgba(255,255,255,.18);
-    --accent:#C04000;--accent-ink:#FFF4EE;--flare:#FF6A2B;--flare-soft:rgba(255,106,43,.16);
-    --grid:rgba(255,255,255,.06);--glowA:rgba(255,106,43,.32);--track:rgba(255,255,255,.09);
-    --nav-bg:rgba(8,9,11,.72);--grain-op:.32;--grain-blend:overlay;
+    --bg:#FCFAF6;--panel-grad:linear-gradient(180deg,#ffffff,#FDFBF7);--card-rim:#E8E3D9;
+    --surface:rgba(255,255,255,.62);--surface2:rgba(255,255,255,.42);
+    --text:#17140F;--muted:#635C51;--muted2:#5A5349;--strong:#0E0C09;
+    --border:rgba(23,20,15,.1);--border2:rgba(23,20,15,.17);--border3:rgba(23,20,15,.27);
+    --accent:#C04000;--accent-ink:#FFF4EE;--flare:#A93700;--flare-soft:rgba(192,64,0,.09);
+    --grid:rgba(23,20,15,.045);
+    --nav-bg:rgba(252,250,246,.86);--panel:#ffffff;--track:rgba(23,20,15,.09);
+    
   }
-  #home-root[data-theme="light"]{
-    --bg:#F4F1EA;--panel-grad:linear-gradient(180deg,#ffffff,#FBF7F0);--panel:#ffffff;
-    --surface:rgba(255,255,255,.55);--surface2:rgba(255,255,255,.38);
-    --text:#1A1613;--muted:#5F5A50;--muted2:#675F53;--strong:#12100E;
-    --border:rgba(26,22,19,.1);--border2:rgba(26,22,19,.16);--border3:rgba(26,22,19,.24);
-    --accent:#AB3900;--accent-ink:#FFF4EE;--flare:#B32B00;--flare-soft:rgba(179,43,0,.1);
-    --grid:rgba(26,22,19,.05);--glowA:rgba(255,106,43,.16);--track:rgba(26,22,19,.09);
-    --nav-bg:rgba(244,241,234,.8);--grain-op:.5;--grain-blend:multiply;
-  }
+  
   a{color:inherit;text-decoration:none;transition:opacity .2s ease,color .2s ease}
   a:hover{opacity:.82}
   button{font-family:inherit;}
-  #home-root [data-logo-dark]{display:block}#home-root [data-logo-light]{display:none}
-  #home-root[data-theme="light"] [data-logo-dark]{display:none}#home-root[data-theme="light"] [data-logo-light]{display:block}
-  #home-root [data-ic-sun]{display:inline-flex}#home-root [data-ic-moon]{display:none}
-  #home-root[data-theme="light"] [data-ic-sun]{display:none}#home-root[data-theme="light"] [data-ic-moon]{display:inline-flex}
-  @keyframes auroraA{0%{transform:translate(-8%,-6%) scale(1)}50%{transform:translate(10%,8%) scale(1.28)}100%{transform:translate(-8%,-6%) scale(1)}}
-  @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
   #home-root[data-rm="1"] *{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important}
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     #home-root *,#home-root *::before,#home-root *::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
     #home-root{transition:none!important}
-    #phx-canvas{display:none!important}
   }
   #home-root :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:5px}
   #home-root :focus:not(:focus-visible){outline:none}
   #home-root [data-nav]{display:inline-flex;align-items:center;min-height:44px;padding-inline:8px;margin-inline:-8px}
   #home-root [data-foot]{display:inline-flex;align-items:center;min-height:44px}
-  #home-root[data-grain="0"] [data-grain-layer]{display:none!important}
 </style>
 </head>
 <body>
-<div id="home-root" data-theme="light" data-rm="0" data-grain="1" style="background:var(--bg);color:var(--text);min-height:100vh;position:relative;overflow-x:hidden;font-family:Arial,Helvetica,sans-serif;transition:background .4s ease,color .4s ease;">
-
-  <div data-grain-layer style="position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:var(--grain-op);mix-blend-mode:var(--grain-blend);background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E&quot;);"></div>
+<div id="home-root" data-rm="0" style="background:var(--bg);color:var(--text);min-height:100vh;position:relative;overflow-x:hidden;font-family:Arial,Helvetica,sans-serif;">
 
   <nav style="position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px clamp(20px,5vw,48px);background:var(--nav-bg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);">
-    <a href="index.html" style="display:flex;align-items:center;gap:11px;font-weight:600;font-size:18px;letter-spacing:-.01em;">
-      <img data-logo-dark src="logo-cream.png" width="1080" height="1081" loading="lazy" decoding="async" alt="huy.gg" style="width:34px;height:34px;object-fit:contain;" />
-      <img data-logo-light src="logo.png" width="1080" height="1081" decoding="async" alt="huy.gg" style="width:34px;height:34px;object-fit:contain;" />
+    <a href="index.html" style="display:flex;align-items:center;gap:9px;font-weight:600;font-size:16px;letter-spacing:-.01em;">
+      <img src="img/logo.png" width="1080" height="1081" decoding="async" alt="huy.gg" style="width:26px;height:26px;object-fit:contain;" />
       Harry Nguyen
     </a>
     <div style="display:flex;align-items:center;gap:clamp(14px,2.2vw,30px);font-family:Arial,Helvetica,sans-serif;font-size:14px;color:var(--muted);">
       <a href="about.html" data-nav>About</a>
       <a href="projects.html" data-nav>Projects</a>
       <a href="resume.html" data-nav>Resume</a>
-      <button id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark theme" style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:999px;border:1px solid var(--border2);background:transparent;color:var(--text);cursor:pointer;padding:0;">
-        <span data-ic-sun><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2" fill="currentColor" stroke="none"></circle><line x1="12" y1="2.5" x2="12" y2="5"></line><line x1="12" y1="19" x2="12" y2="21.5"></line><line x1="2.5" y1="12" x2="5" y2="12"></line><line x1="19" y1="12" x2="21.5" y2="12"></line><line x1="5.2" y1="5.2" x2="6.9" y2="6.9"></line><line x1="17.1" y1="17.1" x2="18.8" y2="18.8"></line><line x1="5.2" y1="18.8" x2="6.9" y2="17.1"></line><line x1="17.1" y1="6.9" x2="18.8" y2="5.2"></line></svg></span>
-        <span data-ic-moon><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 14.2A8 8 0 0 1 9.8 3.5a.6.6 0 0 0-.8-.7 9.5 9.5 0 1 0 12.2 12.2.6.6 0 0 0-.7-.8z"></path></svg></span>
-      </button>
     </div>
   </nav>
 
   <header style="position:relative;overflow:hidden;padding:clamp(40px,5vw,68px) clamp(20px,5vw,48px) clamp(18px,2vw,26px);">
-    <div style="position:absolute;top:-160px;right:-80px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle, var(--glowA), transparent 62%);filter:blur(30px);animation:auroraA 16s ease-in-out infinite;"></div>
     <div style="position:relative;z-index:5;max-width:1280px;margin:0 auto;">
       <a href="projects.html#rcm" style="display:inline-flex;align-items:center;gap:8px;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:var(--muted);margin-bottom:16px;"><span style="color:var(--flare);">←</span> Back to case study</a>
-      <div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--flare);margin-bottom:12px;">Featured Project &bull; Interactive Dashboard</div>
       <h1 style="font-size:clamp(28px,3.8vw,46px);font-weight:600;letter-spacing:-.025em;line-height:1.04;margin-bottom:16px;">RCM by Design: A Multi-facility Analysis</h1>
       <p style="font-size:clamp(15px,1.5vw,17px);line-height:1.62;color:var(--muted);max-width:760px;">A revenue-cycle dashboard built from real multi-provider, multi-facility billing data: 171,220 charge lines across 71,405 unique claims, aggregated from the raw ledger. Toggle filters, swap scenarios, and hover any chart for detail. A representative slice of the 250,000+ claims I worked across 5 facilities and 8 payers.</p>
     </div>
   </header>
 
-  <section style="padding:clamp(12px,1.5vw,18px) clamp(20px,5vw,48px) clamp(56px,7vw,84px);">
+  <section style="padding:clamp(12px,1.5vw,18px) clamp(20px,5vw,48px) clamp(28px,3.4vw,44px);">
     <div id="rcm-app" style="min-height:400px;">
       <div style="max-width:1280px;margin:0 auto;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:var(--muted2);padding:40px 0;">Loading dashboard…</div>
     </div>
@@ -106,8 +82,7 @@
 
   <footer style="padding:22px clamp(20px,5vw,48px);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:var(--muted2);">
     <a href="index.html" style="display:inline-flex;align-items:center;gap:10px;color:var(--muted2);">
-      <img data-logo-dark src="logo-cream.png" width="1080" height="1081" loading="lazy" decoding="async" alt="huy.gg" style="width:22px;height:22px;object-fit:contain;" />
-      <img data-logo-light src="logo.png" width="1080" height="1081" decoding="async" alt="huy.gg" style="width:22px;height:22px;object-fit:contain;" />
+      <img src="img/logo.png" width="1080" height="1081" decoding="async" alt="huy.gg" style="width:22px;height:22px;object-fit:contain;" />
       © 2026 Harry Nguyen
     </a>
     <a href="https://huy.gg" data-foot style="color:var(--flare);">huy.gg</a>
@@ -119,7 +94,6 @@ class DCLogic {
   constructor(props) { this.props = props; this.state = {}; }
   setState(patch) { Object.assign(this.state, patch); }
 }
-
 
 class Component extends DCLogic {
   renderVals() { return {}; }
@@ -134,15 +108,6 @@ class Component extends DCLogic {
   boot() {
     const r = document.getElementById('home-root');
     if (!r) return;
-    try { const t = localStorage.getItem('huygg-theme'); if (t) r.setAttribute('data-theme', t); } catch (e) {}
-    const tt = document.getElementById('theme-toggle');
-    if (tt) tt.addEventListener('click', () => {
-      const next = (r.getAttribute('data-theme') === 'light') ? 'dark' : 'light';
-      r.setAttribute('data-theme', next);
-      tt.setAttribute('aria-pressed', next === 'dark' ? 'true' : 'false');
-      tt.setAttribute('aria-label', next === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
-      try { localStorage.setItem('huygg-theme', next); } catch (e) {}
-    });
     const root = document.getElementById('rcm-app');
     let tries = 0;
     const go = () => {
@@ -152,7 +117,6 @@ class Component extends DCLogic {
     go();
   }
 }
-
 
 (function () {
   var start = function () {
