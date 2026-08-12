@@ -132,6 +132,14 @@ img{max-width:100%;height:auto;display:block}
 .visual{margin:clamp(18px,2.6vw,28px) 0 0}
 .detail{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
         gap:clamp(22px,3.2vw,44px);margin-top:clamp(16px,2.4vw,26px);align-items:start}
+/* Supporting detail is one register. A bullet, a table row, and the paragraph
+   beside them were setting at 14.5, 14.5, and 15.5px, which reads as three
+   different treatments sitting in the same row. Figures stay mono and smaller
+   on purpose: they are a different kind of thing, not a different size of the
+   same thing. */
+.detail p,.detail li,.detail td{font-size:14.5px;line-height:1.66}
+.detail p{max-width:46ch}
+.detail .met{font-size:12.5px}
 @media (max-width:640px){.detail{grid-template-columns:1fr;gap:22px}}
 .two > div{background:var(--washi);padding:clamp(18px,2.4vw,28px)}
 .two p{max-width:42ch}
