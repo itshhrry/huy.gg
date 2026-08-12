@@ -76,14 +76,14 @@ img{max-width:100%;height:auto;display:block}
 /* line-height pinned to the mark's 26px: at 18px the body's 1.66 gives a 29.9px
    line box, which took over as the tallest thing in the row and grew the bar to
    58, breaking the footer it is matched to. */
-.bar .who{font-size:18px;line-height:26px;color:var(--sumi)}
+.bar .who{font-size:17px;line-height:26px;color:var(--sumi)}
 .bar .sp{flex:1}
 .bar nav{display:flex;gap:20px;flex-wrap:wrap}
 /* The nav carries a page's controls, so it outranks the margin notation rather
    than sitting a shade under it. At 10.5px in sumi2 it was the lighter of the
    two. Colour does the work here, not font-weight: a mono face at 500 thickens
    into mud at this size. */
-.bar nav a,.bar nav span{font-family:var(--tech);font-size:12.5px;font-weight:500;
+.bar nav a,.bar nav span{font-family:var(--tech);font-size:13px;font-weight:500;
                          color:var(--sumi1);letter-spacing:.01em}
 .bar nav a:hover{color:var(--sumi)}
 
