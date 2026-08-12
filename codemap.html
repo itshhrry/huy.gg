@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>codemap query surface | Harry Nguyen</title>
+<meta name="description" content="A code index that draws only the symbols a query returned, rather than the whole repository. Built for carbon, 6,050 symbols indexed.">
+<meta name="author" content="Harry Nguyen">
+<meta name="color-scheme" content="light">
+<link rel="canonical" href="https://huy.gg/codemap.html">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="huy.gg">
+<meta property="og:url" content="https://huy.gg/codemap.html">
+<meta property="og:title" content="codemap query surface">
+<meta property="og:description" content="A code index that draws only the symbols a query returned, rather than the whole repository.">
+</head>
+<body>
+<style>
+  :root{
+    --bg:#FCFAF6; --text:#17140F; --strong:#0E0C09;
+    --muted:#635C51; --muted2:#5A5349;
+    --accent:#C04000; --flare:#A93700;
+    --term:#F4F0E8; --ok:#276B2B;
+    --b1:rgba(23,20,15,.10); --b2:rgba(23,20,15,.17); --b3:rgba(23,20,15,.27);
+    --grotesk:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+    --serif:Charter,"Bitstream Charter","Iowan Old Style",Georgia,serif;
+  }
+
+  /* This study commits to one ground on purpose. huy.gg removed its dark theme
+     on 2026-08-07: every screenshot the site carries is a capture of a light
+     interface, and the palette is composed against paper rather than drained
+     out of a dark one. Honouring that is the point of the study. */
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--grotesk);
+    -webkit-font-smoothing:antialiased;}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 clamp(18px,3vw,34px) 64px;}
+
+  /* Site chrome, matching the back-nav the other sub-pages carry */
+  .sitenav{display:flex;align-items:center;gap:18px;padding:18px 0 0;
+    font-size:15px;font-weight:600;letter-spacing:.01em;flex-wrap:wrap;}
+  .sitenav a{text-decoration:none;color:var(--muted);transition:color .15s ease;}
+  .sitenav a:hover{color:var(--text);}
+  .sitenav a.back{color:var(--text);font-weight:700;margin-right:10px;}
+  .sitenav a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px;}
+
+  /* ---- thin identity bar: orientation, not architecture ---- */
+  header{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+    padding:16px 0 15px;border-bottom:1px solid var(--b1);margin-bottom:clamp(28px,4vw,44px);}
+  .mark{font-family:var(--mono);font-size:14px;font-weight:600;letter-spacing:-.02em;color:var(--strong);}
+  .crumb{font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.03em;}
+  .studybadge{margin-left:auto;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--flare);border:1px solid var(--b2);
+    border-radius:999px;padding:4px 11px;}
+
+  /* ---- thesis ---- */
+  .thesis{max-width:60ch;margin-bottom:clamp(26px,3.5vw,38px);}
+  h1{font-size:clamp(30px,4.6vw,52px);line-height:1.04;letter-spacing:-.03em;font-weight:600;
+    margin:0 0 16px;text-wrap:balance;color:var(--strong);}
+  h1 em{font-style:normal;color:var(--accent);}
+  .lede{font-family:var(--serif);font-size:clamp(16px,1.5vw,18.5px);line-height:1.62;
+    color:var(--muted);margin:0;}
+
+  /* ---- the working surface ---- */
+  .surface{border:1px solid var(--b2);border-radius:14px;overflow:hidden;
+    background:#fff;box-shadow:0 18px 44px rgba(23,20,15,.09);}
+
+  .surfacebar{display:flex;align-items:center;gap:10px;padding:9px 14px;
+    border-bottom:1px solid var(--b1);background:var(--bg);}
+  .surfacebar .t{font-family:var(--mono);font-size:11px;color:var(--muted2);letter-spacing:.04em;}
+  .fresh{margin-left:auto;display:inline-flex;align-items:center;gap:6px;
+    font-family:var(--mono);font-size:11px;color:var(--ok);}
+  .fresh i{width:6px;height:6px;border-radius:50%;background:var(--ok);display:block;}
+
+  .stage{position:relative;height:clamp(360px,50vh,500px);background:var(--bg);}
+  #graph{display:block;width:100%;height:100%;}
+
+  /* the empty state IS the argument */
+  .empty{position:absolute;inset:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:9px;text-align:center;padding:24px;
+    transition:opacity .3s ease;pointer-events:none;}
+  .empty .big{font-family:var(--mono);font-size:clamp(20px,3vw,30px);color:var(--strong);
+    font-variant-numeric:tabular-nums;letter-spacing:-.02em;}
+  .empty .sub{font-size:13.5px;color:var(--muted);max-width:44ch;line-height:1.6;}
+  .stage.busy .empty{opacity:0;}
+
+  .readout{position:absolute;left:14px;bottom:12px;font-family:var(--mono);font-size:11px;
+    color:var(--muted2);background:rgba(252,250,246,.9);border:1px solid var(--b1);
+    border-radius:7px;padding:5px 10px;opacity:0;transition:opacity .25s ease;
+    font-variant-numeric:tabular-nums;}
+  .stage.busy .readout{opacity:1;}
+
+  .tip{position:absolute;pointer-events:none;font-family:var(--mono);font-size:11px;
+    background:var(--strong);color:#FCFAF6;padding:5px 9px;border-radius:6px;
+    opacity:0;transform:translate(-50%,-140%);transition:opacity .12s ease;white-space:nowrap;z-index:5;}
+  .tip.on{opacity:1;}
+
+  /* ---- terminal, docked ---- */
+  .term{border-top:1px solid var(--b2);background:var(--term);}
+  .termbar{display:flex;align-items:center;gap:6px;padding:8px 13px;border-bottom:1px solid var(--b1);}
+  .dot{width:10px;height:10px;border-radius:50%;display:block;}
+  .termbar .lbl{margin-left:7px;font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.04em;}
+  /* Long symbol rows are code, so they scroll inside the terminal rather than
+     forcing the page sideways or being clipped by .surface's overflow:hidden. */
+  .termbody{padding:12px 15px 14px;font-family:var(--mono);font-size:12.5px;line-height:1.65;
+    color:#3B352D;cursor:text;max-height:184px;overflow-y:auto;overflow-x:auto;
+    overscroll-behavior:contain;}
+  .termbody .ps{color:var(--muted2);}
+  .termbody .pwd{color:var(--muted);}
+  .termbody .cmd{color:var(--text);}
+  .termbody .dim{color:var(--muted);}
+  .termbody .hit{color:var(--ok);}
+  .termbody .kind{color:var(--muted);}
+  .termbody .loc{color:#3B352D;}
+  #cmdline{outline:none;color:var(--text);min-width:1px;}
+  .caret{display:inline-block;width:7.5px;height:13px;background:var(--flare);
+    vertical-align:-2px;animation:blink 1s steps(2) infinite;}
+  @keyframes blink{50%{opacity:0;}}
+  .row{animation:fade .22s ease both;}
+  @keyframes fade{from{opacity:0;} to{opacity:1;}}
+
+  .hints{padding:0 15px 13px;font-family:var(--mono);font-size:11px;color:var(--muted);
+    display:flex;flex-wrap:wrap;gap:7px;align-items:center;}
+  .hints b{font-weight:400;color:var(--ok);}
+  .chip{border:1px solid var(--b2);border-radius:5px;padding:2px 7px;color:var(--flare);
+    background:none;font:inherit;cursor:pointer;transition:background .15s ease;}
+  .chip:hover{background:rgba(169,55,0,.07);}
+  .chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+  /* ---- rationale ---- */
+  .notes{margin-top:clamp(34px,4.5vw,52px);display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:clamp(20px,2.6vw,34px);}
+  .note h3{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--flare);margin:0 0 11px;padding-bottom:6px;border-bottom:1px solid var(--b2);font-weight:400;}
+  .note p{margin:0;font-size:14px;line-height:1.62;color:var(--muted);}
+  .note p + p{margin-top:9px;}
+  .note code{font-family:var(--mono);font-size:12.5px;color:var(--text);}
+
+  .limits{margin-top:clamp(30px,4vw,44px);padding-top:22px;border-top:1px solid var(--b3);
+    max-width:74ch;}
+  .limits h2{font-size:clamp(19px,2vw,23px);font-weight:600;letter-spacing:-.02em;
+    margin:0 0 13px;color:var(--strong);}
+  .limits p{margin:0 0 11px;font-size:14.5px;line-height:1.66;color:var(--muted);}
+  .limits p:last-child{margin-bottom:0;}
+  .limits code{font-family:var(--mono);font-size:13px;color:var(--text);}
+
+  footer{margin-top:clamp(30px,4vw,46px);padding-top:16px;border-top:1px solid var(--b1);
+    font-size:12.5px;color:var(--muted2);line-height:1.6;max-width:70ch;}
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.001ms !important;transition-duration:.001ms !important;}
+  }
+</style>
+
+<div class="wrap">
+
+  <nav class="sitenav">
+    <a href="index.html" class="back">&#8592; huy.gg</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="resume.html">Resume</a>
+  </nav>
+
+  <header>
+    <span class="mark">codemap</span>
+    <span class="crumb">~/carbon</span>
+    <span class="studybadge">Captured output</span>
+  </header>
+
+  <div class="thesis">
+    <h1>The map draws only the symbols your query <em>returned</em>.</h1>
+    <p class="lede">codemap indexes 6,050 symbols across the carbon repository. This surface draws
+      none of them until a query runs, then renders exactly the rows that query came back with.
+      Asking what calls one function returns one node and one edge. Every result below is captured
+      from a real build.</p>
+  </div>
+
+  <div class="surface">
+    <div class="surfacebar">
+      <span class="t">query surface</span>
+      <span class="fresh"><i></i>fresh: built at HEAD, tree clean</span>
+    </div>
+
+    <div class="stage" id="stage">
+      <canvas id="graph"></canvas>
+      <div class="empty" id="empty">
+        <div class="big">6,050 symbols indexed</div>
+        <div class="sub">Nothing is drawn yet, and that is deliberate. Ask a question in the
+          terminal below and only the answer appears.</div>
+      </div>
+      <div class="readout" id="readout"></div>
+      <div class="tip" id="tip"></div>
+    </div>
+
+    <div class="term">
+      <div class="termbar">
+        <span class="dot" style="background:#ff5f57;"></span>
+        <span class="dot" style="background:#febc2e;"></span>
+        <span class="dot" style="background:#28c840;"></span>
+        <span class="lbl">harry@huy.gg ~/carbon &bull; zsh</span>
+      </div>
+      <div class="termbody" id="termbody">
+        <div id="history"></div>
+        <div><span class="ps">harry@huy.gg</span> <span class="pwd">~/carbon</span>
+          <span class="cmd">$&nbsp;</span><span id="cmdline" contenteditable="true"
+          spellcheck="false" role="textbox" aria-label="codemap command line"></span><span class="caret"></span></div>
+      </div>
+      <div class="hints">
+        <b>try</b>
+        <button class="chip" data-q="callers is_owner">callers is_owner</button>
+        <button class="chip" data-q="callers formula_index">callers formula_index</button>
+        <button class="chip" data-q="callees formula_index">callees formula_index</button>
+        <button class="chip" data-q="impact FormulaError">impact FormulaError</button>
+        <button class="chip" data-q="stats">stats</button>
+        <button class="chip" data-q="clear">clear</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="notes">
+    <div class="note">
+      <h3>Why it opens empty</h3>
+      <p>Every codemap query is an act of refusal. Results cap at 15 to 20 rows, hubs sort last,
+        graph walks are opt-in, and whole files stay out. The existing export then draws all 6,050
+        symbols and 11,609 edges at once, which is the one surface doing the opposite of what the
+        tool is for.</p>
+      <p>The test that settles it is asking what decision a picture supports. Running
+        <code>callers formula_index</code> changes what happens next. Running
+        <code>impact FormulaError</code> changes what gets tested. A whole-graph render changes how
+        impressed somebody is, and nothing follows from it, which is why it does not get opened
+        twice.</p>
+    </div>
+    <div class="note">
+      <h3>One accent, no legend</h3>
+      <p>The current export hashes each node's cluster, or its layer where no cluster exists, into
+        a hue. Carbon has 216 communities and none of them are named, so the four largest take most
+        of the area and the colours mean nothing a reader can recover.</p>
+      <p>Here the symbol you asked about is the only thing wearing the accent. Everything it
+        reaches stays in ink, node size carries degree, and kind is a word on hover.</p>
+      <p>Confidence rides the dash pattern, which is the one variable worth encoding and the one
+        both the export and the command line throw away. A solid edge was backed by an import the
+        extractor saw. A dashed edge was bound by bare name and could be wrong. Run
+        <code>callers is_owner</code> to see nine callers split six to three.</p>
+    </div>
+    <div class="note">
+      <h3>Deterministic placement</h3>
+      <p>Nodes sit at angles derived from their position in the result, so the same query draws
+        the same picture on every machine and every run.</p>
+      <p>A force simulation would settle somewhere new each time. codemap does guess, since 554 of
+        its 11,609 edges are bound by bare name with no import behind them, but it never guesses
+        differently twice. A layout that wanders would break the one property the tool actually
+        promises.</p>
+    </div>
+  </div>
+
+  <section class="limits">
+    <h2>What this design does not solve</h2>
+    <p>This layout, not the tool, is what has gaps. The radial arrangement assumes one focus symbol
+      with its relations around it, which fits <code>callers</code>, <code>callees</code>,
+      <code>impact</code>, <code>def</code>, and <code>search</code>. Three other commands return
+      shapes it cannot draw: <code>path</code> returns a directed chain and wants a left-to-right
+      sequence, <code>cluster</code> returns a named community with no centre to orbit, and
+      <code>locate</code> returns a tree per hit, with a container, its anchors, its siblings, and
+      its callers. All three need arrangements this study does not propose.</p>
+    <p>The <code>stats</code> line above under-reports one thing, and the number should not be read
+      as a virtue. Carbon's extractor emits 16,854 edges and keeps 11,609 of them, so the map is
+      about 69 percent of what was found. <code>dropped_edge_count</code> then fuses two populations
+      inside the remaining 5,245: destinations that genuinely do not exist, which is the framework
+      and standard-library noise the tool was built to reject, and destinations the tie-breaker
+      could not choose between, which are real edges being destroyed. Fifteen real
+      <code>imports</code> edges into one module and three real <code>calls</code> edges into
+      another have died the second way, each time because an unrelated symbol elsewhere in the
+      repository happened to share a name.</p>
+    <p>That split has been measured exactly once, on codemap's map of itself, where 218 of the drops
+      pointed at standard-library modules with nothing in-repo to aim at and 15 were calls that had
+      import evidence available and lost it. Nobody has run the same breakdown on carbon, so what
+      share of its 5,245 is honest rejection and what share is destruction is simply unknown. A
+      render that shows the number as rejected noise is asserting the flattering half.</p>
+    <p>The useful ceiling is around twenty nodes, which is what <code>impact FormulaError</code>
+      returns. A query coming back with several hundred rows would crowd the canvas the same way
+      the current export does, so the empty-state argument only holds while results stay small.
+      Deciding what to draw at 200 results is the open question, and the honest answer may be a
+      table rather than a graph.</p>
+    <p>One limit belongs to the tool rather than the layout, and it bounds what any render of a
+      query result can claim. codemap binds a call written as a bare name or as
+      <code>self.method()</code>, and emits nothing for <code>module.function()</code>, which is the
+      dominant Python idiom. Asked to map itself it kept 156 edges and dropped 223, and
+      <code>callers</code> came back empty for two functions whose only caller is its own command
+      line. The two queries shown here were checked against a plain text search and are complete,
+      nine callers for <code>is_owner</code> and one for <code>formula_index</code>, but that is a
+      property of those two symbols being called by bare name rather than a guarantee the command
+      offers. A drawn subgraph is a floor, not a census.</p>
+    <p>Below roughly 600px the two labels at top and bottom dead centre still overlap, since both
+      align to centre and neither has a horizontal direction to splay into. And the six queries
+      here are captured output rather than a live connection, so this demonstrates the interaction
+      and not the plumbing behind it.</p>
+    <p>Most importantly, this is one of three directions and the narrowest. The queued entry that
+      prompted it proposes scoping the render to a neighbourhood, applying hub suppression visually
+      the way <code>query.py</code> already applies it to rows, and asking whether a graph is the
+      right form at all. This study does the first, skips the second entirely (a high-degree node
+      here is drawn as a node like any other, rather than collapsed or turned into a boundary), and
+      does not evaluate the third. A treemap by layer or community, sized by degree, may answer
+      "what is in this repository and how big is it" better than any graph does, and that question
+      stays open. Nothing here should be read as settling it.</p>
+  </section>
+
+  <footer>
+    <code>codemap</code> is a deterministic code index that answers where a symbol lives, what calls
+    it, and what breaks if it changes, without reading whole files and without a language model. It
+    indexes Python, TypeScript, Vue, and Rust into SQLite. Every query result on this page is
+    captured from a real build of the carbon map rather than a live connection, so this demonstrates
+    the interaction and the reasoning behind it, not the plumbing. The page follows the site's token
+    system: paper ground, warm near-black ink, and burnt orange as the single accent.
+    <a href="projects.html#codemap">Back to the case study</a>.
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var RM = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Built from char codes so the source stays pure ASCII. Canvas fillText and
+  // textContent do not decode HTML entities, and a mis-served charset turns a
+  // literal glyph here into mojibake.
+  var ELLIPSIS = String.fromCharCode(8230);
+  var BULLET = String.fromCharCode(8226);
+
+  // Real captured output. Nothing here is invented.
+  var DATA = {
+    "callers formula_index": {
+      focus:{n:"formula_index",k:"func",f:"backend/core/dynamic/reactions.py:12"},
+      rel:[{n:"react",k:"func",f:"backend/core/dynamic/reactions.py:38",c:"EXTRACTED"}],
+      dir:"in",
+      note:"1 result out of 6,050 indexed symbols."
+    },
+    "callers is_owner": {
+      focus:{n:"is_owner",k:"func",f:"backend/core/ownership.py:8"},
+      rel:[
+        {n:"destroy",k:"method",f:"backend/core/api/views.py:224",c:"EXTRACTED"},
+        {n:"delete",k:"method",f:"backend/core/api/members_views.py:171",c:"EXTRACTED"},
+        {n:"patch",k:"method",f:"backend/core/api/members_views.py:140",c:"EXTRACTED"},
+        {n:"delete",k:"method",f:"backend/core/api/members_views.py:116",c:"EXTRACTED"},
+        {n:"test_the_creator_is_the_owner_by_role",k:"func",f:"backend/tests/test_ownership_roles.py:19",c:"EXTRACTED"},
+        {n:"test_a_plain_member_is_neither_owner_nor_co_owner",k:"func",f:"backend/tests/test_ownership_roles.py:27",c:"EXTRACTED"},
+        {n:"_is_workspace_owner",k:"func",f:"backend/core/api/comments_views.py:26",c:"INFERRED"},
+        {n:"_is_table_owner",k:"func",f:"backend/core/api/activity_views.py:235",c:"INFERRED"},
+        {n:"test_a_co_owner_is_not_an_owner_but_ranks_above_a_member",k:"func",f:"backend/tests/test_ownership_roles.py:36",c:"INFERRED"}
+      ],
+      dir:"in",
+      note:"9 callers: 6 backed by an import, 3 inferred from a bare name. The dashed edges are the inferred ones."
+    },
+    "callees formula_index": {
+      focus:{n:"formula_index",k:"func",f:"backend/core/dynamic/reactions.py:12"},
+      rel:[
+        {n:"field_name_map",k:"func",f:"backend/core/dynamic/formula.py:340",c:"INFERRED"},
+        {n:"parse",k:"func",f:"backend/core/dynamic/formula.py:347",c:"INFERRED"},
+        {n:"list",k:"method",f:"backend/core/api/views.py:124",c:"INFERRED"}
+      ],
+      dir:"out",
+      note:"all 3 inferred from a bare name. The command line prints them exactly as it prints an import-backed call."
+    },
+    "impact FormulaError": {
+      focus:{n:"FormulaError",k:"class",f:"backend/core/dynamic/formula.py:12"},
+      rel:[
+        {n:"model_field",k:"method",f:"backend/core/fields/types.py:237"},
+        {n:"_result_type",k:"method",f:"backend/core/fields/types.py:247"},
+        {n:"_reject_formula_cycle",k:"method",f:"backend/core/api/serializers.py:95"},
+        {n:"validate",k:"method",f:"backend/core/api/serializers.py:75"},
+        {n:"perform_update",k:"method",f:"backend/core/api/views.py:617"},
+        {n:"_fill_formula_inline",k:"func",f:"backend/core/api/views.py:465"},
+        {n:"_tokenize",k:"func",f:"backend/core/dynamic/formula.py:35"},
+        {n:"formula_index",k:"func",f:"backend/core/dynamic/reactions.py:12"},
+        {n:"test_arithmetic_and_deps",k:"func",f:"backend/tests/test_formula_lang.py:11"},
+        {n:"test_dates",k:"func",f:"backend/tests/test_formula_lang.py:28"},
+        {n:"test_type_inference_and_errors",k:"func",f:"backend/tests/test_formula_lang.py:34"},
+        {n:"test_more_functions",k:"func",f:"backend/tests/test_formula_lang.py:46"},
+        {n:"test_evaluation_failures_return_none",k:"func",f:"backend/tests/test_formula_lang.py:54"},
+        {n:"test_finds_a_dashboard_widget_referencing_the_field",k:"func",f:"backend/tests/test_field_dependents.py:19"},
+        {n:"test_finds_a_field_id_nested_at_any_depth",k:"func",f:"backend/tests/test_field_dependents.py:34"},
+        {n:"test_a_string_field_id_counts_as_a_reference",k:"func",f:"backend/tests/test_field_dependents.py:44"},
+        {n:"test_finds_automation_actions_and_conditions",k:"func",f:"backend/tests/test_field_dependents.py:55"},
+        {n:"test_finds_formulas_via_the_parsed_ast",k:"func",f:"backend/tests/test_field_dependents.py:67"},
+        {n:"test_a_field_with_no_referrers_reports_empty",k:"func",f:"backend/tests/test_field_dependents.py:77"},
+        {n:"test_backfill_task_error_sets_job_status_error",k:"func",f:"backend/tests/test_formula_backfill.py:77"}
+      ],
+      dir:"in",
+      note:"depth-capped at 3, expansion stopped through any node above degree 25."
+    },
+    "def FieldSerializer": {
+      focus:{n:"FieldSerializer",k:"class",f:"backend/core/api/serializers.py:71"},
+      rel:[], dir:"out"
+    },
+    "search formula cycle": {
+      focus:{n:"_reject_formula_cycle",k:"method",f:"backend/core/api/serializers.py:95"},
+      rel:[], dir:"out"
+    }
+  };
+  DATA["callers"]=DATA["callers formula_index"];
+  DATA["callees"]=DATA["callees formula_index"];
+  DATA["impact"]=DATA["impact FormulaError"];
+  DATA["def"]=DATA["def FieldSerializer"];
+  DATA["search"]=DATA["search formula cycle"];
+  DATA['search "formula cycle"']=DATA["search formula cycle"];
+
+  var cv=document.getElementById("graph"), ctx=cv.getContext("2d");
+  var stage=document.getElementById("stage"), tip=document.getElementById("tip");
+  var readout=document.getElementById("readout");
+  var hist=document.getElementById("history"), line=document.getElementById("cmdline");
+  var body=document.getElementById("termbody");
+
+  var nodes=[], W=0, H=0, raf=null, t0=0;
+
+  function size(){
+    var r=stage.getBoundingClientRect(), d=window.devicePixelRatio||1;
+    W=r.width; H=r.height;
+    cv.width=Math.round(W*d); cv.height=Math.round(H*d);
+    ctx.setTransform(d,0,0,d,0,0);
+    draw(1);
+  }
+
+  // Deterministic radial placement: angle comes from index, never from a simulation.
+  function layout(q){
+    var cx=W/2, cy=H/2;
+    var out=[];
+    out.push({n:q.focus.n,k:q.focus.k,f:q.focus.f,focus:true,x:cx,y:cy,tx:cx,ty:cy,r:15});
+    var n=q.rel.length;
+    if(!n) return out;
+    var inner=Math.min(n,8), outer=n-inner;
+    var base=Math.min(W,H);
+    // Horizontal and vertical radii are reserved separately: a node at 0 or 180
+    // degrees carries its label outward, so the x radius has to leave room for it
+    // or the label runs off the canvas once the pane narrows.
+    var LABEL=n>9?116:150;
+    var rx2=Math.max(76,Math.min(base*0.42, W*0.5-LABEL));
+    var ry2=Math.max(60,Math.min(base*0.42*0.86, H*0.5-40));
+    var rx1=rx2*0.64, ry1=ry2*0.64;
+    for(var i=0;i<n;i++){
+      var ring=i<inner?0:1;
+      var idx=ring?i-inner:i, cnt=ring?outer:inner;
+      var a=(idx/cnt)*Math.PI*2 - Math.PI/2 + (ring?Math.PI/cnt:0);
+      out.push({n:q.rel[i].n,k:q.rel[i].k,f:q.rel[i].f,c:q.rel[i].c,focus:false,
+        x:cx,y:cy,
+        tx:cx+Math.cos(a)*(ring?rx2:rx1),
+        ty:cy+Math.sin(a)*(ring?ry2:ry1),r:7});
+    }
+    return out;
+  }
+
+  function ease(p){ return 1-Math.pow(1-p,3); }
+
+  function draw(p){
+    ctx.clearRect(0,0,W,H);
+    if(!nodes.length) return;
+    var f=nodes[0], i, nd, x, y;
+
+    // edges first, hairline ink
+    ctx.lineWidth=1;
+    for(i=1;i<nodes.length;i++){
+      nd=nodes[i];
+      x=f.x+(nd.tx-f.x)*p; y=f.y+(nd.ty-f.y)*p;
+      nd.cx=x; nd.cy=y;
+      // Confidence rides the dash pattern rather than a second hue, since a
+      // categorical palette in page chrome is banned. An INFERRED edge was bound
+      // by bare name with no import evidence behind it, and it should not draw
+      // with the same authority as one the extractor actually saw.
+      ctx.strokeStyle="rgba(23,20,15,"+((nd.c==="INFERRED"?0.15:0.22)*p).toFixed(3)+")";
+      ctx.setLineDash(nd.c==="INFERRED"?[4,3]:[]);
+      ctx.beginPath(); ctx.moveTo(f.x,f.y); ctx.lineTo(x,y); ctx.stroke();
+      ctx.setLineDash([]);
+
+      // direction mark, a third of the way along
+      var mx=f.x+(x-f.x)*0.34, my=f.y+(y-f.y)*0.34;
+      var ang=Math.atan2(y-f.y,x-f.x);
+      if(DIR==="in") ang+=Math.PI;
+      ctx.save(); ctx.translate(mx,my); ctx.rotate(ang);
+      ctx.strokeStyle="rgba(23,20,15,"+(0.34*p).toFixed(3)+")";
+      ctx.beginPath(); ctx.moveTo(-3.5,-3); ctx.lineTo(1.5,0); ctx.lineTo(-3.5,3); ctx.stroke();
+      ctx.restore();
+    }
+
+    // related nodes: paper fill, ink rim, never a second hue.
+    // Labels splay outward along each node's own radius so they never stack on
+    // each other the way a fixed below-the-node offset does once the ring fills.
+    var dense=nodes.length>9;
+    ctx.font=(dense?'500 10px ':'500 11px ')+'ui-monospace,SFMono-Regular,Menlo,Consolas,monospace';
+    ctx.textBaseline="middle";
+    var cap=dense?18:26;
+    for(i=1;i<nodes.length;i++){
+      nd=nodes[i];
+      ctx.beginPath(); ctx.arc(nd.cx,nd.cy,nd.r,0,Math.PI*2);
+      ctx.fillStyle="#FCFAF6"; ctx.fill();
+      ctx.lineWidth=1.4; ctx.strokeStyle="rgba(23,20,15,"+(0.5*p).toFixed(3)+")"; ctx.stroke();
+
+      var vx=nd.cx-f.x, vy=nd.cy-f.y, len=Math.sqrt(vx*vx+vy*vy)||1;
+      var ux=vx/len, uy=vy/len;
+      var lx=nd.cx+ux*(nd.r+7), ly=nd.cy+uy*(nd.r+7);
+      ctx.textAlign = ux<-0.25 ? "right" : (ux>0.25 ? "left" : "center");
+      if(Math.abs(ux)<=0.25) ly += uy>0 ? 6 : -6;
+      ctx.fillStyle="rgba(99,92,81,"+p.toFixed(3)+")";
+      var lab=nd.n.length>cap?nd.n.slice(0,cap-1)+ELLIPSIS:nd.n;
+      ctx.fillText(lab,lx,ly);
+    }
+    ctx.textAlign="center";
+
+    // focus node last so it sits on top; the only accent on the canvas
+    ctx.beginPath(); ctx.arc(f.x,f.y,f.r+7,0,Math.PI*2);
+    ctx.strokeStyle="rgba(192,64,0,.28)"; ctx.lineWidth=1; ctx.stroke();
+    ctx.beginPath(); ctx.arc(f.x,f.y,f.r,0,Math.PI*2);
+    ctx.fillStyle="#C04000"; ctx.fill();
+    f.cx=f.x; f.cy=f.y;
+    ctx.font='600 12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace';
+    ctx.fillStyle="#0E0C09";
+    ctx.fillText(f.n,f.x,f.y+f.r+14);
+  }
+
+  var DIR="out";
+
+  function render(q){
+    DIR=q.dir; nodes=layout(q);
+    stage.classList.add("busy");
+    readout.textContent=q.rel.length+(q.rel.length===1?" symbol":" symbols")+" drawn from an index of 6,050";
+    if(raf) cancelAnimationFrame(raf);
+    if(RM){ draw(1); return; }
+    t0=0;
+    raf=requestAnimationFrame(function step(now){
+      if(!t0) t0=now;
+      var p=Math.min(1,(now-t0)/460);
+      draw(ease(p));
+      if(p<1) raf=requestAnimationFrame(step);
+    });
+  }
+
+  // hover readout
+  cv.addEventListener("mousemove", function(e){
+    var r=cv.getBoundingClientRect(), mx=e.clientX-r.left, my=e.clientY-r.top, found=null;
+    for(var i=0;i<nodes.length;i++){
+      var nd=nodes[i];
+      if(nd.cx===undefined) continue;
+      var dx=mx-nd.cx, dy=my-nd.cy;
+      if(dx*dx+dy*dy < (nd.r+6)*(nd.r+6)){ found=nd; break; }
+    }
+    if(found){
+      tip.textContent=found.k+"  "+found.f;
+      tip.style.left=found.cx+"px"; tip.style.top=found.cy+"px";
+      tip.classList.add("on"); cv.style.cursor="pointer";
+    } else { tip.classList.remove("on"); cv.style.cursor="default"; }
+  });
+  cv.addEventListener("mouseleave", function(){ tip.classList.remove("on"); });
+
+  // ---- terminal ----
+  function add(html){
+    var d=document.createElement("div"); d.className="row"; d.innerHTML=html;
+    hist.appendChild(d); body.scrollTop=body.scrollHeight;
+  }
+  function esc(s){ return s.replace(/[<>&]/g,function(c){ return {"<":"&lt;",">":"&gt;","&":"&amp;"}[c]; }); }
+  function rowFor(o){
+    add('<span class="hit">'+esc(o.n)+'</span> &nbsp;<span class="kind">'+o.k+
+        '</span> &nbsp;<span class="loc">'+o.f+'</span>');
+  }
+
+  function run(raw){
+    var cmd=(raw||"").trim(); if(!cmd) return;
+    add('<span class="ps">harry@huy.gg</span> <span class="pwd">~/carbon</span> '+
+        '<span class="cmd">$ '+esc(cmd)+'</span>');
+    var key=cmd.replace(/^codemap\s+/i,"").trim();
+
+    if(key==="clear"){ hist.innerHTML=""; nodes=[]; stage.classList.remove("busy");
+      ctx.clearRect(0,0,W,H); return; }
+
+    if(key==="help"){
+      add('<span class="dim">available: </span><span style="color:var(--flare)">callers is_owner, '+
+          'callers formula_index, callees formula_index, impact, def, search, stats, check, clear</span>');
+      add('<span class="dim">every response is captured from a real build of the carbon map</span>');
+      return;
+    }
+
+    if(key==="stats"){
+      add('<span class="dim">symbol_count</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="loc">6050</span>');
+      add('<span class="dim">edge_count</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="loc">11609</span> <span class="dim">(11055 extracted, 554 inferred)</span>');
+      add('<span class="dim">dropped_edge_count</span> <span class="loc">5245</span>');
+      return;
+    }
+
+    if(key==="check"){ add('<span class="hit">fresh</span><span class="dim">: built at HEAD, working tree clean</span>'); return; }
+
+    var q=DATA[key]||DATA[key.toLowerCase()];
+    if(!q){
+      add('<span class="dim">no such command: '+esc(cmd)+'</span>');
+      add('<span class="dim">try </span><span style="color:var(--flare)">help</span>');
+      return;
+    }
+    if(q.rel.length) q.rel.forEach(rowFor); else rowFor(q.focus);
+    if(q.note) add('<span class="dim">'+q.note+'</span>');
+    render(q);
+  }
+
+  line.addEventListener("keydown", function(e){
+    if(e.key==="Enter"){ e.preventDefault(); var v=line.textContent; line.textContent=""; run(v); }
+  });
+  body.addEventListener("click", function(e){ if(e.target!==line) line.focus(); });
+  Array.prototype.forEach.call(document.querySelectorAll(".chip"), function(b){
+    b.addEventListener("click", function(){ run(b.getAttribute("data-q")); line.focus(); });
+  });
+
+  window.addEventListener("resize", size);
+  size();
+})();
+</script>
+
+</body>
+</html>
