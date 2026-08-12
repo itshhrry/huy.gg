@@ -109,6 +109,10 @@ img{max-width:100%;height:auto;display:block}
 
 /* ---------- bands. Same breathing rate as the alcove, on purpose. ---------- */
 .band{padding:clamp(30px,4.6vw,58px) var(--pad);border-top:1px solid var(--rule)}
+/* A rule means a new item. A band that continues the entry above it carries no
+   rule and closes the gap, so supporting detail reads as part of its project
+   rather than as the next one. */
+.band.cont{border-top:0;padding-top:0}
 .bd > .k:first-child{margin-bottom:clamp(14px,2.4vw,26px)}
 
 /* A lattice rather than a row of boxes: the gap is a rule, so the grid reads as
@@ -120,13 +124,24 @@ img{max-width:100%;height:auto;display:block}
      gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:4px}
 .two > div:last-child:nth-child(odd){grid-column:1/-1}
 @media (max-width:640px){.two{grid-template-columns:1fr}}
+
+/* A plain two-column split for a single entry: prose beside its table, with no
+   frame. The lattice above is for a grid of peer items, and using it on one
+   project made that project look like a different kind of thing from the rest. */
+.split{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);
+       gap:clamp(24px,3.6vw,48px);align-items:start}
+@media (max-width:760px){.split{grid-template-columns:1fr;gap:24px}}
 .two > div{background:var(--washi);padding:clamp(18px,2.4vw,28px)}
 .two p{max-width:42ch}
 .two h2{font-weight:400;font-size:clamp(22px,2.8vw,30px);line-height:1.1;
         letter-spacing:-.026em;color:var(--sumi);margin-bottom:11px}
 p{color:var(--sumi1);max-width:46ch;font-size:15.5px}
 p + p{margin-top:12px}
-.wide p{max-width:60ch}
+/* A project entry is one object: its opening paragraph and its outcome caption
+   run the full width of the plate between them, rather than stopping short at a
+   reading measure and leaving the entry looking like two narrow columns wrapped
+   around a wide image. */
+.wide p{max-width:none}
 .u{display:inline-block;margin-top:13px;font-family:var(--tech);font-size:11px;
    color:var(--sumi);border-bottom:1px solid var(--rule2);padding-bottom:2px}
 .u:hover{text-decoration:none;border-bottom-color:var(--sumi)}
@@ -143,7 +158,7 @@ p + p{margin-top:12px}
               "real captured output" rather than decoration. ---------- */
 .plate{border:1px solid var(--rule);background:#fff;overflow:hidden;display:block}
 .platecap{font-family:var(--tech);font-size:10.5px;color:var(--sumi3);margin-top:11px;
-          line-height:1.7;max-width:64ch}
+          line-height:1.7;max-width:none}
 .platecap b{color:var(--sumi);font-weight:400}
 
 /* ---------- the ledger stays quiet ---------- */

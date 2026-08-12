@@ -54,7 +54,7 @@
 
   <!-- ========== RCM ========== -->
   <section class="band wide" id="rcm">
-    <div class="mk">01 &nbsp;·&nbsp; python · pandas · numpy · excel · power query</div>
+    <div class="mk"><span style="display:block;color:var(--sumi2)">01</span>python · pandas · numpy · excel · power query</div>
     <div class="bd">
     <h2 style="font-weight:400;font-size:clamp(24px,3.4vw,38px);line-height:1.08;letter-spacing:-.028em;color:var(--sumi);margin-bottom:14px">Revenue cycle by design</h2>
     <p>Designed and generated a dataset of 250,000 claims in Python using rule-based operational and financial logic, then normalised the raw output into schemas with Power Query to analyse reimbursement performance, denials, efficiency, and profitability.</p>
@@ -65,7 +65,7 @@
   </div>
   </section>
 
-  <section class="band">
+  <section class="band cont">
     <div class="mk"></div>
     <div class="bd">
     <div class="two">
@@ -93,7 +93,7 @@
 
   <!-- ========== CARBON ========== -->
   <section class="band wide" id="carbon">
-    <div class="mk">02 &nbsp;·&nbsp; django · drf · postgresql · nuxt 3 · channels · celery · docker</div>
+    <div class="mk"><span style="display:block;color:var(--sumi2)">02</span>django · drf · postgresql · nuxt 3 · channels · celery · docker</div>
     <div class="bd">
     <h2 style="font-weight:400;font-size:clamp(24px,3.4vw,38px);line-height:1.08;letter-spacing:-.028em;color:var(--sumi);margin-bottom:14px">carbon: a self-hosted spreadsheet database</h2>
     <p>A spreadsheet database that runs on hardware I own rather than rented infrastructure. Every table is a real table in PostgreSQL with typed columns, so a filter runs as a query inside the database instead of JavaScript sifting rows the browser already downloaded. Data arrives as CSV, JSON, or Excel and leaves the same way, whole.</p>
@@ -104,8 +104,8 @@
   </div>
   </section>
 
-  <section class="band">
-    <div class="mk"><span style="display:block;color:var(--sumi2)">i</span></div>
+  <section class="band cont">
+    <div class="mk"></div>
     <div class="bd">
     <div class="two">
       <div>
@@ -132,14 +132,15 @@
 
   <!-- ========== CODEMAP ========== -->
   <section class="band" id="codemap">
-    <div class="mk"><span style="display:block;color:var(--sumi2)">01</span>03 &nbsp;·&nbsp; python · sqlite · typescript · rust · tree-sitter</div>
+    <div class="mk"><span style="display:block;color:var(--sumi2)">03</span>python · sqlite · typescript · rust · tree-sitter</div>
     <div class="bd">
-    <div class="two">
+    <div class="split">
       <div class="wide">
         <h2>codemap</h2>
         <p>A code index that answers questions about a repository without reading it. Built after the tool I was using kept returning the entire neighbourhood around whatever I asked about, which is the opposite of an answer.</p>
         <p>It answers where a function lives, what calls it, and what breaks if it changes, across a whole repository, without opening files and without a language model in the loop.</p>
         <a class="u" href="codemap.html">open the query surface</a>
+        
       </div>
       <div>
         <table>
@@ -151,12 +152,34 @@
         <div class="platecap">Search tells you where a name appears. This tells you what depends on it, which is the question you actually have before changing anything.</div>
       </div>
     </div>
-  </div>
+    <div style="margin-top:20px"><div style="border:1px solid var(--rule2);border-radius:0;overflow:hidden;background:var(--raise);font-family:Arial,Helvetica,sans-serif,ui-monospace,monospace;">
+              <div style="display:flex;align-items:center;gap:6px;padding:9px 13px;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(22,22,22,.12);">
+                <span style="width:11px;height:11px;border-radius:50%;background:#ff5f57;"></span>
+                <span style="width:11px;height:11px;border-radius:50%;background:#febc2e;"></span>
+                <span style="width:11px;height:11px;border-radius:50%;background:#28c840;"></span>
+                <span style="margin-left:8px;font-size:11px;color:var(--sumi2);letter-spacing:.04em;">harry@huy.gg ~/carbon &bull; zsh</span>
+              </div>
+              <div id="cm-body" style="padding:15px 18px 18px;font-size:12.5px;line-height:1.7;color:#3B352D;cursor:text;">
+                <div><span style="color:#5A5349;">harry@huy.gg</span> <span style="color:var(--sumi2);">~/carbon</span> <span style="color:#17140F;">$ codemap stats</span></div>
+                <div style="color:var(--sumi2);">symbols indexed &nbsp;&nbsp;6050</div>
+                <div style="color:var(--sumi2);">relationships &nbsp;&nbsp;&nbsp;&nbsp;11609</div>
+                <div style="color:var(--sumi2);">&nbsp;&nbsp;import-backed &nbsp;11055</div>
+                <div style="color:var(--sumi2);">&nbsp;&nbsp;inferred &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;554</div>
+                <div style="margin-top:11px;"><span style="color:#5A5349;">harry@huy.gg</span> <span style="color:var(--sumi2);">~/carbon</span> <span style="color:#17140F;">$ codemap callers formula_index</span></div>
+                <div style="color:#276B2B;">react &nbsp;&nbsp;func &nbsp;&nbsp;backend/core/dynamic/reactions.py:38</div>
+                <div id="cm-history" style="margin-top:6px;"></div>
+                <div style="margin-top:11px;"><span style="color:#5A5349;">harry@huy.gg</span> <span style="color:var(--sumi2);">~/carbon</span> <span style="color:#17140F;">$&nbsp;</span><span id="cm-input" contenteditable="true" spellcheck="false" style="outline:none;color:#17140F;min-width:1px;"></span><span style="display:inline-block;width:8px;height:14px;background:#A93700;vertical-align:-2px;animation:tblink 1s steps(2) infinite;"></span></div>
+                <div style="margin-top:11px;font-size:11px;color:var(--sumi2);">
+                  <span style="color:#276B2B;">tip</span>: real output from the map above. try <span style="color:#A93700;">help</span>, <span style="color:#A93700;">check</span>, <span style="color:#A93700;">callees formula_index</span>, <span style="color:#A93700;">def FieldSerializer</span>
+                </div>
+              </div>
+            </div></div>
+    </div>
   </section>
 
   <!-- ========== CLAUDE ========== -->
   <section class="band wide" id="claude">
-    <div class="mk">04 &nbsp;·&nbsp; javascript · echarts · eda · dataviz</div>
+    <div class="mk"><span style="display:block;color:var(--sumi2)">04</span>javascript · echarts · eda · dataviz</div>
     <div class="bd">
     <h2 style="font-weight:400;font-size:clamp(24px,3.4vw,38px);line-height:1.08;letter-spacing:-.028em;color:var(--sumi);margin-bottom:14px">Claude usage data</h2>
     <p>An analytics console that turns my own session history into signal: work cadence, output patterns, model reliability and cost, resource utilisation, and a full exploratory data analysis, computed in the browser and rendered with ECharts. The same revenue-cycle rigour, pointed at my own workflow.</p>
@@ -169,16 +192,19 @@
 
   <!-- ========== EMOTION ========== -->
   <section class="band" id="emotion">
-    <div class="mk">05 &nbsp;·&nbsp; python · tensorflow · keras · ann · cnn · computer vision</div>
+    <div class="mk"><span style="display:block;color:var(--sumi2)">05</span>python · tensorflow · keras · ann · cnn · computer vision</div>
     <div class="bd">
-    <div class="two">
+    <div class="split">
       <div class="wide">
         <h2>Facial emotion recognition</h2>
         <p>Built and compared multiple deep learning models to classify facial expressions across four categories: happy, sad, surprised, and neutral. Progressed from a baseline artificial neural network through increasingly refined convolutional architectures.</p>
         <p>Depth, dropout tuning, and epoch scaling outperformed the simpler architectures by a wide margin. Matching input format to what the model expected, grayscale rather than RGB, improved alignment and removed preprocessing artefacts.</p>
       </div>
       <div>
-        <table>
+        <div class="plate">
+          <img src="img/facial-emotion-detection-final-result.png" width="1200" height="600" loading="lazy" decoding="async" alt="Confusion matrix and accuracy curves for the final convolutional model">
+        </div>
+        <table style="margin-top:14px">
           <tr><td class="role">baseline ann</td><td class="met">56%</td></tr>
           <tr><td class="role">model 1, simple cnn</td><td class="met">59%</td></tr>
           <tr><td class="role">model 2, refined cnn</td><td class="met">69%</td></tr>
@@ -191,9 +217,9 @@
 
   <!-- ========== INFRA ========== -->
   <section class="band" id="infra">
-    <div class="mk"><span style="display:block;color:var(--sumi2)">02</span>06 &nbsp;·&nbsp; docker · nginx · cloudflare · linux · mariadb · wireguard · pi-hole</div>
+    <div class="mk"><span style="display:block;color:var(--sumi2)">06</span>docker · nginx · cloudflare · linux · mariadb · wireguard · pi-hole</div>
     <div class="bd">
-    <div class="two">
+    <div class="split">
       <div class="wide">
         <h2>Self-hosted home server infrastructure</h2>
         <p>Private file storage, media streaming, and carbon all run on hardware in my apartment, under one domain. Containerised behind a reverse proxy, with automated certificates, VPN-only access to anything private, and DNS filtering at the network level.</p>
@@ -206,9 +232,27 @@
           <li>WireGuard for remote access, Pi-hole filtering DNS network-wide</li>
           <li>MariaDB backing the services that need persistence</li>
         </ul>
+        
       </div>
     </div>
-  </div>
+    <div style="margin-top:20px"><div style="border:1px solid var(--rule2);border-radius:0;overflow:hidden;background:var(--raise);font-family:Arial,Helvetica,sans-serif,ui-monospace,monospace;">
+              <div style="display:flex;align-items:center;gap:6px;padding:9px 13px;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(22,22,22,.12);">
+                <span style="width:11px;height:11px;border-radius:50%;background:#ff5f57;"></span>
+                <span style="width:11px;height:11px;border-radius:50%;background:#febc2e;"></span>
+                <span style="width:11px;height:11px;border-radius:50%;background:#28c840;"></span>
+                <span style="margin-left:8px;font-size:11px;color:var(--sumi2);letter-spacing:.04em;">harry@huy.gg ~ &bull; zsh</span>
+              </div>
+              <div id="term-body" style="padding:15px 18px 18px;font-size:12.5px;line-height:1.55;color:#3B352D;cursor:text;">
+                <div style="opacity:0;animation:tfade .25s ease forwards;"><span style="color:#5A5349;">harry@huy.gg</span> <span style="color:var(--sumi2);">~</span> <span style="color:#17140F;">$ tail -f /var/log/services.log</span></div>
+                <div id="log-feed" style="margin-top:5px;min-height:108px;"></div>
+                <div id="term-history" style="margin-top:6px;"></div>
+                <div style="margin-top:6px;"><span style="color:#5A5349;">harry@huy.gg</span> <span style="color:var(--sumi2);">~</span> <span style="color:#17140F;">$&nbsp;</span><span id="term-input" contenteditable="true" spellcheck="false" style="outline:none;color:#17140F;min-width:1px;"></span><span id="term-cursor" style="display:inline-block;width:8px;height:14px;background:#A93700;vertical-align:-2px;animation:tblink 1s steps(2) infinite;"></span></div>
+                <div style="margin-top:11px;font-size:11px;color:var(--sumi2);">
+                  <span style="color:#276B2B;">tip</span>: try <span style="color:#A93700;">help</span>, <span style="color:#A93700;">whoami</span>, <span style="color:#A93700;">ls services</span>, <span style="color:#A93700;">cat motd</span>, <span style="color:#A93700;">ping huy.gg</span>, <span style="color:#A93700;">uptime</span>
+                </div>
+              </div>
+            </div></div>
+    </div>
   </section>
 
   <section class="band">
@@ -230,5 +274,6 @@
   </footer>
 
 </div>
+<script src="js/terminals.js"></script>
 </body>
 </html>
