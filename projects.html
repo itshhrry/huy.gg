@@ -104,61 +104,6 @@
       <div style="display:flex;flex-direction:column;gap:clamp(24px,3vw,36px);">
 
 
-        <!-- PROJECT: Claude Analytics -->
-        <article id="claude" data-reveal data-spot style="position:relative;overflow:hidden;border:1px solid var(--border);border-radius:22px;background:var(--panel-grad);padding:clamp(24px,3vw,40px);box-shadow:0 40px 100px rgba(0,0,0,.28);scroll-margin-top:96px;">
-          <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(620px circle at var(--mx,80%) var(--my,0%), var(--flare-soft), transparent 55%);"></div>
-            <div style="position:absolute;inset:0;border-radius:22px;padding:1.5px;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%), var(--flare), transparent 60%);-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;"></div>
-          <div style="position:relative;">
-            <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;margin-bottom:20px;">
-              <div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center;">
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">JavaScript</span>
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">ECharts</span>
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Data Analysis</span>
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">EDA</span>
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Dataviz</span>
-              </div>
-              <a href="claude-analytics.html" style="display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:14px;flex:none;">Open the dashboard <span style="font-family:Arial,Helvetica,sans-serif;">↗</span></a>
-            </div>
-            <h3 style="font-size:clamp(24px,2.8vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.1;margin-bottom:14px;">Claude Usage Data: A Personal Analytics Dashboard</h3>
-            <p style="font-size:clamp(15px,1.4vw,17px);color:var(--muted);line-height:1.65;max-width:820px;margin-bottom:28px;">An interactive analytics dashboard that turns my own Claude session history into signal: work cadence, output patterns, model reliability and cost, resource utilization, and a full exploratory data analysis, all computed live in the browser from a parsed session dataset and rendered with ECharts. The same revenue-cycle rigor, pointed at my own workflow.</p>
-            <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,2.4vw,32px);margin-bottom:30px;">
-              <div>
-                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Objective</div>
-                <p style="font-size:14.5px;color:var(--muted);line-height:1.6;">Turn raw session logs into a self-analytics tool: understand when and how I work, what each model costs and returns, and where tool usage carries risk or overhead.</p>
-              </div>
-              <div>
-                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Approach</div>
-                <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Parsed the session dataset into aggregates in a single data layer</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Computed EDA live in-browser: no build step, no server</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Rendered interactive charts with ECharts on a self-hosted page</li>
-                </ul>
-              </div>
-              <div>
-                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Views</div>
-                <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Intelligence Thermodynamics</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Cadence &amp; Output: weekday × hour</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Models: reliability &amp; cost</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Resource utilization &amp; tool matrix</li>
-                </ul>
-              </div>
-              <div>
-                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Outcome</div>
-                <p style="font-size:14.5px;color:var(--muted);line-height:1.6;">A living dashboard that surfaces work rhythm, cost-versus-reliability tradeoffs across models, and tool usage patterns: a self-contained, portable analytics artifact.</p>
-              </div>
-            </div>
-            <a href="claude-analytics.html" style="display:block;border-radius:12px;border:1px solid var(--border2);overflow:hidden;background:#F2EEE6;color:inherit;">
-              <div style="display:flex;align-items:center;gap:8px;padding:11px 14px;border-bottom:1px solid rgba(23,20,15,.12);font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#5A5349;">
-                <span style="display:flex;gap:6px;"><span style="width:9px;height:9px;border-radius:50%;background:#ff5f57;"></span><span style="width:9px;height:9px;border-radius:50%;background:#febc2e;"></span><span style="width:9px;height:9px;border-radius:50%;background:#28c840;"></span></span>
-                <span style="margin-left:6px;">claude &bull; analytics</span>
-                <span style="margin-left:auto;color:#A93700;">Open dashboard ↗</span>
-              </div>
-              <img src="img/claude-analytics-preview.jpg" width="1178" height="971" loading="lazy" decoding="async" alt="Claude usage data dashboard preview" style="display:block;width:100%;height:auto;" />
-            </a>
-          </div>
-        </article>
-
         <!-- PROJECT 1: RCM -->
         <article id="rcm" data-reveal data-spot style="position:relative;overflow:hidden;border:1px solid var(--border);border-radius:22px;background:var(--panel-grad);padding:clamp(24px,3vw,40px);box-shadow:0 40px 100px rgba(0,0,0,.28);scroll-margin-top:96px;">
           <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(620px circle at var(--mx,85%) var(--my,0%), var(--flare-soft), transparent 55%);"></div>
@@ -212,6 +157,61 @@
               <a href="img/rcm-report-summary.png" data-zoom target="_blank" style="display:block;border-radius:12px;border:1px solid var(--border2);overflow:hidden;background:var(--bg);cursor:zoom-in;"><img src="img/rcm-report-summary.png" width="2706" height="1173" loading="lazy" decoding="async" alt="healthcare revenue cycle billing report summary" style="display:block;width:100%;height:auto;" /></a>
               <a href="img/rcm-report-analysis.png" data-zoom target="_blank" style="display:block;border-radius:12px;border:1px solid var(--border2);overflow:hidden;background:var(--bg);cursor:zoom-in;"><img src="img/rcm-report-analysis.png" width="2706" height="1263" loading="lazy" decoding="async" alt="healthcare revenue cycle billing report analysis" style="display:block;width:100%;height:auto;" /></a>
             </div>
+          </div>
+        </article>
+
+        <!-- PROJECT: Claude Analytics -->
+        <article id="claude" data-reveal data-spot style="position:relative;overflow:hidden;border:1px solid var(--border);border-radius:22px;background:var(--panel-grad);padding:clamp(24px,3vw,40px);box-shadow:0 40px 100px rgba(0,0,0,.28);scroll-margin-top:96px;">
+          <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(620px circle at var(--mx,80%) var(--my,0%), var(--flare-soft), transparent 55%);"></div>
+            <div style="position:absolute;inset:0;border-radius:22px;padding:1.5px;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%), var(--flare), transparent 60%);-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;"></div>
+          <div style="position:relative;">
+            <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;margin-bottom:20px;">
+              <div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center;">
+                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">JavaScript</span>
+                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">ECharts</span>
+                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Data Analysis</span>
+                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">EDA</span>
+                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Dataviz</span>
+              </div>
+              <a href="claude-analytics.html" style="display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:14px;flex:none;">Open the dashboard <span style="font-family:Arial,Helvetica,sans-serif;">↗</span></a>
+            </div>
+            <h3 style="font-size:clamp(24px,2.8vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.1;margin-bottom:14px;">Claude Usage Data: A Personal Analytics Dashboard</h3>
+            <p style="font-size:clamp(15px,1.4vw,17px);color:var(--muted);line-height:1.65;max-width:820px;margin-bottom:28px;">An interactive analytics dashboard that turns my own Claude session history into signal: work cadence, output patterns, model reliability and cost, resource utilization, and a full exploratory data analysis, all computed live in the browser from a parsed session dataset and rendered with ECharts. The same revenue-cycle rigor, pointed at my own workflow.</p>
+            <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,2.4vw,32px);margin-bottom:30px;">
+              <div>
+                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Objective</div>
+                <p style="font-size:14.5px;color:var(--muted);line-height:1.6;">Turn raw session logs into a self-analytics tool: understand when and how I work, what each model costs and returns, and where tool usage carries risk or overhead.</p>
+              </div>
+              <div>
+                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Approach</div>
+                <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Parsed the session dataset into aggregates in a single data layer</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Computed EDA live in-browser: no build step, no server</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Rendered interactive charts with ECharts on a self-hosted page</li>
+                </ul>
+              </div>
+              <div>
+                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Views</div>
+                <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Intelligence Thermodynamics</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Cadence &amp; Output: weekday × hour</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Models: reliability &amp; cost</li>
+                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Resource utilization &amp; tool matrix</li>
+                </ul>
+              </div>
+              <div>
+                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Outcome</div>
+                <p style="font-size:14.5px;color:var(--muted);line-height:1.6;">A living dashboard that surfaces work rhythm, cost-versus-reliability tradeoffs across models, and tool usage patterns: a self-contained, portable analytics artifact.</p>
+              </div>
+            </div>
+            <a href="claude-analytics.html" style="display:block;border-radius:12px;border:1px solid var(--border2);overflow:hidden;background:#F2EEE6;color:inherit;">
+              <div style="display:flex;align-items:center;gap:8px;padding:11px 14px;border-bottom:1px solid rgba(23,20,15,.12);font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#5A5349;">
+                <span style="display:flex;gap:6px;"><span style="width:9px;height:9px;border-radius:50%;background:#ff5f57;"></span><span style="width:9px;height:9px;border-radius:50%;background:#febc2e;"></span><span style="width:9px;height:9px;border-radius:50%;background:#28c840;"></span></span>
+                <span style="margin-left:6px;">claude &bull; analytics</span>
+                <span style="margin-left:auto;color:#A93700;">Open dashboard ↗</span>
+              </div>
+              <img src="img/claude-analytics-preview.jpg" width="1178" height="971" loading="lazy" decoding="async" alt="Claude usage data dashboard preview" style="display:block;width:100%;height:auto;" />
+            </a>
           </div>
         </article>
 
