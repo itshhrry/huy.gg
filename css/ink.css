@@ -169,10 +169,62 @@ p + p{margin-top:12px}
 
 /* ---------- plates. The screenshots keep their colour; it now means
               "real captured output" rather than decoration. ---------- */
-.plate{border:1px solid var(--rule);background:#fff;overflow:hidden;display:block}
+/* A plate no longer navigates. It opens the capture at full size, which is what
+   a reader clicking a screenshot is actually asking for, and it frees the entry
+   to carry one honest link to the running thing instead. The cue is a corner
+   badge rather than a cursor change alone, because a cursor is only discoverable
+   once the pointer is already there. */
+.plate{border:1px solid var(--rule);background:#fff;overflow:hidden;display:block;
+       position:relative;cursor:zoom-in}
+.plate::after{content:"enlarge";position:absolute;right:10px;bottom:10px;
+              font-family:var(--tech);font-size:10px;letter-spacing:.06em;
+              color:var(--sumi);background:rgba(245,241,232,.94);
+              border:1px solid var(--rule2);padding:4px 9px;
+              opacity:0;transition:opacity .18s ease;pointer-events:none}
+.plate:hover::after,.plate:focus-visible::after{opacity:1}
+@media (hover:none){.plate::after{opacity:.92}}
 .platecap{font-family:var(--tech);font-size:10.5px;color:var(--sumi3);margin-top:11px;
           line-height:1.7;max-width:none}
 .platecap b{color:var(--sumi);font-weight:400}
+
+/* Every entry that has a running destination says so on one line: what the link
+   does, then where it goes. It sits across from the entry's title, sharing its
+   baseline, so the name of the thing and the way to reach it are read together
+   rather than the route being buried in a supporting column further down. */
+.ehead{display:flex;align-items:baseline;justify-content:space-between;
+       gap:clamp(18px,4vw,60px);flex-wrap:wrap}
+.ehead .goto{margin-top:0;margin-bottom:11px}
+@media (max-width:640px){.ehead{gap:4px}.ehead .goto{margin-top:2px}}
+.goto{display:inline-flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+      margin-top:clamp(18px,2.6vw,26px);font-family:var(--tech);font-size:11px;
+      color:var(--sumi);border-bottom:1px solid var(--rule2);padding-bottom:3px}
+.goto .addr{color:var(--sumi3)}
+.goto:hover{text-decoration:none;border-bottom-color:var(--sumi)}
+.goto:hover .addr{color:var(--sumi2)}
+
+/* ---------- the lightbox ----------
+   Ink at full strength over the page, so the capture is the only lit thing.
+   Click the image to go between fit and native size, click the ground to leave. */
+.lb{position:fixed;inset:0;z-index:90;display:none;
+    background:rgba(22,22,22,.95)}
+.lb.open{display:block}
+.lb-stage{position:absolute;inset:0;overflow:auto;
+          display:flex;align-items:center;justify-content:center;padding:clamp(16px,4vw,56px)}
+.lb-stage img{max-width:100%;max-height:82vh;width:auto;height:auto;cursor:zoom-in;
+              background:#fff;border:1px solid rgba(239,233,221,.25);margin:auto}
+.lb-stage.in{display:block}
+.lb-stage.in img{max-width:none;max-height:none;cursor:zoom-out;margin:0}
+.lb-bar{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:baseline;
+        gap:18px;padding:14px clamp(16px,4vw,56px);font-family:var(--tech);
+        font-size:10.5px;line-height:1.6;color:rgba(239,233,221,.72);
+        background:linear-gradient(rgba(22,22,22,0),rgba(22,22,22,.82) 42%)}
+/* The caption runs the width of the bar. Capped at a reading measure it set to
+   two fifths of the screen and wrapped three times under a very wide plate. */
+.lb-txt{flex:1;max-width:none}
+.lb-x{margin-left:auto;background:none;border:0;border-bottom:1px solid rgba(239,233,221,.45);
+      padding:0 0 2px;font:inherit;color:var(--washi);cursor:pointer}
+.lb-x:hover{border-bottom-color:var(--washi)}
+.lb-x:focus-visible,.lb-stage img:focus-visible{outline:2px solid var(--washi);outline-offset:4px}
 
 /* ---------- the ledger stays quiet ---------- */
 table{width:100%;border-collapse:collapse;font-size:14.5px}

@@ -56,16 +56,19 @@
   <section class="band wide" id="rcm">
     <div class="mk"><span style="display:block;color:var(--sumi2)">01</span>python · pandas · numpy · excel · power query</div>
     <div class="bd">
-    <h2>Revenue cycle by design</h2>
+    <div class="ehead">
+      <h2>Revenue cycle by design</h2>
+      <a class="goto" href="dashboard.html">Open the working dashboard <span class="addr">huy.gg/dashboard</span></a>
+    </div>
     <p>Designed and generated a dataset of 250,000 claims in Python using rule-based operational and financial logic, then normalised the raw output into schemas with Power Query to analyse reimbursement performance, denials, efficiency, and profitability.</p>
-    <a class="plate" href="dashboard.html">
+    <div class="plate">
         <img src="img/rcm-report-summary.png" width="2706" height="1173" loading="lazy" decoding="async" alt="Revenue cycle report summary: collection rates, denial volume, and reimbursement by payer, month over month">
-      </a>
+      </div>
       <div class="platecap"><b>Summary.</b> Twelve months across five facilities: billed, allowed, and collected per month, with net collection rate, contractual adjustment, and write-off tracked against each.</div>
-      <a class="plate" href="dashboard.html" style="margin-top:clamp(16px,2.2vw,26px)">
+      <div class="plate" style="margin-top:clamp(16px,2.2vw,26px)">
         <img src="img/rcm-report-analysis.png" width="2706" height="1263" loading="lazy" decoding="async" alt="Revenue cycle analysis: denial concentration by payer, provider, and CPT">
-      </a>
-    <div class="platecap"><b>Outcome.</b> Five facilities modelled across twelve months of 2025. Net collection holds at 82 to 83 percent against a 29 percent contractual adjustment and a 1 percent write-off rate, and a denial traces back to payer, provider, and CPT. <a href="dashboard.html">Open the working dashboard</a></div>
+      </div>
+    <div class="platecap"><b>Outcome.</b> Five facilities modelled across twelve months of 2025. Net collection holds at 82 to 83 percent against a 29 percent contractual adjustment and a 1 percent write-off rate, and a denial traces back to payer, provider, and CPT.</div>
   </div>
   </section>
 
@@ -99,12 +102,15 @@
   <section class="band wide" id="carbon">
     <div class="mk"><span style="display:block;color:var(--sumi2)">02</span>django · drf · postgresql · nuxt 3 · channels · celery · docker</div>
     <div class="bd">
-    <h2>carbon: project, tasks, notes, and dashboards on one database</h2>
+    <div class="ehead">
+      <h2>carbon: project, tasks, notes, and dashboards on one database</h2>
+      <a class="goto" href="https://carbon.huy.gg">Visit the landing page <span class="addr">carbon.huy.gg</span></a>
+    </div>
     <p>A project, a to-do list, and a goal held side by side on one database, running on hardware I own rather than rented infrastructure and reorganising as the work changes. Every table is a real PostgreSQL table with typed columns, so a filter runs as a query inside the database instead of JavaScript sifting rows the browser already downloaded. Data arrives as CSV, JSON, or Excel and leaves the same way, whole.</p>
-    <a class="plate" href="https://carbon.huy.gg" style="margin-top:22px">
+    <div class="plate" style="margin-top:22px">
       <img src="img/carbon-grid-6.png" width="1625" height="714" loading="lazy" decoding="async" alt="The carbon project table: column headers badged with their PostgreSQL types">
-    </a>
-    <div class="platecap"><b>The grid on carbon.huy.gg.</b> Each column header carries a badge naming that field's actual PostgreSQL type, and the summary strip underneath aggregates in SQL rather than in the browser. Access stays invite-only while the build continues. <a href="https://carbon.huy.gg">carbon.huy.gg</a></div>
+    </div>
+    <div class="platecap"><b>The grid on carbon.huy.gg.</b> Each column header carries a badge naming that field's actual PostgreSQL type, and the summary strip underneath aggregates in SQL rather than in the browser. Access stays invite-only while the build continues.</div>
   </div>
   </section>
 
@@ -138,7 +144,10 @@
   <section class="band wide" id="codemap">
     <div class="mk"><span style="display:block;color:var(--sumi2)">03</span>python &middot; sqlite &middot; typescript &middot; rust &middot; tree-sitter</div>
     <div class="bd">
-      <h2>codemap</h2>
+      <div class="ehead">
+        <h2>codemap</h2>
+        <a class="goto" href="codemap.html">Open the query surface <span class="addr">huy.gg/codemap</span></a>
+      </div>
       <p>A code index that answers questions about a repository without reading it. Built after the tool I was using kept returning the entire neighbourhood around whatever I asked about, which is the opposite of an answer.</p>
       <p>It answers where a function lives, what calls it, and what breaks if it changes, across a whole repository, without opening files and without a language model in the loop.</p>
       <div class="visual"><div style="border:1px solid var(--rule2);border-radius:0;overflow:hidden;background:var(--raise);font-family:Arial,Helvetica,sans-serif,ui-monospace,monospace;">
@@ -174,7 +183,6 @@
         </div>
         <div>
           <p>Search tells you where a name appears. This tells you what depends on it, which is the question you actually have before changing anything.</p>
-          <a class="u" href="codemap.html">open the query surface</a>
         </div>
       </div>
     </div>
@@ -184,12 +192,15 @@
   <section class="band wide" id="claude">
     <div class="mk"><span style="display:block;color:var(--sumi2)">04</span>javascript · echarts · eda · dataviz</div>
     <div class="bd">
-    <h2>Claude usage data</h2>
+    <div class="ehead">
+      <h2>Claude usage data</h2>
+      <a class="goto" href="claude-analytics.html">Open the console <span class="addr">huy.gg/claude-analytics</span></a>
+    </div>
     <p>An analytics console that turns my own session history into signal: work cadence, output patterns, model reliability and cost, resource utilisation, and a full exploratory data analysis, computed in the browser and rendered with ECharts. The same revenue-cycle rigour, pointed at my own workflow.</p>
-    <a class="plate" href="claude-analytics.html" style="margin-top:22px">
+    <div class="plate" style="margin-top:22px">
       <img src="img/claude-analytics-preview.jpg" width="1178" height="971" loading="lazy" decoding="async" alt="The Claude usage console: health metrics and the intelligence thermodynamics chart">
-    </a>
-    <div class="platecap"><b>Views.</b> Intelligence thermodynamics; cadence and output by weekday and hour; models by reliability and cost; resource utilisation and the tool matrix. <a href="claude-analytics.html">Open the console</a></div>
+    </div>
+    <div class="platecap"><b>Views.</b> Intelligence thermodynamics; cadence and output by weekday and hour; models by reliability and cost; resource utilisation and the tool matrix.</div>
   </div>
   </section>
 
@@ -279,5 +290,6 @@
 
 </div>
 <script src="js/terminals.js"></script>
+<script src="js/zoom.js"></script>
 </body>
 </html>
