@@ -61,6 +61,13 @@ img{max-width:100%;height:auto;display:block}
 
 /* ---------- identity bar. Deliberately almost nothing. ---------- */
 .bar{display:flex;align-items:center;gap:16px;padding:14px var(--pad);flex-wrap:wrap}
+/* Mark and name are one link home, the convention a visitor already expects, so
+   the way back does not depend on noticing the nav. On the home page itself
+   they stay plain spans. */
+.bar .home{display:inline-flex;align-items:center;gap:16px}
+.bar .home:hover{text-decoration:none}
+.bar .home:hover .who{text-decoration:underline;text-underline-offset:4px;
+                      text-decoration-thickness:1px}
 .bar .markbar{width:26px;height:26px;flex:0 0 auto;
               background:url("../img/logo.png") center/contain no-repeat}
 .bar .who{font-size:15px;color:var(--sumi)}

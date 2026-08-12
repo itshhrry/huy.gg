@@ -62,6 +62,9 @@
     padding:16px 0 15px;border-bottom:1px solid var(--b1);margin-bottom:clamp(28px,4vw,44px);}
   .mark{font-family:var(--mono);font-size:14px;font-weight:600;letter-spacing:-.02em;color:var(--strong);}
   .crumb{font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.03em;}
+  /* The page had no way out: no home link and no route back to the case study. */
+  a.crumb{text-decoration:none;}
+  a.crumb:hover{color:var(--strong);text-decoration:underline;text-underline-offset:3px;}
   .studybadge{margin-left:auto;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;
     text-transform:uppercase;color:var(--flare);border:1px solid var(--b2);
     border-radius:999px;padding:4px 11px;}
@@ -206,6 +209,7 @@
   <header>
     <span class="mark">codemap</span>
     <span class="crumb">~/carbon</span>
+    <a class="crumb" href="projects.html#codemap">back to the case study</a>
     <span class="studybadge">Captured output</span>
   </header>
 
