@@ -256,7 +256,13 @@ p + p{margin-top:12px}
    grey URL. huy.gg/dashboard would only repeat what the click already promises. */
 .ehead{display:flex;align-items:baseline;justify-content:space-between;
        gap:clamp(18px,4vw,60px);flex-wrap:wrap}
-.ehead .goto{margin-top:0;margin-bottom:11px}
+/* The rule aligns with the title's baseline, not the link's text. Baseline
+   alignment lines up the two sets of letters, but the link's rule then hangs
+   3.3px lower, under its own descender and 3px of padding, and the eye reads
+   the whole link as sitting low. Shifting by that measured amount puts the rule
+   on the title's baseline; relative positioning, so the row's layout is
+   untouched. */
+.ehead .goto{margin-top:0;margin-bottom:11px;position:relative;top:-3.3px}
 @media (max-width:640px){.ehead{gap:4px}.ehead .goto{margin-top:2px}}
 .goto{display:inline-flex;align-items:baseline;gap:12px;flex-wrap:wrap;
       margin-top:clamp(18px,2.6vw,26px);font-family:var(--tech);font-size:11px;
