@@ -6,7 +6,7 @@ function codemapTerminal() {
     const input = document.getElementById('cm-input');
     if (!input) return;
     const history = document.getElementById('cm-history');
-    const C = { p: '#5A5349', cmd: '#17140F', ok: '#276B2B', acc: '#A93700', mut: '#635C51', txt: '#3B352D' };
+    const C = { p: 'var(--sumi2)', cmd: 'var(--sumi1)', ok: '#276B2B', acc: 'var(--sumi)', mut: '#635C51', txt: '#3B352D' };
     const A = (html) => { const d = document.createElement('div'); d.style.cssText = 'opacity:0;animation:tfade .25s ease forwards;'; d.innerHTML = html; history.appendChild(d); };
     // every response below is real captured output from the carbon map
     const row = (name, kind, loc, sig) => A('<span style="color:' + C.ok + '">' + name + '</span> &nbsp;<span style="color:' + C.mut + '">' + kind + '</span> &nbsp;<span style="color:' + C.txt + '">' + loc + '</span>' + (sig ? ' &nbsp;<span style="color:' + C.mut + '">' + sig + '</span>' : ''));
@@ -39,7 +39,7 @@ function codemapTerminal() {
 function serverTerminal() {
     const feed = document.getElementById('log-feed');
     if (!feed) return;
-    const C = { p: '#5A5349', cmd: '#17140F', ok: '#276B2B', acc: '#A93700', mut: '#635C51', txt: '#3B352D' };
+    const C = { p: 'var(--sumi2)', cmd: 'var(--sumi1)', ok: '#276B2B', acc: 'var(--sumi)', mut: '#635C51', txt: '#3B352D' };
 
     const pool = [
       ['cloudflare', 'GET /resume → 200 OK'], ['nginx', 'cache HIT • 12ms'],
