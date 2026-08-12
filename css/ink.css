@@ -70,10 +70,11 @@ img{max-width:100%;height:auto;display:block}
               letter-spacing:.04em;color:var(--sumi2);
               border-left:1px solid var(--rule);padding-left:16px;margin-left:4px}
 
-/* The ensō is recoloured a single step off the ground, so it reads as an
-   impression rather than a drawn line, and the vermilion stroke carries alone. */
+/* The mark at full ink. A cream ensō was tried and pulled: one step off the
+   ground is not enough separation on washi, so the circle went nearly invisible
+   and the composition lost the thing holding the vermilion in place. */
 .alcove .mark{width:clamp(120px,22vw,270px);aspect-ratio:1;
-              background:url("../img/logo-ghost.png") center/contain no-repeat}
+              background:url("../img/logo.png") center/contain no-repeat}
 
 /* ---------- bands. Same breathing rate as the alcove, on purpose. ---------- */
 .band{padding:clamp(34px,6vw,74px) var(--pad);border-top:1px solid var(--rule)}
