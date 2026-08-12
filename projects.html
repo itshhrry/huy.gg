@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Projects | Harry Nguyen</title>
-<meta name="description" content="Case studies on carbon, a self-hosted spreadsheet database on PostgreSQL, a revenue cycle analytics dashboard, home infrastructure, and facial emotion recognition.">
+<title>Work | Harry Nguyen</title>
+<meta name="description" content="Selected projects across revenue cycle analytics, dashboard development, deep learning, and self-hosted infrastructure. Deployed and reachable.">
 <meta name="author" content="Harry Nguyen">
 <meta name="color-scheme" content="light">
 <link rel="canonical" href="https://huy.gg/projects.html">
@@ -12,711 +12,193 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="huy.gg">
 <meta property="og:url" content="https://huy.gg/projects.html">
-<meta property="og:title" content="Projects | Harry Nguyen">
-<meta property="og:description" content="Case studies on carbon, a self-hosted spreadsheet database on PostgreSQL, a revenue cycle analytics dashboard, home infrastructure, and facial emotion recognition.">
+<meta property="og:title" content="Work | Harry Nguyen">
+<meta property="og:description" content="Selected projects across revenue cycle analytics, dashboards, deep learning, and self-hosted infrastructure.">
 <meta property="og:image" content="https://huy.gg/img/logo.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Projects | Harry Nguyen">
-<meta name="twitter:description" content="Case studies on carbon, a self-hosted spreadsheet database on PostgreSQL, a revenue cycle analytics dashboard, home infrastructure, and facial emotion recognition.">
-
-<style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;background:#FCFAF6}
-  #home-root{
-    --bg:#FCFAF6;--panel-grad:linear-gradient(180deg,#ffffff,#FDFBF7);--card-rim:#E8E3D9;
-    --surface:rgba(255,255,255,.62);--surface2:rgba(255,255,255,.42);
-    --text:#17140F;--muted:#635C51;--muted2:#5A5349;--strong:#0E0C09;
-    --border:rgba(23,20,15,.1);--border2:rgba(23,20,15,.17);--border3:rgba(23,20,15,.27);
-    --accent:#C04000;--accent-ink:#FFF4EE;--flare:#A93700;--flare-soft:rgba(192,64,0,.09);
-    --grid:rgba(23,20,15,.045);
-    --nav-bg:rgba(252,250,246,.86);
-    
-  }
-  
-  a{color:inherit;text-decoration:none;transition:opacity .2s ease,color .2s ease}
-  a:hover{opacity:.82}
-  @keyframes tfade{to{opacity:1}}
-  @keyframes tblink{50%{opacity:0}}
-  #home-root[data-rm="1"] *{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important}
-  @media (prefers-reduced-motion:reduce){
-    html{scroll-behavior:auto}
-    #home-root *,#home-root *::before,#home-root *::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
-    #home-root{transition:none!important}
-  }
-  #home-root :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:5px}
-  #home-root :focus:not(:focus-visible){outline:none}
-  #home-root [data-nav]{display:inline-flex;align-items:center;min-height:44px;padding-inline:8px;margin-inline:-8px}
-  #home-root [data-foot]{display:inline-flex;align-items:center;min-height:44px}
-</style>
+<link rel="stylesheet" href="css/ink.css">
 </head>
 <body>
-<div id="home-root" data-rm="0" data-spot="1" style="background:var(--bg);color:var(--text);min-height:100vh;position:relative;overflow-x:hidden;font-family:Arial,Helvetica,sans-serif;">
+<div class="page">
 
-  <nav style="position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:9px clamp(20px,5vw,80px);background:var(--nav-bg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);">
-    <a href="index.html" style="display:flex;align-items:center;gap:9px;font-weight:600;font-size:16px;letter-spacing:-.01em;">
-      <img src="img/logo.png" width="1080" height="1081" decoding="async" alt="huy.gg" style="width:26px;height:26px;object-fit:contain;" />
-      Harry Nguyen
-    </a>
-    <div style="display:flex;align-items:center;gap:clamp(14px,2.2vw,30px);font-family:Arial,Helvetica,sans-serif;font-size:14px;color:var(--muted);">
-      <a href="about.html" data-nav>About</a>
-      <a href="projects.html" data-nav aria-current="page" style="color:var(--flare);">Projects</a>
-      <a href="resume.html" data-nav>Resume</a>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <header style="position:relative;overflow:hidden;padding:clamp(52px,7vw,96px) clamp(20px,5vw,80px) clamp(30px,4vw,48px);">
-    <div style="position:absolute;inset:0;background-image:radial-gradient(var(--grid) 1px, transparent 1px);background-size:26px 26px;-webkit-mask-image:radial-gradient(900px 480px at 26% 16%, #000 0%, transparent 78%);mask-image:radial-gradient(900px 480px at 26% 16%, #000 0%, transparent 78%);"></div>
-    <div style="position:relative;z-index:5;max-width:1160px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,52px);align-items:center;">
-      <div style="flex:1 1 440px;min-width:min(100%,300px);">
-        <h1 data-reveal data-delay="80" style="font-size:clamp(36px,5.2vw,64px);line-height:1.03;letter-spacing:-.025em;font-weight:600;margin-bottom:24px;">Analytics &amp; technical<br>infrastructure portfolio.</h1>
-        <p data-reveal data-delay="160" style="font-size:clamp(16px,1.5vw,19px);line-height:1.6;color:var(--muted);max-width:540px;margin-bottom:32px;">Selected projects across full-stack product engineering, data analysis, dashboard development, synthetic dataset design, deep learning, and self-hosted infrastructure.</p>
-        <div data-reveal data-delay="240" style="display:flex;gap:14px;flex-wrap:wrap;">
-          <a href="mailto:h@huy.gg" style="display:inline-flex;align-items:center;gap:9px;height:50px;padding:0 24px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:15px;">Contact me <span style="font-family:Arial,Helvetica,sans-serif;">→</span></a>
-          <a href="resume.html" style="display:inline-flex;align-items:center;height:50px;padding:0 24px;border-radius:999px;border:1px solid var(--border3);color:var(--text);font-size:15px;">View Resume</a>
-        </div>
-      </div>
-      <aside data-reveal data-delay="220" data-spot data-fx="tilt" style="position:relative;overflow:hidden;flex:0 1 320px;min-width:270px;border:1px solid var(--border);border-radius:16px;background:var(--panel-grad);padding:22px;box-shadow:0 30px 70px rgba(0,0,0,.28);">
-        <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(360px circle at var(--mx,50%) var(--my,0%), var(--flare-soft), transparent 62%);"></div>
-        <div style="position:absolute;inset:0;border-radius:16px;padding:1.5px;background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%), var(--flare), transparent 62%);-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;"></div>
-        <div style="position:relative;display:flex;align-items:center;gap:12px;margin-bottom:15px;padding-bottom:14px;border-bottom:1px solid var(--border);">
-          <img src="img/logo.png" width="1080" height="1081" decoding="async" alt="huy.gg" style="width:30px;height:30px;object-fit:contain;flex:none;" />
-          <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);">Current themes</div>
-        </div>
-        <div style="position:relative;display:flex;flex-direction:column;gap:11px;">
-          <div style="display:flex;gap:10px;align-items:baseline;font-size:14px;line-height:1.4;color:var(--text);"><span style="color:var(--flare);">▸</span>Financial, revenue cycle &amp; operations analytics</div>
-          <div style="display:flex;gap:10px;align-items:baseline;font-size:14px;line-height:1.4;color:var(--text);"><span style="color:var(--flare);">▸</span>BI, dashboard &amp; reporting workflows</div>
-          <div style="display:flex;gap:10px;align-items:baseline;font-size:14px;line-height:1.4;color:var(--text);"><span style="color:var(--flare);">▸</span>AI, deep learning &amp; computer vision</div>
-          <div style="display:flex;gap:10px;align-items:baseline;font-size:14px;line-height:1.4;color:var(--text);"><span style="color:var(--flare);">▸</span>Infrastructure &amp; service deployment</div>
-        </div>
-      </aside>
-    </div>
+  <header class="bar">
+    <span class="markbar" aria-hidden="true"></span>
+    <span class="who">Harry Nguyen</span>
+    <span class="sp"></span>
+    <nav>
+      <a href="index.html">index</a>
+      <a href="about.html">about</a>
+      <a href="projects.html" aria-current="page">work</a>
+      <a href="resume.html">resume</a>
+      <span style="color:var(--sumi3)">denver · available</span>
+    </nav>
   </header>
 
-  <!-- SELECTED WORK -->
-  <section style="padding:clamp(24px,3vw,40px) clamp(20px,5vw,80px) clamp(70px,9vw,110px);">
-    <div style="max-width:1160px;margin:0 auto;">
-      <div data-reveal style="margin-bottom:clamp(28px,4vw,44px);">
-        <h2 style="font-size:clamp(30px,4vw,46px);font-weight:600;letter-spacing:-.02em;margin-bottom:12px;">Project archive</h2>
-      </div>
-
-      <div style="display:flex;flex-direction:column;gap:clamp(24px,3vw,36px);">
-
-
-        <!-- PROJECT 1: RCM -->
-        <article id="rcm" data-reveal data-spot style="position:relative;overflow:hidden;border:1px solid var(--border);border-radius:22px;background:var(--panel-grad);padding:clamp(24px,3vw,40px);box-shadow:0 40px 100px rgba(0,0,0,.28);scroll-margin-top:96px;">
-          <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(620px circle at var(--mx,85%) var(--my,0%), var(--flare-soft), transparent 55%);"></div>
-            <div style="position:absolute;inset:0;border-radius:22px;padding:1.5px;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%), var(--flare), transparent 60%);-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;"></div>
-          <div style="position:relative;">
-            <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;margin-bottom:20px;">
-              <div style="display:flex;gap:7px;flex-wrap:wrap;">
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Python</span>
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">pandas</span>
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">NumPy</span>
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Excel</span>
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Power Query</span>
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Data Modeling</span>
-              </div>
-              <a href="dashboard.html" style="display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:14px;flex:none;">View dashboard <span style="font-family:Arial,Helvetica,sans-serif;">↗</span></a>
-            </div>
-            <h3 style="font-size:clamp(24px,2.8vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.1;margin-bottom:14px;">Revenue Cycle by Design: A Multi-Facility Modeling</h3>
-            <p style="font-size:clamp(15px,1.4vw,17px);color:var(--muted);line-height:1.65;max-width:820px;margin-bottom:28px;">Designed and generated a dataset of 250,000 claims in Python using rule-based operational and financial logic, then normalized the raw output into schemas with Power Query and analyze reimbursement performance, denials, efficiency, and profitability.</p>
-            <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,2.4vw,32px);margin-bottom:30px;">
-              <div>
-                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Business questions</div>
-                <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>How are A/R loads and collection rates tracking month over month?</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Which payers generate the highest write-off burden per encounter?</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Where are denial rates concentrated, by provider, CPT, or payer?</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>How does reimbursement compare to allowed revenue across encounter types?</li>
-                </ul>
-              </div>
-              <div>
-                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Approach</div>
-                <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Cleaned and transformed raw billing data using Python and Power Query</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Applied MPRR reductions and standardized adjustment coding</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Built univariate and multivariate analysis across payer and encounter dimensions</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Designed an interactive Excel dashboard with slicers for payer, month, and provider</li>
-                </ul>
-              </div>
-              <div>
-                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">What it tracks</div>
-                <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Reimbursement totals and rate, denial volume and trend</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Operational efficiency and profitability comparison</li>
-                </ul>
-              </div>
-              <div>
-                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Outcome</div>
-                <p style="font-size:14.5px;color:var(--muted);line-height:1.6;">Five facilities modeled across twelve months of 2025. Net collection holds at 82 to 83 percent against a 29 percent contractual adjustment and a 1 percent write-off rate, and a denial traces back to payer, provider, and CPT.</p>
-              </div>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:14px;">
-              <a href="img/rcm-report-summary.png" data-zoom target="_blank" style="display:block;border-radius:12px;border:1px solid var(--border2);overflow:hidden;background:var(--bg);cursor:zoom-in;"><img src="img/rcm-report-summary.png" width="2706" height="1173" loading="lazy" decoding="async" alt="healthcare revenue cycle billing report summary" style="display:block;width:100%;height:auto;" /></a>
-              <a href="img/rcm-report-analysis.png" data-zoom target="_blank" style="display:block;border-radius:12px;border:1px solid var(--border2);overflow:hidden;background:var(--bg);cursor:zoom-in;"><img src="img/rcm-report-analysis.png" width="2706" height="1263" loading="lazy" decoding="async" alt="healthcare revenue cycle billing report analysis" style="display:block;width:100%;height:auto;" /></a>
-            </div>
-          </div>
-        </article>
-
-        <!-- PROJECT: Claude Analytics -->
-        <article id="claude" data-reveal data-spot style="position:relative;overflow:hidden;border:1px solid var(--border);border-radius:22px;background:var(--panel-grad);padding:clamp(24px,3vw,40px);box-shadow:0 40px 100px rgba(0,0,0,.28);scroll-margin-top:96px;">
-          <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(620px circle at var(--mx,80%) var(--my,0%), var(--flare-soft), transparent 55%);"></div>
-            <div style="position:absolute;inset:0;border-radius:22px;padding:1.5px;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%), var(--flare), transparent 60%);-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;"></div>
-          <div style="position:relative;">
-            <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;margin-bottom:20px;">
-              <div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center;">
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">JavaScript</span>
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">ECharts</span>
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Data Analysis</span>
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">EDA</span>
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Dataviz</span>
-              </div>
-              <a href="claude-analytics.html" style="display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:14px;flex:none;">Open the dashboard <span style="font-family:Arial,Helvetica,sans-serif;">↗</span></a>
-            </div>
-            <h3 style="font-size:clamp(24px,2.8vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.1;margin-bottom:14px;">Claude Usage Data: A Personal Analytics Dashboard</h3>
-            <p style="font-size:clamp(15px,1.4vw,17px);color:var(--muted);line-height:1.65;max-width:820px;margin-bottom:28px;">An interactive analytics dashboard that turns my own Claude session history into signal: work cadence, output patterns, model reliability and cost, resource utilization, and a full exploratory data analysis, all computed live in the browser from a parsed session dataset and rendered with ECharts. The same revenue-cycle rigor, pointed at my own workflow.</p>
-            <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,2.4vw,32px);margin-bottom:30px;">
-              <div>
-                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Objective</div>
-                <p style="font-size:14.5px;color:var(--muted);line-height:1.6;">Turn raw session logs into a self-analytics tool: understand when and how I work, what each model costs and returns, and where tool usage carries risk or overhead.</p>
-              </div>
-              <div>
-                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Approach</div>
-                <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Parsed the session dataset into aggregates in a single data layer</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Computed EDA live in-browser: no build step, no server</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Rendered interactive charts with ECharts on a self-hosted page</li>
-                </ul>
-              </div>
-              <div>
-                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Views</div>
-                <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Intelligence Thermodynamics</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Cadence &amp; Output: weekday × hour</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Models: reliability &amp; cost</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Resource utilization &amp; tool matrix</li>
-                </ul>
-              </div>
-              <div>
-                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Outcome</div>
-                <p style="font-size:14.5px;color:var(--muted);line-height:1.6;">A living dashboard that surfaces work rhythm, cost-versus-reliability tradeoffs across models, and tool usage patterns: a self-contained, portable analytics artifact.</p>
-              </div>
-            </div>
-            <a href="claude-analytics.html" style="display:block;border-radius:12px;border:1px solid var(--border2);overflow:hidden;background:#F2EEE6;color:inherit;">
-              <div style="display:flex;align-items:center;gap:8px;padding:11px 14px;border-bottom:1px solid rgba(23,20,15,.12);font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#5A5349;">
-                <span style="display:flex;gap:6px;"><span style="width:9px;height:9px;border-radius:50%;background:#ff5f57;"></span><span style="width:9px;height:9px;border-radius:50%;background:#febc2e;"></span><span style="width:9px;height:9px;border-radius:50%;background:#28c840;"></span></span>
-                <span style="margin-left:6px;">claude &bull; analytics</span>
-                <span style="margin-left:auto;color:#A93700;">Open dashboard ↗</span>
-              </div>
-              <img src="img/claude-analytics-preview.jpg" width="1178" height="971" loading="lazy" decoding="async" alt="Claude usage data dashboard preview" style="display:block;width:100%;height:auto;" />
-            </a>
-          </div>
-        </article>
-
-        <!-- PROJECT 2: Facial Emotion -->
-        <article id="emotion" data-reveal data-spot style="position:relative;overflow:hidden;border:1px solid var(--border);border-radius:22px;background:var(--panel-grad);padding:clamp(24px,3vw,40px);box-shadow:0 40px 100px rgba(0,0,0,.28);scroll-margin-top:96px;">
-          <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(620px circle at var(--mx,15%) var(--my,0%), var(--flare-soft), transparent 55%);"></div>
-            <div style="position:absolute;inset:0;border-radius:22px;padding:1.5px;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%), var(--flare), transparent 60%);-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;"></div>
-          <div style="position:relative;">
-            <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px;">
-              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Python</span>
-              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">TensorFlow</span>
-              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Keras</span>
-              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">ANN</span>
-              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">CNN</span>
-              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Deep Learning</span>
-              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Computer Vision</span>
-            </div>
-            <h3 style="font-size:clamp(23px,2.6vw,30px);font-weight:600;letter-spacing:-.02em;line-height:1.12;margin-bottom:14px;">Facial Emotion Recognition: Deep Learning with Convolutional and Artificial Neural Networks</h3>
-            <p style="font-size:clamp(15px,1.4vw,17px);color:var(--muted);line-height:1.65;max-width:820px;margin-bottom:28px;">Built and compared multiple deep learning models to classify facial expressions across four emotion categories. Progressed from a baseline ANN through increasingly refined CNN architectures, achieving 91% accuracy through systematic tuning of dropout layers, training epochs, and preprocessing strategy.</p>
-            <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,2.4vw,32px);margin-bottom:30px;">
-              <div>
-                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Objective</div>
-                <p style="font-size:14.5px;color:var(--muted);line-height:1.6;">Develop a computer vision model capable of accurately classifying facial expressions into four emotion categories: happy, sad, surprised, and neutral. Part of a broader direction in affective computing and emotionally intelligent machine behavior.</p>
-              </div>
-              <div>
-                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Approach</div>
-                <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Baseline ANN model established as performance reference</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Progressively refined CNN architectures across four model iterations</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Applied dropout regularization to reduce overfitting</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Increased training epochs to improve generalization</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Evaluated grayscale vs. RGB input for transfer-learning alignment</li>
-                </ul>
-              </div>
-              <div>
-                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Key metrics</div>
-                <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Baseline ANN: 56% F1 score (best on surprise)</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Model 1 (simple CNN, no dropout): 59% F1</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Model 2 (refined CNN): 69% F1</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Model 3 (optimized CNN): 91% F1</li>
-                </ul>
-              </div>
-              <div>
-                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Outcome</div>
-                <p style="font-size:14.5px;color:var(--muted);line-height:1.6;">Achieved 91% classification accuracy through iterative model improvement. CNN depth, dropout tuning, and epoch scaling significantly outperformed simpler ANN architectures. Matching input format (grayscale) to model expectations improved alignment and reduced preprocessing artifacts.</p>
-              </div>
-            </div>
-            <a href="img/facial-emotion-detection-final-result.png" data-zoom target="_blank" style="display:block;border-radius:12px;border:1px solid var(--border2);overflow:hidden;background:var(--bg);cursor:zoom-in;"><img src="img/facial-emotion-detection-final-result.png" width="1277" height="1022" loading="lazy" decoding="async" alt="Confusion matrix results" style="display:block;width:100%;height:auto;" /></a>
-          </div>
-        </article>
-
-        <!-- PROJECT: Carbon -->
-        <article id="carbon" data-reveal data-spot data-screen-label="Carbon" style="position:relative;overflow:hidden;border:1px solid var(--border);border-radius:22px;background:var(--panel-grad);padding:clamp(24px,3vw,40px);box-shadow:0 40px 100px rgba(0,0,0,.28);scroll-margin-top:96px;">
-          <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(620px circle at var(--mx,20%) var(--my,0%), var(--flare-soft), transparent 55%);"></div>
-          <div style="position:absolute;inset:0;border-radius:22px;padding:1.5px;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%), var(--flare), transparent 60%);-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;"></div>
-          <div style="position:relative;">
-            <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;margin-bottom:20px;">
-              <div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center;">
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:11px;padding:4px 10px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:600;">NEW</span>
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Django</span>
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">DRF</span>
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">PostgreSQL</span>
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Nuxt 3</span>
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Channels</span>
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Celery</span>
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Docker</span>
-              </div>
-              <a href="https://carbon.huy.gg" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:14px;flex:none;">Visit carbon.huy.gg <span style="font-family:Arial,Helvetica,sans-serif;">&#8599;</span></a>
-            </div>
-            <h3 style="font-size:clamp(24px,2.8vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.1;margin-bottom:14px;">Carbon: A Self-Hosted Spreadsheet Database</h3>
-            <p style="font-size:clamp(15px,1.4vw,17px);color:var(--muted);line-height:1.65;max-width:820px;margin-bottom:28px;">A spreadsheet database that runs on hardware I own rather than rented infrastructure. Every table is a real <code style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em;color:var(--text);">CREATE TABLE</code> in PostgreSQL with typed columns, so a filter runs as a <code style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em;color:var(--text);">WHERE</code> clause inside the database instead of JavaScript sifting rows the browser already downloaded. Data arrives as CSV, JSON, or Excel and leaves the same way, whole.</p>
-            <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,2.4vw,32px);margin-bottom:30px;">
-              <div>
-                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Objective</div>
-                <p style="font-size:14.5px;color:var(--muted);line-height:1.6;">One database holding a project, a to-do list, and a goal side by side, reorganizing as the work changes. Self-hosted, so there is no per-seat pricing and no proprietary format between me and my records.</p>
-              </div>
-              <div>
-                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Architecture</div>
-                <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Types and constraints enforced by Postgres, not simulated in app code</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>One Page model under tables, dashboards, and notes, so a new view is a presentation choice</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Row and schema changes broadcast to every open session</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Imports and exports run on a background queue with live progress</li>
-                </ul>
-              </div>
-              <div>
-                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Engineering practice</div>
-                <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Every slice ships as a written plan of test-driven tasks, closed only after browser verification</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Over 2,300 automated tests, green before any merge</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Defects recorded as Symptom, Cause, Fix, Prevention, so a fix generalizes past the one bug</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Restores drilled against real backups</li>
-                </ul>
-              </div>
-              <div>
-                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Outcome</div>
-                <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Deployed and running, invite-only while the build continues</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Real tables, live sync across sessions, and dashboards on the same data</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Notes, table relations, and an automation engine</li>
-                </ul>
-              </div>
-            </div>
-            <a href="https://carbon.huy.gg" target="_blank" rel="noopener" style="display:block;border-radius:12px;border:1px solid var(--border2);overflow:hidden;background:#F2EEE6;color:inherit;">
-              <div style="display:flex;align-items:center;gap:8px;padding:11px 14px;border-bottom:1px solid rgba(23,20,15,.12);font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#5A5349;">
-                <span style="display:flex;gap:6px;"><span style="width:9px;height:9px;border-radius:50%;background:#ff5f57;"></span><span style="width:9px;height:9px;border-radius:50%;background:#febc2e;"></span><span style="width:9px;height:9px;border-radius:50%;background:#28c840;"></span></span>
-                <span style="margin-left:6px;">carbon &bull; project table</span>
-                <span style="margin-left:auto;color:#A93700;">Visit carbon.huy.gg &#8599;</span>
-              </div>
-              <img src="img/carbon-grid-6.png" width="1625" height="714" loading="lazy" decoding="async" alt="Carbon grid view: a project table with typed columns, conditional formatting, and a summary strip" style="display:block;width:100%;height:auto;" />
-            </a>
-            <div style="font-size:12px;color:var(--muted2);line-height:1.55;margin-top:14px;max-width:680px;">The grid on carbon.huy.gg. Each column header carries a badge naming that field's actual PostgreSQL type, and the summary strip underneath aggregates in SQL rather than in the browser. Access stays invite-only while the build continues.</div>
-          </div>
-        </article>
-
-        <!-- PROJECT: codemap -->
-        <article id="codemap" data-reveal data-spot style="position:relative;overflow:hidden;border:1px solid var(--border);border-radius:22px;background:var(--panel-grad);padding:clamp(24px,3vw,40px);box-shadow:0 40px 100px rgba(0,0,0,.28);scroll-margin-top:96px;">
-          <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(620px circle at var(--mx,85%) var(--my,0%), var(--flare-soft), transparent 55%);"></div>
-            <div style="position:absolute;inset:0;border-radius:22px;padding:1.5px;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%), var(--flare), transparent 60%);-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;"></div>
-          <div style="position:relative;">
-            <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;margin-bottom:20px;">
-              <div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center;">
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Python</span>
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">SQLite</span>
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">TypeScript</span>
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Rust</span>
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Tree-sitter</span>
-              </div>
-              <a href="codemap.html" style="display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:14px;flex:none;">Open the query surface <span style="font-family:Arial,Helvetica,sans-serif;">&#8599;</span></a>
-            </div>
-            <h3 style="font-size:clamp(24px,2.8vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.1;margin-bottom:14px;">codemap</h3>
-            <p style="font-size:clamp(15px,1.4vw,17px);color:var(--muted);line-height:1.65;max-width:820px;margin-bottom:18px;">A code index that answers questions about a repository without reading it. Built after the tool I was using kept returning the entire neighborhood around whatever I asked about, which is the opposite of an answer.</p>
-            <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,2.4vw,32px);margin-bottom:30px;">
-              <div>
-                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Objective</div>
-                <p style="font-size:14.5px;color:var(--muted);line-height:1.6;">Answer where a function lives, what calls it, and what breaks if it changes, across a whole repository, without opening files and without a language model in the loop.</p>
-              </div>
-              <div>
-                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Architecture</div>
-                <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Abstract syntax tree parsing into a SQLite database with a full-text search index</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Python through the standard library, TypeScript and Vue through the TypeScript compiler, Rust through Tree-sitter</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Results ranked by name match rather than expanding outward through the graph</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Every relationship carries whether it was proven by an import or inferred from a name</li>
-                </ul>
-              </div>
-              <div>
-                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Outcome</div>
-                <p style="font-size:14.5px;color:var(--muted);line-height:1.6;">Indexed against <a href="#carbon" style="color:var(--flare);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;">carbon</a> at 6,050 symbols and 11,609 relationships, which is 69 percent of everything the extractor emitted. Each one records whether it was proven by an import or inferred from a name. Asking what calls one function returns one line.</p>
-              </div>
-              <div>
-                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Why it matters</div>
-                <p style="font-size:14.5px;color:var(--muted);line-height:1.6;">Search tells you where a name appears. This tells you what depends on it, which is the question you actually have before changing anything.</p>
-              </div>
-            </div>
-            <div style="border:1px solid var(--border2);border-radius:12px;overflow:hidden;background:#F4F0E8;box-shadow:0 16px 40px rgba(23,20,15,.12);font-family:Arial,Helvetica,sans-serif,ui-monospace,monospace;">
-              <div style="display:flex;align-items:center;gap:6px;padding:9px 13px;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(23,20,15,.12);">
-                <span style="width:11px;height:11px;border-radius:50%;background:#ff5f57;"></span>
-                <span style="width:11px;height:11px;border-radius:50%;background:#febc2e;"></span>
-                <span style="width:11px;height:11px;border-radius:50%;background:#28c840;"></span>
-                <span style="margin-left:8px;font-size:11px;color:#635C51;letter-spacing:.04em;">harry@huy.gg ~/carbon &bull; zsh</span>
-              </div>
-              <div id="cm-body" style="padding:15px 18px 18px;font-size:12.5px;line-height:1.7;color:#3B352D;cursor:text;">
-                <div><span style="color:#5A5349;">harry@huy.gg</span> <span style="color:#635C51;">~/carbon</span> <span style="color:#17140F;">$ codemap stats</span></div>
-                <div style="color:#635C51;">symbols indexed &nbsp;&nbsp;6050</div>
-                <div style="color:#635C51;">relationships &nbsp;&nbsp;&nbsp;&nbsp;11609</div>
-                <div style="color:#635C51;">&nbsp;&nbsp;import-backed &nbsp;11055</div>
-                <div style="color:#635C51;">&nbsp;&nbsp;inferred &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;554</div>
-                <div style="margin-top:11px;"><span style="color:#5A5349;">harry@huy.gg</span> <span style="color:#635C51;">~/carbon</span> <span style="color:#17140F;">$ codemap callers formula_index</span></div>
-                <div style="color:#276B2B;">react &nbsp;&nbsp;func &nbsp;&nbsp;backend/core/dynamic/reactions.py:38</div>
-                <div id="cm-history" style="margin-top:6px;"></div>
-                <div style="margin-top:11px;"><span style="color:#5A5349;">harry@huy.gg</span> <span style="color:#635C51;">~/carbon</span> <span style="color:#17140F;">$&nbsp;</span><span id="cm-input" contenteditable="true" spellcheck="false" style="outline:none;color:#17140F;min-width:1px;"></span><span style="display:inline-block;width:8px;height:14px;background:#A93700;vertical-align:-2px;animation:tblink 1s steps(2) infinite;"></span></div>
-                <div style="margin-top:11px;font-size:11px;color:#635C51;">
-                  <span style="color:#276B2B;">tip</span>: real output from the map above. try <span style="color:#A93700;">help</span>, <span style="color:#A93700;">check</span>, <span style="color:#A93700;">callees formula_index</span>, <span style="color:#A93700;">def FieldSerializer</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- PROJECT 3: Self-Hosted -->
-        <article id="infra" data-reveal data-spot style="position:relative;overflow:hidden;border:1px solid var(--border);border-radius:22px;background:var(--panel-grad);padding:clamp(24px,3vw,40px);box-shadow:0 40px 100px rgba(0,0,0,.28);scroll-margin-top:96px;">
-          <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(620px circle at var(--mx,85%) var(--my,0%), var(--flare-soft), transparent 55%);"></div>
-            <div style="position:absolute;inset:0;border-radius:22px;padding:1.5px;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%), var(--flare), transparent 60%);-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;"></div>
-          <div style="position:relative;">
-            <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px;">
-              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Docker</span>
-              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Nginx</span>
-              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Cloudflare</span>
-              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Linux</span>
-              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">MariaDB</span>
-              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">WireGuard</span>
-              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Pi-hole</span>
-              <span style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);">Let's Encrypt</span>
-            </div>
-            <h3 style="font-size:clamp(24px,2.8vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.1;margin-bottom:14px;">Self-Hosted Home Server Infrastructure</h3>
-            <p style="font-size:clamp(15px,1.4vw,17px);color:var(--muted);line-height:1.65;max-width:820px;margin-bottom:18px;">Private file storage, media streaming, and carbon all run on hardware in my apartment, under one domain. Containerized behind a reverse proxy, with automated certificates, VPN-only access to anything private, and DNS filtering at the network level.</p>
-            <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,2.4vw,32px);margin-bottom:30px;">
-              <div>
-                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Objective</div>
-                <p style="font-size:14.5px;color:var(--muted);line-height:1.6;">Run several public and private services under one domain, with real routing, TLS, and access control rather than a flat homelab.</p>
-              </div>
-              <div>
-                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Architecture</div>
-                <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Docker containers behind an Nginx reverse proxy, routed by subdomain</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Cloudflare DNS and proxying, Let's Encrypt certificates renewing unattended</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>WireGuard for remote access, Pi-hole filtering DNS network-wide</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>MariaDB backing the services that need persistence</li>
-                </ul>
-              </div>
-              <div>
-                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Services</div>
-                <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--muted);line-height:1.5;">
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>huy.gg: production website &amp; portfolio</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span><a href="#carbon" style="color:var(--flare);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;">Carbon</a>: self-hosted database platform</li>
-                  <li style="padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--flare);">&bull;</span>Storage and media: ownCloud and Jellyfin</li>
-                </ul>
-              </div>
-              <div>
-                <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flare);padding-bottom:7px;border-bottom:1px solid var(--border2);margin-bottom:12px;">Outcome</div>
-                <p style="font-size:14.5px;color:var(--muted);line-height:1.6;">Running continuously. Carbon, ownCloud, Jellyfin, and Pi-hole are all served off it, certificates renew unattended, and private services are reachable only over WireGuard.</p>
-              </div>
-            </div>
-            <!-- interactive terminal -->
-            <div style="border:1px solid var(--border2);border-radius:12px;overflow:hidden;background:#F4F0E8;box-shadow:0 16px 40px rgba(23,20,15,.12);font-family:Arial,Helvetica,sans-serif,ui-monospace,monospace;">
-              <div style="display:flex;align-items:center;gap:6px;padding:9px 13px;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(23,20,15,.12);">
-                <span style="width:11px;height:11px;border-radius:50%;background:#ff5f57;"></span>
-                <span style="width:11px;height:11px;border-radius:50%;background:#febc2e;"></span>
-                <span style="width:11px;height:11px;border-radius:50%;background:#28c840;"></span>
-                <span style="margin-left:8px;font-size:11px;color:#635C51;letter-spacing:.04em;">harry@huy.gg ~ &bull; zsh</span>
-              </div>
-              <div id="term-body" style="padding:15px 18px 18px;font-size:12.5px;line-height:1.55;color:#3B352D;cursor:text;">
-                <div style="opacity:0;animation:tfade .25s ease forwards;"><span style="color:#5A5349;">harry@huy.gg</span> <span style="color:#635C51;">~</span> <span style="color:#17140F;">$ tail -f /var/log/services.log</span></div>
-                <div id="log-feed" style="margin-top:5px;min-height:108px;"></div>
-                <div id="term-history" style="margin-top:6px;"></div>
-                <div style="margin-top:6px;"><span style="color:#5A5349;">harry@huy.gg</span> <span style="color:#635C51;">~</span> <span style="color:#17140F;">$&nbsp;</span><span id="term-input" contenteditable="true" spellcheck="false" style="outline:none;color:#17140F;min-width:1px;"></span><span id="term-cursor" style="display:inline-block;width:8px;height:14px;background:#A93700;vertical-align:-2px;animation:tblink 1s steps(2) infinite;"></span></div>
-                <div style="margin-top:11px;font-size:11px;color:#635C51;">
-                  <span style="color:#276B2B;">tip</span>: try <span style="color:#A93700;">help</span>, <span style="color:#A93700;">whoami</span>, <span style="color:#A93700;">ls services</span>, <span style="color:#A93700;">cat motd</span>, <span style="color:#A93700;">ping huy.gg</span>, <span style="color:#A93700;">uptime</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
+  <section class="alcove">
+    <h1>Built, deployed, and still running.</h1>
+    <p class="vert">four of six are reachable</p>
+    <div class="mark" role="img" aria-label="The huy.gg mark: an ensō drawn in one stroke with an h through it"></div>
   </section>
 
-  <!-- CTA -->
-  <section style="position:relative;overflow:hidden;padding:28px clamp(20px,5vw,80px);border-top:1px solid var(--border);">
-    <div data-reveal style="position:relative;max-width:1160px;margin:0 auto;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;">
-      <div>
-        <h2 style="font-size:clamp(21px,2.4vw,27px);font-weight:600;letter-spacing:-.02em;margin-bottom:5px;">Interested in my work?</h2>
-        <p style="font-size:13.5px;color:var(--muted);">Hiring for analyst roles, or want to talk through a project? Reach out.</p>
-      </div>
-      <div style="display:flex;gap:12px;flex-wrap:wrap;">
-        <a href="mailto:h@huy.gg" style="display:inline-flex;align-items:center;gap:9px;height:46px;padding:0 22px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:16px;">Email me <span style="font-family:Arial,Helvetica,sans-serif;">&rarr;</span></a>
-        <a href="resume.html" style="display:inline-flex;align-items:center;height:46px;padding:0 22px;border-radius:999px;border:1px solid var(--border3);color:var(--text);font-size:16px;">View Resume</a>
-      </div>
-    </div>
+  <section class="band wide">
+    <p style="font-size:clamp(16px,1.7vw,18.5px);line-height:1.6;color:var(--sumi1)">Selected work across revenue cycle analytics, dashboard and reporting workflows, deep learning and computer vision, and infrastructure. Where something is running, its address sits on the entry, because reachability is the argument.</p>
   </section>
 
-  <footer style="padding:9px clamp(20px,5vw,80px);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:var(--muted2);">
-    <a href="index.html" style="display:inline-flex;align-items:center;gap:10px;color:var(--muted2);">
-      <img src="img/logo.png" width="1080" height="1081" decoding="async" alt="huy.gg" style="width:22px;height:22px;object-fit:contain;" />
-      © 2026 Harry Nguyen
+  <!-- ========== RCM ========== -->
+  <section class="band wide" id="rcm">
+    <div class="k tech">01 &nbsp;·&nbsp; python · pandas · numpy · excel · power query</div>
+    <h2 style="font-weight:400;font-size:clamp(24px,3.4vw,38px);line-height:1.08;letter-spacing:-.028em;color:var(--sumi);margin-bottom:14px">Revenue cycle by design</h2>
+    <p>Designed and generated a dataset of 250,000 claims in Python using rule-based operational and financial logic, then normalised the raw output into schemas with Power Query to analyse reimbursement performance, denials, efficiency, and profitability.</p>
+    <a class="plate" href="dashboard.html" style="margin-top:22px">
+      <img src="img/rcm-report-analysis.png" width="2706" height="1400" loading="lazy" decoding="async" alt="Revenue cycle analysis: denial concentration by payer, provider, and CPT">
     </a>
-    <a href="https://huy.gg" data-foot style="color:var(--flare);">huy.gg</a>
+    <div class="platecap"><b>Outcome.</b> Five facilities modelled across twelve months of 2025. Net collection holds at 82 to 83 percent against a 29 percent contractual adjustment and a 1 percent write-off rate, and a denial traces back to payer, provider, and CPT. <a href="dashboard.html">Open the working dashboard</a></div>
+  </section>
+
+  <section class="band">
+    <div class="two">
+      <div>
+        <div class="k tech" style="margin-bottom:12px">business questions</div>
+        <ul class="notes">
+          <li>How are A/R loads and collection rates tracking month over month?</li>
+          <li>Which payers generate the highest write-off burden per encounter?</li>
+          <li>Where are denial rates concentrated, by provider, CPT, or payer?</li>
+          <li>How does reimbursement compare to allowed revenue across encounter types?</li>
+        </ul>
+      </div>
+      <div>
+        <div class="k tech" style="margin-bottom:12px">approach</div>
+        <ul class="notes">
+          <li>Cleaned and transformed raw billing data in Python and Power Query</li>
+          <li>Applied MPRR reductions and standardised adjustment coding</li>
+          <li>Univariate and multivariate analysis across payer and encounter</li>
+          <li>Interactive dashboard with slicers for payer, month, and provider</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CARBON ========== -->
+  <section class="band wide" id="carbon">
+    <div class="k tech">02 &nbsp;·&nbsp; django · drf · postgresql · nuxt 3 · channels · celery · docker</div>
+    <h2 style="font-weight:400;font-size:clamp(24px,3.4vw,38px);line-height:1.08;letter-spacing:-.028em;color:var(--sumi);margin-bottom:14px">carbon: a self-hosted spreadsheet database</h2>
+    <p>A spreadsheet database that runs on hardware I own rather than rented infrastructure. Every table is a real table in PostgreSQL with typed columns, so a filter runs as a query inside the database instead of JavaScript sifting rows the browser already downloaded. Data arrives as CSV, JSON, or Excel and leaves the same way, whole.</p>
+    <a class="plate" href="https://carbon.huy.gg" style="margin-top:22px">
+      <img src="img/carbon-grid-6.png" width="1600" height="900" loading="lazy" decoding="async" alt="The carbon project table: column headers badged with their PostgreSQL types">
+    </a>
+    <div class="platecap"><b>The grid on carbon.huy.gg.</b> Each column header carries a badge naming that field's actual PostgreSQL type, and the summary strip underneath aggregates in SQL rather than in the browser. Access stays invite-only while the build continues. <a href="https://carbon.huy.gg">carbon.huy.gg</a></div>
+  </section>
+
+  <section class="band">
+    <div class="two">
+      <div>
+        <div class="k tech" style="margin-bottom:12px">architecture</div>
+        <ul class="notes">
+          <li>Types and constraints enforced by Postgres, not simulated in app code</li>
+          <li>One Page model under tables, dashboards, and notes, so a new view is a presentation choice</li>
+          <li>Row and schema changes broadcast to every open session</li>
+          <li>Imports and exports run on a background queue with live progress</li>
+        </ul>
+      </div>
+      <div>
+        <div class="k tech" style="margin-bottom:12px">engineering practice</div>
+        <ul class="notes">
+          <li>Every slice ships as a written plan of test-driven tasks, closed only after browser verification</li>
+          <li>Over 2,300 automated tests, green before any merge</li>
+          <li>Defects recorded as Symptom, Cause, Fix, Prevention, so a fix generalises past the one bug</li>
+          <li>Restores drilled against real backups</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CODEMAP ========== -->
+  <section class="band" id="codemap">
+    <div class="k tech">03 &nbsp;·&nbsp; python · sqlite · typescript · rust · tree-sitter</div>
+    <div class="two">
+      <div class="wide">
+        <h2>codemap</h2>
+        <p>A code index that answers questions about a repository without reading it. Built after the tool I was using kept returning the entire neighbourhood around whatever I asked about, which is the opposite of an answer.</p>
+        <p>It answers where a function lives, what calls it, and what breaks if it changes, across a whole repository, without opening files and without a language model in the loop.</p>
+        <a class="u" href="codemap.html">open the query surface</a>
+      </div>
+      <div>
+        <table>
+          <tr><td class="role">symbols indexed</td><td class="met">6,050</td></tr>
+          <tr><td class="role">relationships</td><td class="met">11,609</td></tr>
+          <tr><td class="role">import-backed</td><td class="met">11,055</td></tr>
+          <tr><td class="role">inferred</td><td class="met">554</td></tr>
+        </table>
+        <div class="platecap">Search tells you where a name appears. This tells you what depends on it, which is the question you actually have before changing anything.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CLAUDE ========== -->
+  <section class="band wide" id="claude">
+    <div class="k tech">04 &nbsp;·&nbsp; javascript · echarts · eda · dataviz</div>
+    <h2 style="font-weight:400;font-size:clamp(24px,3.4vw,38px);line-height:1.08;letter-spacing:-.028em;color:var(--sumi);margin-bottom:14px">Claude usage data</h2>
+    <p>An analytics console that turns my own session history into signal: work cadence, output patterns, model reliability and cost, resource utilisation, and a full exploratory data analysis, computed in the browser and rendered with ECharts. The same revenue-cycle rigour, pointed at my own workflow.</p>
+    <a class="plate" href="claude-analytics.html" style="margin-top:22px">
+      <img src="img/claude-analytics-preview.jpg" width="1178" height="971" loading="lazy" decoding="async" alt="The Claude usage console: health metrics and the intelligence thermodynamics chart">
+    </a>
+    <div class="platecap"><b>Views.</b> Intelligence thermodynamics; cadence and output by weekday and hour; models by reliability and cost; resource utilisation and the tool matrix. <a href="claude-analytics.html">Open the console</a></div>
+  </section>
+
+  <!-- ========== EMOTION ========== -->
+  <section class="band" id="emotion">
+    <div class="k tech">05 &nbsp;·&nbsp; python · tensorflow · keras · ann · cnn · computer vision</div>
+    <div class="two">
+      <div class="wide">
+        <h2>Facial emotion recognition</h2>
+        <p>Built and compared multiple deep learning models to classify facial expressions across four categories: happy, sad, surprised, and neutral. Progressed from a baseline artificial neural network through increasingly refined convolutional architectures.</p>
+        <p>Depth, dropout tuning, and epoch scaling outperformed the simpler architectures by a wide margin. Matching input format to what the model expected, grayscale rather than RGB, improved alignment and removed preprocessing artefacts.</p>
+      </div>
+      <div>
+        <table>
+          <tr><td class="role">baseline ann</td><td class="met">56%</td></tr>
+          <tr><td class="role">model 1, simple cnn</td><td class="met">59%</td></tr>
+          <tr><td class="role">model 2, refined cnn</td><td class="met">69%</td></tr>
+          <tr><td class="org">model 3, optimised cnn</td><td class="met">91%</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== INFRA ========== -->
+  <section class="band" id="infra">
+    <div class="k tech">06 &nbsp;·&nbsp; docker · nginx · cloudflare · linux · mariadb · wireguard · pi-hole</div>
+    <div class="two">
+      <div class="wide">
+        <h2>Self-hosted home server infrastructure</h2>
+        <p>Private file storage, media streaming, and carbon all run on hardware in my apartment, under one domain. Containerised behind a reverse proxy, with automated certificates, VPN-only access to anything private, and DNS filtering at the network level.</p>
+        <p>Running continuously. Carbon, ownCloud, Jellyfin, and Pi-hole are all served off it, certificates renew unattended, and private services are reachable only over WireGuard.</p>
+      </div>
+      <div>
+        <ul class="notes" style="font-size:13.5px">
+          <li>Docker containers behind nginx, routed by subdomain</li>
+          <li>Cloudflare DNS and proxying, Let's Encrypt renewing unattended</li>
+          <li>WireGuard for remote access, Pi-hole filtering DNS network-wide</li>
+          <li>MariaDB backing the services that need persistence</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <h2 style="font-weight:400;font-size:clamp(22px,2.8vw,30px);line-height:1.1;letter-spacing:-.026em;color:var(--sumi);margin-bottom:11px">Hiring for analyst roles?</h2>
+    <p>Or want to talk through a project. Either is welcome.</p>
+    <a class="u" href="resume.html">read the resume</a>
+  </section>
+
+  <footer class="tech">
+    <span class="markfoot" aria-hidden="true"></span>
+    <span>© 2026 harry nguyen</span>
+    <span class="sp"></span>
+    <a href="Harry_Nguyen_Resume.pdf">resume, pdf</a>
+    <a href="https://huy.gg">huy.gg</a>
   </footer>
+
 </div>
-<script>
-
-class DCLogic {
-  constructor(props) { this.props = props; this.state = {}; }
-  setState(patch) { Object.assign(this.state, patch); }
-}
-
-class Component extends DCLogic {
-  renderVals() { return {}; }
-  componentDidMount() {
-    this.sync();
-    if (!this._bound) { this._bound = true; this.enhance(); }
-  }
-  componentDidUpdate() { this.sync(); }
-  sync() {
-    const r = document.getElementById('home-root');
-    if (!r) return;
-    r.dataset.rm = (this.props.reduceMotion ?? false) ? '1' : '0';
-    r.dataset.grain = (this.props.showGrain ?? true) ? '1' : '0';
-    r.dataset.spot = (this.props.spotlight ?? true) ? '1' : '0';
-  }
-  enhance() {
-    const r = document.getElementById('home-root');
-    if (!r) return;
-    // reveals
-    const items = [...r.querySelectorAll('[data-reveal]')];
-    items.forEach((el) => {
-      el.style.opacity = '0'; el.style.transform = 'translateY(28px)';
-      el.style.transition = 'opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1)';
-      el.style.transitionDelay = (el.dataset.delay || 0) + 'ms';
-    });
-    const reveal = (el) => { el.style.opacity = '1'; el.style.transform = 'none'; };
-    const io = new IntersectionObserver((es) => { es.forEach((e) => { if (e.isIntersecting) { reveal(e.target); io.unobserve(e.target); } }); }, { threshold: 0.08, rootMargin: '0px 0px -4% 0px' });
-    items.forEach((el) => io.observe(el));
-    setTimeout(() => items.forEach(reveal), 2600);
-    r.querySelectorAll('[data-fx="tilt"]').forEach((card) => { const inner = card.querySelector('[data-fx-inner]') || card; card.addEventListener('mousemove', (ev) => { if (r.dataset.rm === '1') return; inner.style.transition = 'transform .12s ease-out'; const b = card.getBoundingClientRect(); const px = (ev.clientX - b.left)/b.width, py = (ev.clientY - b.top)/b.height; inner.style.transform = 'perspective(820px) rotateX(' + ((0.5-py)*9).toFixed(2) + 'deg) rotateY(' + ((px-0.5)*11).toFixed(2) + 'deg)'; }); card.addEventListener('mouseleave', () => { inner.style.transform = 'perspective(820px) rotateX(0deg) rotateY(0deg)'; }); });
-    // spotlight
-    r.addEventListener('mousemove', (ev) => {
-      if (r.dataset.spot === '0') return;
-      const c = ev.target.closest ? ev.target.closest('[data-spot]') : null;
-      if (!c) return;
-      const b = c.getBoundingClientRect();
-      c.style.setProperty('--mx', ((ev.clientX - b.left) / b.width * 100).toFixed(1) + '%');
-      c.style.setProperty('--my', ((ev.clientY - b.top) / b.height * 100).toFixed(1) + '%');
-    });
-    this.lightbox();
-    this.terminal();
-    this.codemapTerminal();
-  }
-  lightbox() {
-    const r = document.getElementById('home-root');
-    if (!r) return;
-    let ov = null, zoomed = false, curImg = null, curVp = null;
-    const Z = 2.4;
-    const onKey = (e) => { if (e.key === 'Escape') close(); };
-    const applyOrigin = (e) => {
-      if (!curImg || !curVp) return;
-      const b = curVp.getBoundingClientRect();
-      const x = Math.min(1, Math.max(0, (e.clientX - b.left) / b.width));
-      const y = Math.min(1, Math.max(0, (e.clientY - b.top) / b.height));
-      curImg.style.transformOrigin = (x * 100).toFixed(1) + '% ' + (y * 100).toFixed(1) + '%';
-    };
-    const onMove = (e) => { if (zoomed) applyOrigin(e); };
-    const setZoom = (on, e) => {
-      if (!curImg) return;
-      const rm = r.dataset.rm === '1';
-      zoomed = on;
-      if (on && e) applyOrigin(e);
-      curImg.style.transition = rm ? 'none' : 'transform .3s cubic-bezier(.2,.7,.2,1)';
-      curImg.style.transform = on ? 'scale(' + Z + ')' : 'scale(1)';
-      curImg.style.cursor = on ? 'zoom-out' : 'zoom-in';
-    };
-    const close = () => {
-      if (!ov) return;
-      const el = ov; ov = null; zoomed = false; curImg = null; curVp = null;
-      document.removeEventListener('keydown', onKey);
-      document.body.style.overflow = '';
-      if (r.dataset.rm === '1') { el.remove(); return; }
-      el.style.opacity = '0';
-      setTimeout(() => el.remove(), 200);
-    };
-    const open = (src, alt) => {
-      if (ov || !src) return;
-      const rm = r.dataset.rm === '1';
-      zoomed = false;
-      ov = document.createElement('div');
-      ov.setAttribute('data-lightbox', '');
-      ov.style.cssText = 'position:fixed;inset:0;z-index:10001;display:flex;align-items:center;justify-content:center;padding:clamp(16px,4vw,56px);cursor:zoom-out;background:' + 'rgba(24,18,12,.86)' + ';-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);opacity:0;' + (rm ? '' : 'transition:opacity .2s ease;');
-      const fig = document.createElement('figure');
-      fig.style.cssText = 'margin:0;display:flex;flex-direction:column;gap:12px;align-items:center;cursor:default;max-width:min(1240px,94vw);';
-      const vp = document.createElement('div');
-      vp.style.cssText = 'position:relative;overflow:hidden;border-radius:12px;border:1px solid rgba(23,20,15,.16);box-shadow:0 40px 120px rgba(23,20,15,.16);background:#F2EEE6;line-height:0;max-width:100%;';
-      const img = document.createElement('img');
-      img.src = src; img.alt = alt || '';
-      img.style.cssText = 'display:block;max-width:min(1240px,94vw);max-height:' + (alt ? '82vh' : '90vh') + ';width:auto;height:auto;object-fit:contain;cursor:zoom-in;transform-origin:center;transform:scale(' + (rm ? '1' : '.985') + ');' + (rm ? '' : 'transition:transform .2s ease;');
-      vp.appendChild(img);
-      fig.appendChild(vp);
-      curImg = img; curVp = vp;
-      if (alt) { const cap = document.createElement('figcaption'); cap.textContent = alt; cap.style.cssText = "font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:.02em;color:rgba(255,255,255,.72);text-align:center;max-width:680px;line-height:1.5;"; fig.appendChild(cap); }
-      const btn = document.createElement('button');
-      btn.type = 'button'; btn.setAttribute('aria-label', 'Close'); btn.innerHTML = '&times;';
-      btn.style.cssText = 'position:absolute;top:clamp(12px,2.4vw,24px);right:clamp(12px,2.4vw,24px);width:44px;height:44px;border-radius:999px;border:1px solid rgba(255,255,255,.24);background:rgba(0,0,0,.4);color:#fff;font-size:26px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;z-index:2;';
-      fig.addEventListener('click', (e) => e.stopPropagation());
-      img.addEventListener('click', (e) => { e.stopPropagation(); setZoom(!zoomed, e); });
-      vp.addEventListener('mousemove', onMove);
-      ov.addEventListener('click', close);
-      btn.addEventListener('click', close);
-      ov.appendChild(fig); ov.appendChild(btn);
-      document.addEventListener('keydown', onKey);
-      document.body.appendChild(ov);
-      document.body.style.overflow = 'hidden';
-      if (rm) { ov.style.opacity = '1'; }
-      else requestAnimationFrame(() => { ov.style.opacity = '1'; img.style.transform = 'scale(1)'; });
-    };
-    r.addEventListener('click', (e) => {
-      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      const a = e.target.closest ? e.target.closest('a[data-zoom]') : null;
-      if (!a) return;
-      e.preventDefault();
-      const im = a.querySelector('img');
-      open(a.getAttribute('href'), im ? im.getAttribute('alt') : '');
-    });
-  }
-  terminal() {
-    const feed = document.getElementById('log-feed');
-    if (!feed) return;
-    const C = { p: '#5A5349', cmd: '#17140F', ok: '#276B2B', acc: '#A93700', mut: '#635C51', txt: '#3B352D' };
-
-    const pool = [
-      ['cloudflare', 'GET /resume → 200 OK'], ['nginx', 'cache HIT • 12ms'],
-      ['wireguard', 'peer connected (peer_03)'], ['pihole', 'blocked googleads.g.doubleclick.net'],
-      ['pihole', 'blocked 47 trackers in last 60s'], ['jellyfin', 'streaming 1080p'],
-      ['owncloud', 'sync complete (47 files, 312 MB)'], ['cloudflare', 'email forwarded h@huy.gg → gmail'],
-      ['nginx', 'TLS handshake • TLS_AES_256_GCM'], ['mariadb', 'query took 3ms'],
-      ['huy.gg', 'visitor from Denver, CO'], ['cloudflare', 'GET /projects → 200 OK'],
-      ['wireguard', 'rx 1.2 GB • tx 412 MB'], ['pihole', '24.7% queries blocked today']
-    ];
-    const pad = (n) => n < 10 ? '0' + n : '' + n;
-    const ts = () => { const d = new Date(); return pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds()); };
-    const addLog = () => {
-      if (!document.body.contains(feed)) return;
-      const pp = pool[Math.floor(Math.random() * pool.length)];
-      const div = document.createElement('div');
-      div.style.cssText = 'opacity:0;animation:tfade .25s ease forwards;';
-      div.innerHTML = '<span style="color:' + C.mut + '">[' + ts() + ']</span> <span style="color:' + C.ok + '">' + pp[0] + '</span> <span style="color:' + C.mut + '">→</span> <span style="color:' + C.txt + '">' + pp[1] + '</span>';
-      feed.appendChild(div);
-      while (feed.children.length > 5) feed.removeChild(feed.firstChild);
-      setTimeout(addLog, 1400 + Math.random() * 2200);
-    };
-    setTimeout(addLog, 300);
-
-    const input = document.getElementById('term-input');
-    const history = document.getElementById('term-history');
-    const A = (html) => { const d = document.createElement('div'); d.style.cssText = 'opacity:0;animation:tfade .25s ease forwards;'; d.innerHTML = html; history.appendChild(d); };
-    const CMD = {
-      help: () => { A('<span style="color:' + C.mut + '">available: </span><span style="color:' + C.acc + '">whoami • ls services • cat motd • ping huy.gg • uptime • clear</span>'); },
-      whoami: () => A('<span style="color:' + C.ok + '">harry</span> <span style="color:' + C.mut + '">• builder, runner, and occasional breaker of things</span>'),
-      'ls services': () => { ['huy.gg :: static site, fronted by Cloudflare', 'wireguard :: personal VPN, peer access only', 'pihole :: DNS sinkhole, network-wide ad/tracker block', 'owncloud :: self-hosted file sync', 'jellyfin :: media server', 'email :: Cloudflare routing → Gmail (h@huy.gg)'].forEach((s) => { const p = s.split(' :: '); A('<span style="color:' + C.acc + '">' + p[0] + '</span> <span style="color:' + C.mut + '">• ' + p[1] + '</span>'); }); },
-      'cat motd': () => { A('<span style="color:' + C.mut + '">─────────────────────────────</span>'); A('  Welcome to <span style="color:' + C.ok + '">huy.gg</span>. The lights are always on.'); A('<span style="color:' + C.mut + '">  uptime: 287 days • 14:23:07</span>'); A('<span style="color:' + C.mut + '">─────────────────────────────</span>'); },
-      'ping huy.gg': () => { ['64 bytes from huy.gg: icmp_seq=1 time=0.412 ms', '64 bytes from huy.gg: icmp_seq=2 time=0.398 ms', '64 bytes from huy.gg: icmp_seq=3 time=0.421 ms', '--- huy.gg ping statistics ---', '3 packets transmitted, 3 received, 0% packet loss'].forEach((l, i) => setTimeout(() => A('<span style="color:' + C.mut + '">' + l + '</span>'), i * 200)); },
-      uptime: () => A('<span style="color:' + C.ok + '">up 287 days</span>, 14:23, load average: 0.08, 0.12, 0.09'),
-      clear: () => { history.innerHTML = ''; }
-    };
-    CMD.ls = CMD['ls services']; CMD.motd = CMD['cat motd']; CMD.ping = CMD['ping huy.gg'];
-    const run = (raw) => {
-      const cmd = (raw || '').trim(); if (!cmd) return;
-      A('<span style="color:' + C.p + '">harry@huy.gg</span> <span style="color:' + C.mut + '">~</span> <span style="color:' + C.cmd + '">$ ' + cmd.replace(/[<>]/g, '') + '</span>');
-      const fn = CMD[cmd] || CMD[cmd.toLowerCase()];
-      if (fn) fn(); else { A('<span style="color:' + C.mut + '">zsh: command not found: ' + cmd.replace(/[<>]/g, '') + '</span>'); A('<span style="color:' + C.mut + '">try </span><span style="color:' + C.acc + '">help</span>'); }
-    };
-    if (input) {
-      input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); const v = input.textContent; input.textContent = ''; run(v); } });
-      const body = document.getElementById('term-body');
-      body.addEventListener('click', (e) => { if (e.target !== input) input.focus(); });
-    }
-  }
-  codemapTerminal() {
-    const input = document.getElementById('cm-input');
-    if (!input) return;
-    const history = document.getElementById('cm-history');
-    const C = { p: '#5A5349', cmd: '#17140F', ok: '#276B2B', acc: '#A93700', mut: '#635C51', txt: '#3B352D' };
-    const A = (html) => { const d = document.createElement('div'); d.style.cssText = 'opacity:0;animation:tfade .25s ease forwards;'; d.innerHTML = html; history.appendChild(d); };
-    // every response below is real captured output from the carbon map
-    const row = (name, kind, loc, sig) => A('<span style="color:' + C.ok + '">' + name + '</span> &nbsp;<span style="color:' + C.mut + '">' + kind + '</span> &nbsp;<span style="color:' + C.txt + '">' + loc + '</span>' + (sig ? ' &nbsp;<span style="color:' + C.mut + '">' + sig + '</span>' : ''));
-    const CMD = {
-      help: () => { A('<span style="color:' + C.mut + '">available: </span><span style="color:' + C.acc + '">stats, check, def FieldSerializer, callers formula_index, callees formula_index, search formula cycle, clear</span>'); A('<span style="color:' + C.mut + '">every response is captured from a real build of the carbon map</span>'); },
-      stats: () => { A('<span style="color:' + C.mut + '">symbol_count &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:' + C.txt + '">6050</span>'); A('<span style="color:' + C.mut + '">edge_count &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:' + C.txt + '">11609</span> <span style="color:' + C.mut + '">(11055 extracted, 554 inferred)</span>'); A('<span style="color:' + C.mut + '">dropped_edge_count</span> <span style="color:' + C.txt + '">5245</span>'); },
-      check: () => { A('<span style="color:' + C.ok + '">fresh</span><span style="color:' + C.mut + '">: map built at HEAD, working tree clean</span>'); },
-      'def FieldSerializer': () => row('FieldSerializer', 'class', 'backend/core/api/serializers.py:71'),
-      'callers formula_index': () => { row('react', 'func', 'backend/core/dynamic/reactions.py:38', "react(table, row_id, changed, depth=0, verb='updated')"); A('<span style="color:' + C.mut + '">1 result out of 6,050 indexed symbols.</span>'); },
-      'callees formula_index': () => { row('field_name_map', 'func', 'backend/core/dynamic/formula.py:340', 'field_name_map(table, exclude_id=None, fields=None)'); row('parse', 'func', 'backend/core/dynamic/formula.py:347', 'parse(src, fields)'); row('list', 'method', 'backend/core/api/views.py:124', 'list(self, request, *args, **kwargs)'); },
-      'search formula cycle': () => row('_reject_formula_cycle', 'method', 'backend/core/api/serializers.py:95', '_reject_formula_cycle(self, fields, this_id, ast)'),
-      clear: () => { history.innerHTML = ''; }
-    };
-    CMD.def = CMD['def FieldSerializer']; CMD.callers = CMD['callers formula_index'];
-    CMD.callees = CMD['callees formula_index']; CMD.search = CMD['search formula cycle'];
-    CMD['search "formula cycle"'] = CMD['search formula cycle'];
-    const run = (raw) => {
-      const cmd = (raw || '').trim(); if (!cmd) return;
-      const safe = cmd.replace(/[<>]/g, '');
-      A('<span style="color:' + C.p + '">harry@huy.gg</span> <span style="color:' + C.mut + '">~/carbon</span> <span style="color:' + C.cmd + '">$ ' + safe + '</span>');
-      const key = cmd.replace(/^codemap\s+/i, '').trim();
-      const fn = CMD[key] || CMD[key.toLowerCase()];
-      if (fn) fn(); else { A('<span style="color:' + C.mut + '">no such command: ' + safe + '</span>'); A('<span style="color:' + C.mut + '">try </span><span style="color:' + C.acc + '">help</span>'); }
-    };
-    input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); const v = input.textContent; input.textContent = ''; run(v); } });
-    const body = document.getElementById('cm-body');
-    body.addEventListener('click', (e) => { if (e.target !== input) input.focus(); });
-  }
-}
-
-(function () {
-  var start = function () {
-    var c = new Component({"reduceMotion": false, "spotlight": true, "showGrain": true});
-    if (c.componentDidMount) c.componentDidMount();
-  };
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', start);
-  } else {
-    start();
-  }
-})();
-
-</script>
-<script>
-(function(){
-  if (!location.hash) return;
-  var jump = function () {
-    var el = null;
-    try { el = document.querySelector(location.hash); } catch (e) { return; }
-    if (el) el.scrollIntoView({ block: "start", behavior: "auto" });
-  };
-  window.addEventListener("load", function () { jump(); setTimeout(jump, 250); });
-})();
-</script>
 </body>
 </html>
