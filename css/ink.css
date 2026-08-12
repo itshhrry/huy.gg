@@ -52,8 +52,16 @@ img{max-width:100%;height:auto;display:block}
 .band,.alcove{display:grid;
   grid-template-columns:clamp(74px,8.5vw,132px) minmax(0,1fr);
   gap:0 clamp(16px,2.6vw,34px)}
-.mk{font-family:var(--tech);font-size:10.5px;line-height:1.6;color:var(--sumi3);
+/* The margin carries the stack an entry was built with, which is information a
+   reader scans for, so it is not held at wash strength. sumi2 was not an option:
+   it measures 4.64 on washi against sumi3's 4.56, the same tone twice, so the
+   only real step is sumi1 at 9.34. Size is what keeps it subordinate: 11.5px
+   mono, right-aligned, against a 25px serif title. */
+.mk{font-family:var(--tech);font-size:11.5px;line-height:1.65;color:var(--sumi1);
     text-align:right;padding-top:4px;position:sticky;top:16px;align-self:start}
+/* The numeral leads its label at full ink. It was an inline style repeated on
+   every section, which is a rule with no home. */
+.mk .n{display:block;color:var(--sumi)}
 .bd{border-left:1px solid var(--rule);padding-left:clamp(16px,2.6vw,34px);min-width:0}
 .tech{font-family:var(--tech);font-size:10.5px;line-height:1.75;color:var(--sumi3);letter-spacing:0}
 .tech a:hover{color:var(--sumi)}
