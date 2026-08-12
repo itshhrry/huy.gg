@@ -327,6 +327,11 @@ tr:last-child td{border-bottom:0}
    on the first line's baseline without being told to. */
 ul.notes{list-style:disc outside;font-size:14.5px;line-height:1.66;
          color:var(--sumi1);max-width:62ch;padding-left:15px}
+/* Resume bullets run wider than the 62ch book measure the prose uses. They sat
+   at 450px inside an 805px cell, leaving 355px empty, and a one-to-three-line
+   bullet does not need the tight measure that a paragraph does. 76ch is the top
+   of the comfortable band rather than the full 111ch the cell would allow. */
+.jobrow ul.notes{max-width:76ch}
 ul.notes li{margin-bottom:7px}
 /* Beside a paragraph, a list runs on the paragraph's rhythm. The 7px between
    items gave the left column 0.108 ink coverage against the right column's
