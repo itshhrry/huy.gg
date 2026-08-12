@@ -238,9 +238,15 @@ tr:last-child td{border-bottom:0}
 .met{text-align:right;font-family:var(--tech);font-size:12px;color:var(--sumi1);
      white-space:nowrap;font-variant-numeric:tabular-nums}
 
-ul.notes{list-style:none;font-size:14.5px;line-height:1.66;color:var(--sumi1);max-width:62ch}
-ul.notes li{padding-left:16px;position:relative;margin-bottom:7px}
-ul.notes li::before{content:"·";position:absolute;left:3px;color:var(--sumi3)}
+/* A bullet, not a middot: at 14.5px on washi the middot all but disappears, and
+   a list marker that fades is a list without markers. It is the real list
+   marker rather than an absolutely positioned ::before, because an abspos box
+   anchors to the top of the item and rides above the text, while ::marker sits
+   on the first line's baseline without being told to. */
+ul.notes{list-style:disc outside;font-size:14.5px;line-height:1.66;
+         color:var(--sumi1);max-width:62ch;padding-left:15px}
+ul.notes li{margin-bottom:7px}
+ul.notes li::marker{color:var(--sumi3);font-size:11px}
 
 .caps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px 34px}
 @media (max-width:760px){.caps{grid-template-columns:repeat(2,minmax(0,1fr))}}
