@@ -221,26 +221,41 @@
     const S = { fac: D.facilities.slice(), pay: D.payers.slice(), svc: D.serviceLines.slice(), scenario: 'baseline' };
 
     root.innerHTML =
-      '<div id="rcm-scenario" style="max-width:1280px;margin:0 auto clamp(14px,2vw,20px);display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;"></div>' +
+      (document.querySelector('#rcm-scenario') ? '' : '<div id="rcm-scenario-fallback" style="max-width:1280px;margin:0 auto clamp(14px,2vw,20px);"></div>') +
       '<div style="max-width:1280px;margin:0 auto;border:1px solid var(--border);border-radius:16px;background:var(--surface2);padding:clamp(16px,2vw,22px);margin-bottom:16px;">' +
       '<div id="rcm-filters" style="display:flex;flex-wrap:wrap;gap:22px;"></div></div>' +
       '<div id="rcm-charts" style="max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:16px;"></div>';
 
-    const scenEl = root.querySelector('#rcm-scenario');
+    // The page may host the scenario card in its hero, outside this root. Prefer that element
+    // when it exists, and fall back to the in-root row so a page without the card still works.
+    const scenEl = document.querySelector('#rcm-scenario') || root.querySelector('#rcm-scenario-fallback');
     const filtersEl = root.querySelector('#rcm-filters');
     const chartsEl = root.querySelector('#rcm-charts');
 
     function renderScenario() {
       const opts = [['healthy', 'Healthy'], ['baseline', 'Baseline'], ['stressed', 'Stressed']];
-      const hint = { healthy: '+12% income, fewer denials, faster A/R', baseline: 'Dataset as analyzed', stressed: '−14% income, denials spike, A/R extends' }[S.scenario];
-      scenEl.innerHTML = '<span style="font-family:\'IBM Plex Mono\',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2);">Scenario</span>' +
-        '<div style="display:inline-flex;border:1px solid var(--border2);border-radius:999px;overflow:hidden;">' +
-        opts.map((o) => '<button data-scen="' + o[0] + '" style="padding:8px 16px;border:none;cursor:pointer;font-family:\'IBM Plex Mono\',monospace;font-size:13px;background:' + (S.scenario === o[0] ? 'var(--accent)' : 'transparent') + ';color:' + (S.scenario === o[0] ? 'var(--accent-ink)' : 'var(--muted)') + ';">' + o[1] + '</button>').join('') + '</div>' +
-        '<span style="font-family:\'IBM Plex Mono\',monospace;font-size:12px;color:var(--muted2);">' + hint + '</span>';
+      // Baseline carries no hint: the two adjusted scenarios describe how they differ from it,
+      // so labelling the unadjusted case restates the word already on its own button.
+      const hint = { healthy: '+12% income, fewer denials, faster A/R', baseline: 'Every figure below is the ledger unadjusted.', stressed: '−14% income, denials spike, A/R extends' }[S.scenario];
+      const mono = 'font-family:\'IBM Plex Mono\',monospace;';
+      const eyebrow = mono + 'font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2);';
+      scenEl.innerHTML =
+        '<div style="' + eyebrow + 'margin-bottom:10px;">Scenario</div>' +
+        // Full-width segmented switch: three peers, so they divide the card evenly rather than
+        // sizing to their own labels.
+        '<div style="display:flex;border:1px solid var(--border2);border-radius:999px;overflow:hidden;">' +
+        opts.map((o) => '<button data-scen="' + o[0] + '" style="flex:1 1 0;padding:8px 4px;border:none;cursor:pointer;' + mono + 'font-size:13px;background:' + (S.scenario === o[0] ? 'var(--accent)' : 'transparent') + ';color:' + (S.scenario === o[0] ? 'var(--accent-ink)' : 'var(--muted)') + ';">' + o[1] + '</button>').join('') + '</div>' +
+        '<div style="' + mono + 'font-size:12px;line-height:1.5;color:var(--muted2);margin-top:10px;min-height:36px;">' + hint + '</div>' +
+        // The share-shown figure answers the filters rather than setting them, so it closes the
+        // card under a rule instead of sitting among the chips it reports on.
+        // Figure and label share a baseline so they read as one phrase, while keeping the size
+        // and case difference that marks which half is the measurement.
+        '<div style="border-top:1px solid var(--border);margin-top:14px;padding-top:14px;display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;">' +
+        '<span style="' + mono + 'font-size:34px;font-weight:600;line-height:1;color:var(--flare);">' + Math.round(compute(S.fac, S.pay, S.svc).slice * 100) + '%</span>' +
+        '<span style="' + eyebrow + '">of dataset shown</span></div>';
     }
     function renderFilters() {
-      filtersEl.innerHTML = chipGroup('Facility', D.facilities, S.fac, 'fac', false) + chipGroup('Payer mix', D.payers, S.pay, 'pay', true) + chipGroup('Service line', D.serviceLines, S.svc, 'svc', true) +
-        '<div style="flex:0 0 auto;margin-left:auto;align-self:flex-end;font-family:\'IBM Plex Mono\',monospace;font-size:12.5px;color:var(--muted);"><strong style="color:var(--flare);font-size:18px;">' + Math.round(compute(S.fac, S.pay, S.svc).slice * 100) + '%</strong> of dataset shown</div>';
+      filtersEl.innerHTML = chipGroup('Facility', D.facilities, S.fac, 'fac', false) + chipGroup('Payer mix', D.payers, S.pay, 'pay', true) + chipGroup('Service line', D.serviceLines, S.svc, 'svc', true);
     }
     function renderCharts() {
       if (!S.fac.length || !S.pay.length || !S.svc.length) {
@@ -299,13 +314,19 @@
     function renderAll() { renderScenario(); renderFilters(); renderCharts(); }
     renderAll();
 
-    root.addEventListener('click', function (ev) {
+    function onClick(ev) {
       const chip = ev.target.closest('[data-chip]');
       const act = ev.target.closest('[data-act]');
       const scen = ev.target.closest('[data-scen]');
       if (scen) { S.scenario = scen.getAttribute('data-scen'); renderScenario(); renderCharts(); return; }
-      if (chip) { const k = chip.getAttribute('data-chip'), v = chip.getAttribute('data-val'); const arr = S[k]; const i = arr.indexOf(v); if (i >= 0) arr.splice(i, 1); else arr.push(v); renderFilters(); renderCharts(); return; }
-      if (act) { const k = act.getAttribute('data-key'), a = act.getAttribute('data-act'); S[k] = a === 'all' ? (k === 'fac' ? D.facilities.slice() : k === 'pay' ? D.payers.slice() : D.serviceLines.slice()) : []; renderFilters(); renderCharts(); return; }
-    });
+      // renderScenario redraws the share-shown figure in the hero card, so every filter change
+      // has to re-run it or the percentage goes stale against the chips that produced it.
+      if (chip) { const k = chip.getAttribute('data-chip'), v = chip.getAttribute('data-val'); const arr = S[k]; const i = arr.indexOf(v); if (i >= 0) arr.splice(i, 1); else arr.push(v); renderScenario(); renderFilters(); renderCharts(); return; }
+      if (act) { const k = act.getAttribute('data-key'), a = act.getAttribute('data-act'); S[k] = a === 'all' ? (k === 'fac' ? D.facilities.slice() : k === 'pay' ? D.payers.slice() : D.serviceLines.slice()) : []; renderScenario(); renderFilters(); renderCharts(); return; }
+    }
+    root.addEventListener('click', onClick);
+    // The scenario card can live in the page hero, outside root, so its buttons need their own
+    // listener; without it the switch renders but nothing responds to a click.
+    if (scenEl && !root.contains(scenEl)) scenEl.addEventListener('click', onClick);
   };
 })();
