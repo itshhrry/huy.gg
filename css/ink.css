@@ -158,7 +158,10 @@ img{max-width:100%;height:auto;display:block}
 .railcard{flex:0 1 340px;min-width:250px;max-width:360px;border:1px solid var(--rule);
           background:var(--raise);padding:16px 18px 6px;margin-left:clamp(12px,3vw,40px);
           margin-top:6px}
-.railcard .cap{font-family:var(--tech);font-size:10px;color:var(--sumi3);
+/* 12px on sumi2, up from 10px on sumi3. It was the smallest text on any page,
+   at wash strength, and it is the line that tells a reader what the four figures
+   underneath it are. 4.56 to 6.52 on washi. */
+.railcard .cap{font-family:var(--tech);font-size:12px;color:var(--sumi2);
                padding-bottom:11px;border-bottom:1px solid var(--rule)}
 .railcard .row{display:flex;align-items:baseline;justify-content:space-between;
                gap:16px;padding:11px 0;border-bottom:1px solid var(--hair)}
@@ -215,9 +218,8 @@ p + p{margin-top:12px}
    reading measure and leaving the entry looking like two narrow columns wrapped
    around a wide image. */
 .wide p{max-width:none}
-.u{display:inline-block;margin-top:13px;font-family:var(--tech);font-size:11px;
-   color:var(--sumi);border-bottom:1px solid var(--rule2);padding-bottom:2px}
-.u:hover{text-decoration:none;border-bottom-color:var(--sumi)}
+/* .u and .goto are one treatment. They were 11px and 13px, which meant the same
+   action read as two different controls depending on where it sat. */
 
 /* ---------- figures: ink at display size, never a card ---------- */
 .figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
@@ -275,12 +277,12 @@ p + p{margin-top:12px}
    so a solid block would outweigh the title beside it and five of them would
    stack into the page's dominant rhythm. The fill happens on hover instead, so
    the affordance is there when a pointer looks for it. */
-.goto{display:inline-flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+.goto,.u{display:inline-flex;align-items:baseline;gap:12px;flex-wrap:wrap;
       margin-top:clamp(18px,2.6vw,26px);font-family:var(--tech);font-size:13px;
       color:var(--sumi);border-bottom:1px solid var(--rule2);padding:2px 5px 3px;
       margin-left:-5px;margin-right:-5px;
       transition:background .14s ease,color .14s ease}
-.goto:hover{text-decoration:none;border-bottom-color:var(--sumi);
+.goto:hover,.u:hover{text-decoration:none;border-bottom-color:var(--sumi);
             background:var(--sumi);color:var(--washi)}
 
 /* ---------- the lightbox ----------
