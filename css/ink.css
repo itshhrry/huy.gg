@@ -246,11 +246,12 @@ p + p{margin-top:12px}
 .platecap{font-family:var(--tech);font-size:10.5px;color:var(--sumi3);margin-top:11px;
           line-height:1.7;max-width:none}
 .platecap b{color:var(--sumi);font-weight:400}
-/* Emphasis in a lead paragraph: full ink at 700. The ink shift alone, which is
-   what .platecap b uses, moves 62,58,52 to 22,22,22 and reads as nothing inside
-   a running line. One phrase per entry, the claim the entry is making. Scoped to
-   the lead so a bold inside a caption or a detail column keeps its treatment. */
-.bd > p b{color:var(--sumi);font-weight:700}
+/* No emphasis rule for lead paragraphs. Tried and removed on 2026-08-12: this
+   design does emphasis by position and size, and it already runs four scanning
+   layers, the margin notation, the titles, the railcard figures, and the
+   platecap lead-ins, without bolding a word of running text. A single bolded
+   phrase across six entries and four pages read as an accident rather than a
+   system. If it ever comes back it goes on all six or none. */
 
 /* Every entry that has a running destination says so on one line, sitting across
    from the entry's title and sharing its baseline, so the name of the thing and
