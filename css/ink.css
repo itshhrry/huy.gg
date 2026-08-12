@@ -70,7 +70,13 @@ img{max-width:100%;height:auto;display:block}
                       text-decoration-thickness:1px}
 .bar .markbar{width:26px;height:26px;flex:0 0 auto;
               background:url("../img/logo.png") center/contain no-repeat}
-.bar .who{font-size:15px;color:var(--sumi)}
+/* The name holds its ratio to the nav: it was 15px against 10.5, so 1.43, and
+   18 against 12.5 keeps it. The mark stays 26px, which is what sets the bar's
+   height, so the row does not grow. */
+/* line-height pinned to the mark's 26px: at 18px the body's 1.66 gives a 29.9px
+   line box, which took over as the tallest thing in the row and grew the bar to
+   58, breaking the footer it is matched to. */
+.bar .who{font-size:18px;line-height:26px;color:var(--sumi)}
 .bar .sp{flex:1}
 .bar nav{display:flex;gap:20px;flex-wrap:wrap}
 /* The nav carries a page's controls, so it outranks the margin notation rather
