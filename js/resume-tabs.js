@@ -34,7 +34,7 @@
             { t: 'Served as IT project lead for EHR consolidation across <strong>14 clinics</strong>, overseeing Athena/Experity implementation, data migration, manual testing, and user acceptance validation with zero critical system failures.', tabs: ['analyst', 'operations'] },
             { t: 'Strengthened front-end eligibility verification and documentation workflows, reducing downstream claim denials and improving reimbursement turnaround time.', tabs: ['revenue'] }
           ] },
-          { id: 'centura', unpaid: true, title: 'Data & Analytics Intern', org: 'Centura Health', location: 'Denver, CO', dates: 'Nov 2019 to Mar 2021', bullets: [
+          { id: 'centura', unpaid: true, title: 'Data Analytics Intern', org: 'Centura Health', location: 'Denver, CO', dates: 'Nov 2019 to Mar 2021', bullets: [
             { t: 'Designed ETL pipelines in <strong>SQL</strong> integrating Epic, patient monitoring devices, and administrative systems into a single analysis layer.', tabs: ['analyst'] },
             { t: 'Built predictive models in <strong>Python</strong> forecasting patient admissions, resource utilization, and potential complications for COVID-19 surge planning.', tabs: ['analyst'] },
             { t: 'Delivered reporting and data visualizations using Power BI, Tableau, and SQL Server.', tabs: ['analyst'] }
