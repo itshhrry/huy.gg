@@ -73,7 +73,12 @@ img{max-width:100%;height:auto;display:block}
 .bar .who{font-size:15px;color:var(--sumi)}
 .bar .sp{flex:1}
 .bar nav{display:flex;gap:20px;flex-wrap:wrap}
-.bar nav a,.bar nav span{font-family:var(--tech);font-size:10.5px;color:var(--sumi2)}
+/* The nav carries a page's controls, so it outranks the margin notation rather
+   than sitting a shade under it. At 10.5px in sumi2 it was the lighter of the
+   two. Colour does the work here, not font-weight: a mono face at 500 thickens
+   into mud at this size. */
+.bar nav a,.bar nav span{font-family:var(--tech);font-size:12.5px;font-weight:500;
+                         color:var(--sumi1);letter-spacing:.01em}
 .bar nav a:hover{color:var(--sumi)}
 
 /* ---------- the alcove: one thing, and the space around it ---------- */
@@ -297,12 +302,26 @@ ul.notes li::marker{color:var(--sumi3);font-size:11px}
           gap:clamp(22px,3.4vw,48px)}
 .skillgrp .k{margin-bottom:8px}
 
-footer{padding:16px var(--pad) 56px;border-top:1px solid var(--rule);
+/* 16 above and 18 below a 20px row puts the footer at 54px, the header's exact
+   height. It was 93px on a 16/56 split, taller than the header it was meant to
+   match and lopsided within itself. */
+footer{padding:16px var(--pad) 18px;border-top:1px solid var(--rule);
        display:flex;gap:20px;flex-wrap:wrap;align-items:center}
 footer .markfoot{width:20px;height:20px;opacity:.7;
                  background:url("../img/logo.png") center/contain no-repeat}
 footer .sp{flex:1}
 
+/* ---------- terminal motion ----------
+   Both terminals write every line as opacity:0 with tfade forwards, and the
+   cursor blinks on tblink. Neither keyframe came across when the scripts were
+   pulled out of the old page into terminals.js, so the log feed and every typed
+   response were still running and still invisible, and the cursor sat solid. */
+@keyframes tfade{to{opacity:1}}
+@keyframes tblink{to{opacity:0}}
+
+/* Reduced motion keeps the fill: duration collapses to .001ms and the forwards
+   fill still lands the line at opacity 1, so the output appears without the
+   fade rather than disappearing with it. */
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.001ms !important;transition-duration:.001ms !important}
