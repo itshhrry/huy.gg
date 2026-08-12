@@ -190,9 +190,10 @@ p + p{margin-top:12px}
 /* Every entry that has a running destination says so on one line, sitting across
    from the entry's title and sharing its baseline, so the name of the thing and
    the way to reach it are read together rather than the route being buried in a
-   supporting column further down. The address is only spelled out when it names
-   a host other than this one: huy.gg/dashboard repeats what the click already
-   promises, while carbon.huy.gg is a different machine and cannot be inferred. */
+   supporting column further down. An address is spelled out only when it names a
+   host other than this one, and then it is the object of the verb rather than a
+   second field: "Visit carbon.huy.gg", not "Visit the landing page" trailed by a
+   grey URL. huy.gg/dashboard would only repeat what the click already promises. */
 .ehead{display:flex;align-items:baseline;justify-content:space-between;
        gap:clamp(18px,4vw,60px);flex-wrap:wrap}
 .ehead .goto{margin-top:0;margin-bottom:11px}
@@ -200,9 +201,7 @@ p + p{margin-top:12px}
 .goto{display:inline-flex;align-items:baseline;gap:12px;flex-wrap:wrap;
       margin-top:clamp(18px,2.6vw,26px);font-family:var(--tech);font-size:11px;
       color:var(--sumi);border-bottom:1px solid var(--rule2);padding-bottom:3px}
-.goto .addr{color:var(--sumi3)}
 .goto:hover{text-decoration:none;border-bottom-color:var(--sumi)}
-.goto:hover .addr{color:var(--sumi2)}
 
 /* ---------- the lightbox ----------
    Ink at full strength over the page, so the capture is the only lit thing.
