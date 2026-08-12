@@ -62,20 +62,40 @@ img{max-width:100%;height:auto;display:block}
    is what prompted fixing sumi2, and the middle rung now exists at 6.52 if this
    ever wants to come back down. Size is what keeps it subordinate: 12.5px mono,
    right-aligned, against a 25px serif title. */
-.mk{font-family:var(--tech);font-size:12.5px;line-height:1.65;color:var(--sumi1);
-    text-align:right;padding-top:14px;position:sticky;top:16px;align-self:start}
+/* A flex column pinned to the end edge, not plain right-aligned text: an item
+   wider than the column, "computer vision", overflowed the right edge in normal
+   flow and carried its bullet past the others. Pinned to flex-end the right
+   edges hold and an over-long item grows left into empty margin. */
+.mk{display:flex;flex-direction:column;align-items:flex-end;
+    font-family:var(--tech);font-size:12.5px;line-height:1.65;color:var(--sumi1);
+    text-align:right;padding-top:7px;position:sticky;top:16px;align-self:start}
 /* The numeral leads its label at full ink, and sits on the title's line rather
    than floating above the margin: the 8px top padding is what drops its
    baseline onto the h2's. The gap under it separates the index from the stack,
    which are two different kinds of fact. It was an inline style repeated on
    every section, which is a rule with no home. */
-.mk .n{display:block;color:var(--sumi);margin-bottom:10px}
+/* The index is a different order of thing from the stack it heads, so it gets
+   its own size rather than the label's. Not underlined: a rule here reads as a
+   link on a page where .goto and .u are the only underlined things.
+
+   It centres on the title's line box, not its baseline. Baseline alignment put
+   the numeral visibly under the title's middle, because a 16px box against a
+   30px line sits 7px low when both start at the same y. The 7px .mk padding is
+   that correction. */
+.mk .n{display:block;font-size:16px;line-height:1;color:var(--sumi);margin-bottom:12px}
 /* One tool per line. Run together on wrapped lines the stack read as a phrase,
    and a reader looking for whether a thing uses Postgres had to parse a
    sentence. The right edges align against the rule, since that is the edge the
    margin hangs from; the bullets ride the ragged left. */
-.mk .s{display:block;line-height:1.85}
-.mk .s::before{content:"\2022";font-size:10px;margin-right:6px;color:var(--sumi3)}
+/* nowrap: "computer vision" and "power query" are single entries and broke
+   across two lines in a 132px column, reading as two tools. Right alignment
+   means an over-long item grows leftward into empty margin, never over content,
+   and below 820px the whole spine collapses to a run-in line anyway. */
+.mk .s{display:block;line-height:1.85;white-space:nowrap}
+/* The bullet trails rather than leads. In a right-aligned column the last
+   character of every line lands on the same x, so a trailing bullet draws a
+   straight edge against the rule while a leading one rides the ragged side. */
+.mk .s::after{content:"\2022";font-size:10px;margin-left:7px;color:var(--sumi3)}
 .bd{border-left:1px solid var(--rule);padding-left:clamp(16px,2.6vw,34px);min-width:0}
 .tech{font-family:var(--tech);font-size:10.5px;line-height:1.75;color:var(--sumi3);letter-spacing:0}
 .tech a:hover{color:var(--sumi)}
