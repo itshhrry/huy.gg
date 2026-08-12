@@ -28,10 +28,9 @@
     --serif:Charter,"Bitstream Charter","Iowan Old Style",Georgia,serif;
   }
 
-  /* This study commits to one ground on purpose. huy.gg removed its dark theme
-     on 2026-08-07: every screenshot the site carries is a capture of a light
-     interface, and the palette is composed against paper rather than drained
-     out of a dark one. Honouring that is the point of the study. */
+  /* One ground on purpose. huy.gg removed its dark theme on 2026-08-07: every
+     screenshot the site carries is a capture of a light interface, and the
+     palette is composed against paper rather than drained out of a dark one. */
 
   *{box-sizing:border-box;}
   body{margin:0;background:var(--bg);color:var(--text);font-family:var(--grotesk);
@@ -56,13 +55,34 @@
     text-transform:uppercase;color:var(--flare);border:1px solid var(--b2);
     border-radius:999px;padding:4px 11px;}
 
-  /* ---- thesis ---- */
-  .thesis{max-width:60ch;margin-bottom:clamp(26px,3.5vw,38px);}
+  /* ---- thesis, paired with a figure rail so the hero fills its width ---- */
+  .hero{display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,52px);align-items:center;
+    margin-bottom:clamp(26px,3.5vw,38px);}
+  /* No cap on the block itself, matching the site's hero: the heading spans the
+     column it is given and only the running paragraph is held to a measure, so
+     the text grows to meet the rail instead of leaving a void between them. */
+  .thesis{flex:1 1 440px;min-width:min(100%,300px);}
+
+  /* margin-left:auto pins the rail to the right edge of the content column, so
+     it lines up with the surface and the notes grid below rather than floating. */
+  .railcard{position:relative;flex:0 1 360px;min-width:270px;margin-left:auto;border:1px solid var(--b2);
+    border-radius:16px;background:#fff;padding:20px 22px;box-shadow:0 24px 56px rgba(23,20,15,.10);}
+  .railcard .cap{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;
+    text-transform:uppercase;color:var(--flare);padding-bottom:11px;margin-bottom:4px;
+    border-bottom:1px solid var(--b2);}
+  /* A rule-separated rail, which is a table rather than a row of cards */
+  .railcard .row{display:flex;align-items:baseline;justify-content:space-between;gap:14px;
+    padding:9px 0;border-bottom:1px solid var(--b1);}
+  .railcard .row:last-child{border-bottom:0;padding-bottom:0;}
+  .railcard .k{font-size:13px;color:var(--muted);}
+  .railcard .v{font-family:var(--mono);font-size:15px;color:var(--strong);
+    font-variant-numeric:tabular-nums;letter-spacing:-.01em;}
+  .railcard .v.acc{color:var(--accent);}
   h1{font-size:clamp(30px,4.6vw,52px);line-height:1.04;letter-spacing:-.03em;font-weight:600;
     margin:0 0 16px;text-wrap:balance;color:var(--strong);}
   h1 em{font-style:normal;color:var(--accent);}
   .lede{font-family:var(--serif);font-size:clamp(16px,1.5vw,18.5px);line-height:1.62;
-    color:var(--muted);margin:0;}
+    color:var(--muted);margin:0;max-width:56ch;}
 
   /* ---- the working surface ---- */
   .surface{border:1px solid var(--b2);border-radius:14px;overflow:hidden;
@@ -139,16 +159,29 @@
   .note p + p{margin-top:9px;}
   .note code{font-family:var(--mono);font-size:12.5px;color:var(--text);}
 
-  .limits{margin-top:clamp(30px,4vw,44px);padding-top:22px;border-top:1px solid var(--b3);
-    max-width:74ch;}
+  /* The limits and the fine print span the full content column, matching the
+     surface and the notes grid above. Measure stays readable because the body
+     flows in columns rather than running one 1100px line. */
+  .limits{margin-top:clamp(30px,4vw,44px);padding-top:22px;border-top:1px solid var(--b3);}
   .limits h2{font-size:clamp(19px,2vw,23px);font-weight:600;letter-spacing:-.02em;
-    margin:0 0 13px;color:var(--strong);}
-  .limits p{margin:0 0 11px;font-size:14.5px;line-height:1.66;color:var(--muted);}
+    margin:0 0 15px;color:var(--strong);max-width:34ch;text-wrap:balance;}
+  .limits .cols{columns:2;column-gap:clamp(24px,3vw,40px);}
+  .limits p{margin:0 0 12px;font-size:14.5px;line-height:1.66;color:var(--muted);
+    break-inside:avoid;}
   .limits p:last-child{margin-bottom:0;}
   .limits code{font-family:var(--mono);font-size:13px;color:var(--text);}
 
+  /* Fine print spans the full column as one measure. Two columns over 55 words
+     produces a pair of stubs, which reads worse than a single wide block. */
   footer{margin-top:clamp(30px,4vw,46px);padding-top:16px;border-top:1px solid var(--b1);
-    font-size:12.5px;color:var(--muted2);line-height:1.6;max-width:70ch;}
+    font-size:12.5px;color:var(--muted2);line-height:1.7;}
+  footer p{margin:0;}
+  footer a{color:var(--flare);text-decoration:underline;text-underline-offset:3px;
+    text-decoration-thickness:1px;}
+
+  @media (max-width:820px){
+    .limits .cols{columns:1;}
+  }
 
   @media (prefers-reduced-motion:reduce){
     *,*::before,*::after{animation-duration:.001ms !important;transition-duration:.001ms !important;}
@@ -170,12 +203,22 @@
     <span class="studybadge">Captured output</span>
   </header>
 
+  <div class="hero">
   <div class="thesis">
     <h1>The map draws only the symbols your query <em>returned</em>.</h1>
-    <p class="lede">codemap indexes 6,050 symbols across the carbon repository. This surface draws
-      none of them until a query runs, then renders exactly the rows that query came back with.
-      Asking what calls one function returns one node and one edge. Every result below is captured
-      from a real build.</p>
+    <p class="lede">codemap indexes 6,050 symbols in the carbon repository. This surface draws none of them
+      until you ask it something, then renders exactly what the query returned. Every result below
+      is captured from a real build.</p>
+  </div>
+
+  <aside class="railcard">
+    <div class="cap">carbon, at last build</div>
+    <div class="row"><span class="k">Symbols indexed</span><span class="v">6,050</span></div>
+    <div class="row"><span class="k">Relationships kept</span><span class="v">11,609</span></div>
+    <div class="row"><span class="k">Proven by an import</span><span class="v">11,055</span></div>
+    <div class="row"><span class="k">Inferred from a name</span><span class="v acc">554</span></div>
+    <div class="row"><span class="k">Of everything emitted</span><span class="v">69%</span></div>
+  </aside>
   </div>
 
   <div class="surface">
@@ -223,98 +266,68 @@
   <div class="notes">
     <div class="note">
       <h3>Why it opens empty</h3>
-      <p>Every codemap query is an act of refusal. Results cap at 15 to 20 rows, hubs sort last,
-        graph walks are opt-in, and whole files stay out. The existing export then draws all 6,050
-        symbols and 11,609 edges at once, which is the one surface doing the opposite of what the
-        tool is for.</p>
-      <p>The test that settles it is asking what decision a picture supports. Running
-        <code>callers formula_index</code> changes what happens next. Running
-        <code>impact FormulaError</code> changes what gets tested. A whole-graph render changes how
-        impressed somebody is, and nothing follows from it, which is why it does not get opened
-        twice.</p>
+      <p>Every codemap query refuses something. Results cap at 15 to 20 rows, hubs sort last,
+        graph walks are opt-in. The existing export draws all 6,050 symbols at once, doing the
+        exact opposite.</p>
+      <p>Ask what decision a picture supports. <code>callers formula_index</code> changes what you
+        do next. <code>impact FormulaError</code> changes what you test. A whole-graph render
+        changes how impressed someone is, and nothing follows from that.</p>
     </div>
     <div class="note">
       <h3>One accent, no legend</h3>
-      <p>The current export hashes each node's cluster, or its layer where no cluster exists, into
-        a hue. Carbon has 216 communities and none of them are named, so the four largest take most
-        of the area and the colours mean nothing a reader can recover.</p>
-      <p>Here the symbol you asked about is the only thing wearing the accent. Everything it
-        reaches stays in ink, node size carries degree, and kind is a word on hover.</p>
-      <p>Confidence rides the dash pattern, which is the one variable worth encoding and the one
-        both the export and the command line throw away. A solid edge was backed by an import the
-        extractor saw. A dashed edge was bound by bare name and could be wrong. Run
-        <code>callers is_owner</code> to see nine callers split six to three.</p>
+      <p>The existing export hashes each node's cluster into a hue. Carbon's 216 communities are
+        unnamed, so the four largest take most of the area and the colours mean nothing a reader
+        can recover.</p>
+      <p>Here only the symbol you asked about wears the accent. Size carries degree, kind is a word
+        on hover.</p>
+      <p>Confidence rides the dash pattern, which both the export and the command line throw away.
+        Solid means an import proved it. Dashed means a bare name matched and could be wrong. Try
+        <code>callers is_owner</code>: nine callers, six solid, three dashed.</p>
     </div>
     <div class="note">
       <h3>Deterministic placement</h3>
-      <p>Nodes sit at angles derived from their position in the result, so the same query draws
-        the same picture on every machine and every run.</p>
+      <p>Angles come from a symbol's position in the result, so the same query draws the same
+        picture on every machine and every run.</p>
       <p>A force simulation would settle somewhere new each time. codemap does guess, since 554 of
-        its 11,609 edges are bound by bare name with no import behind them, but it never guesses
-        differently twice. A layout that wanders would break the one property the tool actually
-        promises.</p>
+        its 11,609 edges are bare-name matches. It never guesses differently twice, and a layout
+        that wandered would break that.</p>
     </div>
   </div>
 
   <section class="limits">
     <h2>What this design does not solve</h2>
-    <p>This layout, not the tool, is what has gaps. The radial arrangement assumes one focus symbol
-      with its relations around it, which fits <code>callers</code>, <code>callees</code>,
-      <code>impact</code>, <code>def</code>, and <code>search</code>. Three other commands return
-      shapes it cannot draw: <code>path</code> returns a directed chain and wants a left-to-right
-      sequence, <code>cluster</code> returns a named community with no centre to orbit, and
-      <code>locate</code> returns a tree per hit, with a container, its anchors, its siblings, and
-      its callers. All three need arrangements this study does not propose.</p>
-    <p>The <code>stats</code> line above under-reports one thing, and the number should not be read
-      as a virtue. Carbon's extractor emits 16,854 edges and keeps 11,609 of them, so the map is
-      about 69 percent of what was found. <code>dropped_edge_count</code> then fuses two populations
-      inside the remaining 5,245: destinations that genuinely do not exist, which is the framework
-      and standard-library noise the tool was built to reject, and destinations the tie-breaker
-      could not choose between, which are real edges being destroyed. Fifteen real
-      <code>imports</code> edges into one module and three real <code>calls</code> edges into
-      another have died the second way, each time because an unrelated symbol elsewhere in the
-      repository happened to share a name.</p>
-    <p>That split has been measured exactly once, on codemap's map of itself, where 218 of the drops
-      pointed at standard-library modules with nothing in-repo to aim at and 15 were calls that had
-      import evidence available and lost it. Nobody has run the same breakdown on carbon, so what
-      share of its 5,245 is honest rejection and what share is destruction is simply unknown. A
-      render that shows the number as rejected noise is asserting the flattering half.</p>
-    <p>The useful ceiling is around twenty nodes, which is what <code>impact FormulaError</code>
-      returns. A query coming back with several hundred rows would crowd the canvas the same way
-      the current export does, so the empty-state argument only holds while results stay small.
-      Deciding what to draw at 200 results is the open question, and the honest answer may be a
-      table rather than a graph.</p>
-    <p>One limit belongs to the tool rather than the layout, and it bounds what any render of a
-      query result can claim. codemap binds a call written as a bare name or as
-      <code>self.method()</code>, and emits nothing for <code>module.function()</code>, which is the
-      dominant Python idiom. Asked to map itself it kept 156 edges and dropped 223, and
-      <code>callers</code> came back empty for two functions whose only caller is its own command
-      line. The two queries shown here were checked against a plain text search and are complete,
-      nine callers for <code>is_owner</code> and one for <code>formula_index</code>, but that is a
-      property of those two symbols being called by bare name rather than a guarantee the command
-      offers. A drawn subgraph is a floor, not a census.</p>
-    <p>Below roughly 600px the two labels at top and bottom dead centre still overlap, since both
-      align to centre and neither has a horizontal direction to splay into. And the six queries
-      here are captured output rather than a live connection, so this demonstrates the interaction
-      and not the plumbing behind it.</p>
-    <p>Most importantly, this is one of three directions and the narrowest. The queued entry that
-      prompted it proposes scoping the render to a neighbourhood, applying hub suppression visually
-      the way <code>query.py</code> already applies it to rows, and asking whether a graph is the
-      right form at all. This study does the first, skips the second entirely (a high-degree node
-      here is drawn as a node like any other, rather than collapsed or turned into a boundary), and
-      does not evaluate the third. A treemap by layer or community, sized by degree, may answer
-      "what is in this repository and how big is it" better than any graph does, and that question
-      stays open. Nothing here should be read as settling it.</p>
+    <div class="cols">
+    <p><strong>Shapes it cannot draw.</strong> The radial arrangement assumes one focus symbol with
+      relations around it, which fits <code>callers</code>, <code>callees</code>,
+      <code>impact</code>, <code>def</code>, and <code>search</code>. It does not fit
+      <code>path</code>, a chain wanting a left-to-right sequence, <code>cluster</code>, which has
+      no centre to orbit, or <code>locate</code>, which returns a tree per hit.</p>
+    <p><strong>The dropped count is not a virtue.</strong> Carbon emits 16,854 edges and keeps
+      11,609, so the map is 69 percent of what was found. The other 5,245 mixes two things:
+      destinations that do not exist, and destinations the tie-breaker could not choose between.
+      The second kind are real edges destroyed because an unrelated symbol shared a name, 15
+      imports into one module and 3 calls into another. That split has been measured on codemap's
+      own map, never on carbon's.</p>
+    <p><strong><code>callers</code> under-reports.</strong> codemap binds bare names and
+      <code>self.method()</code>, and emits nothing for <code>module.function()</code>, the dominant
+      Python idiom. Mapping itself, it kept 156 edges and dropped 223, and <code>callers</code>
+      returned empty for two functions whose only caller is its own command line. Both queries here
+      check out against a text search, but only because both are called by bare name. A drawn
+      subgraph is a floor, not a census.</p>
+    <p><strong>Scale.</strong> Twenty nodes is about the ceiling. Several hundred would crowd the
+      canvas the way the current export does, and the honest answer there may be a table.</p>
+    <p><strong>Loose ends.</strong> Below 600px the labels at top and bottom dead centre overlap,
+      and results are captured rather than live. This is also the narrowest of three directions: it
+      scopes the render, skips visual hub suppression, and never tests whether a treemap would beat
+      a graph.</p>
+    </div>
   </section>
 
   <footer>
-    <code>codemap</code> is a deterministic code index that answers where a symbol lives, what calls
-    it, and what breaks if it changes, without reading whole files and without a language model. It
-    indexes Python, TypeScript, Vue, and Rust into SQLite. Every query result on this page is
-    captured from a real build of the carbon map rather than a live connection, so this demonstrates
-    the interaction and the reasoning behind it, not the plumbing. The page follows the site's token
-    system: paper ground, warm near-black ink, and burnt orange as the single accent.
-    <a href="projects.html#codemap">Back to the case study</a>.
+    <p><code>codemap</code> is a deterministic code index: where a symbol lives, what calls it,
+    what breaks if it changes. No whole-file reads, no language model. Python, TypeScript, Vue, and
+    Rust into SQLite. Results here are captured from a real build rather than a live connection.
+    <a href="projects.html#codemap">Back to the case study</a>.</p>
   </footer>
 
 </div>
