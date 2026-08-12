@@ -239,8 +239,13 @@
       const hint = { healthy: '+12% income, fewer denials, faster A/R', baseline: 'Every figure below is the ledger unadjusted.', stressed: '−14% income, denials spike, A/R extends' }[S.scenario];
       const mono = 'font-family:\'IBM Plex Mono\',monospace;';
       const eyebrow = mono + 'font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2);';
+      // Same mark the home page's IMPACT card carries: a filled tile of three bars. Reused
+      // rather than redrawn so the two cards read as the same family of card.
+      const bar = (h) => '<span style="width:2.5px;height:' + h + 'px;background:var(--bg);border-radius:1px;"></span>';
+      const chartIcon = '<span style="display:inline-flex;align-items:flex-end;justify-content:center;gap:1.5px;width:18px;height:18px;border-radius:5px;background:var(--flare);padding:3px 3.5px;flex:0 0 auto;">' +
+        bar(5) + bar(9) + bar(7) + '</span>';
       scenEl.innerHTML =
-        '<div style="' + eyebrow + 'margin-bottom:10px;">Scenario</div>' +
+        '<div style="' + eyebrow + 'display:flex;align-items:center;gap:8px;margin-bottom:10px;">' + chartIcon + '<span>Scenario</span></div>' +
         // Full-width segmented switch: three peers, so they divide the card evenly rather than
         // sizing to their own labels.
         '<div style="display:flex;border:1px solid var(--border2);border-radius:999px;overflow:hidden;">' +
