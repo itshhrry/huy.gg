@@ -125,12 +125,14 @@ img{max-width:100%;height:auto;display:block}
 .two > div:last-child:nth-child(odd){grid-column:1/-1}
 @media (max-width:640px){.two{grid-template-columns:1fr}}
 
-/* A plain two-column split for a single entry: prose beside its table, with no
-   frame. The lattice above is for a grid of peer items, and using it on one
-   project made that project look like a different kind of thing from the rest. */
-.split{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);
-       gap:clamp(24px,3.6vw,48px);align-items:start}
-@media (max-width:760px){.split{grid-template-columns:1fr;gap:24px}}
+/* Every project entry has one shape: prose at full width, then the visual at
+   full width, then supporting detail in two columns underneath. A terminal is a
+   visual and so is a confusion matrix, so neither gets squeezed into a side
+   column while a screenshot elsewhere gets the whole width. */
+.visual{margin:clamp(18px,2.6vw,28px) 0 0}
+.detail{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+        gap:clamp(22px,3.2vw,44px);margin-top:clamp(16px,2.4vw,26px);align-items:start}
+@media (max-width:640px){.detail{grid-template-columns:1fr;gap:22px}}
 .two > div{background:var(--washi);padding:clamp(18px,2.4vw,28px)}
 .two p{max-width:42ch}
 .two h2{font-weight:400;font-size:clamp(22px,2.8vw,30px);line-height:1.1;

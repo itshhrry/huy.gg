@@ -59,7 +59,7 @@
     <h2 style="font-weight:400;font-size:clamp(24px,3.4vw,38px);line-height:1.08;letter-spacing:-.028em;color:var(--sumi);margin-bottom:14px">Revenue cycle by design</h2>
     <p>Designed and generated a dataset of 250,000 claims in Python using rule-based operational and financial logic, then normalised the raw output into schemas with Power Query to analyse reimbursement performance, denials, efficiency, and profitability.</p>
     <a class="plate" href="dashboard.html" style="margin-top:22px">
-      <img src="img/rcm-report-analysis.png" width="2706" height="1400" loading="lazy" decoding="async" alt="Revenue cycle analysis: denial concentration by payer, provider, and CPT">
+      <img src="img/rcm-report-analysis.png" width="2706" height="1263" loading="lazy" decoding="async" alt="Revenue cycle analysis: denial concentration by payer, provider, and CPT">
     </a>
     <div class="platecap"><b>Outcome.</b> Five facilities modelled across twelve months of 2025. Net collection holds at 82 to 83 percent against a 29 percent contractual adjustment and a 1 percent write-off rate, and a denial traces back to payer, provider, and CPT. <a href="dashboard.html">Open the working dashboard</a></div>
   </div>
@@ -98,7 +98,7 @@
     <h2 style="font-weight:400;font-size:clamp(24px,3.4vw,38px);line-height:1.08;letter-spacing:-.028em;color:var(--sumi);margin-bottom:14px">carbon: project, tasks, notes, and dashboards on one database</h2>
     <p>A project, a to-do list, and a goal held side by side on one database, running on hardware I own rather than rented infrastructure and reorganising as the work changes. Every table is a real PostgreSQL table with typed columns, so a filter runs as a query inside the database instead of JavaScript sifting rows the browser already downloaded. Data arrives as CSV, JSON, or Excel and leaves the same way, whole.</p>
     <a class="plate" href="https://carbon.huy.gg" style="margin-top:22px">
-      <img src="img/carbon-grid-6.png" width="1600" height="900" loading="lazy" decoding="async" alt="The carbon project table: column headers badged with their PostgreSQL types">
+      <img src="img/carbon-grid-6.png" width="1625" height="714" loading="lazy" decoding="async" alt="The carbon project table: column headers badged with their PostgreSQL types">
     </a>
     <div class="platecap"><b>The grid on carbon.huy.gg.</b> Each column header carries a badge naming that field's actual PostgreSQL type, and the summary strip underneath aggregates in SQL rather than in the browser. Access stays invite-only while the build continues. <a href="https://carbon.huy.gg">carbon.huy.gg</a></div>
   </div>
@@ -131,28 +131,13 @@
   </section>
 
   <!-- ========== CODEMAP ========== -->
-  <section class="band" id="codemap">
-    <div class="mk"><span style="display:block;color:var(--sumi2)">03</span>python · sqlite · typescript · rust · tree-sitter</div>
+  <section class="band wide" id="codemap">
+    <div class="mk"><span style="display:block;color:var(--sumi2)">03</span>python &middot; sqlite &middot; typescript &middot; rust &middot; tree-sitter</div>
     <div class="bd">
-    <div class="split">
-      <div class="wide">
-        <h2>codemap</h2>
-        <p>A code index that answers questions about a repository without reading it. Built after the tool I was using kept returning the entire neighbourhood around whatever I asked about, which is the opposite of an answer.</p>
-        <p>It answers where a function lives, what calls it, and what breaks if it changes, across a whole repository, without opening files and without a language model in the loop.</p>
-        <a class="u" href="codemap.html">open the query surface</a>
-        
-      </div>
-      <div>
-        <table>
-          <tr><td class="role">symbols indexed</td><td class="met">6,050</td></tr>
-          <tr><td class="role">relationships</td><td class="met">11,609</td></tr>
-          <tr><td class="role">import-backed</td><td class="met">11,055</td></tr>
-          <tr><td class="role">inferred</td><td class="met">554</td></tr>
-        </table>
-        <div class="platecap">Search tells you where a name appears. This tells you what depends on it, which is the question you actually have before changing anything.</div>
-      </div>
-    </div>
-    <div style="margin-top:20px"><div style="border:1px solid var(--rule2);border-radius:0;overflow:hidden;background:var(--raise);font-family:Arial,Helvetica,sans-serif,ui-monospace,monospace;">
+      <h2>codemap</h2>
+      <p>A code index that answers questions about a repository without reading it. Built after the tool I was using kept returning the entire neighbourhood around whatever I asked about, which is the opposite of an answer.</p>
+      <p>It answers where a function lives, what calls it, and what breaks if it changes, across a whole repository, without opening files and without a language model in the loop.</p>
+      <div class="visual"><div style="border:1px solid var(--rule2);border-radius:0;overflow:hidden;background:var(--raise);font-family:Arial,Helvetica,sans-serif,ui-monospace,monospace;">
               <div style="display:flex;align-items:center;gap:6px;padding:9px 13px;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(22,22,22,.12);">
                 <span style="width:11px;height:11px;border-radius:50%;background:#ff5f57;"></span>
                 <span style="width:11px;height:11px;border-radius:50%;background:#febc2e;"></span>
@@ -174,6 +159,20 @@
                 </div>
               </div>
             </div></div>
+      <div class="detail">
+        <div>
+          <table>
+            <tr><td class="role">symbols indexed</td><td class="met">6,050</td></tr>
+            <tr><td class="role">relationships</td><td class="met">11,609</td></tr>
+            <tr><td class="role">import-backed</td><td class="met">11,055</td></tr>
+            <tr><td class="role">inferred</td><td class="met">554</td></tr>
+          </table>
+        </div>
+        <div>
+          <p>Search tells you where a name appears. This tells you what depends on it, which is the question you actually have before changing anything.</p>
+          <a class="u" href="codemap.html">open the query surface</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -191,51 +190,39 @@
   </section>
 
   <!-- ========== EMOTION ========== -->
-  <section class="band" id="emotion">
-    <div class="mk"><span style="display:block;color:var(--sumi2)">05</span>python · tensorflow · keras · ann · cnn · computer vision</div>
+  <section class="band wide" id="emotion">
+    <div class="mk"><span style="display:block;color:var(--sumi2)">05</span>python &middot; tensorflow &middot; keras &middot; ann &middot; cnn &middot; computer vision</div>
     <div class="bd">
-    <div class="split">
-      <div class="wide">
-        <h2>Facial emotion recognition</h2>
-        <p>Built and compared multiple deep learning models to classify facial expressions across four categories: happy, sad, surprised, and neutral. Progressed from a baseline artificial neural network through increasingly refined convolutional architectures.</p>
-        <p>Depth, dropout tuning, and epoch scaling outperformed the simpler architectures by a wide margin. Matching input format to what the model expected, grayscale rather than RGB, improved alignment and removed preprocessing artefacts.</p>
-      </div>
-      <div>
+      <h2>Facial emotion recognition</h2>
+      <p>Built and compared multiple deep learning models to classify facial expressions across four categories: happy, sad, surprised, and neutral. Progressed from a baseline artificial neural network through increasingly refined convolutional architectures.</p>
+      <div class="visual">
         <div class="plate">
-          <img src="img/facial-emotion-detection-final-result.png" width="1200" height="600" loading="lazy" decoding="async" alt="Confusion matrix and accuracy curves for the final convolutional model">
+          <img src="img/facial-emotion-detection-final-result.png" width="1277" height="1022" loading="lazy" decoding="async" alt="Confusion matrix and accuracy curves for the final convolutional model">
         </div>
-        <table style="margin-top:14px">
-          <tr><td class="role">baseline ann</td><td class="met">56%</td></tr>
-          <tr><td class="role">model 1, simple cnn</td><td class="met">59%</td></tr>
-          <tr><td class="role">model 2, refined cnn</td><td class="met">69%</td></tr>
-          <tr><td class="org">model 3, optimised cnn</td><td class="met">91%</td></tr>
-        </table>
+      </div>
+      <div class="detail">
+        <div>
+          <table>
+            <tr><td class="role">baseline ann</td><td class="met">56%</td></tr>
+            <tr><td class="role">model 1, simple cnn</td><td class="met">59%</td></tr>
+            <tr><td class="role">model 2, refined cnn</td><td class="met">69%</td></tr>
+            <tr><td class="org">model 3, optimised cnn</td><td class="met">91%</td></tr>
+          </table>
+        </div>
+        <div>
+          <p>Depth, dropout tuning, and epoch scaling outperformed the simpler architectures by a wide margin. Matching input format to what the model expected, grayscale rather than RGB, improved alignment and removed preprocessing artefacts.</p>
+        </div>
       </div>
     </div>
-  </div>
   </section>
 
   <!-- ========== INFRA ========== -->
-  <section class="band" id="infra">
-    <div class="mk"><span style="display:block;color:var(--sumi2)">06</span>docker · nginx · cloudflare · linux · mariadb · wireguard · pi-hole</div>
+  <section class="band wide" id="infra">
+    <div class="mk"><span style="display:block;color:var(--sumi2)">06</span>docker &middot; nginx &middot; cloudflare &middot; linux &middot; mariadb &middot; wireguard &middot; pi-hole</div>
     <div class="bd">
-    <div class="split">
-      <div class="wide">
-        <h2>Self-hosted home server infrastructure</h2>
-        <p>Private file storage, media streaming, and carbon all run on hardware in my apartment, under one domain. Containerised behind a reverse proxy, with automated certificates, VPN-only access to anything private, and DNS filtering at the network level.</p>
-        <p>Running continuously. Carbon, ownCloud, Jellyfin, and Pi-hole are all served off it, certificates renew unattended, and private services are reachable only over WireGuard.</p>
-      </div>
-      <div>
-        <ul class="notes" style="font-size:13.5px">
-          <li>Docker containers behind nginx, routed by subdomain</li>
-          <li>Cloudflare DNS and proxying, Let's Encrypt renewing unattended</li>
-          <li>WireGuard for remote access, Pi-hole filtering DNS network-wide</li>
-          <li>MariaDB backing the services that need persistence</li>
-        </ul>
-        
-      </div>
-    </div>
-    <div style="margin-top:20px"><div style="border:1px solid var(--rule2);border-radius:0;overflow:hidden;background:var(--raise);font-family:Arial,Helvetica,sans-serif,ui-monospace,monospace;">
+      <h2>Self-hosted home server infrastructure</h2>
+      <p>Private file storage, media streaming, and carbon all run on hardware in my apartment, under one domain. Containerised behind a reverse proxy, with automated certificates, VPN-only access to anything private, and DNS filtering at the network level.</p>
+      <div class="visual"><div style="border:1px solid var(--rule2);border-radius:0;overflow:hidden;background:var(--raise);font-family:Arial,Helvetica,sans-serif,ui-monospace,monospace;">
               <div style="display:flex;align-items:center;gap:6px;padding:9px 13px;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(22,22,22,.12);">
                 <span style="width:11px;height:11px;border-radius:50%;background:#ff5f57;"></span>
                 <span style="width:11px;height:11px;border-radius:50%;background:#febc2e;"></span>
@@ -252,6 +239,19 @@
                 </div>
               </div>
             </div></div>
+      <div class="detail">
+        <div>
+          <ul class="notes">
+            <li>Docker containers behind nginx, routed by subdomain</li>
+            <li>Cloudflare DNS and proxying, Let's Encrypt renewing unattended</li>
+            <li>WireGuard for remote access, Pi-hole filtering DNS network-wide</li>
+            <li>MariaDB backing the services that need persistence</li>
+          </ul>
+        </div>
+        <div>
+          <p>Running continuously. Carbon, ownCloud, Jellyfin, and Pi-hole are all served off it, certificates renew unattended, and private services are reachable only over WireGuard.</p>
+        </div>
+      </div>
     </div>
   </section>
 
