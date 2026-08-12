@@ -75,6 +75,7 @@
   const alt = document.getElementById('r-alt');
   const note = document.getElementById('r-note');
   const skills = document.getElementById('r-skills');
+  const skillsLabel = document.getElementById('r-skills-label');
   const btns = [].slice.call(document.querySelectorAll('[data-tab]'));
   if (!exp || !btns.length) return;
 
@@ -114,6 +115,15 @@
     }
 
     if (note) note.textContent = tab.note || '';
+
+    // The skills margin label names the current tab rather than saying "the
+    // selected role". That block sits roughly 2,860px below the tabs, so a
+    // reader scrolling to it has no antecedent for "selected", and the label
+    // read as dangling for the same reason a bare "this" would.
+    if (skillsLabel) {
+      const btn = btns.filter(function (b) { return b.dataset.tab === id; })[0];
+      skillsLabel.textContent = 'skills for ' + (btn ? btn.textContent.trim() : id);
+    }
 
     if (skills) {
       skills.innerHTML = '';
