@@ -265,7 +265,7 @@
 
   <div class="notes">
     <div class="note">
-      <h3>Why it opens empty</h3>
+      <h3>Why does it open empty?</h3>
       <p>Every codemap query refuses something. Results cap at 15 to 20 rows, hubs sort last,
         graph walks are opt-in. The existing export draws all 6,050 symbols at once, doing the
         exact opposite.</p>
@@ -274,9 +274,9 @@
         changes how impressed someone is, and nothing follows from that.</p>
     </div>
     <div class="note">
-      <h3>One accent, no legend</h3>
+      <h3>What do the colors mean?</h3>
       <p>The existing export hashes each node's cluster into a hue. Carbon's 216 communities are
-        unnamed, so the four largest take most of the area and the colours mean nothing a reader
+        unnamed, so the four largest take most of the area and the colors mean nothing a reader
         can recover.</p>
       <p>Here only the symbol you asked about wears the accent. Size carries degree, kind is a word
         on hover.</p>
@@ -285,7 +285,7 @@
         <code>callers is_owner</code>: nine callers, six solid, three dashed.</p>
     </div>
     <div class="note">
-      <h3>Deterministic placement</h3>
+      <h3>Why does it always look the same?</h3>
       <p>Angles come from a symbol's position in the result, so the same query draws the same
         picture on every machine and every run.</p>
       <p>A force simulation would settle somewhere new each time. codemap does guess, since 554 of
@@ -295,13 +295,13 @@
   </div>
 
   <section class="limits">
-    <h2>What this design does not solve</h2>
+    <h2>What doesn't this design solve?</h2>
     <div class="cols">
     <p><strong>Shapes it cannot draw.</strong> The radial arrangement assumes one focus symbol with
       relations around it, which fits <code>callers</code>, <code>callees</code>,
       <code>impact</code>, <code>def</code>, and <code>search</code>. It does not fit
       <code>path</code>, a chain wanting a left-to-right sequence, <code>cluster</code>, which has
-      no centre to orbit, or <code>locate</code>, which returns a tree per hit.</p>
+      no center to orbit, or <code>locate</code>, which returns a tree per hit.</p>
     <p><strong>The dropped count is not a virtue.</strong> Carbon emits 16,854 edges and keeps
       11,609, so the map is 69 percent of what was found. The other 5,245 mixes two things:
       destinations that do not exist, and destinations the tie-breaker could not choose between.
@@ -316,7 +316,7 @@
       subgraph is a floor, not a census.</p>
     <p><strong>Scale.</strong> Twenty nodes is about the ceiling. Several hundred would crowd the
       canvas the way the current export does, and the honest answer there may be a table.</p>
-    <p><strong>Loose ends.</strong> Below 600px the labels at top and bottom dead centre overlap,
+    <p><strong>Loose ends.</strong> Below 600px the labels at top and bottom dead center overlap,
       and results are captured rather than live. This is also the narrowest of three directions: it
       scopes the render, skips visual hub suppression, and never tests whether a treemap would beat
       a graph.</p>
