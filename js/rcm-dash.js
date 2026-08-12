@@ -148,7 +148,7 @@
     const max = Math.max.apply(null, vals) || 1;
     return '<div style="display:flex;flex-direction:column;gap:10px;">' + payers.map((p, i) => {
       const m = mix[p] || {}; const v = m.revenue || 0;
-      return '<div title="' + p + ' · ' + fmtM(v) + ' · denial ' + fmtPct(m.denialRate || 0, 1) + '">' +
+      return '<div title="' + p + ': ' + fmtM(v) + ', denial ' + fmtPct(m.denialRate || 0, 1) + '">' +
         '<div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:4px;"><span>' + p + '</span><span style="color:var(--text);font-family:\'IBM Plex Mono\',monospace;">' + fmtM(v) + '</span></div>' +
         '<div style="height:9px;border-radius:5px;background:var(--track);overflow:hidden;"><div style="height:100%;width:' + (v / max * 100).toFixed(1) + '%;background:' + PAL_PAY[i % PAL_PAY.length] + ';border-radius:5px;"></div></div></div>';
     }).join('') + '</div>';
@@ -161,7 +161,7 @@
       const over = a.bucket === '120+' || a.bucket === '91-120';
       return '<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;justify-content:flex-end;height:100%;">' +
         '<div style="font-family:\'IBM Plex Mono\',monospace;font-size:10.5px;color:var(--muted);">$' + (a.amount / 1e6).toFixed(1) + 'M</div>' +
-        '<div title="' + a.bucket + ' days · $' + fmtN(a.amount) + '" style="width:100%;max-width:54px;height:' + h.toFixed(1) + 'px;border-radius:6px 6px 0 0;background:' + (over ? '#C04000' : 'var(--flare)') + ';opacity:' + (over ? 1 : 0.55) + ';"></div>' +
+        '<div title="' + a.bucket + ' days: $' + fmtN(a.amount) + '" style="width:100%;max-width:54px;height:' + h.toFixed(1) + 'px;border-radius:6px 6px 0 0;background:' + (over ? '#C04000' : 'var(--flare)') + ';opacity:' + (over ? 1 : 0.55) + ';"></div>' +
         '<div style="font-family:\'IBM Plex Mono\',monospace;font-size:10.5px;color:var(--muted2);">' + a.bucket + '</div></div>';
     }).join('') + '</div>';
   }
@@ -171,20 +171,45 @@
     return '<div style="display:flex;flex-direction:column;gap:14px;">' + rows.map((r) => {
       return '<div><div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;margin-bottom:5px;"><span style="color:var(--text);">' + r.line + '</span>' +
         '<span style="display:inline-flex;gap:8px;align-items:center;font-family:\'IBM Plex Mono\',monospace;font-size:11.5px;color:var(--muted);">' + fmtN(r.visits) + ' visits<span style="padding:2px 9px;border-radius:999px;border:1px solid var(--border2);color:var(--flare);">' + fmtPct(r.ncr, 1) + ' NCR</span></span></div>' +
-        '<div style="height:12px;border-radius:6px;background:var(--track);overflow:hidden;"><div title="' + r.line + ' · ' + fmtM(r.revenue) + '" style="height:100%;width:' + (r.revenue / max * 100).toFixed(1) + '%;background:' + PAL_SVC[r.line] + ';border-radius:6px;"></div></div></div>';
+        '<div style="height:12px;border-radius:6px;background:var(--track);overflow:hidden;"><div title="' + r.line + ': ' + fmtM(r.revenue) + '" style="height:100%;width:' + (r.revenue / max * 100).toFixed(1) + '%;background:' + PAL_SVC[r.line] + ';border-radius:6px;"></div></div></div>';
     }).join('') + '</div>';
   }
 
   /* ---------- filter UI ---------- */
-  function chipGroup(label, options, selected, key) {
+
+  // A segmented pill. Each item is {act, key, text, active}; the active half is filled,
+  // which is also the half that is disabled, so "currently true" and "nothing to click"
+  // are the same signal rather than two competing ones.
+  function seg(items) {
+    return '<span style="display:inline-flex;flex:0 0 auto;border:1px solid var(--border2);border-radius:999px;overflow:hidden;background:var(--surface);">' +
+      items.map(function (it, i) {
+        return '<button data-act="' + it.act + '" data-key="' + it.key + '"' + (it.active ? ' disabled' : '') +
+          ' style="font-family:\'IBM Plex Mono\',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;' +
+          'padding:4px 11px;border:none;' + (i ? 'border-left:1px solid var(--border2);' : '') +
+          'background:' + (it.active ? 'var(--accent)' : 'transparent') + ';' +
+          'color:' + (it.active ? 'var(--accent-ink)' : 'var(--flare)') + ';' +
+          'cursor:' + (it.active ? 'default' : 'pointer') + ';transition:background .15s ease,color .15s ease;">' +
+          it.text + '</button>';
+      }).join('') + '</span>';
+  }
+
+  function chipGroup(label, options, selected, key, divider) {
     const allOn = selected.length === options.length;
-    return '<div style="min-width:180px;flex:1 1 240px;">' +
-      '<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:9px;">' +
+    // A left rule and its own padding give each group a visible boundary, so a
+    // reader can tell where one filter ends and the next begins.
+    return '<div style="min-width:190px;flex:1 1 230px;' + (divider ? 'border-left:1px solid var(--border2);padding-left:22px;' : '') + '">' +
+      // The control sits at its group's right edge. Beside the label it read as a
+      // continuation of the label's words; the left rule above is what now marks
+      // which group it belongs to, so the far edge is no longer ambiguous.
+      '<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:9px;">' +
       '<span style="font-family:\'IBM Plex Mono\',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2);">' + label + '</span>' +
-      '<span style="font-family:\'IBM Plex Mono\',monospace;font-size:11px;">' +
-      '<button data-act="all" data-key="' + key + '" ' + (allOn ? 'disabled' : '') + ' style="background:none;border:none;color:' + (allOn ? 'var(--muted2)' : 'var(--flare)') + ';cursor:pointer;font-family:inherit;font-size:11px;padding:0;">All</button>' +
-      '<span style="color:var(--muted2);padding:0 6px;">·</span>' +
-      '<button data-act="none" data-key="' + key + '" ' + (selected.length === 0 ? 'disabled' : '') + ' style="background:none;border:none;color:' + (selected.length === 0 ? 'var(--muted2)' : 'var(--flare)') + ';cursor:pointer;font-family:inherit;font-size:11px;padding:0;">None</button></span></div>' +
+      // All and None are controls, so they carry a control's affordances: a segmented
+      // pill whose filled half states which one is currently true. The shared 1px rule
+      // between them replaces the separator glyph the plain-text version needed.
+      seg([
+        { act: 'all', key: key, text: 'All', active: allOn },
+        { act: 'none', key: key, text: 'None', active: selected.length === 0 },
+      ]) + '</div>' +
       '<div style="display:flex;flex-wrap:wrap;gap:7px;">' + options.map((o) => {
         const on = selected.indexOf(o) >= 0;
         return '<button data-chip="' + key + '" data-val="' + esc(o) + '" style="font-family:\'IBM Plex Mono\',monospace;font-size:12px;padding:6px 12px;border-radius:999px;cursor:pointer;transition:all .15s ease;border:1px solid ' + (on ? 'var(--accent)' : 'var(--border2)') + ';background:' + (on ? 'var(--accent)' : 'transparent') + ';color:' + (on ? 'var(--accent-ink)' : 'var(--muted)') + ';">' + o + '</button>';
@@ -207,15 +232,15 @@
 
     function renderScenario() {
       const opts = [['healthy', 'Healthy'], ['baseline', 'Baseline'], ['stressed', 'Stressed']];
-      const hint = { healthy: '+12% income · fewer denials · faster A/R', baseline: 'Dataset as analyzed', stressed: '−14% income · denials spike · A/R extends' }[S.scenario];
+      const hint = { healthy: '+12% income, fewer denials, faster A/R', baseline: 'Dataset as analyzed', stressed: '−14% income, denials spike, A/R extends' }[S.scenario];
       scenEl.innerHTML = '<span style="font-family:\'IBM Plex Mono\',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2);">Scenario</span>' +
         '<div style="display:inline-flex;border:1px solid var(--border2);border-radius:999px;overflow:hidden;">' +
         opts.map((o) => '<button data-scen="' + o[0] + '" style="padding:8px 16px;border:none;cursor:pointer;font-family:\'IBM Plex Mono\',monospace;font-size:13px;background:' + (S.scenario === o[0] ? 'var(--accent)' : 'transparent') + ';color:' + (S.scenario === o[0] ? 'var(--accent-ink)' : 'var(--muted)') + ';">' + o[1] + '</button>').join('') + '</div>' +
         '<span style="font-family:\'IBM Plex Mono\',monospace;font-size:12px;color:var(--muted2);">' + hint + '</span>';
     }
     function renderFilters() {
-      filtersEl.innerHTML = chipGroup('Facility', D.facilities, S.fac, 'fac') + chipGroup('Payer mix', D.payers, S.pay, 'pay') + chipGroup('Service line', D.serviceLines, S.svc, 'svc') +
-        '<div style="flex:1 1 160px;min-width:150px;align-self:flex-end;font-family:\'IBM Plex Mono\',monospace;font-size:12.5px;color:var(--muted);"><strong style="color:var(--flare);font-size:18px;">' + Math.round(compute(S.fac, S.pay, S.svc).slice * 100) + '%</strong> of dataset shown</div>';
+      filtersEl.innerHTML = chipGroup('Facility', D.facilities, S.fac, 'fac', false) + chipGroup('Payer mix', D.payers, S.pay, 'pay', true) + chipGroup('Service line', D.serviceLines, S.svc, 'svc', true) +
+        '<div style="flex:0 0 auto;margin-left:auto;align-self:flex-end;font-family:\'IBM Plex Mono\',monospace;font-size:12.5px;color:var(--muted);"><strong style="color:var(--flare);font-size:18px;">' + Math.round(compute(S.fac, S.pay, S.svc).slice * 100) + '%</strong> of dataset shown</div>';
     }
     function renderCharts() {
       if (!S.fac.length || !S.pay.length || !S.svc.length) {
@@ -239,9 +264,9 @@
         kpiTile('Denial rate', fmtPct(kDen, 1), '', st ? 4.5 : -0.8, true) + '</div>';
 
       const ibMeta = dot('var(--text)') + 'Billed' + '<span style="margin:0 6px;">' + dot('var(--flare)', true) + 'Income</span>' + '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:15px;border-top:1.5px dashed var(--muted);display:inline-block;"></span>Prior-yr avg</span>';
-      const cIB = card('Revenue trend', 'Income vs Billed · Monthly', ibMeta, chartIB(incAdj, f.billedMonthly, 1320000));
+      const cIB = card('Revenue trend', 'Income vs Billed, monthly', ibMeta, chartIB(incAdj, f.billedMonthly, 1320000));
 
-      const cSvc = card('Service line performance', 'Utilization &amp; yield by service line', 'Bar = revenue · pill = NCR', f.serviceLineRows.length ? serviceLineChart(f.serviceLineRows) : '<div style="color:var(--muted);font-size:14px;">No service lines selected.</div>');
+      const cSvc = card('Service line performance', 'Utilization &amp; yield by service line', 'Bar = revenue, pill = NCR', f.serviceLineRows.length ? serviceLineChart(f.serviceLineRows) : '<div style="color:var(--muted);font-size:14px;">No service lines selected.</div>');
 
       const visLegend = legendRows(f.visitsDonut.map((d, i) => ({ k: d.k, color: PAL_FAC[i % PAL_FAC.length], val: fmtN(d.v) })));
       const visSegs = f.visitsDonut.map((d, i) => ({ pct: d.v / (f.visitsDonut.reduce((a, b) => a + b.v, 0) || 1), color: PAL_FAC[i % PAL_FAC.length] }));
@@ -261,7 +286,7 @@
         '<div><div style="font-size:26px;font-weight:600;color:var(--flare);letter-spacing:-.01em;">' + fmtN(f.denials.issued) + '</div><div style="font-family:\'IBM Plex Mono\',monospace;font-size:10.5px;color:var(--muted2);">DENIALS ISSUED</div></div>' +
         '<div><div style="font-size:26px;font-weight:600;letter-spacing:-.01em;">' + fmtN(f.denials.affected) + '</div><div style="font-family:\'IBM Plex Mono\',monospace;font-size:10.5px;color:var(--muted2);">CLAIMS AFFECTED</div></div>' +
         '</div></div>';
-      const cDen = card('Quality', 'Denial summary', 'Outer: encounter · Middle: CPT · Center: overall', denRingBody);
+      const cDen = card('Quality', 'Denial summary', 'Outer: encounter, middle: CPT, center: overall', denRingBody);
 
       const cPay = card('Payer performance', 'Revenue by payer', 'Hover a bar for detail', f.payersFiltered.length ? payerBars(f.payersFiltered, f.payerMix) : '<div style="color:var(--muted);font-size:14px;">No payers selected.</div>');
 
