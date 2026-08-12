@@ -142,7 +142,7 @@
             <div style="display:flex;flex-direction:column;gap:12px;">
               <div><div style="font-size:14px;font-weight:700;line-height:1.3;">M.S. Healthcare Administration</div><div style="font-size:12.5px;color:var(--muted);">University of Denver</div></div>
               <div><div style="font-size:14px;font-weight:700;line-height:1.3;">B.S. Computer Science, Magna Cum Laude</div><div style="font-size:12.5px;color:var(--muted);">Colorado State University</div></div>
-              <div><div style="font-size:14px;font-weight:700;line-height:1.3;">B.S. Biology &amp; Chemistry</div><div style="font-size:12.5px;color:var(--muted);">University of Colorado</div></div>
+              <div><div style="font-size:14px;font-weight:700;line-height:1.3;">B.S. Biology</div><div style="font-size:12.5px;color:var(--muted);">University of Colorado</div></div>
               <div><div style="font-size:14px;font-weight:700;line-height:1.3;">Applied AI, Machine Learning, and Data Science</div><div style="font-size:12.5px;color:var(--muted);">MIT &bull; Certificate</div></div>
               <div><div style="font-size:14px;font-weight:700;line-height:1.3;">Lean Six Sigma White Belt</div><div style="font-size:12.5px;color:var(--muted);">Certification</div></div>
               <div><div style="font-size:14px;font-weight:700;line-height:1.3;">Google Data Analytics</div><div style="font-size:12.5px;color:var(--muted);">Professional Certificate</div></div>
@@ -279,49 +279,50 @@ class Component extends DCLogic {
         { id: 'analyst', note: 'For data analyst, BI analyst, and business analyst roles.' }
       ],
       experience: [
-        { id: 'creekside', title: 'Revenue Cycle Manager', org: 'Creekside Physical Medicine', location: 'Boulder, CO', dates: 'May – Dec 2025', bullets: [
-          { t: 'Built an enterprise RCM dashboard tracking NCR/GCR trends, denial root causes, payer reimbursement variance, and A/R aging; directly contributed to a <strong>35% reduction in A/R backlog</strong>.', tabs: ['analyst', 'revenue'] },
-          { t: 'Audited payer-specific denial patterns and denial codes to identify revenue leakage; <strong>discovered charge capture gaps</strong> in injection administration (96372 + J-code combinations); standardized NDC# documentation through the CMS portal for reconsideration submissions that <strong>recovered reimbursement</strong> on previously denied claims.', tabs: ['analyst', 'operations', 'revenue'] },
+        { id: 'creekside', title: 'Revenue Cycle Manager', org: 'Creekside Physical Medicine', location: 'Boulder, CO', dates: 'May to Dec 2025', bullets: [
+          { t: 'Built an RCM dashboard tracking net and gross collection rate trends, denial root causes, payer reimbursement variance, and A/R aging, then worked the backlog it exposed down <strong>35%</strong>.', tabs: ['analyst', 'revenue'] },
+          { t: 'Audited payer-specific denial patterns and denial codes to find revenue leakage, surfacing <strong>charge capture gaps</strong> in injection administration (96372 plus J-code combinations) and coding variances corrected through modifier adjustments.', tabs: ['analyst', 'operations', 'revenue'] },
+          { t: 'Standardized NDC documentation through the CMS portal for reconsideration submissions, <strong>recovering reimbursement</strong> on claims previously written off as denied.', tabs: ['operations', 'revenue'] },
           { t: '<strong>Stopped recurring denials</strong> by implementing billing-to-servicing provider validation rules (BCBS), standardizing Box 19 CMS-1500 NDC documentation (UHC), and resolving X12/837P EHR-to-clearinghouse transmission errors.', tabs: ['revenue'] },
           { t: 'Owned end-to-end RCM operations: registration, eligibility verification, charge capture, payment posting, denial management, appeals, and A/R reporting.', tabs: ['revenue', 'operations'] },
           { t: 'Led full EHR migration from InSync to Athena, coordinating workflow continuity across billing, clinical, and administrative teams through cutover and go-live.', tabs: ['operations', 'revenue'] },
           { t: 'Designed analytical reporting workflows to surface payer behavior patterns and denial concentration by provider, CPT, and payer.', tabs: ['analyst'] }
         ] },
-        { id: 'trumpet', title: 'Operations Supervisor', org: 'Trumpet Behavioral Health', location: 'Aurora, CO', dates: 'Jul 2024 – Apr 2025', bullets: [
-          { t: 'Managed front-office operations, staff scheduling, and workflow coordination across clinical and administrative teams serving behavioral health clients.', tabs: ['operations'] },
+        { id: 'trumpet', title: 'Operations Supervisor', org: 'Trumpet Behavioral Health', location: 'Aurora, CO', dates: 'Jul 2024 to Apr 2025', bullets: [
+          { t: 'Managed front-office operations and staff scheduling for a <strong>13-person team</strong> serving 7 severe behavioral health clients.', tabs: ['operations'] },
           { t: 'Oversaw intake documentation, prior authorization tracking, and compliance record management to ensure billing accuracy and <strong>maintained financial performance goals</strong>.', tabs: ['operations', 'revenue'] },
           { t: 'Maintained facility safety compliance, vendor relationships, and supply inventory readiness; supported payroll accuracy through documentation audits and coding corrections.', tabs: ['operations', 'revenue'] }
         ] },
-        { id: 'oracle', title: 'Integrated Device Consultant', org: 'Oracle Health', location: 'Remote / Travel', dates: 'Aug 2022 – Jun 2023', bullets: [
-          { t: 'Managed device integration deployments into the Oracle Health CareAware MDI platform across multiple client sites, reducing manual data entry touchpoints and improving real-time data accuracy at point of care.', tabs: ['operations'] },
-          { t: 'Resolved HL7 interface and transmission errors that reduced go-live delays by an estimated <strong>4 days per engagement</strong>.', tabs: ['operations'] },
-          { t: 'Partnered with clinical and IT stakeholders to align integration workflows with operational and regulatory requirements, supporting on-time delivery with <strong>zero critical post-go-live failures</strong>.', tabs: ['operations'] }
+        { id: 'oracle', title: 'Integrated Device Consultant', org: 'Oracle Health', location: 'Remote / Travel', dates: 'Aug 2022 to Jun 2023', bullets: [
+          { t: 'Deployed medical device integrations into the Oracle Health CareAware MDI platform across multiple client sites, cutting manual data entry at the point of care.', tabs: ['operations'] },
+          { t: 'Resolved HL7 interface and transmission errors, cutting roughly <strong>4 days</strong> from each go-live timeline.', tabs: ['operations'] },
+          { t: 'Aligned integration workflows with clinical, IT, and regulatory requirements, delivering every site on schedule with <strong>zero critical post-go-live failures</strong>.', tabs: ['operations'] }
         ] },
-        { id: 'auc', title: 'Regional Operations Manager', org: 'Advanced Urgent Care & Occupational Medicine', location: 'Brighton, CO', dates: 'Oct 2021 – Aug 2022', bullets: [
+        { id: 'auc', title: 'Regional Operations Manager', org: 'Advanced Urgent Care & Occupational Medicine', location: 'Brighton, CO', dates: 'Oct 2021 to Aug 2022', bullets: [
           { t: 'Drove <strong>$8M in revenue growth</strong> through predictive analytics on patient flow, service demand patterns, and revenue cycle performance, directly informing staffing strategy and operational planning.', tabs: ['analyst', 'operations', 'revenue'] },
-          { t: 'Maintained <strong>100% employee retention</strong> across all managed locations and achieved <strong>89–93% net promoter scores</strong> through investments in referral quality, patient experience, and staff development.', tabs: ['operations'] },
+          { t: 'Maintained <strong>100% employee retention</strong> across all managed locations and achieved <strong>net promoter scores of 89 to 93</strong> through investments in referral quality, patient experience, and staff development.', tabs: ['operations'] },
           { t: 'Served as IT project lead for EHR consolidation across <strong>14 clinics</strong>, overseeing Athena/Experity implementation, data migration, manual testing, and user acceptance validation with zero critical system failures.', tabs: ['analyst', 'operations'] },
           { t: 'Strengthened front-end eligibility verification and documentation workflows, reducing downstream claim denials and improving reimbursement turnaround time.', tabs: ['revenue'] }
         ] },
-        { id: 'centura', unpaid: true, title: 'Data & Analytics Intern', org: 'Centura Health', location: 'Denver, CO', dates: 'Nov 2019 – Mar 2021', bullets: [
-          { t: 'Designed ETL pipelines to integrate and transform data from EPIC, patient monitoring devices, and administrative systems, achieving consistent data quality across sources.', tabs: ['analyst'] },
-          { t: 'Applied predictive analytics and machine learning to forecast patient admissions, resource utilization, and potential complications, supporting COVID-19 resource optimization and cost reduction.', tabs: ['analyst'] },
+        { id: 'centura', unpaid: true, title: 'Data & Analytics Intern', org: 'Centura Health', location: 'Denver, CO', dates: 'Nov 2019 to Mar 2021', bullets: [
+          { t: 'Designed ETL pipelines in <strong>SQL</strong> integrating Epic, patient monitoring devices, and administrative systems into a single analysis layer.', tabs: ['analyst'] },
+          { t: 'Built predictive models forecasting patient admissions, resource utilization, and potential complications for COVID-19 surge planning.', tabs: ['analyst'] },
           { t: 'Delivered reporting and data visualizations using Power BI, Tableau, and SQL Server.', tabs: ['analyst'] }
         ] },
-        { id: 'card', title: 'Operations Manager', org: 'Center for Autism and Related Disorders', location: 'Boulder, CO', dates: 'Nov 2019 – Oct 2020', bullets: [
+        { id: 'card', title: 'Operations Manager', org: 'Center for Autism and Related Disorders', location: 'Boulder, CO', dates: 'Nov 2019 to Oct 2020', bullets: [
           { t: 'Improved payer contract fulfillment rate from <strong>37% to 95%</strong> by restructuring documentation practices, CPT code validation workflows, and A/R follow-up processes.', tabs: ['analyst', 'operations', 'revenue'] },
-          { t: 'Built KPI dashboards to track service utilization, encounter profitability, and patient satisfaction, enabling data-driven operational decisions.', tabs: ['analyst', 'operations'] },
-          { t: 'Ensured scheduling efficiency and resource alignment to meet billing requirements and optimize clinical capacity.', tabs: ['operations', 'revenue'] }
+          { t: 'Built KPI dashboards tracking therapy and supervision utilization, encounter profitability, and satisfaction scores.', tabs: ['analyst', 'operations'] },
+          { t: 'Lifted patient and family satisfaction from <strong>56% to 89%</strong> while holding <strong>35% year-over-year growth</strong>.', tabs: ['operations', 'revenue'] }
         ] },
-        { id: 'springwood', title: 'Business Intelligence Analyst', org: 'Springwood Retirement: Assisted Living & Memory Care', location: 'Arvada, CO', dates: 'Nov 2018 – Nov 2019', bullets: [
-          { t: 'Designed and maintained global reports, dashboards, and queries to calculate, monitor, and communicate KPIs to operational and executive stakeholders.', tabs: ['analyst', 'operations'] },
-          { t: 'Conducted program cost analyses, cost-benefit evaluations, and economic assessments to support strategic planning and resource allocation decisions.', tabs: ['analyst', 'operations'] },
-          { t: 'Connected disparate data systems and visualization tools to enable cross-functional data sharing and applied recommendations based on measured outcomes.', tabs: ['analyst'] }
+        { id: 'springwood', title: 'Business Intelligence Analyst', org: 'Springwood Retirement: Assisted Living & Memory Care', location: 'Arvada, CO', dates: 'Nov 2018 to Nov 2019', bullets: [
+          { t: 'Built and maintained the recurring reports, dashboards, and queries operations and executive leadership used to track KPIs.', tabs: ['analyst', 'operations'] },
+          { t: 'Ran cost-benefit analysis on <strong>labor cost per resident day</strong>, feeding staffing levels and resource allocation decisions.', tabs: ['analyst', 'operations'] },
+          { t: 'Connected separate data systems and visualization tools into shared reporting, then tracked outcomes against the recommendations that came out of it.', tabs: ['analyst'] }
         ] }
       ],
       volunteer: [
-        { title: 'Regional Communication & Engagement Lead', org: 'American Red Cross', location: 'Denver, CO', dates: 'Dec 2021 – Sep 2022', lines: ['Drove disaster relief and humanitarian support initiatives; coordinated regional communications and stakeholder engagement.'] },
-        { title: 'PACU Volunteer', org: 'St. Anthony Hospital', location: 'Lakewood, CO', dates: 'Feb – Aug 2017', lines: ['Shadowed surgeons, LPNs, APRNs, and RNs; provided patient care support; deepened understanding of clinical workflows.'] }
+        { title: 'Regional Communication & Engagement Lead', org: 'American Red Cross', location: 'Denver, CO', dates: 'Dec 2021 to Sep 2022', lines: ['Coordinated regional communications and stakeholder engagement for disaster relief operations across the Denver region.'] },
+        { title: 'PACU Volunteer', org: 'St. Anthony Hospital', location: 'Lakewood, CO', dates: 'Feb to Aug 2017', lines: ['Supported patient care in post-anesthesia recovery, shadowing surgeons, LPNs, APRNs, and RNs across perioperative workflows.'] }
       ],
       skills: {
         analyst: [
