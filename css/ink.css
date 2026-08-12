@@ -187,10 +187,12 @@ p + p{margin-top:12px}
           line-height:1.7;max-width:none}
 .platecap b{color:var(--sumi);font-weight:400}
 
-/* Every entry that has a running destination says so on one line: what the link
-   does, then where it goes. It sits across from the entry's title, sharing its
-   baseline, so the name of the thing and the way to reach it are read together
-   rather than the route being buried in a supporting column further down. */
+/* Every entry that has a running destination says so on one line, sitting across
+   from the entry's title and sharing its baseline, so the name of the thing and
+   the way to reach it are read together rather than the route being buried in a
+   supporting column further down. The address is only spelled out when it names
+   a host other than this one: huy.gg/dashboard repeats what the click already
+   promises, while carbon.huy.gg is a different machine and cannot be inferred. */
 .ehead{display:flex;align-items:baseline;justify-content:space-between;
        gap:clamp(18px,4vw,60px);flex-wrap:wrap}
 .ehead .goto{margin-top:0;margin-bottom:11px}
