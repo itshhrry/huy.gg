@@ -345,16 +345,18 @@ ul.notes li::marker{color:var(--sumi3);font-size:11px}
 .caps .i{font-family:var(--tech);font-size:10.5px;color:var(--sumi3);margin-top:3px}
 
 /* ---------- resume audience tabs ---------- */
+/* The note is a caption for the tabs, so it sits against the rule rather than
+   floating midway to the first job row, where it belonged to neither. */
 .tabs{display:flex;gap:26px;flex-wrap:wrap;border-bottom:1px solid var(--rule2);
-      padding-bottom:0;margin-bottom:clamp(20px,3vw,32px)}
+      padding-bottom:0;margin-bottom:9px}
 .tabs button{background:none;border:0;padding:0 0 11px;cursor:pointer;font:inherit;
              font-size:15px;color:var(--sumi2);border-bottom:2px solid transparent;
              margin-bottom:-1px}
 .tabs button:hover{color:var(--sumi)}
 .tabs button[aria-selected="true"]{color:var(--sumi);border-bottom-color:var(--sumi)}
 .tabs button:focus-visible{outline:2px solid var(--sumi);outline-offset:3px}
-#r-note{font-family:var(--tech);font-size:10.5px;color:var(--sumi3);
-        margin-bottom:clamp(18px,2.6vw,26px)}
+#r-note{font-family:var(--tech);font-size:12px;color:var(--sumi2);
+        margin-bottom:clamp(20px,3vw,30px)}
 
 .jobrow{display:grid;grid-template-columns:132px minmax(0,1fr);gap:0 24px;
         padding:20px 0;border-bottom:1px solid var(--hair)}
@@ -377,6 +379,11 @@ ul.notes li::marker{color:var(--sumi3);font-size:11px}
    match and lopsided within itself. */
 footer{padding:16px var(--pad) 18px;border-top:1px solid var(--rule);
        display:flex;gap:20px;flex-wrap:wrap;align-items:center}
+/* The footer matches the nav's size, 13px, and stays slim by holding its line
+   box to the 20px mark rather than to 13 x 1.75. Height is unchanged at 54, the
+   header's. Scoped to the footer so the .k.tech column labels inside entries
+   keep their own size. */
+footer.tech{font-size:13px;line-height:20px;color:var(--sumi2)}
 footer .markfoot{width:20px;height:20px;opacity:.7;
                  background:url("../img/logo.png") center/contain no-repeat}
 footer .sp{flex:1}
