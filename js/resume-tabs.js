@@ -66,7 +66,7 @@
           ],
           revenue: [
             { title: 'Revenue Cycle', chips: ['Denial Management', 'ERA/EOB Reconciliation', 'Payment Posting', 'LCD/NCCI Compliance', 'Charge Capture', 'Prior Authorization', 'CMS-1500 / X12 837P', 'A/R Management'] },
-            { title: 'Software & Platforms', chips: ['Athena', 'Epic', 'Experity', 'InSync (Qualifacts)', 'Azara', 'MySQL', 'MariaDB'] }
+            { title: 'Software & Platforms', chips: ['Athena', 'Epic', 'Experity', 'InSync (Qualifacts)', 'Azara', 'Excel', 'MySQL', 'MariaDB'] }
           ]
         }
       };
