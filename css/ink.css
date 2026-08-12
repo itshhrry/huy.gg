@@ -16,7 +16,10 @@
   --sumi:#161616;          /* full ink */
   --sumi1:#3E3A34;         /* two parts water */
   --sumi2:#6E6759;         /* four parts */
-  --sumi3:#9B9384;         /* wash */
+  --sumi3:#706858;         /* wash. Measured at 4.56:1 on washi; #9B9384 was
+                              2.52:1 and carried the nav, every label, and every
+                              caption on the site. Rules stay lighter: a hairline
+                              is not text and is held to the 3:1 UI bound. */
   --rule:rgba(22,22,22,.14);
   --rule2:rgba(22,22,22,.3);
   --hair:rgba(22,22,22,.07);
@@ -54,9 +57,18 @@ img{max-width:100%;height:auto;display:block}
 .bar nav a:hover{color:var(--sumi)}
 
 /* ---------- the alcove: one thing, and the space around it ---------- */
-.alcove{padding:clamp(48px,11vw,140px) var(--pad) clamp(40px,8vw,92px);
-        display:grid;grid-template-columns:minmax(0,1fr) auto auto;
-        gap:clamp(20px,4vw,52px);align-items:center}
+/* Trimmed from 11vw/8vw: the alcove was 502px tall and pushed the first
+   figure 75px below the fold on a 1366x720 laptop. The air is still the
+   point, it just no longer costs the evidence. */
+.alcove{padding:clamp(38px,7vw,88px) var(--pad) clamp(30px,5vw,60px);
+        display:grid;
+        /* max-content on the headline is what actually anchors the inscription:
+           a 1fr column expands past its text and leaves the inscription
+           stranded mid-gap, reading as the card's label rather than the
+           headline's. The card takes the free column and sits at the edge. */
+        grid-template-columns:max-content auto minmax(0,1fr);
+        gap:0 clamp(16px,2.4vw,26px);align-items:start}
+.alcove .railcard{justify-self:end}
 .alcove h1{font-weight:400;font-size:clamp(34px,7vw,76px);line-height:1.03;
            letter-spacing:-.032em;color:var(--sumi);max-width:15ch;text-wrap:balance}
 
@@ -68,13 +80,25 @@ img{max-width:100%;height:auto;display:block}
 .alcove .vert{writing-mode:vertical-rl;text-orientation:mixed;white-space:nowrap;
               font-size:clamp(12.5px,1.35vw,14.5px);line-height:1.5;
               letter-spacing:.04em;color:var(--sumi2);
-              border-left:1px solid var(--rule);padding-left:16px;margin-left:4px}
+              border-left:1px solid var(--rule);padding-left:18px;margin-left:0;
+              align-self:center;justify-self:start}
 
-/* The mark at full ink. A cream ensō was tried and pulled: one step off the
-   ground is not enough separation on washi, so the circle went nearly invisible
-   and the composition lost the thing holding the vermilion in place. */
-.alcove .mark{width:clamp(120px,22vw,270px);aspect-ratio:1;
-              background:url("../img/logo.png") center/contain no-repeat}
+/* A rule-separated rail, framed. Not the hero metric card DESIGN.md bans:
+   nothing tilts, nothing floats, and no single figure is set loose in a panel.
+   It replaces the mark here, because the mark is identity and this space is
+   worth evidence. On a 1366x720 laptop the first figure was 75px below the
+   fold; putting it in the alcove is what recovers it. */
+.railcard{flex:0 1 320px;min-width:250px;border:1px solid var(--rule);
+          background:var(--raise);padding:16px 18px 6px;margin-left:clamp(12px,3vw,40px);
+          margin-top:6px}
+.railcard .cap{font-family:var(--tech);font-size:10px;color:var(--sumi3);
+               padding-bottom:11px;border-bottom:1px solid var(--rule)}
+.railcard .row{display:flex;align-items:baseline;justify-content:space-between;
+               gap:16px;padding:11px 0;border-bottom:1px solid var(--hair)}
+.railcard .row:last-child{border-bottom:0}
+.railcard .k{font-size:13.5px;color:var(--sumi2);line-height:1.35}
+.railcard .v{font-family:var(--tech);font-size:16px;color:var(--sumi);
+             font-variant-numeric:tabular-nums;letter-spacing:-.02em;white-space:nowrap}
 
 /* ---------- bands. Same breathing rate as the alcove, on purpose. ---------- */
 .band{padding:clamp(34px,6vw,74px) var(--pad);border-top:1px solid var(--rule)}
@@ -125,6 +149,30 @@ ul.notes li::before{content:"·";position:absolute;left:3px;color:var(--sumi3)}
 .caps div{padding:9px 0;border-bottom:1px solid var(--hair)}
 .caps .d{font-size:15px;color:var(--sumi)}
 .caps .i{font-family:var(--tech);font-size:10.5px;color:var(--sumi3);margin-top:3px}
+
+/* ---------- resume audience tabs ---------- */
+.tabs{display:flex;gap:26px;flex-wrap:wrap;border-bottom:1px solid var(--rule2);
+      padding-bottom:0;margin-bottom:clamp(20px,3vw,32px)}
+.tabs button{background:none;border:0;padding:0 0 11px;cursor:pointer;font:inherit;
+             font-size:15px;color:var(--sumi2);border-bottom:2px solid transparent;
+             margin-bottom:-1px}
+.tabs button:hover{color:var(--sumi)}
+.tabs button[aria-selected="true"]{color:var(--sumi);border-bottom-color:var(--sumi)}
+.tabs button:focus-visible{outline:2px solid var(--sumi);outline-offset:3px}
+#r-note{font-family:var(--tech);font-size:10.5px;color:var(--sumi3);
+        margin-bottom:clamp(18px,2.6vw,26px)}
+
+.jobrow{display:grid;grid-template-columns:132px minmax(0,1fr);gap:0 24px;
+        padding:20px 0;border-bottom:1px solid var(--hair)}
+.jobrow.last{border-bottom:0}
+.jobrow .when{font-family:var(--tech);font-size:11px;color:var(--sumi3);line-height:1.6;padding-top:5px}
+.jobrow .when span{display:block;margin-top:3px}
+.jobrow h3{font-weight:400;font-size:19px;letter-spacing:-.02em;color:var(--sumi);
+           line-height:1.2;margin-bottom:2px}
+.jobrow .org{font-size:13.5px;color:var(--sumi2);margin-bottom:10px}
+.jobrow b{font-weight:400;color:var(--sumi);font-family:var(--tech);font-size:13.5px}
+.skillgrp{margin-bottom:20px}
+.skillgrp .k{margin-bottom:8px}
 
 footer{padding:16px var(--pad) 56px;border-top:1px solid var(--rule);
        display:flex;gap:20px;flex-wrap:wrap;align-items:center}
