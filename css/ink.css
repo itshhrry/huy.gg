@@ -377,8 +377,21 @@ ul.notes li::marker{color:var(--sumi3);font-size:11px}
 /* 16 above and 18 below a 20px row puts the footer at 54px, the header's exact
    height. It was 93px on a 16/56 split, taller than the header it was meant to
    match and lopsided within itself. */
+/* Three zones on a 1fr auto 1fr grid, not a flex spacer. Availability is the
+   line a hiring reader wants and it was glued to the copyright, reading as
+   boilerplate. Flex would leave it wherever the two end groups happened to
+   stop, and the left group is the wider of the two, so it would sit off centre
+   by about 45px and look like a mistake rather than a decision. */
 footer{padding:16px var(--pad) 18px;border-top:1px solid var(--rule);
-       display:flex;gap:20px;flex-wrap:wrap;align-items:center}
+       display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center}
+footer .foot-l,footer .foot-r{display:flex;align-items:center;gap:20px}
+footer .foot-r{justify-self:end}
+footer .foot-c{justify-self:center;white-space:nowrap}
+@media (max-width:640px){
+  /* Below this the three zones collide, so they stack and read left. */
+  footer{grid-template-columns:1fr;gap:10px}
+  footer .foot-c,footer .foot-r{justify-self:start}
+}
 /* The footer matches the nav's size, 13px, and stays slim by holding its line
    box to the 20px mark rather than to 13 x 1.75. Height is unchanged at 54, the
    header's. Scoped to the footer so the .k.tech column labels inside entries

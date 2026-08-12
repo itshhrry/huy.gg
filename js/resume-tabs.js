@@ -62,7 +62,7 @@
           operations: [
             { title: 'Operations & Process', chips: ['Workflow Optimization', 'SOP Development', 'Root Cause Analysis', 'Change Management', 'Capacity Planning', 'Onboarding', 'Cross-functional Collaboration'] },
             { title: 'System Admin', chips: ['EHR Implementations', 'System Migrations', 'Enterprise Integration', 'UAT', 'Vendor Management'] },
-            { title: 'Software & Platforms', chips: ['Athena', 'Epic', 'Experity', 'InSync (Qualifacts)', 'Monday', 'Asana', 'Azara'] }
+            { title: 'Software & Platforms', chips: ['Athena', 'Epic', 'Experity', 'InSync (Qualifacts)', 'Monday', 'Asana', 'Azara', 'Excel'] }
           ],
           revenue: [
             { title: 'Revenue Cycle', chips: ['Denial Management', 'ERA/EOB Reconciliation', 'Payment Posting', 'LCD/NCCI Compliance', 'Charge Capture', 'Prior Authorization', 'CMS-1500 / X12 837P', 'A/R Management'] },
