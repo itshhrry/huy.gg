@@ -35,8 +35,9 @@
   </header>
 
   <section class="alcove">
+    <div class="mk"><span class="vert">four of six are reachable</span></div>
+    <div class="bd">
     <h1>Built, deployed, and still running.</h1>
-    <p class="vert">four of six are reachable</p>
     <aside class="railcard">
       <div class="cap">what is documented, and what is running</div>
       <div class="row"><span class="k">Projects documented</span><span class="v">6</span></div>
@@ -44,24 +45,32 @@
       <div class="row"><span class="k">Symbols indexed by codemap</span><span class="v">6,050</span></div>
       <div class="row"><span class="k">Charge lines behind the dashboard</span><span class="v">171,220</span></div>
     </aside>
+  </div>
   </section>
 
   <section class="band wide">
+    <div class="mk"></div>
+    <div class="bd">
     <p style="font-size:clamp(16px,1.7vw,18.5px);line-height:1.6;color:var(--sumi1)">Selected work across revenue cycle analytics, dashboard and reporting workflows, deep learning and computer vision, and infrastructure. Where something is running, its address sits on the entry, because reachability is the argument.</p>
+  </div>
   </section>
 
   <!-- ========== RCM ========== -->
   <section class="band wide" id="rcm">
-    <div class="k tech">01 &nbsp;·&nbsp; python · pandas · numpy · excel · power query</div>
+    <div class="mk">01 &nbsp;·&nbsp; python · pandas · numpy · excel · power query</div>
+    <div class="bd">
     <h2 style="font-weight:400;font-size:clamp(24px,3.4vw,38px);line-height:1.08;letter-spacing:-.028em;color:var(--sumi);margin-bottom:14px">Revenue cycle by design</h2>
     <p>Designed and generated a dataset of 250,000 claims in Python using rule-based operational and financial logic, then normalised the raw output into schemas with Power Query to analyse reimbursement performance, denials, efficiency, and profitability.</p>
     <a class="plate" href="dashboard.html" style="margin-top:22px">
       <img src="img/rcm-report-analysis.png" width="2706" height="1400" loading="lazy" decoding="async" alt="Revenue cycle analysis: denial concentration by payer, provider, and CPT">
     </a>
     <div class="platecap"><b>Outcome.</b> Five facilities modelled across twelve months of 2025. Net collection holds at 82 to 83 percent against a 29 percent contractual adjustment and a 1 percent write-off rate, and a denial traces back to payer, provider, and CPT. <a href="dashboard.html">Open the working dashboard</a></div>
+  </div>
   </section>
 
   <section class="band">
+    <div class="mk"></div>
+    <div class="bd">
     <div class="two">
       <div>
         <div class="k tech" style="margin-bottom:12px">business questions</div>
@@ -82,20 +91,25 @@
         </ul>
       </div>
     </div>
+  </div>
   </section>
 
   <!-- ========== CARBON ========== -->
   <section class="band wide" id="carbon">
-    <div class="k tech">02 &nbsp;·&nbsp; django · drf · postgresql · nuxt 3 · channels · celery · docker</div>
+    <div class="mk">02 &nbsp;·&nbsp; django · drf · postgresql · nuxt 3 · channels · celery · docker</div>
+    <div class="bd">
     <h2 style="font-weight:400;font-size:clamp(24px,3.4vw,38px);line-height:1.08;letter-spacing:-.028em;color:var(--sumi);margin-bottom:14px">carbon: a self-hosted spreadsheet database</h2>
     <p>A spreadsheet database that runs on hardware I own rather than rented infrastructure. Every table is a real table in PostgreSQL with typed columns, so a filter runs as a query inside the database instead of JavaScript sifting rows the browser already downloaded. Data arrives as CSV, JSON, or Excel and leaves the same way, whole.</p>
     <a class="plate" href="https://carbon.huy.gg" style="margin-top:22px">
       <img src="img/carbon-grid-6.png" width="1600" height="900" loading="lazy" decoding="async" alt="The carbon project table: column headers badged with their PostgreSQL types">
     </a>
     <div class="platecap"><b>The grid on carbon.huy.gg.</b> Each column header carries a badge naming that field's actual PostgreSQL type, and the summary strip underneath aggregates in SQL rather than in the browser. Access stays invite-only while the build continues. <a href="https://carbon.huy.gg">carbon.huy.gg</a></div>
+  </div>
   </section>
 
   <section class="band">
+    <div class="mk"><span style="display:block;color:var(--sumi2)">i</span></div>
+    <div class="bd">
     <div class="two">
       <div>
         <div class="k tech" style="margin-bottom:12px">architecture</div>
@@ -116,11 +130,13 @@
         </ul>
       </div>
     </div>
+  </div>
   </section>
 
   <!-- ========== CODEMAP ========== -->
   <section class="band" id="codemap">
-    <div class="k tech">03 &nbsp;·&nbsp; python · sqlite · typescript · rust · tree-sitter</div>
+    <div class="mk"><span style="display:block;color:var(--sumi2)">01</span>03 &nbsp;·&nbsp; python · sqlite · typescript · rust · tree-sitter</div>
+    <div class="bd">
     <div class="two">
       <div class="wide">
         <h2>codemap</h2>
@@ -138,22 +154,26 @@
         <div class="platecap">Search tells you where a name appears. This tells you what depends on it, which is the question you actually have before changing anything.</div>
       </div>
     </div>
+  </div>
   </section>
 
   <!-- ========== CLAUDE ========== -->
   <section class="band wide" id="claude">
-    <div class="k tech">04 &nbsp;·&nbsp; javascript · echarts · eda · dataviz</div>
+    <div class="mk">04 &nbsp;·&nbsp; javascript · echarts · eda · dataviz</div>
+    <div class="bd">
     <h2 style="font-weight:400;font-size:clamp(24px,3.4vw,38px);line-height:1.08;letter-spacing:-.028em;color:var(--sumi);margin-bottom:14px">Claude usage data</h2>
     <p>An analytics console that turns my own session history into signal: work cadence, output patterns, model reliability and cost, resource utilisation, and a full exploratory data analysis, computed in the browser and rendered with ECharts. The same revenue-cycle rigour, pointed at my own workflow.</p>
     <a class="plate" href="claude-analytics.html" style="margin-top:22px">
       <img src="img/claude-analytics-preview.jpg" width="1178" height="971" loading="lazy" decoding="async" alt="The Claude usage console: health metrics and the intelligence thermodynamics chart">
     </a>
     <div class="platecap"><b>Views.</b> Intelligence thermodynamics; cadence and output by weekday and hour; models by reliability and cost; resource utilisation and the tool matrix. <a href="claude-analytics.html">Open the console</a></div>
+  </div>
   </section>
 
   <!-- ========== EMOTION ========== -->
   <section class="band" id="emotion">
-    <div class="k tech">05 &nbsp;·&nbsp; python · tensorflow · keras · ann · cnn · computer vision</div>
+    <div class="mk">05 &nbsp;·&nbsp; python · tensorflow · keras · ann · cnn · computer vision</div>
+    <div class="bd">
     <div class="two">
       <div class="wide">
         <h2>Facial emotion recognition</h2>
@@ -169,11 +189,13 @@
         </table>
       </div>
     </div>
+  </div>
   </section>
 
   <!-- ========== INFRA ========== -->
   <section class="band" id="infra">
-    <div class="k tech">06 &nbsp;·&nbsp; docker · nginx · cloudflare · linux · mariadb · wireguard · pi-hole</div>
+    <div class="mk"><span style="display:block;color:var(--sumi2)">02</span>06 &nbsp;·&nbsp; docker · nginx · cloudflare · linux · mariadb · wireguard · pi-hole</div>
+    <div class="bd">
     <div class="two">
       <div class="wide">
         <h2>Self-hosted home server infrastructure</h2>
@@ -189,12 +211,16 @@
         </ul>
       </div>
     </div>
+  </div>
   </section>
 
   <section class="band">
+    <div class="mk"></div>
+    <div class="bd">
     <h2 style="font-weight:400;font-size:clamp(22px,2.8vw,30px);line-height:1.1;letter-spacing:-.026em;color:var(--sumi);margin-bottom:11px">Hiring for analyst roles?</h2>
     <p>Or want to talk through a project. Either is welcome.</p>
     <a class="u" href="resume.html">read the resume</a>
+  </div>
   </section>
 
   <footer class="tech">
