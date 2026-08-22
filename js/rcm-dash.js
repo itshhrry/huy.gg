@@ -323,7 +323,7 @@
          use, so the axis reads worst to best rather than best to worst. */
       const opts = [['stressed', 'Stressed'], ['baseline', 'Baseline'], ['healthy', 'Healthy']];
       // Baseline carries no hint: the two adjusted scenarios describe how they differ from it,
-      // so labelling the unadjusted case restates the word already on its own button.
+      // so labeling the unadjusted case restates the word already on its own button.
       const hint = { healthy: '+12% income, fewer denials, faster A/R', baseline: 'Figures unadjusted.', stressed: '−14% income, denials spike, A/R extends' }[S.scenario];
       const mono = 'font-family:\'IBM Plex Mono\',monospace;';
       const eyebrow = mono + 'font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2);';

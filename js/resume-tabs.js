@@ -13,9 +13,9 @@
             { t: 'Built an RCM dashboard tracking net and gross collection rate trends, denial root causes, payer reimbursement variance, and A/R aging, then worked the backlog it exposed down <strong>35%</strong>.', tabs: ['analyst', 'revenue'] },
             { t: 'Audited <strong>2,989 denied claims</strong> against payer-specific denial patterns (CO-97, CO-4), surfacing <strong>charge capture gaps</strong> in nerve block and injection administration (64405, 96372 plus J-code combinations) and coding variances corrected through modifier adjustments, reducing repeat denials on the same code families.', tabs: ['analyst', 'operations', 'revenue'] },
             { t: 'Standardized NDC documentation through the CMS portal for reconsideration submissions, <strong>recovering reimbursement</strong> on claims previously written off as denied.', tabs: ['operations', 'revenue'] },
-            { t: '<strong>Stopped recurring denials</strong> by implementing billing-to-servicing provider validation rules (BCBS), standardizing Box 19 CMS-1500 NDC documentation (UHC), and resolving X12/837P EHR-to-clearinghouse transmission errors.', tabs: ['revenue'] },
+            { t: '<strong>Stopped recurring denials</strong> by implementing billing-to-servicing provider validation rules (BCBS), standardizing Box 19 CMS-1500 NDC documentation (UHC), and resolving X12/837P transmission errors between the EHR and clearinghouse.', tabs: ['revenue'] },
             { t: 'Owned end-to-end RCM operations: registration, eligibility verification, charge capture, payment posting, denial management, appeals, and A/R reporting.', tabs: ['revenue', 'operations'] },
-            { t: 'Led full EHR migration from InSync to Athena, coordinating workflow continuity across billing, clinical, and administrative teams through cutover and go-live.', tabs: ['operations', 'revenue'] },
+            { t: 'Coordinated billing workflow continuity through the InSync to Athena EHR migration.', tabs: ['operations', 'revenue'] },
             { t: 'Designed analytical reporting workflows to surface payer behavior patterns and denial concentration by provider, CPT, and payer.', tabs: ['analyst'] }
           ] },
           { id: 'trumpet', title: 'Operations Supervisor', org: 'Trumpet Behavioral Health', location: 'Aurora, CO', dates: 'Jul 2024 to Apr 2025', bullets: [
@@ -29,9 +29,9 @@
             { t: 'Aligned integration workflows with clinical, IT, and regulatory requirements, delivering every site on schedule with <strong>zero critical post-go-live failures</strong>.', tabs: ['operations'] }
           ] },
           { id: 'auc', title: 'Regional Operations Manager', org: 'Advanced Urgent Care & Occupational Medicine', location: 'Brighton, CO', dates: 'Oct 2021 to Aug 2022', bullets: [
-            { t: 'Drove <strong>$8M in revenue growth</strong> through predictive analytics on patient flow, service demand patterns, and revenue cycle performance, directly informing staffing strategy and operational planning.', tabs: ['analyst', 'operations', 'revenue'] },
-            { t: 'Maintained <strong>100% employee retention</strong> across all managed locations and achieved <strong>net promoter scores of 89 to 93</strong> through investments in referral quality, patient experience, and staff development.', tabs: ['operations'] },
-            { t: 'Served as IT project lead for EHR consolidation across <strong>14 clinics</strong>, overseeing Athena/Experity implementation, data migration, manual testing, and user acceptance validation with zero critical system failures.', tabs: ['analyst', 'operations'] },
+            { t: 'Drove <strong>$8M in revenue growth</strong> by modeling patient flow, service demand, and revenue cycle performance, then rebuilding staffing strategy around the forecast.', tabs: ['analyst', 'operations', 'revenue'] },
+            { t: 'Held <strong>100% employee retention</strong> across all managed locations and <strong>net promoter scores of 89 to 93</strong> through investment in referral quality, patient experience, and staff development.', tabs: ['operations'] },
+            { t: 'Led IT for EHR consolidation across <strong>14 clinics</strong>, running the Athena and Experity implementation, data migration, test plans, and user acceptance validation with <strong>zero critical failures</strong>.', tabs: ['analyst', 'operations'] },
             { t: 'Strengthened front-end eligibility verification and documentation workflows, reducing downstream claim denials and improving reimbursement turnaround time.', tabs: ['revenue'] }
           ] },
           { id: 'centura', unpaid: true, title: 'Data Analytics Intern', org: 'Centura Health', location: 'Denver, CO', dates: 'Nov 2019 to Mar 2021', bullets: [
@@ -40,7 +40,7 @@
             { t: 'Delivered reporting and data visualizations using Power BI, Tableau, and SQL Server.', tabs: ['analyst'] }
           ] },
           { id: 'card', title: 'Operations Manager', org: 'Center for Autism and Related Disorders', location: 'Boulder, CO', dates: 'Nov 2019 to Oct 2020', bullets: [
-            { t: 'Improved payer contract fulfillment rate from <strong>37% to 95%</strong> by restructuring documentation practices, CPT code validation workflows, and A/R follow-up processes.', tabs: ['analyst', 'operations', 'revenue'] },
+            { t: 'Raised payer contract fulfillment from <strong>37% to 95%</strong> by restructuring documentation practices, CPT code validation workflows, and A/R follow-up.', tabs: ['analyst', 'operations', 'revenue'] },
             { t: 'Built KPI dashboards tracking therapy and supervision utilization, encounter profitability, and satisfaction scores.', tabs: ['analyst', 'operations'] },
             { t: 'Lifted patient and family satisfaction from <strong>56% to 89%</strong> while holding <strong>35% year-over-year growth</strong>.', tabs: ['operations', 'revenue'] }
           ] },

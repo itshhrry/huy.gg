@@ -35,7 +35,7 @@ Declared once on `#home-root` in each page's inline style block. There is no sec
 | `--strong` | `#0E0C09` | Headings and emphasis. |
 | `--muted` | `#635C51` | Secondary copy. |
 | `--muted2` | `#5A5349` | Labels and captions. |
-| `--accent` | `#C04000` | The single colour. Actions, figures, active states. |
+| `--accent` | `#C04000` | The single color. Actions, figures, active states. |
 | `--flare` | `#A93700` | The accent where it carries text on paper. Darker than `--accent` because it has to clear 4.5:1, and heat moves into hue rather than lightness. |
 | `--border` / `--border2` / `--border3` | ink at 10% / 17% / 27% | Three rule weights, hairline to structural. |
 
@@ -45,13 +45,13 @@ Declared once on `#home-root` in each page's inline style block. There is no sec
 
 ---
 
-## Colour discipline
+## Color discipline
 
 One accent, and it earns its place every time it appears. The page is otherwise ink on paper.
 
-Colour is allowed to mean something. Where a figure represents money recovered or an outcome achieved, the accent may carry it. Where a figure is context rather than outcome, it stays in ink. Colouring every number makes them all equally loud, which is the same failure as colouring none.
+Color is allowed to mean something. Where a figure represents money recovered or an outcome achieved, the accent may carry it. Where a figure is context rather than outcome, it stays in ink. Coloring every number makes them all equally loud, which is the same failure as coloring none.
 
-**No categorical palettes.** Multiple hues encoding multiple variables belong in a chart with a legend, not in page chrome. A four-colour stat row reads as a template.
+**No categorical palettes.** Multiple hues encoding multiple variables belong in a chart with a legend, not in page chrome. A four-color stat row reads as a template.
 
 ---
 
