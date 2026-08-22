@@ -193,7 +193,7 @@
            cross, where full ink hits 1.00:1 on the black wedge and washi hits
            1.08:1 on the pale tail. Soft everywhere beats crisp then invisible. */
         const ly = cy - (ring.R + ring.r) / 2 + 4;
-        ringLabels += '<text x="' + cx + '" y="' + ly + '" text-anchor="middle" style="pointer-events:none;fill:var(--on-series);font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;">' + ring.ring + '</text>';
+        ringLabels += '<text x="' + cx + '" y="' + ly + '" text-anchor="middle" style="pointer-events:none;fill:var(--on-series);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;">' + ring.ring + '</text>';
       }
     });
     const center =

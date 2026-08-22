@@ -168,9 +168,13 @@ img{max-width:100%;height:auto;display:block}
    underneath it are. 4.56 to 6.52 on washi. */
 .railcard .cap{font-family:var(--tech);font-size:12px;color:var(--sumi2);
                padding-bottom:11px;border-bottom:1px solid var(--rule)}
+/* 9px rather than 11, matching the codemap rail. Four rows under a cap read as
+   one table, and the looser step made them read as four separate lines. The
+   last row drops its padding too, so the card's bottom edge sits on the text
+   rather than on a phantom rule's worth of space. */
 .railcard .row{display:flex;align-items:baseline;justify-content:space-between;
-               gap:16px;padding:11px 0;border-bottom:1px solid var(--hair)}
-.railcard .row:last-child{border-bottom:0}
+               gap:14px;padding:9px 0;border-bottom:1px solid var(--hair)}
+.railcard .row:last-child{border-bottom:0;padding-bottom:0}
 .railcard .k{font-size:13.5px;color:var(--sumi2);line-height:1.35}
 .railcard .v{font-family:var(--tech);font-size:16px;color:var(--sumi);
              font-variant-numeric:tabular-nums;letter-spacing:-.02em;white-space:nowrap}
@@ -391,7 +395,14 @@ ul.notes li::marker{color:var(--sumi3);font-size:11px}
 .jobrow h3{font-weight:400;font-size:19px;letter-spacing:-.02em;color:var(--sumi);
            line-height:1.2;margin-bottom:2px}
 .jobrow .org{font-size:13.5px;color:var(--sumi2);margin-bottom:10px}
-.jobrow b{font-weight:400;color:var(--sumi);font-family:var(--tech);font-size:13.5px}
+/* Emphasis inside a bullet stays in the body face. Switching to mono made it
+   read as a different kind of content rather than a more important piece of
+   the same sentence, and two faces inside one paragraph is noise. Weight and
+   full ink carry it instead: 600 against the 400 around it, #161616 against
+   #3E3A34. Both element names are covered because the bullets are injected at
+   runtime. */
+.jobrow b,.jobrow strong{font-family:inherit;font-size:inherit;font-weight:600;
+                         color:var(--sumi);letter-spacing:0}
 /* Skill groups stand side by side rather than stacking into one long scroll.
    auto-fit rather than a fixed three: the operations tab has three groups, the
    other two have two, and a fixed count would leave an empty track. */
