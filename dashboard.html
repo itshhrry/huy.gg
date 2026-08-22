@@ -26,13 +26,40 @@
   html{scroll-behavior:smooth}
   body{font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;background:#EFE9DD}
   #home-root{
-    --bg:#EFE9DD;--panel-grad:linear-gradient(180deg,#F8F5EE,#F5F1E8);--card-rim:#DED7C8;
+    /* ink.css tokens restated, then the legacy dashboard names aliased onto
+       them, the same shape claude-analytics.html uses. --muted and --muted2 both
+       shipped the retired #6E6759 (4.64:1), which ink.css replaced precisely
+       because it was indistinguishable from sumi3 at 4.56. Three dilutions were
+       declared and two rendered. */
+    --washi:#EFE9DD;--raise:#F5F1E8;
+    --sumi:#161616;--sumi1:#3E3A34;--sumi2:#565147;--sumi3:#706858;
+    --rule:rgba(22,22,22,.14);--hair:rgba(22,22,22,.07);
+
+    --bg:var(--washi);--panel-grad:linear-gradient(180deg,#F8F5EE,var(--raise));--card-rim:#DED7C8;
     --surface:rgba(255,255,255,.62);--surface2:rgba(255,255,255,.42);
-    --text:#3E3A34;--muted:#6E6759;--muted2:#6E6759;--strong:#161616;
-    --border:rgba(22,22,22,.14);--border2:rgba(22,22,22,.22);--border3:rgba(22,22,22,.34);
-    --accent:#161616;--accent-ink:#EFE9DD;--flare:#3E3A34;--flare-soft:rgba(22,22,22,.05);
+    --text:var(--sumi1);--muted:var(--sumi2);--muted2:var(--sumi3);--strong:var(--sumi);
+    --border:var(--rule);--border2:rgba(22,22,22,.22);--border3:rgba(22,22,22,.34);
+    --accent:var(--sumi);--accent-ink:var(--washi);--flare:var(--sumi1);--flare-soft:rgba(22,22,22,.05);
     --grid:rgba(22,22,22,.05);
     --nav-bg:rgba(239,233,221,.88);--panel:#ffffff;--track:rgba(22,22,22,.1);
+
+    /* Series palette: one grayscale ramp, full ink through the dilutions to a
+       fifth wash. No hue encodes anything. ser5 sits at chroma 20, inside the
+       0/10/15/24 range the site's own dilutions occupy; the beige it replaced
+       was chroma 68, which is what read as color. */
+    --ser1:var(--sumi);--ser2:var(--sumi1);--ser3:var(--sumi2);
+    --ser4:var(--sumi3);--ser5:#8C8578;
+    /* One wash for anything benign: the clean share of the denial ring and the
+       current A/R bucket. They were two tokens at 12% and 24% that composited
+       within 0.26 of each other, arrived at separately. */
+    --ser-rest:color-mix(in srgb, var(--text) 24%, transparent);--on-series:var(--washi);
+    /* Alert is full ink. It carries the A/R buckets past 90 days and any
+       adverse KPI trend, sitting against --steady for everything healthy. */
+    --adverse:var(--sumi);--steady:var(--muted);
+    /* Revenue-trend pair. Billed is context so it sits back; income is the
+       outcome so it keeps full weight. One token each, used by both the mark
+       and its legend swatch, so the two cannot drift apart. */
+    --billed:var(--ser-rest);--income:var(--sumi);
     
   }
   

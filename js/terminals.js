@@ -1,5 +1,5 @@
-/* The two interactive terminals, carried over unchanged in behaviour. Only the
-   colours are re-pointed at the ink tokens: the originals wrote var(--sumi)
+/* The two interactive terminals, carried over unchanged in behavior. Only the
+   colors are re-pointed at the ink tokens: the originals wrote var(--sumi)
    and var(--sumi), which no longer exist as a hue on this build. */
 (function () {
 function codemapTerminal() {

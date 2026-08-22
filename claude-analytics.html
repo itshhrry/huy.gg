@@ -9,7 +9,7 @@
 /* ---- portfolio page chrome ----
    The ink system from css/ink.css, inlined because this page is self-contained and cannot
    link a stylesheet. Values are copied rather than approximated: a reader moving between
-   huy.gg pages should not see the chrome change size, weight, or colour. The console below
+   huy.gg pages should not see the chrome change size, weight, or color. The console below
    keeps its own palette, which is washi paper on vermilion, the ground this chrome already
    sits on. */
 :root{
@@ -66,7 +66,7 @@ img{max-width:100%;height:auto;display:block}
 .console{max-width:1280px;margin:0 auto clamp(30px,4vw,52px);padding:0 var(--pad);}
 .console .shell{border:1px solid var(--rule);overflow:hidden;}
 
-/* Three zones on a grid, matching the site: availability centred against the
+/* Three zones on a grid, matching the site: availability centered against the
    page rather than left wherever two flex groups stop. */
 footer.pagefoot{padding:16px var(--pad) 18px;border-top:1px solid var(--rule);
   display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center;
@@ -94,8 +94,8 @@ footer.pagefoot a:hover{color:var(--sumi)}
   --cc-bg:        #efe9dd;   /* washi paper ground */
   --cc-bg1:       #f5f1e8;   /* raised paper */
   --cc-bg2:       #e7e0d2;   /* sunken paper */
-  --cc-panel:     rgba(248,244,236,0.92);  /* warm cream card — opaque enough to not grey out over the constellation backdrop */
-  --cc-panel2:    rgba(235,229,217,0.92);  /* inset surface — opaque enough to not grey out (ops report, insets) */
+  --cc-panel:     rgba(248,244,236,0.92);  /* warm cream card — opaque enough to not gray out over the constellation backdrop */
+  --cc-panel2:    rgba(235,229,217,0.92);  /* inset surface — opaque enough to not gray out (ops report, insets) */
   --cc-surface:   #f9f6ef;   /* raised soft off-white surface — exec-summary inner panels */
   --cc-heat-min:  #f1ece1;   /* opaque heatmap zero-cell — matches card so empty cells blend in */
   --cc-panel-solid:#f3eee4;                /* opaque fallback */
@@ -736,10 +736,10 @@ button.cc-seg.active { color: var(--cc-fill-fg); background: var(--cc-fill); bor
 }
 
 /* Per-model palette — VERMILION theme only. modelColor() reads --cc-model-1..4 (opus/sonnet/haiku/
-   fable) and falls back to a grey ramp when undefined. Defined here (and only here) so the models
+   fable) and falls back to a gray ramp when undefined. Defined here (and only here) so the models
    tiered donut + the health-bar model-mix carry the mauve-anchored, Image-#3 nexus hues: plum-mauve,
    dusty teal, muted gold, terracotta. The mauve-accent and dark scopes leave these undefined on
-   purpose, keeping their existing grey/neon ramps. Scoped :not(.cc-dark):not(.cc-accent-mauve). */
+   purpose, keeping their existing gray/neon ramps. Scoped :not(.cc-dark):not(.cc-accent-mauve). */
 .cc-root:not(.cc-dark):not(.cc-accent-mauve) {
   --cc-model-1: #8a7c9c;   /* opus   — plum-mauve (dominant hue, mauve schematic) */
   --cc-model-2: #7f9a92;   /* sonnet — dusty teal */

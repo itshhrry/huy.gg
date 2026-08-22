@@ -29,7 +29,7 @@
 </nav>
 <style>
   :root{
-    --bg:#EFE9DD; --text:#3E3A34; --strong:#161616;
+    --bg:#EFE9DD;--raise:#F5F1E8; --text:#3E3A34; --strong:#161616;
     --muted:#6E6759; --muted2:#6E6759;
     --accent:#161616; --flare:#3E3A34;
     --term:#F5F1E8; --ok:#3E3A34;
@@ -80,7 +80,7 @@
   /* margin-left:auto pins the rail to the right edge of the content column, so
      it lines up with the surface and the notes grid below rather than floating. */
   .railcard{position:relative;flex:0 1 360px;min-width:270px;margin-left:auto;border:1px solid var(--b2);
-    border-radius:16px;background:#fff;padding:20px 22px;box-shadow:0 24px 56px rgba(23,20,15,.10);}
+    border-radius:16px;background:var(--raise);padding:20px 22px;box-shadow:0 24px 56px rgba(23,20,15,.10);}
   .railcard .cap{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;
     text-transform:uppercase;color:var(--flare);padding-bottom:11px;margin-bottom:4px;
     border-bottom:1px solid var(--b2);}
@@ -100,7 +100,7 @@
 
   /* ---- the working surface ---- */
   .surface{border:1px solid var(--b2);border-radius:14px;overflow:hidden;
-    background:#fff;box-shadow:0 18px 44px rgba(22,22,22,.1);}
+    background:var(--raise);box-shadow:0 18px 44px rgba(22,22,22,.1);}
 
   .surfacebar{display:flex;align-items:center;gap:10px;padding:9px 14px;
     border-bottom:1px solid var(--b1);background:var(--bg);}

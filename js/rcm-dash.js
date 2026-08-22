@@ -6,9 +6,16 @@
   if (!D) return;
 
   const MON = D.months;
-  const PAL_FAC = ['#C04000', '#FF6A2B', '#E8935C', '#8b6f47', '#6b7c50'];
-  const PAL_PAY = ['#C04000', '#E8935C', '#a3532a', '#FF6A2B', '#7a8754', '#a36a3c', '#6b7c50', '#b07650'];
-  const PAL_SVC = { 'Behavioral': '#8b6f47', 'Integrated': '#C04000', 'Medical': '#6b7c50' };
+  const PAL_FAC = ['var(--ser1)', 'var(--ser2)', 'var(--ser3)', 'var(--ser4)', 'var(--ser5)'];
+  const PAL_PAY = ['var(--ser1)', 'var(--ser2)', 'var(--ser3)', 'var(--ser4)', 'var(--ser5)'];
+  const PAL_SVC = { 'Behavioral': 'var(--sumi3)', 'Integrated': 'var(--sumi1)', 'Medical': 'var(--sumi)' };
+
+  /* A fixed palette indexed with i % length restarts once the series is longer
+     than the palette, so the 6th payer took the 1st payer's color and the sort
+     read as noise. Interpolating across the ramp keeps color monotonic with
+     value for any number of items. */
+  const rampAt = (i, n) => n <= 1 ? 'var(--ser1)'
+    : 'color-mix(in srgb, var(--ser5) ' + ((i / (n - 1)) * 100).toFixed(1) + '%, var(--ser1))';
 
   const fmtN = (n) => Math.round(n).toLocaleString('en-US');
   const fmtM = (n) => '$' + (n / 1e6).toFixed(2) + 'M';
@@ -69,22 +76,32 @@
     const up = trend >= 0; const good = inverse ? !up : up;
     return '<div style="border:1px solid var(--border);border-radius:14px;background:var(--surface2);padding:15px 17px;">' +
       '<div style="font-family:\'IBM Plex Mono\',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted2);margin-bottom:7px;">' + label + '</div>' +
-      '<div style="font-size:24px;font-weight:600;letter-spacing:-.01em;color:' + (accent === 'green' ? 'var(--flare)' : 'var(--text)') + ';">' + value + '</div>' +
-      '<div style="font-family:\'IBM Plex Mono\',monospace;font-size:11px;margin-top:5px;color:' + (good ? '#6b9e5e' : '#d1704a') + ';">' + (up ? '▲' : '▼') + ' ' + Math.abs(trend).toFixed(1) + '%</div></div>';
+      '<div style="font-size:24px;font-weight:600;letter-spacing:-.01em;color:' + (accent === 'accent' ? 'var(--flare)' : 'var(--text)') + ';">' + value + '</div>' +
+      '<div style="font-family:\'IBM Plex Mono\',monospace;font-size:11px;margin-top:5px;color:' + (good ? 'var(--steady)' : 'var(--adverse)') + ';">' + (up ? '▲' : '▼') + ' ' + Math.abs(trend).toFixed(1) + '%</div></div>';
   }
 
   function chartIB(income, billed, benchmark) {
     const W = 720, H = 240, pl = 8, pr = 8, pt = 16, pb = 26, cH = H - pt - pb, cW = W - pl - pr;
     const gw = cW / 12, bw = Math.min(30, gw * 0.5);
     const maxS = Math.max(Math.max.apply(null, billed), benchmark || 0) * 1.12 || 1;
-    let bars = '', line = '', dots = '', labels = '';
+    const benchY = benchmark ? pt + cH - (benchmark / maxS) * cH : -999;
+    let bars = '', line = '', dots = '', labels = '', hits = '';
     billed.forEach((v, i) => {
       const cx = pl + i * gw + gw / 2, h = (v / maxS) * cH, y = pt + cH - h;
-      bars += '<rect x="' + (cx - bw / 2).toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + Math.max(0, h).toFixed(1) + '" rx="3" style="fill:var(--text);opacity:.24;"><title>' + MON[i] + ' billed ' + fmtM(v) + '</title></rect>';
+      bars += '<rect data-ib-bar="' + i + '" x="' + (cx - bw / 2).toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + Math.max(0, h).toFixed(1) + '" rx="3" style="fill:var(--billed);transition:opacity .2s ease;"></rect>';
       const iy = pt + cH - (income[i] / maxS) * cH;
       line += (i === 0 ? 'M' : 'L') + cx.toFixed(1) + ' ' + iy.toFixed(1) + ' ';
-      dots += '<circle cx="' + cx.toFixed(1) + '" cy="' + iy.toFixed(1) + '" r="3" style="fill:var(--flare);"><title>' + MON[i] + ' income ' + fmtM(income[i]) + '</title></circle>';
+      dots += '<circle data-ib-dot="' + i + '" cx="' + cx.toFixed(1) + '" cy="' + iy.toFixed(1) + '" r="3" style="fill:var(--income);transition:r .15s ease;"></circle>';
       labels += '<text x="' + cx.toFixed(1) + '" y="' + (H - 8) + '" text-anchor="middle" style="fill:var(--muted2);font-family:\'IBM Plex Mono\',monospace;font-size:10px;">' + MON[i] + '</text>';
+      /* One full-height target per column, so the whole month is hoverable rather
+         than just the bar. Painted transparent because pointer-events need a fill.
+         The income value sits above its dot unless that lands it on the prior-year
+         line, where it flips below rather than overprinting the benchmark. */
+      const ivAbove = iy - 11;
+      const ivY = Math.abs(ivAbove - benchY) < 15 ? iy + 17 : ivAbove;
+      hits += '<rect data-ib-hit="' + i + '" x="' + (pl + i * gw).toFixed(1) + '" y="' + pt + '" width="' + gw.toFixed(1) + '" height="' + cH + '" fill="transparent" style="cursor:pointer;"' +
+        ' data-m="' + MON[i] + '" data-b="' + fmtM(v) + '" data-i="' + fmtM(income[i]) +
+        '" data-cx="' + cx.toFixed(1) + '" data-by="' + y.toFixed(1) + '" data-iy="' + ivY.toFixed(1) + '"></rect>';
     });
     let bench = '';
     if (benchmark) {
@@ -92,15 +109,42 @@
       bench = '<line x1="' + pl + '" y1="' + by.toFixed(1) + '" x2="' + (W - pr) + '" y2="' + by.toFixed(1) + '" style="stroke:var(--muted);stroke-width:1.5;stroke-dasharray:5 4;opacity:.8;"></line>' +
         '<text x="' + (W - pr) + '" y="' + (by - 6).toFixed(1) + '" text-anchor="end" style="fill:var(--muted2);font-family:\'IBM Plex Mono\',monospace;font-size:10px;">Prior-yr avg $' + (benchmark / 1e6).toFixed(2) + 'M</text>';
     }
-    return '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;height:auto;display:block;overflow:visible;">' + bars + bench +
-      '<path d="' + line + '" fill="none" style="stroke:var(--flare);stroke-width:2.5;"></path>' + dots + labels + '</svg>';
+    /* Values park on the marks they describe: billed above its bar, income
+       above its dot. A corner readout makes the eye leave the column it is
+       reading. Both start empty and are positioned by the hover handler. */
+    const readout =
+      '<text data-ib="bval" text-anchor="middle" style="pointer-events:none;fill:var(--muted);font-size:11.5px;font-weight:600;"></text>' +
+      '<text data-ib="ival" text-anchor="middle" style="pointer-events:none;fill:var(--income);font-size:11.5px;font-weight:600;"></text>';
+    return '<div class="ib-wrap"><svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;height:auto;display:block;overflow:visible;">' +
+      bars + bench + '<path d="' + line + '" fill="none" style="stroke:var(--income);stroke-width:2.5;"></path>' + dots + labels + readout + hits + '</svg></div>';
   }
 
   function donut(segs, centerMain, centerSub) {
-    let acc = 0; const stops = segs.map((s) => { const a = acc; acc += s.pct; return s.color + ' ' + (a * 100).toFixed(2) + '% ' + (acc * 100).toFixed(2) + '%'; }).join(', ');
-    return '<div style="position:relative;width:204px;height:204px;border-radius:50%;background:conic-gradient(' + stops + ');margin:0 auto;">' +
-      '<div style="position:absolute;inset:40px;border-radius:50%;background:var(--panel);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">' +
-      '<div style="font-size:28px;font-weight:600;letter-spacing:-.01em;">' + centerMain + '</div><div style="font-family:\'IBM Plex Mono\',monospace;font-size:11px;color:var(--muted2);">' + centerSub + '</div></div></div>';
+    /* Path arcs, not a conic-gradient, because a gradient is one element and has
+       no per-slice hit target. Each slice carries its key and value so the center
+       can read them back on hover and fall to the total at rest. */
+    const W = 204, c = 102, R = 92, r = 62;
+    function arc(a0, a1) {
+      const large = (a1 - a0) > Math.PI ? 1 : 0;
+      const p = (rad, ang) => (c + Math.cos(ang) * rad).toFixed(2) + ',' + (c + Math.sin(ang) * rad).toFixed(2);
+      return 'M' + p(R, a0) + ' A' + R + ',' + R + ' 0 ' + large + ' 1 ' + p(R, a1) +
+             ' L' + p(r, a1) + ' A' + r + ',' + r + ' 0 ' + large + ' 0 ' + p(r, a0) + ' Z';
+    }
+    let acc = 0, paths = '';
+    segs.forEach((sg) => {
+      const a0 = acc * Math.PI * 2 - Math.PI / 2;
+      acc += sg.pct;
+      const a1 = acc * Math.PI * 2 - Math.PI / 2;
+      if (a1 - a0 < 0.0006) return;
+      paths += '<path d="' + arc(a0, a1) + '" data-dn-slice="1" data-k="' + esc(sg.k || '') +
+        '" data-v="' + esc(sg.val || '') + '" data-pct="' + (sg.pct * 100).toFixed(1) +
+        '" style="fill:' + sg.color + ';cursor:pointer;transition:opacity .2s ease;"></path>';
+    });
+    return '<div class="dn-wrap" data-dn-main="' + esc(centerMain) + '" data-dn-sub="' + esc(centerSub) + '" style="width:' + W + 'px;margin:0 auto;">' +
+      '<svg viewBox="0 0 ' + W + ' ' + W + '" style="width:100%;height:auto;display:block;">' + paths +
+      '<text data-dn="num" x="' + c + '" y="' + (c - 2) + '" text-anchor="middle" style="pointer-events:none;fill:var(--text);font-size:26px;font-weight:600;letter-spacing:-.01em;">' + centerMain + '</text>' +
+      '<text data-dn="label" x="' + c + '" y="' + (c + 18) + '" text-anchor="middle" style="pointer-events:none;fill:var(--muted2);font-family:\'IBM Plex Mono\',monospace;font-size:11px;">' + centerSub + '</text>' +
+      '</svg></div>';
   }
   function legendRows(items) {
     return '<div style="display:flex;flex-direction:column;gap:6px;margin-top:14px;">' + items.map((it) =>
@@ -108,26 +152,57 @@
   }
 
   function nestedRing(overall, byCPT, byEnc) {
-    const cx = 80, cy = 80;
-    function ring(r, sw, segs, pal) {
-      const C = 2 * Math.PI * r; let acc = 0, out = '';
-      segs.forEach((s, i) => {
-        const len = s.v * C, off = -acc * C;
-        out += '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="none" stroke="' + pal[i % pal.length] + '" stroke-width="' + sw + '" stroke-dasharray="' + len.toFixed(2) + ' ' + (C - len).toFixed(2) + '" stroke-dashoffset="' + off.toFixed(2) + '" transform="rotate(-90 ' + cx + ' ' + cy + ')"><title>' + s.k + ' ' + fmtPct(s.v, 0) + '</title></circle>';
-        acc += s.v;
-      });
-      return out;
+    /* Three concentric data rings drawn as real <path> wedges, not dashed circle
+       strokes, because each segment needs its own hover target to drive the
+       center readout. Geometry and radii restored from the original React
+       DenialNestedRing; palette is the current ink theme. */
+    const W = 460, cx = 230, cy = 230;
+    const encPal = ['var(--ser1)', 'var(--ser2)', 'var(--ser4)', 'var(--ser5)', 'var(--ser-rest)'];
+    const cptPal = ['var(--ser1)', 'var(--ser2)', 'var(--ser4)', 'var(--ser5)', 'var(--ser-rest)'];
+    const ovrPal = ['var(--ser1)', 'var(--ser-rest)'];
+    const rings = [
+      { key: 'enc', data: byEnc, R: 200, r: 158, pal: null, ring: 'By encounter', sub: 'encounter type' },
+      { key: 'cpt', data: byCPT, R: 152, r: 110, pal: null, ring: 'By CPT', sub: 'CPT code share' },
+      { key: 'ovr', data: [{ k: 'Denial rate', v: overall }, { k: 'Clean', v: Math.max(0, 1 - overall) }], R: 100, r: 64, pal: ovrPal, ring: '', sub: 'overall rate' }
+    ];
+    function arcPath(R, r, a0, a1) {
+      const large = (a1 - a0) > Math.PI ? 1 : 0;
+      const x1 = cx + Math.cos(a0) * R, y1 = cy + Math.sin(a0) * R;
+      const x2 = cx + Math.cos(a1) * R, y2 = cy + Math.sin(a1) * R;
+      const x3 = cx + Math.cos(a1) * r, y3 = cy + Math.sin(a1) * r;
+      const x4 = cx + Math.cos(a0) * r, y4 = cy + Math.sin(a0) * r;
+      return 'M' + x1.toFixed(2) + ',' + y1.toFixed(2) + ' A' + R + ',' + R + ' 0 ' + large + ' 1 ' + x2.toFixed(2) + ',' + y2.toFixed(2) +
+             ' L' + x3.toFixed(2) + ',' + y3.toFixed(2) + ' A' + r + ',' + r + ' 0 ' + large + ' 0 ' + x4.toFixed(2) + ',' + y4.toFixed(2) + ' Z';
     }
-    const encPal = ['#C04000', '#E8935C', '#8b6f47', '#6b7c50', 'var(--track)'];
-    const cptPal = ['#FF6A2B', '#E8935C', '#a3532a', '#b07650', 'var(--track)'];
-    const overallC = 2 * Math.PI * 22;
-    const svg = '<svg viewBox="0 0 160 160" style="width:160px;height:160px;">' +
-      ring(64, 15, byEnc, encPal) + ring(44, 15, byCPT, cptPal) +
-      '<circle cx="80" cy="80" r="22" fill="none" stroke="var(--track)" stroke-width="13"></circle>' +
-      '<circle cx="80" cy="80" r="22" fill="none" stroke="#C04000" stroke-width="13" stroke-dasharray="' + (overall * overallC).toFixed(2) + ' ' + overallC.toFixed(2) + '" transform="rotate(-90 80 80)"></circle>' +
-      '<text x="80" y="77" text-anchor="middle" style="fill:var(--text);font-size:17px;font-weight:600;">' + fmtPct(overall, 0) + '</text>' +
-      '<text x="80" y="91" text-anchor="middle" style="fill:var(--muted2);font-family:\'IBM Plex Mono\',monospace;font-size:8px;">DENIAL</text></svg>';
-    return svg;
+    let paths = '', ringLabels = '';
+    rings.forEach((ring) => {
+      const sum = (ring.data || []).reduce((a, d) => a + d.v, 0) || 1;
+      let acc = 0;
+      (ring.data || []).forEach((d, i) => {
+        const a0 = (acc / sum) * Math.PI * 2 - Math.PI / 2;
+        acc += d.v;
+        const a1 = (acc / sum) * Math.PI * 2 - Math.PI / 2;
+        if (a1 - a0 < 0.0006) return;
+        paths += '<path d="' + arcPath(ring.R, ring.r, a0, a1) + '" data-ring="' + ring.key + '"' + (i === 0 ? ' data-first="1"' : '') + ' data-k="' + esc(d.k) + '" data-pct="' + (d.v / sum).toFixed(5) +
+          '" data-val="' + d.v.toFixed(5) + '" data-sub="' + ring.sub + '" style="fill:' + (ring.pal ? ring.pal[i % ring.pal.length] : rampAt(i, ring.data.length)) + ';cursor:pointer;transition:opacity .2s ease;"></path>';
+      });
+      if (ring.ring) {
+        /* One centered element in --muted2, the same value the center caption
+           uses. A mid ink is the only fill that survives the 12 o'clock seam:
+           it never drops below 2.25:1 on any of the four grounds the label can
+           cross, where full ink hits 1.00:1 on the black wedge and washi hits
+           1.08:1 on the pale tail. Soft everywhere beats crisp then invisible. */
+        const ly = cy - (ring.R + ring.r) / 2 + 4;
+        ringLabels += '<text x="' + cx + '" y="' + ly + '" text-anchor="middle" style="pointer-events:none;fill:var(--on-series);font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;">' + ring.ring + '</text>';
+      }
+    });
+    const center =
+      '<text data-nr="num" x="' + cx + '" y="' + (cy - 4) + '" text-anchor="middle" style="pointer-events:none;fill:var(--text);font-size:44px;font-weight:700;letter-spacing:-.02em;">' + fmtPct(overall, 1) + '</text>' +
+      '<text data-nr="label" x="' + cx + '" y="' + (cy + 22) + '" text-anchor="middle" style="pointer-events:none;fill:var(--muted2);font-family:\'IBM Plex Mono\',monospace;font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;">claims with denial codes</text>' +
+      '<text data-nr="sub" x="' + cx + '" y="' + (cy + 40) + '" text-anchor="middle" style="pointer-events:none;fill:var(--muted2);font-family:\'IBM Plex Mono\',monospace;font-size:10px;"></text>';
+    return '<div class="nr-wrap" data-nr-default="' + fmtPct(overall, 1) + '" style="flex:1 1 340px;display:flex;justify-content:center;min-width:280px;">' +
+      '<svg viewBox="0 0 ' + W + ' ' + W + '" role="img" aria-label="Denial breakdown by encounter, CPT, and overall rate" style="width:100%;max-width:540px;height:auto;display:block;">' +
+      paths + ringLabels + center + '</svg></div>';
   }
 
   function stackedWriteoff(rows, svc) {
@@ -135,7 +210,7 @@
     const max = Math.max.apply(null, totals) || 1;
     return '<div style="display:flex;flex-direction:column;gap:12px;">' + rows.map((r, ri) => {
       const total = totals[ri];
-      const segs = svc.map((s) => { const v = r[s] || 0; return v > 0 ? '<div title="' + s + ': $' + fmtN(v) + '" style="width:' + (v / max * 100) + '%;background:' + PAL_SVC[s] + ';display:flex;align-items:center;justify-content:center;font-size:10.5px;color:#0b0d12;font-weight:600;overflow:hidden;white-space:nowrap;">' + (v >= max * 0.09 ? '$' + fmtN(v) : '') + '</div>' : ''; }).join('');
+      const segs = svc.map((s) => { const v = r[s] || 0; return v > 0 ? '<div title="' + s + ': $' + fmtN(v) + '" style="width:' + (v / max * 100) + '%;background:' + PAL_SVC[s] + ';display:flex;align-items:center;justify-content:center;font-size:10.5px;color:var(--on-series);font-weight:600;overflow:hidden;white-space:nowrap;">' + (v >= max * 0.09 ? '$' + fmtN(v) : '') + '</div>' : ''; }).join('');
       return '<div style="display:grid;grid-template-columns:92px 1fr 84px;gap:12px;align-items:center;">' +
         '<div style="font-size:13px;color:var(--text);">' + r.label + '</div>' +
         '<div style="display:flex;height:26px;border-radius:6px;overflow:hidden;background:var(--track);">' + segs + '</div>' +
@@ -144,13 +219,17 @@
   }
 
   function payerBars(payers, mix) {
+    /* Descending by revenue. The series palette is a ramp now, so an unordered
+       list makes the ramp meaningless: dark and light alternate at random. Sorted,
+       color and length agree and the ramp reads as magnitude. */
+    payers = payers.slice().sort((a, b) => ((mix[b] || {}).revenue || 0) - ((mix[a] || {}).revenue || 0));
     const vals = payers.map((p) => (mix[p] || {}).revenue || 0);
     const max = Math.max.apply(null, vals) || 1;
     return '<div style="display:flex;flex-direction:column;gap:10px;">' + payers.map((p, i) => {
       const m = mix[p] || {}; const v = m.revenue || 0;
       return '<div title="' + p + ': ' + fmtM(v) + ', denial ' + fmtPct(m.denialRate || 0, 1) + '">' +
         '<div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:4px;"><span>' + p + '</span><span style="color:var(--text);font-family:\'IBM Plex Mono\',monospace;">' + fmtM(v) + '</span></div>' +
-        '<div style="height:9px;border-radius:5px;background:var(--track);overflow:hidden;"><div style="height:100%;width:' + (v / max * 100).toFixed(1) + '%;background:' + PAL_PAY[i % PAL_PAY.length] + ';border-radius:5px;"></div></div></div>';
+        '<div style="height:9px;border-radius:5px;background:var(--track);overflow:hidden;"><div style="height:100%;width:' + (v / max * 100).toFixed(1) + '%;background:' + rampAt(i, payers.length) + ';border-radius:5px;"></div></div></div>';
     }).join('') + '</div>';
   }
 
@@ -158,10 +237,17 @@
     const max = Math.max.apply(null, aging.map((a) => a.amount)) || 1;
     return '<div style="display:flex;align-items:flex-end;gap:12px;height:170px;padding-top:10px;">' + aging.map((a) => {
       const h = (a.amount / max) * 130;
+      /* Three tiers, so age reads as increasing weight rather than a binary flag:
+         current takes the pale wash, the middle buckets take mid ink, and
+         anything past 90 days takes full ink. --billed is already semi-opaque,
+         so it renders at opacity 1 or it would disappear. */
       const over = a.bucket === '120+' || a.bucket === '91-120';
+      const current = a.bucket === '0-30';
+      const fill = over ? 'var(--adverse)' : current ? 'var(--billed)' : 'var(--steady)';
+      const op = over || current ? 1 : 0.55;
       return '<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;justify-content:flex-end;height:100%;">' +
         '<div style="font-family:\'IBM Plex Mono\',monospace;font-size:10.5px;color:var(--muted);">$' + (a.amount / 1e6).toFixed(1) + 'M</div>' +
-        '<div title="' + a.bucket + ' days: $' + fmtN(a.amount) + '" style="width:100%;max-width:54px;height:' + h.toFixed(1) + 'px;border-radius:6px 6px 0 0;background:' + (over ? '#C04000' : 'var(--flare)') + ';opacity:' + (over ? 1 : 0.55) + ';"></div>' +
+        '<div title="' + a.bucket + ' days: $' + fmtN(a.amount) + '" style="width:100%;max-width:54px;height:' + h.toFixed(1) + 'px;border-radius:6px 6px 0 0;background:' + fill + ';opacity:' + op + ';"></div>' +
         '<div style="font-family:\'IBM Plex Mono\',monospace;font-size:10.5px;color:var(--muted2);">' + a.bucket + '</div></div>';
     }).join('') + '</div>';
   }
@@ -233,10 +319,12 @@
     const chartsEl = root.querySelector('#rcm-charts');
 
     function renderScenario() {
-      const opts = [['healthy', 'Healthy'], ['baseline', 'Baseline'], ['stressed', 'Stressed']];
+      /* Downside, base, upside: the order financial scenario controls conventionally
+         use, so the axis reads worst to best rather than best to worst. */
+      const opts = [['stressed', 'Stressed'], ['baseline', 'Baseline'], ['healthy', 'Healthy']];
       // Baseline carries no hint: the two adjusted scenarios describe how they differ from it,
       // so labelling the unadjusted case restates the word already on its own button.
-      const hint = { healthy: '+12% income, fewer denials, faster A/R', baseline: 'Every figure below is the ledger unadjusted.', stressed: '−14% income, denials spike, A/R extends' }[S.scenario];
+      const hint = { healthy: '+12% income, fewer denials, faster A/R', baseline: 'Figures unadjusted.', stressed: '−14% income, denials spike, A/R extends' }[S.scenario];
       const mono = 'font-family:\'IBM Plex Mono\',monospace;';
       const eyebrow = mono + 'font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2);';
       // Same mark the home page's IMPACT card carries: a filled tile of three bars. Reused
@@ -250,14 +338,7 @@
         // sizing to their own labels.
         '<div style="display:flex;border:1px solid var(--border2);border-radius:999px;overflow:hidden;">' +
         opts.map((o) => '<button data-scen="' + o[0] + '" style="flex:1 1 0;padding:8px 4px;border:none;cursor:pointer;' + mono + 'font-size:13px;background:' + (S.scenario === o[0] ? 'var(--accent)' : 'transparent') + ';color:' + (S.scenario === o[0] ? 'var(--accent-ink)' : 'var(--muted)') + ';">' + o[1] + '</button>').join('') + '</div>' +
-        '<div style="' + mono + 'font-size:12px;line-height:1.5;color:var(--muted2);margin-top:10px;min-height:36px;">' + hint + '</div>' +
-        // The share-shown figure answers the filters rather than setting them, so it closes the
-        // card under a rule instead of sitting among the chips it reports on.
-        // Figure and label share a baseline so they read as one phrase, while keeping the size
-        // and case difference that marks which half is the measurement.
-        '<div style="border-top:1px solid var(--border);margin-top:14px;padding-top:14px;display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;">' +
-        '<span style="' + mono + 'font-size:34px;font-weight:600;line-height:1;color:var(--flare);">' + Math.round(compute(S.fac, S.pay, S.svc).slice * 100) + '%</span>' +
-        '<span style="' + eyebrow + '">of dataset shown</span></div>';
+        '<div style="' + mono + 'font-size:12px;line-height:1.5;color:var(--muted2);margin-top:10px;min-height:36px;">' + hint + '</div>';
     }
     function renderFilters() {
       filtersEl.innerHTML = chipGroup('Facility', D.facilities, S.fac, 'fac', false) + chipGroup('Payer mix', D.payers, S.pay, 'pay', true) + chipGroup('Service line', D.serviceLines, S.svc, 'svc', true);
@@ -278,21 +359,22 @@
 
       const kpiRow = '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;">' +
         kpiTile('Visits', fmtN(f.visits), '', 3.2) +
-        kpiTile('Income', fmtM(kIncome), 'green', st ? -8.4 : 5.1) +
+        kpiTile('Income', fmtM(kIncome), 'accent', st ? -8.4 : 5.1) +
         kpiTile('Billed', fmtM(f.billed), '', 2.4) +
         kpiTile('Open A/R', fmtPct(kAR, 1), '', st ? 6.2 : -1.4, true) +
         kpiTile('Denial rate', fmtPct(kDen, 1), '', st ? 4.5 : -0.8, true) + '</div>';
 
-      const ibMeta = dot('var(--text)') + 'Billed' + '<span style="margin:0 6px;">' + dot('var(--flare)', true) + 'Income</span>' + '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:15px;border-top:1.5px dashed var(--muted);display:inline-block;"></span>Prior-yr avg</span>';
+      const ibMeta = dot('var(--billed)') + 'Billed' + '<span style="margin:0 6px;">' + dot('var(--income)', true) + 'Income</span>' + '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:15px;border-top:1.5px dashed var(--muted);display:inline-block;"></span>Prior-yr avg</span>';
       const cIB = card('Revenue trend', 'Income vs Billed, monthly', ibMeta, chartIB(incAdj, f.billedMonthly, 1320000));
 
       const cSvc = card('Service line performance', 'Utilization &amp; yield by service line', 'Bar = revenue, pill = NCR', f.serviceLineRows.length ? serviceLineChart(f.serviceLineRows) : '<div style="color:var(--muted);font-size:14px;">No service lines selected.</div>');
 
-      const visLegend = legendRows(f.visitsDonut.map((d, i) => ({ k: d.k, color: PAL_FAC[i % PAL_FAC.length], val: fmtN(d.v) })));
-      const visSegs = f.visitsDonut.map((d, i) => ({ pct: d.v / (f.visitsDonut.reduce((a, b) => a + b.v, 0) || 1), color: PAL_FAC[i % PAL_FAC.length] }));
+      const visTotal = f.visitsDonut.reduce((a, b) => a + b.v, 0) || 1;
+      const visLegend = legendRows(f.visitsDonut.map((d, i) => ({ k: d.k, color: rampAt(i, f.visitsDonut.length), val: fmtN(d.v) })));
+      const visSegs = f.visitsDonut.map((d, i) => ({ pct: d.v / visTotal, color: rampAt(i, f.visitsDonut.length), k: d.k, val: fmtN(d.v) }));
       const denPay = f.denialsByPayer;
-      const denSegs = denPay.map((d, i) => ({ pct: d.v / (f.denByPayTotal || 1), color: PAL_PAY[i % PAL_PAY.length] }));
-      const denLegend = legendRows(denPay.map((d, i) => ({ k: d.k, color: PAL_PAY[i % PAL_PAY.length], val: fmtN(d.v) })));
+      const denSegs = denPay.map((d, i) => ({ pct: d.v / (f.denByPayTotal || 1), color: rampAt(i, denPay.length), k: d.k, val: fmtN(d.v) }));
+      const denLegend = legendRows(denPay.map((d, i) => ({ k: d.k, color: rampAt(i, denPay.length), val: fmtN(d.v) })));
       const dist = '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;">' +
         '<div><div style="font-size:13px;color:var(--muted);margin-bottom:12px;text-align:center;">Visits by facility</div>' + donut(visSegs, fmtN(f.visits), 'Visits') + visLegend + '</div>' +
         '<div><div style="font-size:13px;color:var(--muted);margin-bottom:12px;text-align:center;">Denials issued by payer</div>' + (denPay.length ? donut(denSegs, fmtN(Math.round(f.denByPayTotal * (f.slice || 1))), 'Denials') + denLegend : '<div style="color:var(--muted);font-size:14px;text-align:center;padding-top:40px;">No payers selected.</div>') + '</div></div>';
@@ -330,6 +412,105 @@
       if (act) { const k = act.getAttribute('data-key'), a = act.getAttribute('data-act'); S[k] = a === 'all' ? (k === 'fac' ? D.facilities.slice() : k === 'pay' ? D.payers.slice() : D.serviceLines.slice()) : []; renderScenario(); renderFilters(); renderCharts(); return; }
     }
     root.addEventListener('click', onClick);
+
+    /* Ring hover is delegated on root so it survives the wholesale innerHTML
+       re-render that every filter change triggers. */
+    function nrText(svg, key) { return svg.querySelector('[data-nr="' + key + '"]'); }
+    function nrReset(svg) {
+      const all = svg.querySelectorAll('path[data-ring]');
+      for (let i = 0; i < all.length; i++) all[i].style.opacity = '1';
+      const wrap = svg.parentNode;
+      const n = nrText(svg, 'num'), l = nrText(svg, 'label'), b = nrText(svg, 'sub');
+      if (n && wrap) n.textContent = wrap.getAttribute('data-nr-default') || '';
+      if (l) l.textContent = 'claims with denial codes';
+      if (b) b.textContent = '';
+    }
+    root.addEventListener('mouseover', function (ev) {
+      const t = ev.target;
+      const p = t && t.closest ? t.closest('path[data-ring]') : null;
+      if (!p) return;
+      const svg = p.ownerSVGElement; if (!svg) return;
+      const all = svg.querySelectorAll('path[data-ring]');
+      for (let i = 0; i < all.length; i++) all[i].style.opacity = (all[i] === p) ? '1' : '.32';
+      const n = nrText(svg, 'num'), l = nrText(svg, 'label'), b = nrText(svg, 'sub');
+      if (n) n.textContent = p.getAttribute('data-ring') === 'ovr'
+        ? fmtPct(parseFloat(p.getAttribute('data-val')), 1)
+        : fmtPct(parseFloat(p.getAttribute('data-pct')), 0);
+      if (l) { const k = p.getAttribute('data-k') || ''; l.textContent = k.length > 22 ? k.slice(0, 22) + '\u2026' : k; }
+      if (b) b.textContent = p.getAttribute('data-sub') || '';
+    });
+    root.addEventListener('mouseout', function (ev) {
+      const t = ev.target;
+      const p = t && t.closest ? t.closest('path[data-ring]') : null;
+      if (!p) return;
+      const rel = ev.relatedTarget;
+      if (rel && rel.closest && rel.closest('path[data-ring]')) return;
+      const svg = p.ownerSVGElement; if (svg) nrReset(svg);
+    });
+
+    /* Same contract for the two distribution donuts: a slice names itself and its
+       value in the center, and the center falls back to the total on exit. */
+    function dnReset(svg) {
+      const all = svg.querySelectorAll('path[data-dn-slice]');
+      for (let i = 0; i < all.length; i++) all[i].style.opacity = '1';
+      const wrap = svg.parentNode;
+      const n = svg.querySelector('[data-dn="num"]'), l = svg.querySelector('[data-dn="label"]');
+      if (n && wrap) n.textContent = wrap.getAttribute('data-dn-main') || '';
+      if (l && wrap) l.textContent = wrap.getAttribute('data-dn-sub') || '';
+    }
+    root.addEventListener('mouseover', function (ev) {
+      const t = ev.target;
+      const p = t && t.closest ? t.closest('path[data-dn-slice]') : null;
+      if (!p) return;
+      const svg = p.ownerSVGElement; if (!svg) return;
+      const all = svg.querySelectorAll('path[data-dn-slice]');
+      for (let i = 0; i < all.length; i++) all[i].style.opacity = (all[i] === p) ? '1' : '.32';
+      const n = svg.querySelector('[data-dn="num"]'), l = svg.querySelector('[data-dn="label"]');
+      if (n) n.textContent = p.getAttribute('data-v') || '';
+      if (l) { const k = p.getAttribute('data-k') || ''; l.textContent = (k.length > 18 ? k.slice(0, 18) + '…' : k) + '  ' + p.getAttribute('data-pct') + '%'; }
+    });
+    root.addEventListener('mouseout', function (ev) {
+      const t = ev.target;
+      const p = t && t.closest ? t.closest('path[data-dn-slice]') : null;
+      if (!p) return;
+      const rel = ev.relatedTarget;
+      if (rel && rel.closest && rel.closest('path[data-dn-slice]')) return;
+      const svg = p.ownerSVGElement; if (svg) dnReset(svg);
+    });
+
+    /* Income vs Billed: the whole month column is the target, and the readout
+       carries both series at once, which a per-mark tooltip could not do. */
+    function ibReset(svg) {
+      svg.querySelectorAll('[data-ib-bar]').forEach(function (b) { b.style.opacity = '1'; });
+      svg.querySelectorAll('[data-ib-dot]').forEach(function (d) { d.setAttribute('r', '3'); });
+      svg.querySelectorAll('[data-ib="bval"],[data-ib="ival"]').forEach(function (t) { t.textContent = ''; });
+    }
+    root.addEventListener('mouseover', function (ev) {
+      const t = ev.target;
+      const hit = t && t.closest ? t.closest('rect[data-ib-hit]') : null;
+      if (!hit) return;
+      const svg = hit.ownerSVGElement; if (!svg) return;
+      const i = hit.getAttribute('data-ib-hit');
+      svg.querySelectorAll('[data-ib-bar]').forEach(function (b) {
+        b.style.opacity = b.getAttribute('data-ib-bar') === i ? '1' : '.4';
+      });
+      svg.querySelectorAll('[data-ib-dot]').forEach(function (d) {
+        d.setAttribute('r', d.getAttribute('data-ib-dot') === i ? '5' : '3');
+      });
+      const bv = svg.querySelector('[data-ib="bval"]'), iv = svg.querySelector('[data-ib="ival"]');
+      const cx = hit.getAttribute('data-cx');
+      if (bv) { bv.setAttribute('x', cx); bv.setAttribute('y', (parseFloat(hit.getAttribute('data-by')) - 6).toFixed(1)); bv.textContent = hit.getAttribute('data-b'); }
+      if (iv) { iv.setAttribute('x', cx); iv.setAttribute('y', hit.getAttribute('data-iy')); iv.textContent = hit.getAttribute('data-i'); }
+    });
+    root.addEventListener('mouseout', function (ev) {
+      const t = ev.target;
+      const hit = t && t.closest ? t.closest('rect[data-ib-hit]') : null;
+      if (!hit) return;
+      const rel = ev.relatedTarget;
+      if (rel && rel.closest && rel.closest('rect[data-ib-hit]')) return;
+      const svg = hit.ownerSVGElement; if (svg) ibReset(svg);
+    });
+
     // The scenario card can live in the page hero, outside root, so its buttons need their own
     // listener; without it the switch renders but nothing responds to a click.
     if (scenEl && !root.contains(scenEl)) scenEl.addEventListener('click', onClick);
