@@ -902,7 +902,32 @@ button.cc-seg.active { color: var(--cc-fill-fg); background: var(--cc-fill); bor
 @media (max-width:760px){
   .pagenav .links{gap:16px;}
 }
-</style>
+
+  /* ---------- ledger. The console shows the numbers; this says what they count.
+     A rule-separated table rather than cards, matching the rail on the other
+     pages: term on the left in mono, the reading on the right in the body face,
+     a vertical rule between them and a hairline between rows. ---------- */
+  .ledger{border-top:1px solid var(--rule);padding:clamp(30px,4.6vw,58px) var(--pad)}
+  .ledger .lhead{font-family:var(--tech);font-size:11px;letter-spacing:.16em;
+                 text-transform:uppercase;color:var(--sumi3);margin-bottom:6px}
+  .ledger h2{font-size:clamp(20px,2.4vw,27px);font-weight:600;letter-spacing:-.02em;
+             color:var(--sumi);margin:0 0 4px}
+  .ledger .lintro{max-width:66ch;color:var(--sumi1);margin:0 0 clamp(20px,2.6vw,30px)}
+  .lrow{display:grid;grid-template-columns:minmax(130px,190px) 1fr;gap:0 clamp(18px,2.4vw,34px);
+        padding:14px 0;border-bottom:1px solid var(--hair);align-items:baseline}
+  .lrow:last-child{border-bottom:0;padding-bottom:0}
+  .lrow .lterm{font-family:var(--tech);font-size:12.5px;letter-spacing:.06em;
+               text-transform:uppercase;color:var(--sumi);
+               border-right:1px solid var(--rule);padding-right:clamp(18px,2.4vw,34px);
+               align-self:stretch}
+  .lrow .lgloss{color:var(--sumi1);max-width:72ch}
+  .lrow .lgloss b{font-weight:600;color:var(--sumi)}
+  .lrow .todo{font-family:var(--tech);font-size:11.5px;color:var(--flare)}
+  @media (max-width:720px){
+    .lrow{grid-template-columns:1fr;gap:6px}
+    .lrow .lterm{border-right:0;padding-right:0;padding-bottom:2px}
+  }
+  </style>
 </head>
 <body class="theme-dark">
 <div class="page">
@@ -934,6 +959,64 @@ button.cc-seg.active { color: var(--cc-fill-fg); background: var(--cc-fill); bor
       <div class="cc-root">
         <div id="claudata">Loading&#8230;</div>
       </div>
+    </div>
+  </section>
+
+
+  <section class="ledger">
+    <div class="lhead">Reading the console</div>
+    <h2>What each panel counts.</h2>
+    <p class="lintro">Every figure above is computed in the browser from a captured snapshot of my own
+      Claude Code session history. Nothing is sampled and nothing is modeled. The terms below are the
+      units those figures are denominated in, so the numbers mean something specific rather than
+      generally impressive.</p>
+
+    <div class="lrow">
+      <div class="lterm">Observation</div>
+      <div class="lgloss">The unit of record, and the denominator under most of this page. One
+        observation is a single captured event from a session: a decision, a change, a discovery.
+        They are written by <b>claude-mem</b> as work happens rather than reconstructed afterward,
+        which is why the counts track effort rather than wall-clock time.</div>
+    </div>
+
+    <div class="lrow">
+      <div class="lterm">Provenance</div>
+      <div class="lgloss">Where a skill or tool came from, sorted into four families:
+        <b>Anthropic</b> for what ships with Claude Code, <b>marketplace</b> for installed plugins,
+        <b>custom</b> for the ones I wrote, and <b>MCP</b> for external servers. Provenance against
+        volume answers whether the output leans on what came in the box or on what I built.</div>
+    </div>
+
+    <div class="lrow">
+      <div class="lterm">Skill Nexus</div>
+      <div class="lgloss">Which skills the output is attributable to, read from the attribution
+        record the sphere plugin maintains. A skill earns a share here by being the thing that
+        carried a piece of work, not by being invoked.</div>
+    </div>
+
+    <div class="lrow">
+      <div class="lterm">Thermodynamics</div>
+      <div class="lgloss"><span class="todo">[definition pending]</span> The signature chart, and
+        the one term on this page a reader cannot infer. Worth one sentence naming what is on each
+        axis.</div>
+    </div>
+
+    <div class="lrow">
+      <div class="lterm">Resource utilization</div>
+      <div class="lgloss"><span class="todo">[definition pending]</span> What the segmented toggle
+        switches between, and what a high value means.</div>
+    </div>
+
+    <div class="lrow">
+      <div class="lterm">Cache resolution</div>
+      <div class="lgloss"><span class="todo">[definition pending]</span> Prompt cache behavior, and
+        why it is worth watching alongside cost.</div>
+    </div>
+
+    <div class="lrow">
+      <div class="lterm">Performance</div>
+      <div class="lgloss"><span class="todo">[definition pending]</span> Which models are compared,
+        on what reliability measure, and against what price.</div>
     </div>
   </section>
 
